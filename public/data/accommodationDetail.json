@@ -18,7 +18,11 @@
     },
     "accommodationOptions": {
       "wifi": true,
-      "parking": true
+      "parking": true,
+      "smoking": false,
+      "pet": "true",
+      "cityView": false,
+      "oceanView": true
     },
     "roomsInfo": [
       {
