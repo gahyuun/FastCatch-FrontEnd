@@ -1,0 +1,96 @@
+$subtitle1: (
+	font-weight: Bold,
+	font-size: 40px,
+	line-height: 1.5,
+);
+
+$subtitle2: (
+	font-weight: Bold,
+	font-size: 32px,
+	line-height: 1.5,
+);
+
+$subtitle3: (
+	font-weight: Bold,
+	font-size: 28px,
+	line-height: 1.5,
+);
+
+$subtitle4: (
+	font-weight: Bold,
+	font-size: 24px,
+	line-height: 1.5,
+);
+
+$subtitle5: (
+	font-weight: Bold,
+	font-size: 20px,
+	line-height: 1.5,
+);
+
+$body1: (
+	font-weight: 500,
+	font-size: 18px,
+	line-height: 1.5,
+);
+
+$body2: (
+	font-weight: 500,
+	font-size: 16px,
+	line-height: 1.5,
+);
+
+$body3: (
+	font-weight: 500,
+	font-size: 14px,
+	line-height: 1.6,
+);
+
+$body2__bold: (
+	font-weight: bold,
+	font-size: map-get($body2, 'font-size'),
+	line-height: map-get($body2, 'line-height'),
+);
+
+$body3__bold: (
+	font-weight: bold,
+	font-size: map-get($body3, 'font-size'),
+	line-height: map-get($body3, 'line-height'),
+);
+
+$caption1: (
+	font-weight: 500,
+	font-size: 12px,
+	line-height: 1.6,
+);
+
+$caption2: (
+	font-weight: 300,
+	font-size: 10px,
+	line-height: 1.6,
+);
+
+@each $name,
+	$styles
+		in (
+			'subtitle1': $subtitle1,
+			'subtitle2': $subtitle2,
+			'subtitle3': $subtitle3,
+			'subtitle4': $subtitle4,
+			'subtitle5': $subtitle5,
+			'body1': $body1,
+			'body2': $body2,
+			'body2__bold': $body2__bold,
+			'body3__bold': $body3__bold,
+			'body3': $body3,
+			'caption1': $caption1,
+			'caption2': $caption2
+		)
+{
+	.text-#{$name} {
+		@each $property, $value in $styles {
+			#{$property}: $value;
+		}
+	}
+}
+

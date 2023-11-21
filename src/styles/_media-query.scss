@@ -1,0 +1,11 @@
+$grid-breakpoints: (
+	md: 700px,
+);
+
+@mixin mdq-max($breakpoint) {
+	$max: map-get($grid-breakpoints, $breakpoint);
+	@media all and (max-width: $max) {
+		@content;
+	}
+}
+
