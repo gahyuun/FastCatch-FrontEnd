@@ -1,12 +1,3 @@
----
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
----
-
 ## 페이지
 <!-- 작업한 페이지를 적어주세요 -->
 
