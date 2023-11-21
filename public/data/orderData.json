@@ -1,0 +1,46 @@
+[
+  {
+    "orderId": "order1",
+    "accommodationId": "accommodation1",
+    "accommodationName": "호텔 크레센도 서울",
+    "roomId": "room1",
+    "roomName": "프티 퀸",
+    "peopleNumber": {
+      "minimum": 2,
+      "maximum": 4
+    },
+    "checkIn": {
+      "startDate": "2023.11.23(목)",
+      "checkInTime": "14:00"
+    },
+    "checkOut": {
+      "endDate": "2023.11.24(금)",
+      "checkOutTime": "12:00"
+    },
+    "price": 170000,
+    "NumberOfApplicants": 2,
+    "isCanceled": false
+  },
+  {
+    "orderId": "order2",
+    "accommodationId": "accommodation2",
+    "accommodationName": "보코서울강남, IHG 호텔",
+    "roomId": "room2",
+    "roomName": "[무료 미니바 패키지] 디럭스 싱글",
+    "peopleNumber": {
+      "minimum": 2,
+      "maximum": 4
+    },
+    "checkIn": {
+      "startDate": "2023.11.23(목)",
+      "checkInTime": "14:00"
+    },
+    "checkOut": {
+      "endDate": "2023.11.24(금)",
+      "checkOutTime": "12:00"
+    },
+    "price": 284900,
+    "NumberOfApplicants": 2,
+    "isCanceled": false
+  }
+]
