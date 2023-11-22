@@ -1,4 +1,4 @@
-import './orderPrice.scss';
+import "./orderPrice.scss";
 
 const OrderPrice = ({ nightCount, roomPrice }: OrderPriceProps) => {
   return (

@@ -1,4 +1,4 @@
-import './roomName.scss';
+import "./roomName.scss";
 
 const RoomName = ({ roomName }: RoomNameProps) => {
   return <h3 className="room-name text-subtitle3">{roomName}</h3>;

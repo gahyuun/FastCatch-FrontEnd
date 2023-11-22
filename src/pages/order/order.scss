@@ -1,4 +1,4 @@
-@import '../../styles/common.scss';
+@import "../../styles/common.scss";
 
 .order {
   max-width: rem(962);
@@ -6,4 +6,6 @@
   padding: 0 rem(24);
   margin: 0 auto;
   margin-top: rem(100);
+  height: 100vh;
+  overflow: scroll;
 }

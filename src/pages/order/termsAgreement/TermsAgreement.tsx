@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import './termsAgreement.scss';
+import "./termsAgreement.scss";
 
 const TermsAgreement = () => {
   const [allCheck, setAllCheck] = useState(false);

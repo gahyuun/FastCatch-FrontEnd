@@ -1,4 +1,4 @@
-import './subDescription.scss';
+import "./subDescription.scss";
 
 const SubDescription = () => {
   return (

@@ -1,4 +1,4 @@
-import './checkOut.scss';
+import "./checkOut.scss";
 
 const CheckOut = ({ checkOutDate, checkOutTime }: CheckOutProps) => {
   return (

@@ -1,4 +1,4 @@
-import './eventBanner.scss';
+import "./eventBanner.scss";
 
 const EventBanner = () => {
   return (

@@ -1,4 +1,4 @@
-import './paymentMethodItem.scss';
+import "./paymentMethodItem.scss";
 
 const PaymentMethodItem = ({
   className,
@@ -13,8 +13,8 @@ const PaymentMethodItem = ({
   return (
     <input
       className={`${
-        className ? `payment-method-item ${className}` : 'payment-method-item'
-      } text-body1 ${selectedMethod === methodName ? 'selected' : ''}`}
+        className ? `payment-method-item ${className}` : "payment-method-item"
+      } text-body1 ${selectedMethod === methodName ? "selected" : ""}`}
       onClick={handleSelected}
       type="button"
       value={methodName}

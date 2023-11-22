@@ -1,4 +1,4 @@
-import './checkIn.scss';
+import "./checkIn.scss";
 
 const CheckIn = ({ checkInDate, checkInTime }: CheckInProps) => {
   return (
