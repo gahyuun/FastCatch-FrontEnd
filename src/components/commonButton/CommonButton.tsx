@@ -11,10 +11,7 @@ interface ButtonType {
 
 function CommonButton({ text, size, shape, colorName, onClick }: ButtonType) {
   return (
-    <button
-      className={`text-body1 common-button ${size} ${shape}-${colorName}`}
-      onClick={onClick}
-    >
+    <button className={`text-body1 common-button ${size} ${shape}-${colorName}`} onClick={onClick}>
       {text}
     </button>
   );
