@@ -1,6 +1,6 @@
 @import '../../styles/common.scss';
 
-.common-input-title{
+.common-input__title{
   color:gray(600);
   margin: 0 0 24px;
   text-align: start;
@@ -26,7 +26,7 @@
     border-bottom: 2px solid $error;
   }
 }
-.common-input-alert-message{
+.common-input__alert-message{
   text-align: start;
   margin: 5px 0 0;
   &.default{
