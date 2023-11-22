@@ -1,16 +1,14 @@
 // 변수 컬러
 @import 'theme';
 
-// 폰트사이즈 단위
-@import 'unit';
-
 // 폰트 변수
 @import 'typo';
+
+// 폰트사이즈 단위
+@import 'unit';
 
 // 반응형 축약형
 @import 'media-query';
 
 // 그 외의 mixin들
 
-// 사용법은 reset은 index.html 에 넣었고 (단지, scss 가 css 로 컴파일되는지 확인)
-// common 변수명과 믹스인들이 종합적으로 들어가있는 것들은 scss 파일들마다 디폴트로 상단에 @import 해주어야 함

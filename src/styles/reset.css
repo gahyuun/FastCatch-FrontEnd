@@ -1,5 +1,3 @@
-@import './common.scss';
-
 @font-face {
 	font-family: 'Pretendard';
 	src: url('../assets/fonts/PretendardVariable.woff2');
@@ -21,9 +19,6 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	@include mdq-max(md) {
-		background-color: red;
-	}
 }
 
 code {
