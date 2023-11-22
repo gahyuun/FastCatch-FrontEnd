@@ -39,15 +39,15 @@ function CommonInput({
 
   return (
     <div>
-      <div className="common-input-title">{title}</div>
+      <div className="text-body3 common-input-title">{title}</div>
       <input
-        className={`common-input ${inputStyle}`}
+        className={`text-body1 common-input ${inputStyle}`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         type={ifSecret ? "password" : "text"}
       />
-      <div className={`common-input-alert-message ${inputStyle}`}>
+      <div className={`text-body3 common-input-alert-message ${inputStyle}`}>
         {alertMessage}
       </div>
     </div>
