@@ -3,8 +3,8 @@ import "./commonButton.scss";
 
 interface ButtonType {
   text: string;
-  size?: string;
-  shape?: string;
+  size?: "small" | "large";
+  shape?: "fill" | "line";
   colorName?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

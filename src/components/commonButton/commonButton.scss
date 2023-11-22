@@ -36,7 +36,7 @@
     width: 100%;
     padding: 12px 0;
   }
-
+  // 코랄
   @for $i from 100 through 800 {
     $color: map-get($coral, $i);
     $hoverColor: map-get($coral, $i+100);
@@ -44,6 +44,17 @@
       @include fill-button($color,$hoverColor);
     }
     &.line-coral#{$i} {
+      @include line-button($color,$hoverColor)
+    }
+  }
+  // 그레이
+  @for $i from 100 through 900 {
+    $color: map-get($grays, $i);
+    $hoverColor: map-get($grays, $i+100);
+    &.fill-gray#{$i} {
+      @include fill-button($color,$hoverColor);
+    }
+    &.line-gray#{$i} {
       @include line-button($color,$hoverColor)
     }
   }
