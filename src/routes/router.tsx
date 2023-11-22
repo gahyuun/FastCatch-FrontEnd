@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { PATH } from "./constants";
-import { Basket, Home } from "../pages";
+import { Basket, Home, Accommodation } from "../pages";
 import App from "../App";
 
 const router = createBrowserRouter([
@@ -15,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: PATH.BASKET,
         element: <Basket />,
+      },
+      {
+        path: PATH.ACCOMMODATION,
+        element: <Accommodation />,
       },
     ],
   },
