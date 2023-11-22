@@ -29,8 +29,12 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.json",
   },
+  ignorePatterns: [".eslintrc.cjs", "vite.config.ts", "src"],
   plugins: ["@typescript-eslint", "react", "prettier"],
   rules: {
     quotes: [2, "double", { avoidEscape: false }],
+    "import/prefer-default-export": "off",
+    "import/extensions": ["off"],
+    "react/react-in-jsx-scope": "off",
   },
 };
