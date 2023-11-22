@@ -1,5 +1,5 @@
 import React from "react";
-import "./accomodationOptions.scss";
+import "./accommodationOptions.scss";
 
 const AccommodationOptions = () => {
   return (

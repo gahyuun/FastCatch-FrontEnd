@@ -3,7 +3,7 @@ import "./accommodation.scss";
 import RoomSelect from "./roomSelect/RoomSelect";
 import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
 import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntroduce";
-import AccommodationOptions from "./accommodationOptions/AccomodationOptions";
+import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 
 const Accommodation = () => {
   return (
