@@ -1,14 +1,21 @@
 import React from "react";
 import "./accommodation.scss";
+import RoomSelect from "./roomSelect/RoomSelect";
+import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
+import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntroduce";
+import AccommodationOptions from "./accommodationOptions/AccomodationOptions";
 
 const Accommodation = () => {
   return (
     <div className="accommodation-container">
-      <div>이미지swiper</div>
-      <div className="accomodation-container__main-info">
-        <span className="text-subtitle3">한국 신라 호텔</span>
-        <span>호텔</span>
-      </div>
+      <div style={{ width: "100%", height: "200px" }}>이미지swiper</div>
+      <AccommodationMainInfo />
+      <div className="accommodation__divider"></div>
+      <AccommodationIntroduce />
+      <div className="accommodation__divider"></div>
+      <AccommodationOptions />
+      <div className="accommodation__divider"></div>
+      <RoomSelect />
     </div>
   );
 };
