@@ -1,0 +1,13 @@
+@import '../../../styles/common.scss';
+
+.booker-information {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  margin-top: rem(16);
+  &__input {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+  }
+}

@@ -1,0 +1,12 @@
+@import '../../styles/common.scss';
+
+.accommodation-guest {
+  display: flex;
+  align-items: center;
+  color: gray(700);
+  gap: 10px;
+  &__count {
+    display: flex;
+    gap: 2px;
+  }
+}

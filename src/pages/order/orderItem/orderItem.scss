@@ -1,0 +1,30 @@
+@import '../../../styles/common.scss';
+
+.order-item {
+  width: 100%;
+  border-bottom: 1px solid gray(400);
+  padding: rem(24) 0 rem(32);
+  &__name {
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+  }
+  &__guest {
+    margin-top: rem(4);
+  }
+  &__badge {
+    margin-top: rem(12);
+    display: flex;
+    gap: rem(8);
+  }
+  &__info {
+    margin-top: rem(24);
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+  &__check {
+    display: flex;
+    gap: rem(100);
+  }
+}

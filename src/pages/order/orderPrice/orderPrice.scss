@@ -1,0 +1,13 @@
+@import '../../../styles/common.scss';
+
+.order-price {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+  &__night-count {
+    color: gray(900);
+  }
+  &__price {
+    color: coral(500);
+  }
+}
