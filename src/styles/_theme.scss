@@ -29,3 +29,5 @@ $grays: (
 	@return map-get($grays, $shade);
 }
 
+$error:#9D1414;
+$success:#0CBC72;
