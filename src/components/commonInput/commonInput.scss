@@ -26,4 +26,22 @@ $body1:18px;
     border:none;
     border-bottom: 2px solid $coral500;
   }
+  &.valid {
+    border-bottom: 2px solid green;
+  }
+  &.inValid {
+    border-bottom: 2px solid orange;
+  }
+}
+.common-input-alert-message{
+  text-align: start;
+  &.default{
+    color:transparent;
+  }
+  &.valid{
+    color: green;
+  }
+  &.inValid{
+    color: orange;
+  }
 }

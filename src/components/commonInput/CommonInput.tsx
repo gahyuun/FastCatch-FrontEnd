@@ -1,3 +1,4 @@
+import React from "react";
 import "./commonInput.scss";
 
 interface CommonInputType {
@@ -6,6 +7,9 @@ interface CommonInputType {
   value: string;
   onChange: any;
   ifSecret?: boolean;
+  inputStyle?: "default" | "valid" | "inValid";
+  validAlertMessage?: string;
+  inValidAlertMessage?: string;
 }
 
 function CommonInput({
@@ -14,18 +18,39 @@ function CommonInput({
   value,
   onChange,
   ifSecret,
+  inputStyle = "default",
+  validAlertMessage,
+  inValidAlertMessage,
 }: CommonInputType) {
+  let alertMessage: string | undefined = "";
+  switch (inputStyle) {
+    case "default":
+      alertMessage = "";
+      break;
+    case "valid":
+      alertMessage = validAlertMessage;
+      break;
+    case "inValid":
+      alertMessage = inValidAlertMessage;
+      break;
+    default:
+      alertMessage = "";
+  }
+
   return (
-    <>
+    <div>
       <div className="common-input-title">{title}</div>
       <input
-        className="common-input"
+        className={`common-input ${inputStyle}`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         type={ifSecret ? "password" : "text"}
       />
-    </>
+      <div className={`common-input-alert-message ${inputStyle}`}>
+        {alertMessage}
+      </div>
+    </div>
   );
 }
 
