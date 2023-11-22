@@ -6,11 +6,13 @@
     border: 1px solid coral(500);
     border-radius: 4px;
     padding: 0 8px;
+    @extend .text-body2;
   }
   &.fill {
     color: white;
     background-color: coral(300);
     border-radius: 8px;
     padding: 2px 8px;
+    @extend .text-body1;
   }
 }
