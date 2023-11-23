@@ -7,8 +7,7 @@ import { useContext } from "react";
 import { TermsAgreementContext } from "context/TermsAgreementContext";
 import EventBanner from "./eventBanner/EventBanner";
 import SubDescription from "./subDescription/SubDescription";
-import TermsAgreement from "components/termsAgreement/TermsAgreement";
-
+import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
 import "./order.scss";
 
 const Order = () => {
