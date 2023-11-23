@@ -18,7 +18,7 @@
 	transform: translate(-50%, -50%);
 	min-width: 490px;
 	background-color: white;
-	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+	box-shadow: boxshadow(1);
 	border-radius: 8px;
 	&__header {
 		padding: 0 24px;
