@@ -1,5 +1,6 @@
 import React from "react";
 import "./accommodationMainInfo.scss";
+import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 
 const AccommodationMainInfo = ({
   accommodationName,
@@ -7,9 +8,9 @@ const AccommodationMainInfo = ({
 }: any) => {
   return (
     <div className="accommodation__main-info">
-      <div>
+      <div className="accommodation__name">
         <span className="text-subtitle3">{accommodationName}</span>
-        <span className="text-body1"> 예약가능</span>
+        <CommonBadge text="예약 가능" badgeType="fill" />
       </div>
       <div className="accommodation__main-info__detail">
         <span className="text-body1"> 호텔 | </span>

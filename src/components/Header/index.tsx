@@ -1,8 +1,8 @@
-import CommonButton from "components/commonButton/CommonButton";
+import CommonButton from "../commonButton/CommonButton";
 import CommonFilter from "../CommonFilter";
 import MyInfo from "./MyInfo";
 import "./Header.scss";
-import "styles/_theme.scss";
+import "../../styles/_theme.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -25,9 +25,15 @@ const Header = () => {
         </section>
         <section className="header-container__right">
           {isLoggedIn ? (
-            <MyInfo></MyInfo> //
+            <MyInfo></MyInfo>
           ) : (
-            <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />
+            <CommonButton
+              text="로그인"
+              buttonSize="small"
+              shape="fill"
+              colorName="coral500"
+              onClick={loginHandler}
+            />
           )}
         </section>
       </div>

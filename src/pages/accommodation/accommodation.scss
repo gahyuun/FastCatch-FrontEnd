@@ -7,19 +7,28 @@
 .accommodation__main-info, .accommodation__introduce, .accommodation__options, .accommodation__select-room{
   padding:24px;
 }
-.accommodation__menu-title{
-  margin: 0 0 8px;
-}
 
-.accommodation__divider{
-  background-color: gray(400);
-  width:100%;
-  height: 1px;
-  margin: 0 24px;
-}
+.accommodation{
+  &__name{
+    display: flex;
+    gap:8px;
+    align-items: center;
+  }
 
-.accommodation__options-box{
-  background-color: gray(100);
-  height: 142px;
-  width: 100%;
+  &__menu-title{
+    margin: 0 0 8px;
+  }
+
+  &__divider{
+    background-color: gray(400);
+    width:100%;
+    height: 1px;
+    margin: 0 24px;
+  }
+
+  &__options-box{
+    background-color: gray(100);
+    height: 142px;
+    width: 100%;
+  }
 }
