@@ -11,10 +11,17 @@ import {
 } from "react-icons/md";
 import { PiCookingPotBold, PiDogBold } from "react-icons/pi";
 
-// import { IconName } from "react-icons/io5";
+interface TemplateItem {
+  [key: string]: [string, JSX.Element];
+}
+type AccommodationOptions = {
+  [key: string]: boolean;
+};
 
-const AccommodationOptions = ({ accommodationOptions }: any) => {
-  const template: any = {
+const AccommodationOptions = ({
+  accommodationOptions,
+}: AccommodationOptions) => {
+  const template: TemplateItem = {
     has_smoking_room: ["흡연 가능", <FaSmoking size="50px" />],
     has_pet_room: ["반려견 동반", <PiDogBold size="50px" />],
     has_parking_lot: ["주차 가능", <MdLocalParking size="50px" />],
@@ -25,7 +32,7 @@ const AccommodationOptions = ({ accommodationOptions }: any) => {
     has_restaurant: ["레스토랑", <MdRestaurant size="50px" />],
     has_cooking_room: ["취사 가능", <PiCookingPotBold size="50px" />],
   };
-  console.log(englishToKoreanFormat(accommodationOptions, template));
+  console.log(accommodationOptions);
 
   return (
     <div className="accommodation__options">

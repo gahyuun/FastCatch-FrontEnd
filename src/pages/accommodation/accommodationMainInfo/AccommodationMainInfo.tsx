@@ -2,10 +2,17 @@ import React from "react";
 import "./accommodationMainInfo.scss";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 
+interface AccommodationMainInfoProps {
+  accommodationName: string;
+  accommodationLocation: string;
+}
+
 const AccommodationMainInfo = ({
   accommodationName,
   accommodationLocation,
-}: any) => {
+}: AccommodationMainInfoProps) => {
+  console.log(accommodationLocation);
+  console.log(accommodationName);
   return (
     <div className="accommodation__main-info">
       <div className="accommodation__name">

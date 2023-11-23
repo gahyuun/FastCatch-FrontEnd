@@ -1,6 +1,10 @@
 import React from "react";
 
-const AccommodationIntroduce = ({ accommodationInfo }: any) => {
+interface AccommodationInfo {
+  accommodationInfo: string;
+}
+
+const AccommodationIntroduce = ({ accommodationInfo }: AccommodationInfo) => {
   return (
     <div className="accommodation__introduce">
       <div className="accommodation__menu-title">

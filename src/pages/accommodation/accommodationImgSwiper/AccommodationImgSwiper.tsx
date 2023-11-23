@@ -3,7 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 
-const AccommodationImgSwiper = ({ accommodationImage }: any) => {
+interface AccommodationImage {
+  accommodationImage: string[];
+}
+const AccommodationImgSwiper = ({ accommodationImage }: AccommodationImage) => {
   return (
     <Swiper
       modules={[Navigation, Autoplay]}

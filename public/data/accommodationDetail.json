@@ -10,10 +10,10 @@
     "price": 284900,
     "description": "IHG(인터컨티넨탈 호텔그룹)가 선보이는 한국의 첫 번째 보코 브랜드인 보코서울강남은 비즈니스와 쇼핑의 중심지인 강남에 위치하여 다채로운 문화를 즐기며 휴식할 수 있는 호텔입니다. 또한, 각 층마다 24시간 공용 주방 시설과 셀프 세탁실을 갖추고 있어 장기 투숙이 편리한 호텔입니다",
     "roomOptions": {
-      "smoking": false,
-      "pet": true,
-      "cityView": false,
-      "oceanView": true
+      "can_smoking": false,
+      "pet_accompanying": true,
+      "city_view": false,
+      "ocean_view": true
     },
     "accommodationOptions": {
       "has_wifi": true,
@@ -34,12 +34,12 @@
         "roomImage": [
           "https://image.goodchoice.kr/resize_370x220/affiliate/2022/04/13/62564e49604ac.jpg",
           "https://i.pinimg.com/736x/6f/1a/f9/6f1af9029480b5a4c94997db02d77417.jpg"
-        ]
-        ,"roomOptions": {
-          "smoking": false,
-          "pet": true,
-          "cityView": false,
-          "oceanView": true
+        ],
+        "roomOptions": {
+          "can_smoking": false,
+          "pet_accompanying": true,
+          "city_view": false,
+          "ocean_view": true
         }
       },
       {
@@ -51,10 +51,10 @@
           "https://i.pinimg.com/564x/78/cc/39/78cc397552bbb1f4755a874886270562.jpg"
         ],
         "roomOptions": {
-          "smoking": false,
-          "pet": false,
-          "cityView": false,
-          "oceanView": true
+          "can_smoking": false,
+          "pet_accompanying": false,
+          "city_view": false,
+          "ocean_view": true
         }
       }
     ]

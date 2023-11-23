@@ -3,16 +3,29 @@ import CommonButton from "@/src/components/commonButton/CommonButton";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
-import transformOptions from "@/src/utils/englishToKoreanFormat";
+import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 
-const RoomInfo = ({ room }: any) => {
+interface RoomInfoProps {
+  room: {
+    price: number;
+    roomId: string;
+    roomImage: string[];
+    roomName: string;
+    roomOptions: any;
+  };
+}
+interface Template {
+  [key: string]: string;
+}
+
+const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
   const { roomName, price, roomOptions } = room;
 
-  const template: any = {
-    cityView: "시티뷰", //city_view로 수정
-    oceanView: "오션뷰", //ocean_view
-    pet: "반려견 동반", //pet_accompanying
-    smoking: "흡연 가능", //can_smoking
+  const template: Template = {
+    city_view: "시티뷰",
+    ocean_view: "오션뷰",
+    pet_accompanying: "반려견 동반",
+    can_smoking: "흡연 가능",
     has_tub: "욕조",
     has_netflix: "넷플릭스",
     has_pc: "PC",
@@ -33,15 +46,15 @@ const RoomInfo = ({ room }: any) => {
         </div>
 
         <div className="room__options-container">
-          {transformOptions(roomOptions, template).map((option: string) => (
-            <CommonBadge text={option} badgeType="line" />
+          {englishToKoreanFormat(roomOptions, template).map((option: any) => (
+            <CommonBadge key={option} text={option} badgeType="line" />
           ))}
         </div>
 
         <div className="room__detail-info">
           <div className="room__detail-info__time">
-            <span className="text-body2">체크인 09:00</span>
-            <span className="text-body2">체크아웃 15:00</span>
+            <span className="text-body2">체크인 11:00</span>
+            <span className="text-body2">체크아웃 13:00</span>
           </div>
           <div className="text-subtitle4">{numberFormat(price)} 원</div>
         </div>
