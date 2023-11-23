@@ -1,7 +1,11 @@
 @import "../../styles/common.scss";
 
+.overall-container {
+  position: relative;
+}
+
 .filter__container {
-  padding: 0 24px;
+  padding: 0 16px;
   border: 1px solid gray(500);
   border-radius: rem(30);
   background-color: white;
@@ -10,21 +14,25 @@
   justify-content: flex-end;
   align-items: center;
   box-shadow: shadow(1);
-  transition: all 0.2s;
+  transition: all 0.1s;
 
   &:hover {
+    box-shadow: shadow(2);
+  }
+  &:focus {
     box-shadow: shadow(2);
   }
 }
 
 @mixin filter-area {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: rem(6);
   padding: rem(8) rem(16) rem(12);
+  font-size: rem(16);
   font-weight: 500;
   transition: all 0.3s ease-in-out;
+  position: relative;
   cursor: pointer;
 
   &::after {
@@ -57,6 +65,15 @@
     transform: translateY(-8px);
     color: coral(500);
   }
+
+  &.select .small-label {
+    opacity: 0;
+  }
+
+  &.select p {
+    transform: translateY(-8px);
+    color: coral(500);
+  }
 }
 
 .filter__location {
@@ -80,4 +97,13 @@
   height: rem(32);
   background-color: coral(500);
   border-radius: 50%;
+  transition: all 0.1s ease-in-out;
+
+  font-size: rem(20);
+  color: white;
+  padding-top: 7px;
+
+  &:hover {
+    background-color: coral(600);
+  }
 }
