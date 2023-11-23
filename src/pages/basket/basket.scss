@@ -11,77 +11,9 @@
     gap: rem(52);
   }
 
-  &__section {
-    display: flex;
-    flex-direction: column;
-    gap: rem(8);
-  }
-
   &__hr {
     width: 100%;
     border: 1px solid #d9d9d9;
-  }
-
-  &__item-box {
-    display: flex;
-    flex-direction: column;
-    gap: rem(8);
-  }
-
-  &__item {
-    padding: rem(24) rem(16) rem(24) rem(24);
-    border: 1px solid gray(400);
-    border-radius: rem(8);
-
-    .item-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      &__left-box {
-        display: flex;
-        flex-direction: column;
-        gap: rem(8);
-
-        .check-in-out {
-          display: flex;
-          gap: rem(16);
-          align-items: center;
-
-          &__content {
-            display: flex;
-            gap: rem(12);
-
-            .check-in__span {
-              color: gray(700);
-            }
-
-            span {
-              @extend .text-body2;
-            }
-          }
-
-          &__retangle {
-            color: gray(500);
-          }
-        }
-      }
-
-      &__right-box {
-        display: flex;
-        gap: rem(24);
-
-        .price {
-          color: gray(700);
-        }
-
-        .delete-button {
-          color: gray(500);
-          cursor: pointer;
-          padding-top: rem(3);
-        }
-      }
-    }
   }
 
   &__bottom {
