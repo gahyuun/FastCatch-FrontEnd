@@ -1,5 +1,5 @@
-import { ReactNode, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { ReactNode, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
 
 const ModalPortal = ( { children }: { children: ReactNode } ) => {
   const modalRootRef = useRef(document.getElementById('modal-root') || document.createElement('div'));

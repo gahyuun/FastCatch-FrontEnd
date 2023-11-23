@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import CommonButton from '../commonButton/CommonButton';
-import './commonModalLayout.scss';
-import { IoClose } from 'react-icons/io5';
+import { useState } from "react";
+import CommonButton from "../commonButton/CommonButton";
+import "./commonModalLayout.scss";
+import { IoClose } from "react-icons/io5";
 
 type Size = "small" | "large";
 
@@ -48,7 +48,7 @@ const CommonModalLayout = ({ title, content, buttons }: modalPropI) => {
                 <CommonButton
                   key={index}
                   text={button.text}
-                  size={button.size as Size}
+                  buttonSize={button.size as Size}
                   colorName={button.colorName}
                   onClick={() => {
                     button.onClick();

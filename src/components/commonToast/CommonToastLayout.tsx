@@ -1,7 +1,7 @@
-import { toast, ToastPosition, ToastContainer } from 'react-toastify';
-import { useState } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import './commonToastLayout.scss';
+import { toast, ToastPosition, ToastContainer } from "react-toastify";
+import { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import "./commonToastLayout.scss";
 
 type toastTheme = 'success' | 'error' | 'info';
 
