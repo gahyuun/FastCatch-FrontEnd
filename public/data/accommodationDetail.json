@@ -16,12 +16,15 @@
       "oceanView": true
     },
     "accommodationOptions": {
-      "wifi": true,
-      "parking": true,
-      "smoking": false,
-      "pet": true,
-      "cityView": true,
-      "oceanView": true
+      "has_wifi": true,
+      "has_parking_lot": true,
+      "has_smoking_room": true,
+      "has_pet_room": true,
+      "has_breakfast":true,
+      "has_cooking_room":true,
+      "has_swimming_pool":true,
+      "has_gym":true,
+      "has_restaurant":true
     },
     "roomsInfo": [
       {
