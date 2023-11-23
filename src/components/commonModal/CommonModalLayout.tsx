@@ -48,7 +48,7 @@ const CommonModalLayout = ({ title, content, buttons }: modalPropI) => {
                 <CommonButton
                   key={index}
                   text={button.text}
-                  size={button.size as Size}
+                  buttonSize={button.size as Size}
                   colorName={button.colorName}
                   onClick={() => {
                     button.onClick();
