@@ -1,33 +1,35 @@
 $coral: (
-	100: #ffdfd7,
-	200: #ffb7af,
-	300: #ff8887,
-	400: #ff6876,
-	500: #fe395b,
-	600: #db295a,
-	700: #b71c55,
-	800: #93114e,
+  100: #ffdfd7,
+  200: #ffb7af,
+  300: #ff8887,
+  400: #ff6876,
+  500: #fe395b,
+  600: #db295a,
+  700: #b71c55,
+  800: #93114e,
 );
 
 @function coral($shade) {
-	@return map-get($coral, $shade);
+  @return map-get($coral, $shade);
 }
 
 $grays: (
-	100: #f9f9fa,
-	200: #f1f5f8,
-	300: #e5e9ed,
-	400: #d0dae3,
-	500: #b4bcc6,
-	600: #9199a4,
-	700: #5c656c,
-	800: #414447,
-	900: #000000,
+  100: #f9f9fa,
+  200: #f1f5f8,
+  300: #e5e9ed,
+  400: #d0dae3,
+  500: #b4bcc6,
+  600: #9199a4,
+  700: #5c656c,
+  800: #414447,
+  900: #000000,
 );
 
 @function gray($shade) {
-	@return map-get($grays, $shade);
+  @return map-get($grays, $shade);
 }
 
-$error:#9D1414;
-$success:#0CBC72;
+$error: #9d1414;
+$success: #0cbc72;
+
+$white: #fff;
