@@ -4,7 +4,6 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const RoomImgSwiper = ({ roomImg }: any) => {
-  console.log(roomImg);
   return (
     <Swiper
       modules={[Navigation, Autoplay]}
@@ -15,7 +14,7 @@ const RoomImgSwiper = ({ roomImg }: any) => {
         delay: 5000,
       }}
       resistance={false}
-      style={{ height: "250px", margin: "8px 4px" }}
+      style={{ height: "100%", margin: "0 4px" }}
     >
       {roomImg.map((url: string) => (
         <SwiperSlide key={url}>
