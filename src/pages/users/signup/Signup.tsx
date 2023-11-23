@@ -51,31 +51,7 @@ const Signup = () => {
               <input type="text" placeholder="비밀번호를 입력해주세요" />
             </div>
             <ul className="agree-inner">
-              <li className="agree-inner__item">
-                <input type="checkbox" id="chk01" />
-                <label htmlFor="chk01" className="text-subtitle4">
-                  필수약관 전체 동의</label>
-              </li>
-              <li className="agree-inner__item">
-                <input type="checkbox" id="chk01" />
-                <label htmlFor="chk01" className="text-body1">
-                숙소이용규칙 및 취소/환불규정 동의 (필수)</label>
-              </li>
-              <li className="agree-inner__item">
-                <input type="checkbox" id="chk01" />
-                <label htmlFor="chk01" className="text-body1">
-                개인정보 수집 및 이용 동의 (필수)</label>
-              </li>
-              <li className="agree-inner__item">
-                <input type="checkbox" id="chk01" />
-                <label htmlFor="chk01" className="text-body1">
-                개인정보 제 3자 제공 동의 (필수)</label>
-              </li>
-              <li className="agree-inner__item">
-                <input type="checkbox" id="chk01" />
-                <label htmlFor="chk01" className="text-body1">
-                만 14세 이상 확인 (필수)</label>
-              </li>
+              {/* <TermsAgreement /> */}
             </ul>
               <CommonButton
               text={'회원가입'}
