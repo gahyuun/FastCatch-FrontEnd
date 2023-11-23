@@ -1,6 +1,8 @@
-@import "../../../styles/common.scss";
+@import "../../styles/common.scss";
 
 .terms-agreement__item {
+  display: flex;
+  align-items: center;
   input[type="checkbox"] {
     display: none;
   }

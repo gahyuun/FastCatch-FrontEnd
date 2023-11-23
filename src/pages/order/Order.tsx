@@ -2,12 +2,12 @@ import BookerInformation from "./bookerInformation/BookerInformation";
 import OrderItem from "./orderItem/OrderItem";
 import OrderTotalPrice from "./orderTotalPrice/OrderTotalPrice";
 import PaymentMethod from "./paymentMethod/PaymentMethod";
-
-import "./order.scss";
-import TermsAgreement from "./termsAgreement/TermsAgreement";
 import CommonButton from "../../components/commonButton/CommonButton";
 import EventBanner from "./eventBanner/EventBanner";
 import SubDescription from "./subDescription/SubDescription";
+import TermsAgreement from "components/termsAgreement/TermsAgreement";
+
+import "./order.scss";
 
 const Order = () => {
   return (
