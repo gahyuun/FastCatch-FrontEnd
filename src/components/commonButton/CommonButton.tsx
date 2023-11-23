@@ -9,9 +9,18 @@ interface ButtonType {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function CommonButton({ text, buttonSize, shape, colorName, onClick }: ButtonType) {
+function CommonButton({
+  text,
+  buttonSize,
+  shape,
+  colorName,
+  onClick,
+}: ButtonType) {
   return (
-    <button className={`common-button ${buttonSize} ${shape}-${colorName}`} onClick={onClick}>
+    <button
+      className={`common-button ${buttonSize} ${shape}-${colorName}`}
+      onClick={onClick}
+    >
       {text}
     </button>
   );
