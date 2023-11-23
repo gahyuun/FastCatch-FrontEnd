@@ -1,17 +1,16 @@
-@import '../../styles/common.scss';
+@import "../../styles/common.scss";
 
-
-@mixin fill-button($color,$hoverColor) {
+@mixin fill-button($color, $hoverColor) {
   background-color: $color;
   border: 1px solid $color;
   color: white;
   outline: none;
   &:hover {
-    background-color:$hoverColor;
+    background-color: $hoverColor;
     border: 1px solid $hoverColor;
   }
 }
-@mixin line-button($color,$hoverColor) {
+@mixin line-button($color, $hoverColor) {
   background-color: white;
   border: 1px solid $color;
   color: $color;
@@ -28,34 +27,41 @@
   transition: all 0.3s;
   border-radius: 8px;
 
-  &.small{
+  &.small {
     width: auto;
-    padding: 12px 32px;
+    padding: 6px 16px;
+    font-size: rem(16);
   }
-  &.large{
+  &.large {
     width: 100%;
     padding: 8px 0;
+    font-size: rem(20);
+  }
+  &.exLarge {
+    width: 100%;
+    padding: 12px 0;
+    font-size: rem(20);
   }
   // 코랄
   @for $i from 100 through 800 {
     $color: map-get($coral, $i);
-    $hoverColor: map-get($coral, $i+100);
+    $hoverColor: map-get($coral, $i + 100);
     &.fill-coral#{$i} {
-      @include fill-button($color,$hoverColor);
+      @include fill-button($color, $hoverColor);
     }
     &.line-coral#{$i} {
-      @include line-button($color,$hoverColor)
+      @include line-button($color, $hoverColor);
     }
   }
   // 그레이
   @for $i from 100 through 900 {
     $color: map-get($grays, $i);
-    $hoverColor: map-get($grays, $i+100);
+    $hoverColor: map-get($grays, $i + 100);
     &.fill-gray#{$i} {
-      @include fill-button($color,$hoverColor);
+      @include fill-button($color, $hoverColor);
     }
     &.line-gray#{$i} {
-      @include line-button($color,$hoverColor)
+      @include line-button($color, $hoverColor);
     }
   }
 }
