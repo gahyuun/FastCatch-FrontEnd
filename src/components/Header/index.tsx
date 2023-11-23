@@ -27,7 +27,13 @@ const Header = () => {
           {isLoggedIn ? (
             <MyInfo></MyInfo> //
           ) : (
-            <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />
+            <CommonButton
+              text="로그인"
+              buttonSize="small"
+              shape="fill"
+              colorName="coral500"
+              onClick={loginHandler}
+            />
           )}
         </section>
       </div>
