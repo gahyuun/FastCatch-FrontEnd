@@ -1,5 +1,5 @@
 import CommonButton from "components/commonButton/CommonButton";
-import CommonFilter from "../CommonFilter";
+import CommonDateFilter from "../commonDateFilter";
 import MyInfo from "./MyInfo";
 import "./Header.scss";
 import "styles/_theme.scss";
@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [location, setLocation] = useState("서울");
+  const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()]);
+  const [amount, setAmount] = useState(2);
 
   const loginHandler = () => {
     navigate("/login");
@@ -21,7 +24,7 @@ const Header = () => {
           <div className="header-container__logo">빨리잡아!</div>
         </section>
         <section className="header-container__center">
-          <CommonFilter></CommonFilter>
+          <CommonDateFilter location={location} date={date} amount={amount} />
         </section>
         <section className="header-container__right">
           {isLoggedIn ? (
