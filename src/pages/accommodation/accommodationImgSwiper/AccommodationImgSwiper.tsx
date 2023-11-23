@@ -26,18 +26,6 @@ const AccommodationImgSwiper = ({ accommodationImage }: any) => {
             />
           </SwiperSlide>
         ))}
-      <SwiperSlide>
-        <img
-          style={{ height: "100%", width: "100%", objectFit: "cover" }}
-          src="https://i.pinimg.com/564x/3d/12/32/3d123298399c83647862e0c894f57520.jpg"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          style={{ height: "100%", width: "100%", objectFit: "cover" }}
-          src="https://i.pinimg.com/564x/2c/08/c4/2c08c4e251ebb9a16396caa8d4aaf575.jpg"
-        />
-      </SwiperSlide>
     </Swiper>
   );
 };

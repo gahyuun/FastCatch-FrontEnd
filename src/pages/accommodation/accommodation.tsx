@@ -18,6 +18,9 @@ const Accommodation = () => {
   }, []);
 
   console.log(data);
+  if (!data) {
+    return <div>로딩 화면</div>;
+  }
 
   return (
     <div className="accommodation-container">

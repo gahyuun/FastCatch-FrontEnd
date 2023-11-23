@@ -28,8 +28,11 @@
         "roomId": "room1",
         "roomName": "[무료 미니바 패키지] 디럭스 싱글",
         "price": 284900,
-        "roomImage": "https://image.goodchoice.kr/resize_370x220/affiliate/2022/04/13/62564e49604ac.jpg",
-        "roomOptions": {
+        "roomImage": [
+          "https://image.goodchoice.kr/resize_370x220/affiliate/2022/04/13/62564e49604ac.jpg",
+          "https://i.pinimg.com/736x/6f/1a/f9/6f1af9029480b5a4c94997db02d77417.jpg"
+        ]
+        ,"roomOptions": {
           "smoking": false,
           "pet": true,
           "cityView": false,
@@ -40,7 +43,10 @@
         "roomId": "room2",
         "roomName": "[Colorful Autumn] 디럭스 싱글",
         "price": 299900,
-        "roomImage": "https://image.goodchoice.kr/resize_370x220/affiliate/2023/08/31/64f03d8c861b0.jpg",
+        "roomImage": [
+          "https://image.goodchoice.kr/resize_370x220/affiliate/2023/08/31/64f03d8c861b0.jpg",
+          "https://i.pinimg.com/564x/78/cc/39/78cc397552bbb1f4755a874886270562.jpg"
+        ],
         "roomOptions": {
           "smoking": false,
           "pet": false,

@@ -6,8 +6,8 @@ import peopleIcon from "../../../assets/icons/peopleIcon.svg";
 import RoomImgSwiper from "../roomImgSwiper/RoomImgSwiper";
 
 const RoomSelect = ({ roomsInfo }: any) => {
-  roomsInfo.map((room: any, index: number) => {
-    console.log(room.roomImage);
+  roomsInfo.map((room: any) => {
+    console.log(room);
   });
 
   return (
@@ -20,7 +20,7 @@ const RoomSelect = ({ roomsInfo }: any) => {
 
       <div className="room-container">
         {roomsInfo.map((room: any, index: number) => (
-          <div className="room-container__list" key={index}>
+          <div className="room-container__list">
             <div className="room__imgs">
               <RoomImgSwiper roomImg={room.roomImage} />
             </div>
@@ -45,7 +45,7 @@ const RoomSelect = ({ roomsInfo }: any) => {
                   <span className="text-body2">체크인 09:00</span>
                   <span className="text-body2">체크아웃 15:00</span>
                 </div>
-                <div className="text-subtitle4">65,000원</div>
+                <div className="text-subtitle4">{room.price} 원</div>
               </div>
 
               <div className="room__divider"></div>
