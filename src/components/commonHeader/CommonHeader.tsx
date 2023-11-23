@@ -33,7 +33,7 @@ const Header = () => {
         </section>
         <section className="header-container__right">
           {isLoggedIn ? (
-            <MyInfo></MyInfo> //
+            <MyInfo></MyInfo>
           ) : (
             <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />
           )}
