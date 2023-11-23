@@ -17,16 +17,15 @@ const RoomImgSwiper = ({ roomImg }: any) => {
       resistance={false}
       style={{ height: "250px", margin: "8px 4px" }}
     >
-      {roomImg &&
-        roomImg.map((url: string) => (
-          <SwiperSlide key={roomImg}>
-            <img
-              style={{ height: "100%", width: "100%", objectFit: "cover" }}
-              src={url}
-              alt={"이미지"}
-            />
-          </SwiperSlide>
-        ))}
+      {roomImg.map((url: string) => (
+        <SwiperSlide key={url}>
+          <img
+            style={{ height: "100%", width: "100%", objectFit: "cover" }}
+            src={url}
+            alt={"이미지"}
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

@@ -9,16 +9,16 @@ import AccommodationImgSwiper from "./accommodationImgSwiper/AccommodationImgSwi
 
 const Accommodation = () => {
   const [data, setData]: any = useState([]);
-
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     axios
       .get("/data/accommodationDetail.json")
       .then((response) => setData(response.data[0]))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+      .then(() => setIsLoaded(!isLoaded))
+      .catch((error) => console.error("데이터 가져오기 에러 발생:", error));
+  }, [window.location.href]);
 
-  console.log(data);
-  if (!data) {
+  if (!isLoaded) {
     return <div>로딩 화면</div>;
   }
 

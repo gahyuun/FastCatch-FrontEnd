@@ -6,10 +6,6 @@ import peopleIcon from "../../../assets/icons/peopleIcon.svg";
 import RoomImgSwiper from "../roomImgSwiper/RoomImgSwiper";
 
 const RoomSelect = ({ roomsInfo }: any) => {
-  roomsInfo.map((room: any) => {
-    console.log(room);
-  });
-
   return (
     <div className="accommodation__select-room">
       <div className="accommodation__menu-title">
@@ -20,7 +16,7 @@ const RoomSelect = ({ roomsInfo }: any) => {
 
       <div className="room-container">
         {roomsInfo.map((room: any, index: number) => (
-          <div className="room-container__list">
+          <div className="room-container__list" key={room.roomId}>
             <div className="room__imgs">
               <RoomImgSwiper roomImg={room.roomImage} />
             </div>
