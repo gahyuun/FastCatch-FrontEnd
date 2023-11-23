@@ -1,0 +1,15 @@
+@import "../../styles/common.scss";
+
+.check-out {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    color: gray(700);
+  }
+  &__date {
+    color: gray(900);
+  }
+  &__time {
+    color: gray(700);
+  }
+}

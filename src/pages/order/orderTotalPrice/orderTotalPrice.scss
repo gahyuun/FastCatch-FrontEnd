@@ -1,0 +1,17 @@
+@import "../../../styles/common.scss";
+
+.order-total-price {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: rem(8);
+  width: 100%;
+  background-color: gray(100);
+  padding: rem(16);
+  &__title {
+    color: gray(900);
+  }
+  &__price {
+    color: coral(500);
+  }
+}
