@@ -1,0 +1,23 @@
+// toast UI 커스텀
+
+.Toastify__toast {
+	min-height: auto;
+	box-shadow: none;
+	&-container {
+		top: 160px;
+		width: auto;
+	}
+	&-body {
+		min-height: auto;
+		padding: 0;
+		> div {
+			white-space: nowrap;
+		}
+	}
+	&-icon {
+		svg {
+			fill: white !important;
+		}
+	}
+}
+
