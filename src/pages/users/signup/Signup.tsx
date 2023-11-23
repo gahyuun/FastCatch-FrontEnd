@@ -1,8 +1,9 @@
-import CommonButton from "components/commonButton/CommonButton"
-import CommonInput from "components/commonInput/CommonInput";
+
 import { useNavigate } from "react-router-dom";
+import CommonButton from "../../../components/commonButton/CommonButton";
 
 import "../users.scss";
+
 
 const Signup = () => {
 
@@ -51,7 +52,7 @@ const Signup = () => {
               <input type="text" placeholder="비밀번호를 입력해주세요" />
             </div>
             <ul className="agree-inner">
-              {/* <TermsAgreement /> */}
+              
             </ul>
               <CommonButton
               text={'회원가입'}
