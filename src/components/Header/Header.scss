@@ -15,36 +15,9 @@
   justify-content: space-between;
   align-items: center;
 
-  max-width: rem(1192);
-  min-width: rem(360);
-  width: 100%;
+  width: rem(1192);
   height: 100%;
-}
-
-.header-container__left {
-  width: 20%;
-  height: 100%;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.header-container__center {
-  width: 40%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-container__right {
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  // background-color: blue;
 }
 
 .header-container__logo {
