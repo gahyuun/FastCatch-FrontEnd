@@ -1,0 +1,20 @@
+@import '../../../styles/common.scss';
+
+body {
+	background-color: #9199a4;
+}
+
+.login-wrap {
+	min-width: 580px;
+	width: 100%;
+	background-color: white;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+
+	&__header {
+		display: flex;
+	}
+	&__body {
+	}
+}
