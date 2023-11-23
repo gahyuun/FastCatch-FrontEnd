@@ -3,6 +3,8 @@ import { PATH } from "./constants";
 import { Basket, Home, Accommodation } from "../pages";
 import App from "../App";
 import Order from "../pages/order/Order";
+import Members from "pages/members/Members";
+import OrderList from "pages/members/orderList/OrderList";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: PATH.ORDER,
         element: <Order />,
+      },
+      {
+        path: PATH.MEMBERS,
+        element: <Members />,
+      },
+      {
+        path: PATH.ORDERLIST,
+        element: <OrderList />,
       },
     ],
   },

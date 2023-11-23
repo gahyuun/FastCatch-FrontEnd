@@ -5,4 +5,6 @@ export const PATH = {
   BASKET: "/basket",
   ACCOMMODATION: "/accommodation",
   ORDER: "/order",
+  MEMBERS: "/members",
+  ORDERLIST: "/members/orderlist",
 };

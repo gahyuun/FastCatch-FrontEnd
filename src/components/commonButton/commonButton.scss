@@ -42,6 +42,9 @@
     padding: 12px 0;
     font-size: rem(20);
   }
+  &.disabled {
+    opacity: 0.3;
+  }
   // 코랄
   @for $i from 100 through 800 {
     $color: map-get($coral, $i);
