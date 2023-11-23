@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import CommonButton from '../commonButton/CommonButton';
-import './commonModalLayout.scss';
-import { IoClose } from 'react-icons/io5';
+import { useState } from "react";
+import CommonButton from "../commonButton/CommonButton";
+import "./commonModalLayout.scss";
+import { IoClose } from "react-icons/io5";
 
 type Size = "small" | "large";
 

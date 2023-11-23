@@ -1,8 +1,8 @@
-// toast UI 커스텀
+@import '../../styles/common.scss';
 
 .Toastify__toast {
 	min-height: auto;
-	box-shadow: none;
+	box-shadow: box-shadow(2);
 	&-container {
 		top: 160px;
 		width: auto;

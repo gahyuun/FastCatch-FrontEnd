@@ -11,6 +11,10 @@ body {
 	margin: 200px 0;
 	padding-right: 200px;
 	height: 100%;
+	@include mdq-max(1200) {
+		padding-right: 0;
+		justify-content: center;
+	}
 }
 
 .login-wrap {
@@ -67,65 +71,30 @@ body {
 					color: gray(600);
 				}
 			}
+			&__item {
+				position: relative;
+				button {
+					position: absolute;
+					right: 16px;
+					top: 50%;
+					transform: translateY(-50%);
+					&.btn-check {
+						font-size: rem(18);
+						color: coral(500);
+					}
+					&.btn-visible {
+						display: inline-flex;
+						align-items: center;
+						font-size: 24px;
+						color: gray(500);
+					}
+				}
+			}
 		}
 		.agree-inner {
 			margin-top: 70px;
-			label {
-				display: inline-block;
-				position: relative;
-				cursor: pointer;
-				padding-left: 1.6875rem;
-				&:before {
-					width: 1.1875rem;
-					height: 1.1875rem;
-					top: 50%;
-					margin-top: -0.59375rem;
-					content: '';
-					position: absolute;
-					left: 0;
-					text-align: center;
-					background-position: center;
-					background-size: cover;
-					border: 2px solid coral(100);
-					border-radius: 4px;
-				}
-			}
-			input {
-				border: 1px solid rgba(193, 182, 242, 0.3);
-				padding: 0 10px;
-				position: absolute;
-				width: 1px;
-				height: 1px;
-				padding: 0;
-				margin: -1px;
-				overflow: hidden;
-				clip: rect(0, 0, 0, 0);
-				border: 0;
-				input:checked + &:before {
-					font-family: xeicon !important;
-					display: inline-block;
-					speak-as: none;
-					font-style: normal;
-					font-weight: 400;
-					font-variant: normal;
-					text-transform: none;
-					line-height: 1.1875rem;
-					-webkit-font-smoothing: antialiased;
-					-moz-osx-font-smoothing: grayscale;
-					content: '\e929';
-					color: #fff;
-					background-color: red;
-					border-color: red;
-				}
-			}
-			&__item {
-				&.tit {
-					margin-bottom: 24px;
-				}
-				margin-bottom: 16px;
-			}
 		}
-		button {
+		.common-button {
 			margin-top: 24px;
 			height: 60px;
 		}

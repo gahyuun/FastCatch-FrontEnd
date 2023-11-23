@@ -1,5 +1,6 @@
 $grid-breakpoints: (
 	700: 700px,
+	1200: 1200px,
 );
 
 @mixin mdq-max($breakpoint) {
