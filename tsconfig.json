@@ -20,7 +20,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-
-  "include": [".eslintrc.cjs", "src"],
+  "baseUrl": ".",
+  "path": {
+    "@/*": ["src/*"],
+    "@types/*": ["types/*"],
+    "@components/*": ["components/*"],
+    "@pages/*": ["pages/*"]
+  },
+  "include": [".eslintrc.cjs", "src", "**/*.ts", "**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
