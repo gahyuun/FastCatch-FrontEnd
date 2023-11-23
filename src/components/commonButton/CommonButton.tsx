@@ -3,25 +3,22 @@ import "./commonButton.scss";
 
 interface ButtonType {
   text: string;
-  size?: "small" | "large";
+  buttonSize?: "small" | "large";
   shape?: "fill" | "line";
   colorName?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function CommonButton({ text, size, shape, colorName, onClick }: ButtonType) {
+function CommonButton({ text, buttonSize, shape, colorName, onClick }: ButtonType) {
   return (
-    <button
-      className={`text-body1 common-button ${size} ${shape}-${colorName}`}
-      onClick={onClick}
-    >
+    <button className={`common-button ${buttonSize} ${shape}-${colorName}`} onClick={onClick}>
       {text}
     </button>
   );
 }
 
 CommonButton.defaultProps = {
-  size: "small",
+  buttonSize: "small",
   shape: "fill",
   colorName: "coral500",
 };

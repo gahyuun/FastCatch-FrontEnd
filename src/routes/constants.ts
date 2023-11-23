@@ -3,4 +3,5 @@ export const PATH = {
   LOGIN: "/login",
   SIGN_UP: "",
   BASKET: "/basket",
+  ACCOMMODATION: "/accommodation"
 };

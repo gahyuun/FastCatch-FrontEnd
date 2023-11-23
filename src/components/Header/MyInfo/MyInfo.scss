@@ -1,0 +1,23 @@
+@import "src/styles/common.scss";
+
+.my-info-container {
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+
+  background-color: white;
+  border: 1px solid gray(400);
+  border-radius: rem(8);
+  box-shadow: shadow(1);
+}
+
+.my-info-profileImage {
+  width: 32px;
+  height: 32px;
+  background-color: gray(300);
+  border-radius: 50%;
+}

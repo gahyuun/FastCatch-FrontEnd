@@ -1,0 +1,9 @@
+$shadow: (
+  1: 0px 4px 8px rgba(0, 0, 0, 0.04),
+  2: 0px 8px 16px rgba(0, 0, 0, 0.06),
+  3: 0px 12px 40px rgba(0, 0, 0, 0.12),
+);
+
+@function shadow($shade) {
+  @return map-get($shadow, $shade);
+}
