@@ -13,7 +13,7 @@ const OrderPrice = ({ nightCount, roomPrice }: OrderPriceProps) => {
 
 export default OrderPrice;
 
-export interface OrderPriceProps {
+interface OrderPriceProps {
   nightCount: number;
   roomPrice: number;
 }

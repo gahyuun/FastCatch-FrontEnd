@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TermsAgreementItem from "../termsAgreementItem/TermsAgreementItem";
 
 import "./termsAgreement.scss";
 
@@ -10,77 +11,65 @@ const TermsAgreement = () => {
   const [checkAge, setCheckAge] = useState(false);
 
   useEffect(() => {
-    setCheckRule(allCheck);
-    setCheckUse(allCheck);
-    setCheckProvision(allCheck);
-    setCheckAge(allCheck);
+    if (allCheck) {
+      setCheckRule(allCheck);
+      setCheckUse(allCheck);
+      setCheckProvision(allCheck);
+      setCheckAge(allCheck);
+    }
   }, [allCheck]);
+
+  useEffect(() => {
+    if (
+      allCheck !== checkRule ||
+      allCheck !== checkUse ||
+      allCheck !== checkProvision ||
+      allCheck !== checkAge
+    ) {
+      setAllCheck(false);
+    }
+  }, [checkRule, checkUse, checkProvision, checkAge]);
 
   return (
     <div className="terms-agreement">
       <div className="terms-agreement__header">
-        <input
-          type="checkbox"
-          id="allCheck"
-          checked={allCheck}
-          onChange={() => {
-            setAllCheck(!allCheck);
-          }}
-          required
+        <TermsAgreementItem
+          state={allCheck}
+          setState={setAllCheck}
+          labelText={"필수약관 전체 동의"}
+          className={"text-subtitle4"}
+          id={"allCheck"}
         />
-        <label htmlFor="allCheck" className="text-subtitle4">
-          필수약관 전체 동의
-        </label>
       </div>
       <div className="terms-agreement__body">
-        <div className="terms-agreement__item">
-          <input
-            type="checkbox"
-            id="checkRule"
-            checked={checkRule}
-            onChange={() => setCheckRule(!checkRule)}
-            required
-          />
-          <label htmlFor="checkRule" className="text-body1">
-            숙소이용규칙 및 취소/환불규정 동의 (필수)
-          </label>
-        </div>
-        <div className="terms-agreement__item">
-          <input
-            type="checkbox"
-            id="checkUse"
-            checked={checkUse}
-            onChange={() => setCheckUse(!checkUse)}
-            required
-          />
-          <label htmlFor="checkUse" className="text-body1">
-            개인정보 수집 및 이용 동의 (필수)
-          </label>
-        </div>
-        <div className="terms-agreement__item">
-          <input
-            type="checkbox"
-            id="checkProvision"
-            checked={checkProvision}
-            onChange={() => setCheckProvision(!checkProvision)}
-            required
-          />
-          <label htmlFor="checkProvision" className="text-body1">
-            개인정보 제 3자 제공 동의 (필수)
-          </label>
-        </div>
-        <div className="terms-agreement__item">
-          <input
-            type="checkbox"
-            id="checkAge"
-            checked={checkAge}
-            onChange={() => setCheckAge(!checkAge)}
-            required
-          />
-          <label htmlFor="checkAge" className="text-body1">
-            만 14세 이상 확인 (필수)
-          </label>
-        </div>
+        <TermsAgreementItem
+          state={checkRule}
+          setState={setCheckRule}
+          labelText={"숙소이용규칙 및 취소/환불규정 동의 (필수)"}
+          className={"text-body1"}
+          id={"checkRule"}
+        />
+        <TermsAgreementItem
+          state={checkUse}
+          setState={setCheckUse}
+          labelText={"개인정보 수집 및 이용 동의 (필수)"}
+          className={"text-body1"}
+          id={"checkUse"}
+        />
+        <TermsAgreementItem
+          state={checkProvision}
+          setState={setCheckProvision}
+          labelText={"개인정보 제 3자 제공 동의 (필수)"}
+          className={"text-body1"}
+          id={"checkProvision"}
+        />
+        <TermsAgreementItem
+          state={checkAge}
+          setState={setCheckAge}
+          labelText={"만 14세 이상 확인 (필수)"}
+          className={"text-body1"}
+          id={"checkAge"}
+        />
       </div>
     </div>
   );

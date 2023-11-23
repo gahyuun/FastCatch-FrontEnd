@@ -3,22 +3,27 @@
 .terms-agreement {
   margin-top: rem(16);
   padding: rem(16) 0;
+  label {
+    cursor: pointer;
+  }
+  &__selected {
+    font-size: rem(32);
+    color: coral(500);
+  }
+  &__unselected {
+    font-size: rem(32);
+    color: coral(300);
+  }
   &__header {
     display: flex;
     align-items: center;
     gap: rem(8);
-    label {
-      cursor: pointer;
-    }
   }
   &__body {
     margin-top: rem(12);
     display: flex;
     flex-direction: column;
     gap: rem(8);
-    label {
-      cursor: pointer;
-    }
   }
   &__item {
     display: flex;
