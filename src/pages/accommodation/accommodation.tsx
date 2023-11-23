@@ -16,7 +16,7 @@ const Accommodation = () => {
       .then((response) => setData(response.data[0]))
       .then(() => setIsLoaded(!isLoaded))
       .catch((error) => console.error("데이터 가져오기 에러 발생:", error));
-  }, [window.location.href]);
+  }, []);
 
   if (!isLoaded) {
     return <div>로딩 화면</div>;
