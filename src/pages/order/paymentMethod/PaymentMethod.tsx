@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import PaymentMethodItem from "@/pages/order/paymentMethodItem/PaymentMethodItem";
+import PaymentMethodItem from "@/src/pages/order/paymentMethodItem/PaymentMethodItem";
 
 import "./paymentMethod.scss";
 

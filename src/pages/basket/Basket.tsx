@@ -18,11 +18,7 @@ const Basket = () => {
             <span className="text-subtitle5 total-info__count">총 4건</span>
             <span className="text-subtitle3">1,815,000원</span>
           </div>
-          <CommonButton
-            text="1,815,000원 결제하기"
-            buttonSize="large"
-            fontSize="text-subtitle5"
-          />
+          <CommonButton text="1,815,000원 결제하기" buttonSize="large" />
         </div>
       </div>
     </div>

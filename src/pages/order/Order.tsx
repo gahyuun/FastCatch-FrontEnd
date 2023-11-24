@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import { TermsAgreementContext } from "@/context/TermsAgreementContext";
+import { TermsAgreementContext } from "@/src/context/TermsAgreementContext";
 
-import TermsAgreement from "@components/termsAgreement/TermsAgreement";
-import CommonButton from "@components/commonButton/CommonButton";
+import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
+import CommonButton from "@/src/components/commonButton/CommonButton";
 
-import BookerInformation from "@/pages/order/bookerInformation/BookerInformation";
-import OrderTotalPrice from "@/pages/order/orderTotalPrice/OrderTotalPrice";
-import PaymentMethod from "@/pages/order/paymentMethod/PaymentMethod";
-import EventBanner from "@/pages/order/eventBanner/EventBanner";
-import SubDescription from "@/pages/order/subDescription/SubDescription";
-import OrderItem from "@/pages/order/orderItem/OrderItem";
+import BookerInformation from "@/src/pages/order/bookerInformation/BookerInformation";
+import OrderTotalPrice from "@/src/pages/order/orderTotalPrice/OrderTotalPrice";
+import PaymentMethod from "@/src/pages/order/paymentMethod/PaymentMethod";
+import EventBanner from "@/src/pages/order/eventBanner/EventBanner";
+import SubDescription from "@/src/pages/order/subDescription/SubDescription";
+import OrderItem from "@/src/pages/order/orderItem/OrderItem";
 
 import "./order.scss";
 

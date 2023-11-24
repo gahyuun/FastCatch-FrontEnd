@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import { TermsAgreementContext } from "@/context/TermsAgreementContext";
+import { TermsAgreementContext } from "@/src/context/TermsAgreementContext";
 
-import TermsAgreementItem from "@components/termsAgreementItem/TermsAgreementItem";
+import TermsAgreementItem from "@/src/components/termsAgreementItem/TermsAgreementItem";
 
 import "./termsAgreement.scss";
 

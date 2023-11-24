@@ -1,4 +1,4 @@
-import numberFormat from "@/utils/numberFormat";
+import numberFormat from "@/src/utils/numberFormat";
 import "./orderPrice.scss";
 
 const OrderPrice = ({ nightCount, roomPrice }: OrderPriceProps) => {
