@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CommonButton from "../../../components/commonButton/CommonButton";
-import TermsAgreement from "components/termsAgreement/TermsAgreement";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import "../users.scss";
+import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
+import { CommonButton } from "@/src/components";
 
 const Signup = () => {
 
