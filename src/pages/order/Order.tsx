@@ -1,13 +1,16 @@
-import BookerInformation from "./bookerInformation/BookerInformation";
-import OrderItem from "./orderItem/OrderItem";
-import OrderTotalPrice from "./orderTotalPrice/OrderTotalPrice";
-import PaymentMethod from "./paymentMethod/PaymentMethod";
-import CommonButton from "../../components/commonButton/CommonButton";
 import { useContext } from "react";
-import { TermsAgreementContext } from "context/TermsAgreementContext";
-import EventBanner from "./eventBanner/EventBanner";
-import SubDescription from "./subDescription/SubDescription";
-import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
+import { TermsAgreementContext } from "@/context/TermsAgreementContext";
+
+import TermsAgreement from "@components/termsAgreement/TermsAgreement";
+import CommonButton from "@components/commonButton/CommonButton";
+
+import BookerInformation from "@/pages/order/bookerInformation/BookerInformation";
+import OrderTotalPrice from "@/pages/order/orderTotalPrice/OrderTotalPrice";
+import PaymentMethod from "@/pages/order/paymentMethod/PaymentMethod";
+import EventBanner from "@/pages/order/eventBanner/EventBanner";
+import SubDescription from "@/pages/order/subDescription/SubDescription";
+import OrderItem from "@/pages/order/orderItem/OrderItem";
+
 import "./order.scss";
 
 const Order = () => {
@@ -15,7 +18,6 @@ const Order = () => {
 
   return (
     <div className="order">
-      <OrderItem />
       <OrderItem />
       <OrderTotalPrice roomTotalPrice={65000} />
       <EventBanner />

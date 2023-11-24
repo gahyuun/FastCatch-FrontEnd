@@ -1,5 +1,5 @@
-import MembersHeader from "./membersHeader/MembersHeader";
-import MembersInfo from "./membersInfo/MembersInfo";
+import MembersHeader from "@/pages/members/membersHeader/MembersHeader";
+import MembersInfo from "@/pages/members/membersInfo/MembersInfo";
 
 import "./members.scss";
 

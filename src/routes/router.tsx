@@ -1,10 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { PATH } from "./constants";
-import { Basket, Home, Accommodation } from "../pages";
+import {
+  Basket,
+  Home,
+  Accommodation,
+  Order,
+  Members,
+  OrderList,
+} from "../pages";
 import App from "../App";
-import Order from "../pages/order/Order";
-import Members from "pages/members/Members";
-import OrderList from "pages/members/orderList/OrderList";
 
 const router = createBrowserRouter([
   {

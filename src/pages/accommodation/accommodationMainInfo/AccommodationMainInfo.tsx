@@ -1,6 +1,6 @@
 import React from "react";
 import "./accommodationMainInfo.scss";
-import CommonBadge from "@/src/components/commonBadge/CommonBadge";
+import CommonBadge from "@/components/commonBadge/CommonBadge";
 
 interface AccommodationMainInfoProps {
   accommodationName: string;

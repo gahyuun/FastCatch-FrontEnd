@@ -24,7 +24,6 @@ function CommonButton({
         isTermsAgreed ? "" : "disabled"
       }`}
       onClick={onClick}
-      disabled={!isTermsAgreed}
     >
       {text}
     </button>
@@ -35,6 +34,7 @@ CommonButton.defaultProps = {
   buttonSize: "small",
   shape: "fill",
   colorName: "coral500",
+  isTermsAgreed: true,
 };
 
 export default CommonButton;

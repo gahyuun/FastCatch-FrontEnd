@@ -1,4 +1,4 @@
-import MembersHeader from "../membersHeader/MembersHeader";
+import MembersHeader from "@/pages/members/membersHeader/MembersHeader";
 
 import "./orderList.scss";
 
