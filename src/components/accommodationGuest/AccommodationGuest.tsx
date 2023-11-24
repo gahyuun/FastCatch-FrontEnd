@@ -1,3 +1,4 @@
+import React from "react";
 import { HiMiniUsers } from "react-icons/hi2";
 
 import "./accommodationGuest.scss";

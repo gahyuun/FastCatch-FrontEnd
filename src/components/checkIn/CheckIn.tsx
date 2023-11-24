@@ -1,3 +1,4 @@
+import React from "react";
 import "./checkIn.scss";
 
 const CheckIn = ({ checkInDate, checkInTime }: CheckInProps) => {

@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import CommonButton from "../commonButton/CommonButton";
 import "./commonModalLayout.scss";
