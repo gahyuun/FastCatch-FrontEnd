@@ -1,24 +1,34 @@
-import BookerInformation from "./bookerInformation/BookerInformation";
-import OrderItem from "./orderItem/OrderItem";
-import OrderTotalPrice from "./orderTotalPrice/OrderTotalPrice";
-import PaymentMethod from "./paymentMethod/PaymentMethod";
-import CommonButton from "../../components/commonButton/CommonButton";
-import EventBanner from "./eventBanner/EventBanner";
-import SubDescription from "./subDescription/SubDescription";
+import { useContext } from "react";
+import { TermsAgreementContext } from "@/src/context/TermsAgreementContext";
+
 import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
+import CommonButton from "@/src/components/commonButton/CommonButton";
+
+import BookerInformation from "@/src/pages/order/bookerInformation/BookerInformation";
+import OrderTotalPrice from "@/src/pages/order/orderTotalPrice/OrderTotalPrice";
+import PaymentMethod from "@/src/pages/order/paymentMethod/PaymentMethod";
+import EventBanner from "@/src/pages/order/eventBanner/EventBanner";
+import SubDescription from "@/src/pages/order/subDescription/SubDescription";
+import OrderItem from "@/src/pages/order/orderItem/OrderItem";
+
 import "./order.scss";
 
 const Order = () => {
+  const { isAllCheck } = useContext(TermsAgreementContext);
+
   return (
     <div className="order">
-      <OrderItem />
       <OrderItem />
       <OrderTotalPrice roomTotalPrice={65000} />
       <EventBanner />
       <BookerInformation />
       <PaymentMethod />
       <TermsAgreement />
-      <CommonButton text={"195,000원 예약하기"} buttonSize={"large"} />
+      <CommonButton
+        text={"195,000원 예약하기"}
+        buttonSize={"exLarge"}
+        isTermsAgreed={isAllCheck}
+      />
       <SubDescription />
     </div>
   );

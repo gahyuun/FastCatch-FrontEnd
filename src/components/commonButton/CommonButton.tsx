@@ -3,10 +3,11 @@ import "./commonButton.scss";
 
 interface ButtonType {
   text: string;
-  buttonSize?: "small" | "large";
+  buttonSize?: "small" | "large" | "exLarge";
   shape?: "fill" | "line";
   colorName?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isTermsAgreed?: boolean;
 }
 
 function CommonButton({
@@ -15,10 +16,13 @@ function CommonButton({
   shape,
   colorName,
   onClick,
+  isTermsAgreed,
 }: ButtonType) {
   return (
     <button
-      className={`common-button ${buttonSize} ${shape}-${colorName}`}
+      className={`common-button ${buttonSize} ${shape}-${colorName} ${
+        isTermsAgreed ? "" : "disabled"
+      }`}
       onClick={onClick}
     >
       {text}
@@ -30,6 +34,7 @@ CommonButton.defaultProps = {
   buttonSize: "small",
   shape: "fill",
   colorName: "coral500",
+  isTermsAgreed: true,
 };
 
 export default CommonButton;

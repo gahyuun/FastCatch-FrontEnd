@@ -1,5 +1,5 @@
-import CommonInput from "../../../components/commonInput/CommonInput";
 import { useState } from "react";
+import CommonInput from "@/src/components/commonInput/CommonInput";
 
 import "./bookerInformation.scss";
 

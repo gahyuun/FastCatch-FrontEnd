@@ -1,7 +1,7 @@
 import "./selectedRoomItem.scss";
 
 interface RoomPropsType {
-  pageType?: "basket" | "myPage";
+  pageType?: "basket" | "orderList";
 }
 
 const SelectedRoomItem = ({ pageType = "basket" }: RoomPropsType) => {
@@ -12,6 +12,7 @@ const SelectedRoomItem = ({ pageType = "basket" }: RoomPropsType) => {
           <p className="text-subtitle4">프리미엄 룸</p>
           <div>
             <p className="text-body1">06.24 토 - 06.26 월 (2박)</p>
+            <p className="text-body1">기준 2인 / 최대 4인</p>
             <div className="check-in-out">
               <div className="check-in-out__content">
                 <span className="check-in__span">체크인</span>

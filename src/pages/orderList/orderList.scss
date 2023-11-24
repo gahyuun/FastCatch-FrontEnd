@@ -1,0 +1,19 @@
+@import "../../styles/common.scss";
+
+.order-list {
+  max-width: rem(962);
+  width: 100%;
+  padding: rem(40) rem(24);
+  margin: 0 auto;
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+  &__booking-history {
+    margin-top: rem(24);
+  }
+  &__usage-history,
+  &__refund-history {
+    margin-top: rem(52);
+  }
+}
