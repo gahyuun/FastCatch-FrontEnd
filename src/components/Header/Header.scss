@@ -1,0 +1,27 @@
+@import "../../styles/common.scss";
+
+.header-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: rem(80);
+
+  border-bottom: 1px solid gray(400);
+}
+
+.header-container__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: rem(1192);
+  height: 100%;
+  // background-color: blue;
+}
+
+.header-container__logo {
+  font-family: "CWDangamAsac-Bold";
+  color: red;
+  font-size: rem(32);
+}

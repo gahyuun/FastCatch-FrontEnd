@@ -3,7 +3,6 @@ import "./commonButton.scss";
 
 interface ButtonType {
   text: string;
-  fontSize?: string; //예시 text-subtitle5, text-body2,...
   buttonSize?: "small" | "large";
   shape?: "fill" | "line";
   colorName?: string;
@@ -12,7 +11,6 @@ interface ButtonType {
 
 function CommonButton({
   text,
-  fontSize,
   buttonSize,
   shape,
   colorName,
@@ -20,7 +18,7 @@ function CommonButton({
 }: ButtonType) {
   return (
     <button
-      className={`${fontSize} common-button ${buttonSize} ${shape}-${colorName}`}
+      className={`common-button ${buttonSize} ${shape}-${colorName}`}
       onClick={onClick}
     >
       {text}
@@ -29,7 +27,6 @@ function CommonButton({
 }
 
 CommonButton.defaultProps = {
-  fontSize: "text-body2",
   buttonSize: "small",
   shape: "fill",
   colorName: "coral500",

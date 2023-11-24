@@ -54,7 +54,13 @@ ul,
 li,
 form,
 label,
+<<<<<<< HEAD
 table {
+=======
+table,
+input,
+button {
+>>>>>>> 55ced8a0f26cf720037deec8aeee3c943fb7f7cc
   font-family: "Pretendard";
   margin: 0;
   padding: 0;
