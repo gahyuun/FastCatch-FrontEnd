@@ -1,4 +1,3 @@
-import React from "react";
 import CommonFilter from "../commonFilter/CommonFilter";
 import MyInfo from "./myInfo/MyInfo";
 import "./commonHeader.scss";
@@ -11,8 +10,8 @@ const Header = () => {
   const [isLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [locale, setLocale] = useState<"서울" | "경기">("서울");
-  const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()]);
-  const [amount, setAmount] = useState(2);
+  const [date] = useState<[Date, Date]>([new Date(), new Date()]);
+  const [amount] = useState(2);
 
   const loginHandler = () => {
     navigate("/login");
