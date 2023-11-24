@@ -7,6 +7,8 @@ import {
   Order,
   Members,
   OrderList,
+  Signup,
+  Login,
 } from "../pages";
 import App from "../App";
 
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
         element: <OrderList />,
       },
     ],
+  },
+  {
+    path: PATH.SIGN_UP,
+    element: <Signup />,
+  },
+  {
+    path: PATH.LOGIN,
+    element: <Login />,
   },
 ]);
 
