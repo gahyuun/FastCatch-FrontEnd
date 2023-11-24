@@ -10,11 +10,11 @@ interface locationProps {
 
 const LocationCategoryName = (props: locationProps) => {
   const selectionHandler = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    const copy = props.wholeLocale.slice().map((arg) => (arg[0] === props.locale[0] ? [arg[0], true] : [arg[0], false])) as [string, boolean][];
+    event.stopPropagation(); // 버블링 방지
+    const copy = props.wholeLocale.slice().map((arg) => (arg[0] === props.locale[0] ? [arg[0], true] : [arg[0], false])) as [string, boolean][]; // 선택한 지역을 true로, 아닌 지역은 false로 바꿈(두번째 인자)
 
     props.onChangeLocale(copy);
-    props.onChangeFilter("date");
+    props.onChangeFilter("date"); // 일정 필터로 바꿈
   };
 
   return (

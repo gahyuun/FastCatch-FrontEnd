@@ -28,19 +28,3 @@
     background-color: gray(200);
   }
 }
-
-.category-content {
-  display: flex;
-  align-items: center;
-  padding-left: rem(16);
-  font-size: map-get($body3, font-size);
-  width: rem(220);
-  height: rem(34);
-  cursor: pointer;
-  color: gray(700);
-
-  &:hover {
-    background-color: gray(100);
-    color: gray(900);
-  }
-}
