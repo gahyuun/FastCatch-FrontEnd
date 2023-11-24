@@ -17,7 +17,7 @@
 
 .location-container {
   @include container;
-  width: rem(320);
+  width: rem(220);
 }
 
 .date-container {
@@ -35,7 +35,7 @@
 .categoryNames {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 
   border-radius: rem(8);
