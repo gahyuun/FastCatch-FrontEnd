@@ -1,0 +1,36 @@
+@import "../../styles/common.scss";
+
+.basket-container {
+  max-width: rem(962);
+  margin: 0 auto;
+
+  &__body {
+    padding: rem(24);
+    display: flex;
+    flex-direction: column;
+    gap: rem(52);
+  }
+
+  &__hr {
+    width: 100%;
+    border: 1px solid #d9d9d9;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+
+    .total-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: rem(8);
+
+      &__count {
+        color: gray(700);
+        padding-top: rem(5);
+      }
+    }
+  }
+}
