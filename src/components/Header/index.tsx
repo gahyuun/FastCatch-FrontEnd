@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CommonButton from "../commonButton/CommonButton";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const loginHandler = () => {
