@@ -1,4 +1,3 @@
-import React from "react";
 import { CommonButton, SelectedAccomodation } from "../../components";
 import "./basket.scss";
 
