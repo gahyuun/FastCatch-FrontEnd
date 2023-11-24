@@ -1,4 +1,3 @@
-import React from "react";
 import "./selectedRoomItem.scss";
 
 interface RoomPropsType {

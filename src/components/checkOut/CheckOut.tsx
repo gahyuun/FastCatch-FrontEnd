@@ -1,4 +1,3 @@
-import React from "react";
 import "./checkOut.scss";
 
 const CheckOut = ({ checkOutDate, checkOutTime }: CheckOutProps) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import "./hotelName.scss";
 
 const HotelName = ({ hotelName }: HotelNameProps) => {

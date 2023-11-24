@@ -1,4 +1,3 @@
-import React from "react";
 import "./roomName.scss";
 
 const RoomName = ({ roomName }: RoomNameProps) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import CommonFilter from "../commonFilter/CommonFilter";
 import MyInfo from "./myInfo/MyInfo";
 import "./commonHeader.scss";

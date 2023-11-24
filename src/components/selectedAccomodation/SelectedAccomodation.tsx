@@ -1,4 +1,3 @@
-import React from "react";
 import { SelectedRoomItem } from "..";
 import "./selectedAccomodation.scss";
 
