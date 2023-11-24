@@ -1,5 +1,5 @@
 import { SelectedRoomItem } from "..";
-import "./SelectedAccomodation.scss";
+import "./selectedAccomodation.scss";
 
 const SelectedAccomodation = () => {
   return (
