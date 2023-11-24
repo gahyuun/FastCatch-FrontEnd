@@ -5,8 +5,8 @@ import PaymentMethod from "./paymentMethod/PaymentMethod";
 import CommonButton from "../../components/commonButton/CommonButton";
 import EventBanner from "./eventBanner/EventBanner";
 import SubDescription from "./subDescription/SubDescription";
-import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
 import "./order.scss";
+import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
 
 const Order = () => {
   return (

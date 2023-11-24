@@ -4,7 +4,6 @@ import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 import RoomInfo from "./roomInfo/RoomInfo";
 
 const RoomSelect = ({ roomsInfo }: any) => {
-  console.log(roomsInfo);
   return (
     <div className="accommodation__select-room">
       <div className="accommodation__menu-title">

@@ -32,7 +32,6 @@ const AccommodationOptions = ({
     has_restaurant: ["레스토랑", <MdRestaurant size="50px" />],
     has_cooking_room: ["취사 가능", <PiCookingPotBold size="50px" />],
   };
-  console.log(accommodationOptions);
 
   return (
     <div className="accommodation__options">
