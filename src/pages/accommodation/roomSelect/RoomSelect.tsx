@@ -1,4 +1,3 @@
-import React from "react";
 import "./roomSelect.scss";
 import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 import RoomInfo from "./roomInfo/RoomInfo";

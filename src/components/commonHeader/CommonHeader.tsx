@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CommonButton from "../commonButton/CommonButton";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [locale, setLocale] = useState<"서울" | "경기">("서울");
   const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()]);

@@ -1,4 +1,3 @@
-import React from "react";
 import "./accommodationOptions.scss";
 import englishToKoreanFormat from "../../../utils/englishToKoreanFormat";
 import { TbSwimming, TbWifi } from "react-icons/tb";
