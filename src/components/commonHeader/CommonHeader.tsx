@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CommonButton from "../commonButton/CommonButton";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const categoryData: [string, boolean][] = [
@@ -21,11 +21,12 @@ const Header = () => {
   ];
 
   const [locale, setLocale] = useState(categoryData);
-  const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()]);
-  const [amount, setAmount] = useState(2);
+  const [date] = useState<[Date, Date]>([new Date(), new Date()]);
+  const [amount] = useState(2);
 
   const loginHandler = () => {
     navigate("/login");
+    // good
   };
 
   return (

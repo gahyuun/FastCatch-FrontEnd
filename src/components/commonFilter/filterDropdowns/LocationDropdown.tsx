@@ -1,3 +1,4 @@
+import React from "react";
 import LocationCategoryName from "./locationDropdownEl/LocationCategoryName";
 
 import "./dropdown.scss";
