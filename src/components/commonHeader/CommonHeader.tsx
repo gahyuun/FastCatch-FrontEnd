@@ -15,6 +15,7 @@ const Header = () => {
 
   const loginHandler = () => {
     navigate("/login");
+    // good
   };
 
   return (
@@ -31,13 +32,7 @@ const Header = () => {
             amount={amount}
           />
         </section>
-        <section className="header-container__right">
-          {isLoggedIn ? (
-            <MyInfo></MyInfo>
-          ) : (
-            <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />
-          )}
-        </section>
+        <section className="header-container__right">{isLoggedIn ? <MyInfo></MyInfo> : <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />}</section>
       </div>
     </header>
   );
