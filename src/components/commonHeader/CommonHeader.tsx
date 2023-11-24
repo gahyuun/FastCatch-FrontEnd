@@ -9,7 +9,18 @@ import CommonButton from "../commonButton/CommonButton";
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const [locale, setLocale] = useState<"서울" | "경기">("서울");
+
+  const categoryData: [string, boolean][] = [
+    ["서울", true],
+    ["경기", false],
+    ["강원", false],
+    ["충청", false],
+    ["전라", false],
+    ["경상", false],
+    ["제주", false],
+  ];
+
+  const [locale, setLocale] = useState(categoryData);
   const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()]);
   const [amount, setAmount] = useState(2);
 
@@ -31,13 +42,7 @@ const Header = () => {
             amount={amount}
           />
         </section>
-        <section className="header-container__right">
-          {isLoggedIn ? (
-            <MyInfo></MyInfo>
-          ) : (
-            <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />
-          )}
-        </section>
+        <section className="header-container__right">{isLoggedIn ? <MyInfo></MyInfo> : <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />}</section>
       </div>
     </header>
   );

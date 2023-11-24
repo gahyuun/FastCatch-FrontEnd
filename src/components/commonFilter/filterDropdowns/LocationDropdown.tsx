@@ -1,53 +1,27 @@
-import { useState } from "react";
 import LocationCategoryName from "./locationDropdownEl/LocationCategoryName";
 
 import "./dropdown.scss";
-import LocationList from "./locationDropdownEl/LocationList";
-useState;
 
 interface dropdownProps {
   isSelected: "location" | "date" | "amount" | null;
-  onClick: (target: "location" | "date" | "amount" | null) => void;
-  locale: string;
-  onChangeLocale: React.Dispatch<React.SetStateAction<"서울" | "경기">>;
+  locale: [string, boolean][];
+  onChangeLocale: React.Dispatch<React.SetStateAction<[string, boolean][]>>;
+  onChangeFilter: React.Dispatch<React.SetStateAction<"location" | "date" | "amount" | null>>;
 }
 
 const LocationDropdown = (props: dropdownProps) => {
-  const [categoryName, setCategoryName] = useState<[string, boolean][]>([
-    ["서울", true],
-    ["경기", false],
-  ]);
-
-  const category: { [key: string]: string[] } = {
-    서울: ["강남구", "관악구", "동대문구", "노원구"],
-    경기: ["가평/청평/양평", "고양/파주/김포", "안양/의왕/군포"],
-  };
-
-  const opened = (categoryName.find((value) => value[1] === true) as [string, boolean])[0];
-
   return (
     <>
       {props.isSelected === "location" && ( //
         <div className="location-container">
           <section className="categoryNames">
-            {categoryName.map((locale) => (
+            {props.locale.map((arg) => (
               <LocationCategoryName //
-                key={locale[0]}
-                wholeLocale={categoryName}
-                locale={locale}
-                onClick={setCategoryName}
-              />
-            ))}
-          </section>
-          <section>
-            {category[opened].map((locale) => (
-              <LocationList //
-                key={locale}
-                locale={locale}
-                onClick={props.onClick}
-                isSelected={props.isSelected}
+                onChangeFilter={props.onChangeFilter}
+                key={arg[0]}
+                wholeLocale={props.locale}
+                locale={arg}
                 onChangeLocale={props.onChangeLocale}
-                opened={opened}
               />
             ))}
           </section>

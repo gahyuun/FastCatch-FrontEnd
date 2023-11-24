@@ -6,18 +6,17 @@ import DateDropdown from "./filterDropdowns/DateDropdown";
 import LocationDropdown from "./filterDropdowns/LocationDropdown";
 
 interface filterProps {
-  locale?: string;
   date: [Date, Date];
   amount: number;
-  onChangeLocale: React.Dispatch<React.SetStateAction<"서울" | "경기">>;
+  locale?: [string, boolean][];
+  onChangeLocale: React.Dispatch<React.SetStateAction<[string, boolean][]>>;
 }
 
 const CommonFilter = (props: filterProps) => {
   const [isSelected, setIsSelected] = useState<"location" | "date" | "amount" | null>(null);
 
-  const selectedHandler = (target: "location" | "date" | "amount" | null) => {
-    setIsSelected(target);
-  };
+  // 선택이 true인 것을 찾습니다.
+  const selectedLocale = (props.locale?.find((value) => value[1] === true) as [string, boolean])[0];
 
   return (
     <div className="overall-container">
@@ -25,14 +24,14 @@ const CommonFilter = (props: filterProps) => {
         {props.locale && (
           <>
             <button
-              onClick={() => selectedHandler("location")} //
-              onBlur={() => selectedHandler(null)}
+              onClick={() => setIsSelected("location")} //
+              onBlur={() => setIsSelected(null)}
               className={isSelected === "location" ? "filter__location select" : "filter__location"}
             >
               <span className="text-caption2 small-label">지역</span>
-              <p>{props.locale}</p>
+              <p>{selectedLocale}</p>
               <LocationDropdown //
-                onClick={selectedHandler}
+                onChangeFilter={setIsSelected}
                 isSelected={isSelected}
                 locale={props.locale}
                 onChangeLocale={props.onChangeLocale}
@@ -41,8 +40,8 @@ const CommonFilter = (props: filterProps) => {
           </>
         )}
         <button
-          onFocus={() => selectedHandler("date")} //
-          onBlur={() => selectedHandler(null)}
+          onFocus={() => setIsSelected("date")} //
+          onBlur={() => setIsSelected(null)}
           className={isSelected === "date" ? "filter__schedule select" : "filter__schedule"}
         >
           <span className="text-caption2 small-label">일정</span>
@@ -52,8 +51,8 @@ const CommonFilter = (props: filterProps) => {
           <DateDropdown isSelected={isSelected} />
         </button>
         <button
-          onFocus={() => selectedHandler("amount")} //
-          onBlur={() => selectedHandler(null)}
+          onFocus={() => setIsSelected("amount")} //
+          onBlur={() => setIsSelected(null)}
           className={isSelected === "amount" ? "filter__accompany select" : "filter__accompany"}
         >
           <span className="text-caption2 small-label">인원</span>
