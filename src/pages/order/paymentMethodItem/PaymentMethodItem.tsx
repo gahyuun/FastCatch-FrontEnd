@@ -14,7 +14,9 @@ const PaymentMethodItem = ({
     <input
       className={`${
         className ? `payment-method-item ${className}` : "payment-method-item"
-      } text-body1 ${selectedMethod === methodName ? "selected" : ""}`}
+      } text-body1 ${
+        selectedMethod === methodName ? "payment-method-item__selected" : ""
+      }`}
       onClick={handleSelected}
       type="button"
       value={methodName}

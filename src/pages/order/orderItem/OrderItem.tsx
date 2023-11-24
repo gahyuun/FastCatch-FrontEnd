@@ -1,12 +1,12 @@
-import AccommodationGuest from "../../../components/accommodationGuest/AccommodationGuest";
-import HotelName from "../../../components/hotelName/HotelName";
-import RoomName from "../../../components/roomName/RoomName";
-import CheckIn from "../../../components/checkIn/CheckIn";
-import CheckOut from "../../../components/checkOut/CheckOut";
-import OrderPrice from "../orderPrice/OrderPrice";
+import AccommodationGuest from "@/src/components/accommodationGuest/AccommodationGuest";
+import HotelName from "@/src/components/accommodationName/AccommodationName";
+import RoomName from "@/src/components/roomName/RoomName";
+import CheckIn from "@/src/components/checkIn/CheckIn";
+import CheckOut from "@/src/components/checkOut/CheckOut";
+import CommonBadge from "@/src/components/commonBadge/CommonBadge";
+import OrderPrice from "@/src/pages/order/orderPrice/OrderPrice";
 
 import "./orderItem.scss";
-import CommonBadge from "../../../components/commonBadge/CommonBadge";
 
 const OrderItem = () => {
   return (

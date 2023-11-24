@@ -1,7 +1,7 @@
 import React from "react";
 import CommonButton from "@/src/components/commonButton/CommonButton";
-import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
+import numberFormat from "@/src/utils/numberFormat";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 
