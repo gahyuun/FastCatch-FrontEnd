@@ -8,6 +8,6 @@
 
 @function vw($val, $std: 1920) {
 	@return calc(#{$val} / #{$std} * 1vw);
-	// scss 들여쓰기 테스트
+	// scss 들여쓰기 테스트2
 }
 
