@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div>
       <TermsAgreementProvider>
-        <Header></Header>
+        <Header />
         <Outlet />
       </TermsAgreementProvider>
     </div>
