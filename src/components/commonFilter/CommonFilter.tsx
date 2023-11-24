@@ -1,3 +1,4 @@
+import React from "react";
 import "./commonFilter.scss";
 import { IoFilter } from "react-icons/io5";
 import { useState } from "react";
