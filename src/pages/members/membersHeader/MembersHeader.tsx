@@ -14,14 +14,18 @@ const MembersHeader = () => {
         <ul className="members-header__ul">
           <li
             className={`members-header__li ${
-              location.pathname === PATH.MEMBERS ? "selected" : ""
+              location.pathname === PATH.MEMBERS
+                ? "members-header__selected"
+                : ""
             }`}
           >
             <Link to={`${PATH.MEMBERS}`}>내 정보 관리</Link>
           </li>
           <li
             className={`members-header__li ${
-              location.pathname === PATH.ORDERLIST ? "selected" : ""
+              location.pathname === PATH.ORDERLIST
+                ? "members-header__selected"
+                : ""
             }`}
           >
             <Link to={`${PATH.ORDERLIST}`}>주문 목록</Link>

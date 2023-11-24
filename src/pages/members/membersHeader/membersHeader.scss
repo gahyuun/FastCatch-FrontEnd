@@ -14,7 +14,7 @@
   &__li {
     padding: rem(12) 0;
   }
-  .selected {
+  &__selected {
     position: relative;
     font-weight: bold;
     &::after {
