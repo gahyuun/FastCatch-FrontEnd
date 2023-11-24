@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MembersItem from "@/pages/members/membersItem/MembersItem";
+import MembersItem from "@/src/pages/members/membersItem/MembersItem";
 
 import "./membersInfo.scss";
 

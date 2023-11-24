@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { PATH } from "@/routes/constants";
+import { PATH } from "@/src/routes/constants";
 
 import "./membersHeader.scss";
 
