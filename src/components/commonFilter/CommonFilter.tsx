@@ -11,6 +11,7 @@ interface filterProps {
   amount: number;
   locale?: [string, boolean][];
   onChangeLocale: React.Dispatch<React.SetStateAction<[string, boolean][]>>;
+  onChangeAmount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CommonFilter = (props: filterProps) => {
@@ -58,7 +59,7 @@ const CommonFilter = (props: filterProps) => {
         >
           <span className="text-caption2 small-label">인원</span>
           <p>{props.amount}명</p>
-          <AmountDropdown isSelected={isSelected} />
+          <AmountDropdown isSelected={isSelected} amount={props.amount} onChangeAmount={props.onChangeAmount} />
         </button>
         <button className="filter__sort-button">
           <IoFilter />

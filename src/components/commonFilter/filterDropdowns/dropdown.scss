@@ -28,8 +28,12 @@
 .amount-container {
   @include container;
   left: auto;
-  width: rem(150);
+  width: rem(200);
   right: 0;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  width: rem(286);
 }
 
 .categoryNames {
@@ -40,4 +44,23 @@
 
   border-radius: rem(8);
   overflow: hidden;
+}
+
+.amountChangeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: rem(130);
+}
+
+.amountChangeButton {
+  background-color: coral(100);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: rem(32);
+  height: rem(32);
 }

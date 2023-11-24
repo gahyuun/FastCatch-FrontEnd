@@ -22,7 +22,7 @@ const Header = () => {
 
   const [locale, setLocale] = useState(categoryData);
   const [date] = useState<[Date, Date]>([new Date(), new Date()]);
-  const [amount] = useState(2);
+  const [amount, setAmount] = useState(2);
 
   const loginHandler = () => {
     navigate("/login");
@@ -41,6 +41,7 @@ const Header = () => {
             onChangeLocale={setLocale}
             date={date}
             amount={amount}
+            onChangeAmount={setAmount}
           />
         </section>
         <section className="header-container__right">{isLoggedIn ? <MyInfo></MyInfo> : <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />}</section>
