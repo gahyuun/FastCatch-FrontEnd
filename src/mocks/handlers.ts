@@ -1,15 +1,16 @@
-import { http } from "msw";
-import people from "./dummy.json";
+import { http, HttpResponse } from "msw";
+import hotel from "./dummy.json";
 
 export const handlers = [
-  http.get("/people", ()=>console.log('get 성공')
-  ),
-  http.post("/people", () => {
-    people.push({
+  http.get("/accommodation", ()=>{
+    console.log('get 성공');
+    return HttpResponse.json(hotel)
+  }),
+  http.post("/accommodation", () => {
+    hotel.push({
       id: "345",
-      name: "son",
-      country: "asia",
-      lang: "php",
+      name: "sadHotel",
+      location: "강원도",
     });
     console.log('post 성공')
   }),
