@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { TermsAgreementProvider } from "./context/TermsAgreementContext";
-import Header from "./components/Header";
+import Header from "./components/commonHeader/CommonHeader";
 
 export default function App() {
   return (
