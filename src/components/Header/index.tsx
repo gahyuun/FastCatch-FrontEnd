@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CommonButton from "../commonButton/CommonButton";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const loginHandler = () => {
@@ -25,7 +25,7 @@ const Header = () => {
         </section>
         <section className="header-container__right">
           {isLoggedIn ? (
-            <MyInfo></MyInfo> //
+            <MyInfo></MyInfo>
           ) : (
             <CommonButton
               text="로그인"

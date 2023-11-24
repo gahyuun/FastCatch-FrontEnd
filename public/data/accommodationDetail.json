@@ -3,7 +3,6 @@
     "accommodationName": "보코서울강남, IHG 호텔",
     "accommodationImage": [
       "https://image.goodchoice.kr/resize_490x348/affiliate/2023/06/08/648126e64f78d.jpg",
-      "https://image.goodchoice.kr/resize_490x348/affiliate/2023/06/08/648126e64f78d.jpg",
       "https://image.goodchoice.kr/resize_490x348/affiliate/2022/04/13/6256541c63159.jpg",
       "https://image.goodchoice.kr/resize_490x348/affiliate/2022/04/13/62565132ea04a.jpg"
     ],
@@ -11,42 +10,51 @@
     "price": 284900,
     "description": "IHG(인터컨티넨탈 호텔그룹)가 선보이는 한국의 첫 번째 보코 브랜드인 보코서울강남은 비즈니스와 쇼핑의 중심지인 강남에 위치하여 다채로운 문화를 즐기며 휴식할 수 있는 호텔입니다. 또한, 각 층마다 24시간 공용 주방 시설과 셀프 세탁실을 갖추고 있어 장기 투숙이 편리한 호텔입니다",
     "roomOptions": {
-      "smoking": false,
-      "pet": true,
-      "cityView": false,
-      "oceanView": true
+      "can_smoking": false,
+      "pet_accompanying": true,
+      "city_view": false,
+      "ocean_view": true
     },
     "accommodationOptions": {
-      "wifi": true,
-      "parking": true,
-      "smoking": false,
-      "pet": true,
-      "cityView": true,
-      "oceanView": true
+      "has_wifi": true,
+      "has_parking_lot": true,
+      "has_smoking_room": true,
+      "has_pet_room": true,
+      "has_breakfast":true,
+      "has_cooking_room":true,
+      "has_swimming_pool":true,
+      "has_gym":true,
+      "has_restaurant":true
     },
     "roomsInfo": [
       {
         "roomId": "room1",
-        "roomName": "[무료 미니바 패키지] 디럭스 싱글",
+        "roomName": "[무료 미니바 패키지] 디럭스 싱글 어쩌고 이름이 엄청 긴 방",
         "price": 284900,
-        "roomImage": "https://image.goodchoice.kr/resize_370x220/affiliate/2022/04/13/62564e49604ac.jpg",
+        "roomImage": [
+          "https://image.goodchoice.kr/resize_370x220/affiliate/2022/04/13/62564e49604ac.jpg",
+          "https://i.pinimg.com/736x/6f/1a/f9/6f1af9029480b5a4c94997db02d77417.jpg"
+        ],
         "roomOptions": {
-          "smoking": false,
-          "pet": true,
-          "cityView": false,
-          "oceanView": true
+          "can_smoking": false,
+          "pet_accompanying": true,
+          "city_view": false,
+          "ocean_view": true
         }
       },
       {
         "roomId": "room2",
         "roomName": "[Colorful Autumn] 디럭스 싱글",
         "price": 299900,
-        "roomImage": "https://image.goodchoice.kr/resize_370x220/affiliate/2023/08/31/64f03d8c861b0.jpg",
+        "roomImage": [
+          "https://image.goodchoice.kr/resize_370x220/affiliate/2023/08/31/64f03d8c861b0.jpg",
+          "https://i.pinimg.com/564x/78/cc/39/78cc397552bbb1f4755a874886270562.jpg"
+        ],
         "roomOptions": {
-          "smoking": false,
-          "pet": false,
-          "cityView": false,
-          "oceanView": true
+          "can_smoking": false,
+          "pet_accompanying": false,
+          "city_view": false,
+          "ocean_view": true
         }
       }
     ]
