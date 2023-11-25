@@ -24,6 +24,7 @@
 .date-container {
   @include container;
   width: rem(320);
+  justify-content: center;
 }
 
 .amount-container {

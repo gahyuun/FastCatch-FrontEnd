@@ -1,16 +1,20 @@
 @import "../../styles/common.scss";
 
 .header-container {
+  position: relative;
+  z-index: 1000;
   display: flex;
   justify-content: center;
 
   width: 100%;
   height: rem(80);
+  background-color: white;
 
   border-bottom: 1px solid gray(400);
 }
 
 .header-container__inner {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +35,7 @@
 }
 
 .header-container__center {
+  position: relative;
   width: 40%;
   height: 100%;
 
@@ -49,6 +54,6 @@
 
 .header-container__logo {
   font-family: "CWDangamAsac-Bold";
-  color: red;
+  color: coral(500);
   font-size: rem(32);
 }

@@ -11,8 +11,8 @@ interface dropdownProps {
 const AmountDropdown = (props: dropdownProps) => {
   const amountChangeHander = (event: React.MouseEvent, arg: number) => {
     event.stopPropagation();
-    if (props.amount === 15 && arg === 1) return;
-    if (props.amount === 1 && arg === -1) return;
+    if (props.amount === 15 && arg === 1) return; //15명인 상황에서 +1을 하면 바로 return
+    if (props.amount === 1 && arg === -1) return; //1명인 상황에서 -1을 하면 바로 return
     props.onChangeAmount((prev) => prev + arg);
   };
 

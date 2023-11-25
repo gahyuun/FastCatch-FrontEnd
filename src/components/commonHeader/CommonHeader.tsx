@@ -21,12 +21,12 @@ const Header = () => {
   ];
 
   const [locale, setLocale] = useState(categoryData);
-  const [date] = useState<[Date, Date]>([new Date(), new Date()]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(null);
   const [amount, setAmount] = useState(2);
 
   const loginHandler = () => {
     navigate("/login");
-    // good
   };
 
   return (
@@ -39,7 +39,10 @@ const Header = () => {
           <CommonFilter //
             locale={locale}
             onChangeLocale={setLocale}
-            date={date}
+            startDate={startDate}
+            onChangeStartDate={setStartDate}
+            endDate={endDate}
+            onChangeEndDate={setEndDate}
             amount={amount}
             onChangeAmount={setAmount}
           />
