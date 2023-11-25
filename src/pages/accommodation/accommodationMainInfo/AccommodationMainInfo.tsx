@@ -10,8 +10,6 @@ const AccommodationMainInfo = ({
   accommodationName,
   accommodationLocation,
 }: AccommodationMainInfoProps) => {
-  console.log(accommodationLocation);
-  console.log(accommodationName);
   return (
     <div className="accommodation__main-info">
       <div className="accommodation__name">

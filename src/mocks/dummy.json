@@ -1,0 +1,17 @@
+[
+  {
+    "id": "123",
+    "name": "happyHotel",
+    "location": "Seoul"
+  },
+  {
+    "id": "1234",
+    "name": "amazingHotel",
+    "location": "Busan"
+  },
+  {
+    "id": "12345",
+    "name": "niceHotel",
+    "location": "Jeju"
+  }
+]
