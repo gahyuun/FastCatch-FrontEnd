@@ -9,6 +9,7 @@
   justify-content: center;
   border-bottom: rem(1) solid gray(400);
   box-shadow: shadow(1);
+  user-select: none;
 }
 
 .category-filter__inner {
