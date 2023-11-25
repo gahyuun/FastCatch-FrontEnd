@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import "./commonFilter.scss";
 
 import { format } from "date-fns";
@@ -27,6 +28,7 @@ const CommonFilter = (props: filterProps) => {
   // 선택이 true인 것을 찾습니다.
   const selectedLocale = (props.locale?.find((value) => value[1] === true) as [string, boolean])[0];
 
+  // date-fns 라이브러리로 Formatting을 합니다.
   const startDate = format(props.startDate, "yyyy. MM. dd.");
   const endDate = props.endDate ? format(props.endDate, "yyyy. MM. dd.") : startDate;
 
@@ -77,7 +79,7 @@ const CommonFilter = (props: filterProps) => {
           <IoFilter />
         </button>
       </div>
-      {isSelected !== null && <div className="backdrop" onClick={() => setIsSelected(null)}></div>}
+      {isSelected !== null && ReactDOM.createPortal(<div className="backdrop" onClick={() => setIsSelected(null)}></div>, document.getElementById("root") as Element)}
     </div>
   );
 };

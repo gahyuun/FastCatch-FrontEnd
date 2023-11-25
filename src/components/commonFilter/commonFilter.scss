@@ -7,7 +7,7 @@
 
 .filter__container {
   position: relative;
-  z-index: 101;
+  z-index: 100;
   padding: 0 16px;
   border: 1px solid gray(500);
   border-radius: rem(30);
@@ -123,5 +123,4 @@
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 100;
 }
