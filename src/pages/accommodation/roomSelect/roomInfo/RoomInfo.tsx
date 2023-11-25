@@ -1,9 +1,9 @@
-import React from "react";
-import CommonButton from "@/src/components/commonButton/CommonButton";
-import { IoCartOutline, IoPeople } from "react-icons/io5";
-import numberFormat from "@/src/utils/numberFormat";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
+import CommonButton from "@/src/components/commonButton/CommonButton";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
+import numberFormat from "@/src/utils/numberFormat";
+import React from "react";
+import { IoCartOutline, IoPeople } from "react-icons/io5";
 
 interface RoomInfoProps {
   room: {
