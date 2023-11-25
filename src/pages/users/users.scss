@@ -1,6 +1,6 @@
 @import '../../styles/common.scss';
 
-body {
+.user-wrap {
 	background-color: #9199a4;
 	overflow-y: scroll;
 }
@@ -8,7 +8,7 @@ body {
 .bg-wrap {
 	display: flex;
 	justify-content: flex-end;
-	margin: 200px 0;
+	margin: 25vh 0;
 	padding-right: 200px;
 	height: 100%;
 	@include mdq-max(1200) {
