@@ -29,11 +29,17 @@ const Header = () => {
     navigate("/login");
   };
 
+  const logoHandler = () => {
+    navigate("/");
+  };
+
   return (
     <header className="header-container">
       <div className="header-container__inner">
         <section className="header-container__left">
-          <div className="header-container__logo">빨리잡아!</div>
+          <div className="header-container__logo" onClick={logoHandler}>
+            빨리잡아!
+          </div>
         </section>
         <section className="header-container__center">
           <CommonFilter //
