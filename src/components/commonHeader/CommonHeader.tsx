@@ -21,26 +21,36 @@ const Header = () => {
   ];
 
   const [locale, setLocale] = useState(categoryData);
-  const [date] = useState<[Date, Date]>([new Date(), new Date()]);
-  const [amount] = useState(2);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [amount, setAmount] = useState(2);
 
   const loginHandler = () => {
     navigate("/login");
-    // good
+  };
+
+  const logoHandler = () => {
+    navigate("/");
   };
 
   return (
     <header className="header-container">
       <div className="header-container__inner">
         <section className="header-container__left">
-          <div className="header-container__logo">빨리잡아!</div>
+          <div className="header-container__logo" onClick={logoHandler}>
+            빨리잡아!
+          </div>
         </section>
         <section className="header-container__center">
           <CommonFilter //
             locale={locale}
             onChangeLocale={setLocale}
-            date={date}
+            startDate={startDate}
+            onChangeStartDate={setStartDate}
+            endDate={endDate}
+            onChangeEndDate={setEndDate}
             amount={amount}
+            onChangeAmount={setAmount}
           />
         </section>
         <section className="header-container__right">{isLoggedIn ? <MyInfo></MyInfo> : <CommonButton text="로그인" buttonSize="small" shape="fill" colorName="coral500" onClick={loginHandler} />}</section>

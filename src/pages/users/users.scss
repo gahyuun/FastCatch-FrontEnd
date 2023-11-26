@@ -1,103 +1,102 @@
-@import '../../styles/common.scss';
+@import "../../styles/common.scss";
 
 .user-wrap {
-	background-color: #9199a4;
-	overflow-y: scroll;
+  background-color: #9199a4;
+  overflow-y: scroll;
 }
 
 .bg-wrap {
-	display: flex;
-	justify-content: flex-end;
-	margin: 25vh 0;
-	padding-right: 200px;
-	height: 100%;
-	@include mdq-max(1200) {
-		padding-right: 0;
-		justify-content: center;
-	}
+  display: flex;
+  justify-content: flex-end;
+  margin: 200px 0;
+  padding-right: 200px;
+  height: 100%;
+  @include mdq-max(1200) {
+    padding-right: 0;
+    justify-content: center;
+  }
 }
 
 .login-wrap {
-	max-width: 580px;
-	width: 100%;
-	background-color: white;
-	box-shadow: box-shadow(2);
+  max-width: 580px;
+  width: 100%;
+  background-color: white;
+  box-shadow: box-shadow(2);
 
-	border-radius: 8px;
-	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
 
-	&__header {
-		display: flex;
-		.header-list {
-			width: 100%;
-			.link {
-				display: block;
-				flex: 1 0 50%;
-				height: 4rem;
-				line-height: 4rem;
-				border: none;
-				border-radius: 8px 8px 0px 0px;
-				background-color: #f9f9fa;
-				color: gray(500);
-				font-size: rem(22);
-				font-weight: 800;
-				text-align: center;
-				&.on {
-					background-color: white;
-					color: black;
-				}
-			}
-		}
-	}
-	&__body {
-		padding: 44px;
-		.input-inner {
-			margin-bottom: 24px;
-			label {
-				display: block;
-				width: 100%;
-				font-size: rem(18);
-				margin-bottom: 8px;
-			}
-			input {
-				display: block;
-				width: 100%;
-				border: 1px solid gray(400);
-				border-radius: 4px;
-				font-size: rem(18);
-				color: gray(600);
-				padding: 16px;
-				&::placeholder {
-					color: gray(600);
-				}
-			}
-			&__item {
-				position: relative;
-				button {
-					position: absolute;
-					right: 16px;
-					top: 50%;
-					transform: translateY(-50%);
-					&.btn-check {
-						font-size: rem(18);
-						color: coral(500);
-					}
-					&.btn-visible {
-						display: inline-flex;
-						align-items: center;
-						font-size: 24px;
-						color: gray(500);
-					}
-				}
-			}
-		}
-		.agree-inner {
-			margin-top: 70px;
-		}
-		.common-button {
-			margin-top: 24px;
-			height: 60px;
-		}
-	}
+  &__header {
+    display: flex;
+    .header-list {
+      width: 100%;
+      .link {
+        display: block;
+        flex: 1 0 50%;
+        height: 4rem;
+        line-height: 4rem;
+        border: none;
+        border-radius: 8px 8px 0px 0px;
+        background-color: #f9f9fa;
+        color: gray(500);
+        font-size: rem(22);
+        font-weight: 800;
+        text-align: center;
+        &.on {
+          background-color: white;
+          color: black;
+        }
+      }
+    }
+  }
+  &__body {
+    padding: 44px;
+    .input-inner {
+      margin-bottom: 24px;
+      label {
+        display: block;
+        width: 100%;
+        font-size: rem(18);
+        margin-bottom: 8px;
+      }
+      input {
+        display: block;
+        width: 100%;
+        border: 1px solid gray(400);
+        border-radius: 4px;
+        font-size: rem(18);
+        color: gray(600);
+        padding: 16px;
+        &::placeholder {
+          color: gray(600);
+        }
+      }
+      &__item {
+        position: relative;
+        button {
+          position: absolute;
+          right: 16px;
+          top: 50%;
+          transform: translateY(-50%);
+          &.btn-check {
+            font-size: rem(18);
+            color: coral(500);
+          }
+          &.btn-visible {
+            display: inline-flex;
+            align-items: center;
+            font-size: 24px;
+            color: gray(500);
+          }
+        }
+      }
+    }
+    .agree-inner {
+      margin-top: 70px;
+    }
+    .common-button {
+      margin-top: 24px;
+      height: 60px;
+    }
+  }
 }
-
