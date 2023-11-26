@@ -28,7 +28,6 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
 
   const postBasket = (roomId: string) => {
     const response = axios.post("/accommodation", { roomId });
-
     return response;
   };
 
@@ -61,9 +60,7 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
   };
 
   const onClickBasket = () => {
-    console.log(roomId);
     mutation.mutate(roomId);
-    // showToast();
   };
   const onClickOrder = () => {
     navigate("/order");

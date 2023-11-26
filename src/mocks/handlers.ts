@@ -14,7 +14,4 @@ const postHotelResolver = async ({ request }:any) => {
 export const handlers = [
   http.get("/accommodation", getHotelResolver),
   http.post("/accommodation", postHotelResolver),
-  http.delete('/posts/:id', ({ params }) => {
-    console.log(`Captured a "DELETE /posts/${params.id}" request`)
-  }),
 ];
