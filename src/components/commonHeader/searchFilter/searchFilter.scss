@@ -1,0 +1,14 @@
+@import "../../../styles/common.scss";
+
+.search-filter__input {
+  height: rem(60);
+  width: rem(415);
+  border: rem(1) solid gray(400);
+  border-radius: rem(30);
+  padding-left: rem(24);
+
+  &:focus {
+    outline: none;
+    border: rem(2) solid coral(500);
+  }
+}
