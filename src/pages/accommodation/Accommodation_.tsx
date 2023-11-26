@@ -7,39 +7,53 @@ import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntrod
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationImgSwiper from "./accommodationImgSwiper/AccommodationImgSwiper";
 
-// interface ResType {
-//   id: string;
-//   name: string;
-//   location: string;
-// }
+interface ResType {
+  id: string;
+  name: string;
+  location: string;
+}
 
 const Accommodation = () => {
   const [data, setData]: any = useState([]);
-  // const [dummyData, setDummyData] = useState<ResType[]>([]);
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    // const fetchData = async () => {
+    const fetchData = async () => {
+      try {
+        const res = await axios({
+          method: "get",
+          url: "/accommodation",
+        });
+        console.log(res.data[0]);
+        if (res.status === 200) {
+          await setData(res.data[0]);
+        }
+        setIsLoaded(!isLoaded);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+
+    // const postHotel = async () => {
     //   try {
-    //     const res = await axios({
-    //       method: "get",
+    //     const response = await axios({
+    //       method: "post",
     //       url: "/accommodation",
     //     });
-    //     console.log(res.data);
-    //     if (res.status === 200) {
-    //       setDummyData(res.data);
-    //     }
+    //     console.log("post 성공", response.data);
     //   } catch (error) {
-    //     console.log(error);
+    //     console.log("post도중 에러 발생", error);
     //   }
     // };
-    // fetchData();
+    // postHotel();
 
-    axios
-      .get("/data/accommodationDetail.json")
-      .then((response) => setData(response.data[0]))
-      .then(() => setIsLoaded(!isLoaded))
-      .catch((error) => console.error("데이터 가져오기 에러 발생:", error));
+    // axios
+    //   .get("/data/accommodationDetail.json")
+    //   .then((response) => setData(response.data[0]))
+    //   .then(() => setIsLoaded(!isLoaded))
+    //   .catch((error) => console.error("데이터 가져오기 에러 발생:", error));
   }, []);
 
   if (!isLoaded) {
@@ -49,16 +63,6 @@ const Accommodation = () => {
   return (
     <div className="accommodation-container">
       <AccommodationImgSwiper accommodationImage={data.accommodationImage} />
-      {/* {dummyData.length > 0 ? (
-        dummyData.map((item) => (
-          <div key={item.id}>
-            <p>이름 : {item.name}</p>
-            <p>위치 : {item.location}</p>
-          </div>
-        ))
-      ) : (
-        <p>...로딩중</p>
-      )} */}
       <AccommodationMainInfo
         accommodationName={data.accommodationName}
         accommodationLocation={data.accommodationLocation}
