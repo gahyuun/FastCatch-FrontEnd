@@ -1,8 +1,10 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import CommonButton from "@/src/components/commonButton/CommonButton";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
-import React from "react";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 
 interface RoomInfoProps {
@@ -20,6 +22,11 @@ interface Template {
 
 const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
   const { roomName, price, roomOptions } = room;
+  const navigate = useNavigate();
+  const { showToast, ToastContainer } = CommonToastLayout({
+    theme: "success",
+    message: "장바구니에 상품이 담겼습니다",
+  });
 
   const template: Template = {
     city_view: "시티뷰",
@@ -31,6 +38,14 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
     has_pc: "PC",
     has_amenity: "어메니티",
     can_cooking: "취사 가능",
+  };
+
+  const onClickBasket = () => {
+    showToast();
+  };
+  const onClickOrder = () => {
+    navigate("/order");
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -63,11 +78,19 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          <button className="room__buttons-container__basket">
+          <button
+            className="room__buttons-container__basket"
+            onClick={onClickBasket}
+          >
             <IoCartOutline size="30px" color="#93114E" />
           </button>
-          <CommonButton text="예약하기" buttonSize="large" />
+          <CommonButton
+            text="예약하기"
+            buttonSize="large"
+            onClick={onClickOrder}
+          />
         </div>
+        {ToastContainer}
       </div>
     </div>
   );

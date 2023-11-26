@@ -7,12 +7,6 @@ import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntrod
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationImgSwiper from "./accommodationImgSwiper/AccommodationImgSwiper";
 
-interface ResType {
-  id: string;
-  name: string;
-  location: string;
-}
-
 const Accommodation = () => {
   const [data, setData]: any = useState([]);
 
@@ -24,7 +18,7 @@ const Accommodation = () => {
           method: "get",
           url: "/accommodation",
         });
-        console.log(res.data[0]);
+        // console.log(res.data[0]);
         if (res.status === 200) {
           await setData(res.data[0]);
         }
@@ -48,12 +42,6 @@ const Accommodation = () => {
     //   }
     // };
     // postHotel();
-
-    // axios
-    //   .get("/data/accommodationDetail.json")
-    //   .then((response) => setData(response.data[0]))
-    //   .then(() => setIsLoaded(!isLoaded))
-    //   .catch((error) => console.error("데이터 가져오기 에러 발생:", error));
   }, []);
 
   if (!isLoaded) {
