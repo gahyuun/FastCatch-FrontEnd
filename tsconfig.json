@@ -21,21 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     "baseUrl": ".",
-<<<<<<< HEAD
-		"paths": {
-			"@/*": ["./*"],
-			"@types/*": ["types/*"],
-			"@components/*": ["components/*"],
-			"@pages/*": ["pages/*"],
-		}
-=======
     "paths": {
       "@/*": ["./*"],
       "@types/*": ["types/*"],
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"]
     }
->>>>>>> 5a0d32285e4ec60086957c6ae1766aca432d4107
   },
   "include": [".eslintrc.cjs", "src", "**/*.ts", "**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
