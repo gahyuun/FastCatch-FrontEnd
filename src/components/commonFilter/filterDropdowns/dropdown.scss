@@ -1,0 +1,43 @@
+@import "../../../styles/common.scss";
+
+@mixin container {
+  display: flex;
+  gap: rem(16);
+  position: absolute;
+  top: rem(64);
+
+  background-color: white;
+  border-radius: rem(16);
+  border: rem(1) solid gray(500);
+  box-shadow: shadow(2);
+
+  padding: rem(16);
+  left: 0;
+}
+
+.location-container {
+  @include container;
+  width: rem(220);
+}
+
+.date-container {
+  @include container;
+  width: rem(320);
+}
+
+.amount-container {
+  @include container;
+  left: auto;
+  width: rem(150);
+  right: 0;
+}
+
+.categoryNames {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+
+  border-radius: rem(8);
+  overflow: hidden;
+}

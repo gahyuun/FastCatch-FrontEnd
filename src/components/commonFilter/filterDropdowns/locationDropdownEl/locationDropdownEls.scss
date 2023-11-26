@@ -1,0 +1,30 @@
+@import "../../../../styles/common.scss";
+
+@mixin category {
+  width: 100%;
+  height: rem(40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: rem(1) solid gray(400);
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.selected {
+  @include category;
+  background-color: coral(500);
+  color: white;
+}
+
+.unSelected {
+  @include category;
+  background-color: gray(100);
+  color: gray(700);
+
+  &:hover {
+    background-color: gray(200);
+  }
+}
