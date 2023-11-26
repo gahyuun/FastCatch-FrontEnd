@@ -1,5 +1,4 @@
 import "./commonHeader.scss";
-import "../../styles/_theme.scss";
 
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -75,9 +74,9 @@ const Header = () => {
               />
             )}
             {filterMode === "search" && <SearchFilter />}
-            <button className="filter__search-button" onClick={changeFilterModeHandler}>
-              {filterMode === "filter" && <IoIosSearch className="search-button__icon" />}
-              {filterMode === "search" && <IoFilter className="search-button__icon" />}
+            <button className="filter__secondary-button" onClick={changeFilterModeHandler}>
+              {filterMode === "filter" && <IoIosSearch className="secondary-button__icon" />}
+              {filterMode === "search" && <IoFilter className="secondary-button__icon" />}
             </button>
           </section>
           <section className="header-container__right">

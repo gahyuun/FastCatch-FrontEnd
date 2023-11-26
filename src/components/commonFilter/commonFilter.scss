@@ -110,7 +110,7 @@
   flex-shrink: 0;
 }
 
-.filter__sort-button {
+.filter__primary-button {
   @include filterActionButton;
   background-color: coral(500);
 
@@ -120,14 +120,22 @@
   }
 }
 
-.filter__search-button {
+.in-search {
+  position: absolute;
+  right: rem(17);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.filter__secondary-button {
   @include filterActionButton;
   color: gray(700);
   position: absolute;
   right: rem(-24);
   font-size: 24px;
 
-  & .search-button__icon {
+  & .secondary-button__icon {
     transform: translateY(rem(-4));
   }
 

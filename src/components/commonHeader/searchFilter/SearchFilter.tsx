@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { IoIosSearch } from "react-icons/io";
 import "./searchFilter.scss";
 
 const SearchFilter = () => {
@@ -17,7 +18,7 @@ const SearchFilter = () => {
   };
 
   return (
-    <form onSubmit={searchSubmitHandler}>
+    <form onSubmit={searchSubmitHandler} style={{ position: "relative" }}>
       <input
         type="text" //
         minLength={2}
@@ -27,7 +28,9 @@ const SearchFilter = () => {
         className="search-filter__input text-body2"
         ref={inputRef}
       />
-      <button type="submit"></button>
+      <button type="submit" className="filter__primary-button in-search">
+        <IoIosSearch className="search-button__icon" />
+      </button>
     </form>
   );
 };
