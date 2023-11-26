@@ -6,6 +6,8 @@ import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 interface RoomInfoProps {
   room: {
@@ -21,8 +23,26 @@ interface Template {
 }
 
 const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
-  const { roomName, price, roomOptions } = room;
+  const { roomName, price, roomOptions, roomId } = room;
   const navigate = useNavigate();
+
+  const postBasket = (roomId: string) => {
+    const response = axios.post("/accommodation", { roomId });
+
+    return response;
+  };
+
+  const mutation = useMutation({
+    mutationFn: postBasket,
+    onSuccess: (data) => {
+      console.log("데이터 전송 성공", data);
+      showToast();
+    },
+    onError: (error) => {
+      console.log("전송 실패했습니다!!", error);
+    },
+  });
+
   const { showToast, ToastContainer } = CommonToastLayout({
     theme: "success",
     message: "장바구니에 상품이 담겼습니다",
@@ -41,7 +61,9 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
   };
 
   const onClickBasket = () => {
-    showToast();
+    console.log(roomId);
+    mutation.mutate(roomId);
+    // showToast();
   };
   const onClickOrder = () => {
     navigate("/order");

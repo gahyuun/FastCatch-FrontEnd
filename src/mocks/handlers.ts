@@ -2,19 +2,13 @@ import { http, HttpResponse } from "msw";
 import accommodationDetail from "../../public/data/accommodationDetail.json";
 
 const getHotelResolver = () => {
-  console.log('get 성공');
   return HttpResponse.json(accommodationDetail)
 }
-// const postHotelResolver = async ({ request }:any) => {
-const postHotelResolver = async () => {
-  // const info = await request.formData()
-  // hotel.push({
-  //   id: "456",
-  //   name: "post추가 성공",
-  //   location: "ㅎㅎㅎ",
-  // });
-  // console.log('Logging in as "%s"', info.get('username'))
-  console.log('post 성공')
+const postHotelResolver = async ({ request }:any) => {
+  const newPost = await request.json()
+  console.log('newPost',newPost)
+
+  return HttpResponse.json(newPost,{status:201})
 }
 
 export const handlers = [
