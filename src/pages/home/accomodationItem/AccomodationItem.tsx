@@ -1,7 +1,12 @@
 import { CommonBadge } from "@/src/components";
 import "./accomodationItem.scss";
+import numberFormat from "@/src/utils/numberFormat";
 
-const AccomodationItem = () => {
+interface accommodationProps {
+  data: any;
+}
+
+const AccomodationItem = ({ data }: accommodationProps) => {
   return (
     <div className="accomdationItem-container">
       <div className="accomdationItem-container__image-box">
@@ -10,19 +15,18 @@ const AccomodationItem = () => {
       <div className="accomdationItem-container__desc-box">
         <div className="item-info">
           <div>
-            <strong className="text-subtitle5">한국 신라 호텔</strong>
+            <strong className="text-subtitle5">{data.name}</strong>
             <div className="text-body2 item-info__lacation">
-              <p>호텔 | 한국 용산구</p>
+              {/* <p>{accommodationCategoryData[data.category]} | 한국 용산구</p> */}
+              <p>호텔/리조트 | 한국 용산구</p>
             </div>
           </div>
-          <div className="item-info__status">
-            <CommonBadge text="예약마감" badgeType="fill" />
-          </div>
+          <div className="item-info__status">{data.soldOut && <CommonBadge text="예약마감" badgeType="fill" />}</div>
         </div>
         <div className="item-price">
           <span className="text-body1">최저가</span>
           <div className="text-subtitle5">
-            <span>170,000</span>
+            <span>{numberFormat(data.lowestPrice)}</span>
             <span className="won">원</span>
           </div>
         </div>

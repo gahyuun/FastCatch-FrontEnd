@@ -1,0 +1,93 @@
+{
+  "status": "SUCCESS",
+  "data": {
+    "accommodations": [
+      {
+        "id": 1,
+        "name": "춘천세종호텔",
+        "region": "GANGWON",
+        "category": "HOTELRESORT",
+        "lowestPrice": 45000,
+        "image": "1.jpg",
+        "soldOut": true,
+        "accommodationOption": {
+          "hasSmokingRoom": true,
+          "hasPetRoom": false,
+          "hasParkingLot": true,
+          "hasWifi": true,
+          "hasSwimmingPool": false,
+          "hasGym": false,
+          "hasBreakfast": true,
+          "hasRestaurant": false,
+          "hasCookingRoom": false
+        }
+      },
+      {
+        "id": 2,
+        "name": "파도소리펜션",
+        "region": "GYEONGSANG",
+        "category": "PENSION",
+        "lowestPrice": 100000,
+        "image": "2.jpg",
+        "soldOut": false,
+        "accommodationOption": {
+          "hasSmokingRoom": true,
+          "hasPetRoom": true,
+          "hasParkingLot": true,
+          "hasWifi": true,
+          "hasSwimmingPool": false,
+          "hasGym": false,
+          "hasBreakfast": true,
+          "hasRestaurant": false,
+          "hasCookingRoom": true
+        }
+      },
+      {
+        "id": 3,
+        "name": "럭셔리관광호텔(오산)",
+        "region": "GYEONGGI",
+        "category": "HOTELRESORT",
+        "lowestPrice": 65000,
+        "image": "3.jpg",
+        "soldOut": false,
+        "accommodationOption": {
+          "hasSmokingRoom": true,
+          "hasPetRoom": true,
+          "hasParkingLot": true,
+          "hasWifi": true,
+          "hasSwimmingPool": true,
+          "hasGym": true,
+          "hasBreakfast": true,
+          "hasRestaurant": true,
+          "hasCookingRoom": true
+        }
+      },
+      {
+        "id": 4,
+        "name": "포포인츠 바이 쉐라톤 서울 구로",
+        "region": "SEOUL",
+        "category": "MOTEL",
+        "lowestPrice": 40000,
+        "image": "4.jpg",
+        "soldOut": false,
+        "accommodationOption": {
+          "hasSmokingRoom": true,
+          "hasPetRoom": false,
+          "hasParkingLot": true,
+          "hasWifi": true,
+          "hasSwimmingPool": false,
+          "hasGym": false,
+          "hasBreakfast": false,
+          "hasRestaurant": false,
+          "hasCookingRoom": false
+        }
+      }
+    ],
+    "pageNum": 1,
+    "pageSize": 12,
+    "totalPages": 0,
+    "totalElements": 4,
+    "isFirst": true,
+    "isLast": true
+  }
+}
