@@ -99,20 +99,48 @@
   }
 }
 
-.filter__sort-button {
+@mixin filterActionButton {
   width: rem(32);
   height: rem(32);
-  background-color: coral(500);
   border-radius: 50%;
   transition: all 0.1s ease-in-out;
-
-  font-size: rem(20);
   color: white;
+  font-size: rem(20);
   padding-top: 7px;
   flex-shrink: 0;
+}
+
+.filter__primary-button {
+  @include filterActionButton;
+  background-color: coral(500);
 
   &:hover {
     background-color: coral(600);
+    color: white;
+  }
+}
+
+.in-search {
+  position: absolute;
+  right: rem(17);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.filter__secondary-button {
+  @include filterActionButton;
+  color: gray(700);
+  position: absolute;
+  right: rem(-24);
+  font-size: 24px;
+
+  & .secondary-button__icon {
+    transform: translateY(rem(-4));
+  }
+
+  &:hover {
+    background-color: gray(200);
   }
 }
 

@@ -45,12 +45,19 @@
   align-items: center;
 }
 
+.filter__divider {
+  width: rem(1);
+  height: rem(16);
+  background-color: gray(500);
+}
+
 .header-container__right {
   width: 20%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: rem(16);
 }
 
 .header-container__logo {
