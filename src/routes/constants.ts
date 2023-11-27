@@ -4,7 +4,7 @@ export const PATH = {
   LOGIN: "/login",
   SIGN_UP: "/signup",
   BASKET: "/basket",
-  ACCOMMODATION: "/accommodation",
+  ACCOMMODATION: "/accommodation/:id",
   ORDER: "/order",
   MEMBERS: "/members",
   ORDERLIST: "/members/orderlist",
