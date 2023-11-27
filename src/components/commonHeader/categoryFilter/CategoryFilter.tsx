@@ -43,7 +43,7 @@ const CategoryFilter = () => {
         {categories.map((category, idx) =>
           category.select === true ? ( //
             <button //
-              key={idx}
+              key={`category-filter-${idx}`}
               className="filter__button categorySelect"
               onClick={() => changeCategoryHandler(category.name)}
             >
