@@ -13,7 +13,6 @@ interface RoomInfoProps {
   room: {
     price: number;
     roomId: string;
-    roomImage: string[];
     roomName: string;
     roomOptions: any;
   };
@@ -22,7 +21,7 @@ interface Template {
   [key: string]: string;
 }
 
-const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
+const RoomInfo = ({ room }: RoomInfoProps) => {
   const { roomName, price, roomOptions, roomId } = room;
   const navigate = useNavigate();
 

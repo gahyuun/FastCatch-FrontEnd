@@ -3,7 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 
-const RoomImgSwiper: React.FC<{ roomImg: string[] }> = ({ roomImg }) => {
+interface RoomImgSwiperProps {
+  roomImg: string[];
+}
+
+const RoomImgSwiper = ({ roomImg }: RoomImgSwiperProps) => {
   return (
     <Swiper
       modules={[Navigation, Autoplay]}
