@@ -30,7 +30,6 @@ const CommonFilter = (props: filterProps) => {
   const [isSelected, setIsSelected] = useState<"location" | "date" | "amount" | null>(null);
 
   const [filterStates] = useRecoilState(filterState);
-  console.log(filterStates);
 
   // date-fns 라이브러리로 Formatting을 합니다.
   const startDate = format(filterStates.startDate, "yyyy. MM. dd.");
