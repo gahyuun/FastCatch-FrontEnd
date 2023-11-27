@@ -75,7 +75,7 @@ const CommonFilter = (props: filterProps) => {
           <p>{props.amount}명</p>
           <AmountDropdown isSelected={isSelected} amount={props.amount} onChangeAmount={props.onChangeAmount} />
         </div>
-        <button className="filter__sort-button">
+        <button className="filter__primary-button">
           <IoFilter />
         </button>
       </div>
