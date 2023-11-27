@@ -1,12 +1,10 @@
-import { useState, useEffect, useContext } from "react";
-import { TermsAgreementContext } from "@/src/context/TermsAgreementContext";
+import { useState, useEffect } from "react";
 
 import TermsAgreementItem from "@/src/components/termsAgreementItem/TermsAgreementItem";
 
 import "./termsAgreement.scss";
 
-const TermsAgreement = () => {
-  const { isAllCheck, setIsAllCheck } = useContext(TermsAgreementContext);
+const TermsAgreement = ({ isAllCheck, setIsAllCheck }: TermsAgreementProps) => {
   const [isCheckRule, setIsCheckRule] = useState(false);
   const [isCheckUse, setIsCheckUse] = useState(false);
   const [isCheckProvision, setIsCheckProvision] = useState(false);
@@ -83,3 +81,8 @@ const TermsAgreement = () => {
 };
 
 export default TermsAgreement;
+
+interface TermsAgreementProps {
+  isAllCheck: boolean;
+  setIsAllCheck: React.Dispatch<React.SetStateAction<boolean>>;
+}

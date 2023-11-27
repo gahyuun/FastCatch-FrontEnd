@@ -1,5 +1,8 @@
+import { filterState } from "@/src/states/atom";
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
+
+import { useSetRecoilState } from "recoil";
 
 import "./react-datepicker.scss";
 import "./dropdown.scss";
@@ -8,15 +11,18 @@ interface dropdownProps {
   isSelected: "location" | "date" | "amount" | null;
   startDate: Date;
   endDate: Date | null;
-  onChangeStartDate: React.Dispatch<React.SetStateAction<Date>>;
-  onChangeEndDate: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
 const DateDropdown = (props: dropdownProps) => {
+  const setFilterStates = useSetRecoilState(filterState);
+
   const onChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
-    props.onChangeStartDate(start as Date);
-    props.onChangeEndDate(end);
+    setFilterStates((prevStates) => ({
+      ...prevStates,
+      startDate: start as Date,
+      endDate: end,
+    }));
   };
   return (
     <>
