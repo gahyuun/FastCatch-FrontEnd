@@ -47,11 +47,7 @@ const Header = () => {
             </div>
           </section>
           <section className="header-container__center">
-            {filterMode === "filter" && (
-              <CommonFilter //
-                isLocale={true}
-              />
-            )}
+            {filterMode === "filter" && <CommonFilter isLocale={true} />}
             {filterMode === "search" && <SearchFilter />}
             <button className="filter__secondary-button" onClick={changeFilterModeHandler}>
               {filterMode === "filter" && <IoIosSearch className="secondary-button__icon" />}

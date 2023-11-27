@@ -2,7 +2,7 @@ import { filterState } from "@/src/states/atom";
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 import "./react-datepicker.scss";
 import "./dropdown.scss";
@@ -14,7 +14,7 @@ interface dropdownProps {
 }
 
 const DateDropdown = (props: dropdownProps) => {
-  const [, setFilterStates] = useRecoilState(filterState);
+  const setFilterStates = useSetRecoilState(filterState);
 
   const onChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
