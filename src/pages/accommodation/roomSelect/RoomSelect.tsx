@@ -4,6 +4,7 @@ import RoomInfo from "./roomInfo/RoomInfo";
 import CommonFilter from "@/src/components/commonFilter/CommonFilter";
 
 const RoomSelect = ({ roomsInfo }: any) => {
+  console.log(roomsInfo);
   return (
     <div className="accommodation__select-room">
       <div className="accommodation__menu-title">
@@ -18,7 +19,7 @@ const RoomSelect = ({ roomsInfo }: any) => {
         {roomsInfo.map((room: any) => (
           <div className="room-container__list" key={room.roomId}>
             <div className="room__imgs">
-              <RoomImgSwiper roomImg={room.roomImage} />
+              <RoomImgSwiper roomImg={room.images} />
             </div>
             <RoomInfo room={room} />
           </div>

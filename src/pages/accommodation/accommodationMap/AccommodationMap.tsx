@@ -3,7 +3,11 @@ import { useEffect, useRef } from "react";
 import "./accommodationMap.scss";
 import markerIcon from "../../../assets/icons/markerImg.svg";
 
-const AccommodationMap = () => {
+interface PropType {
+  accommodationName: string;
+}
+
+const AccommodationMap = ({ accommodationName }: PropType) => {
   const { kakao }: any = window;
   const mapContainer = useRef(null);
   const position = new kakao.maps.LatLng(
@@ -27,7 +31,7 @@ const AccommodationMap = () => {
 
     const content = `
       <div class="customoverlay">
-        <span>호텔&리조트</span>
+        <span>${accommodationName}</span>
       </div>`;
 
     new kakao.maps.CustomOverlay({
