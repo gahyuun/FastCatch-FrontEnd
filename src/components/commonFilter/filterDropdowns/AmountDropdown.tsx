@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/atom";
+import { filterState } from "@/src/states/filterState";
 
 interface dropdownProps {
   isSelected: "location" | "date" | "amount" | null;
