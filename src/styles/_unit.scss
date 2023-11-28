@@ -9,5 +9,4 @@
 @function vw($val, $std: 1920) {
 	@return calc(#{$val} / #{$std} * 1vw);
 }
-// 공백 테스트
 
