@@ -1,22 +1,28 @@
 /* global kakao */
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const AccommodationMap = () => {
+  const { kakao }: any = window;
+  const mapContainer = useRef(null);
+  const position = new kakao.maps.LatLng(
+    37.365264512305174,
+    127.10676860117488
+  );
+  const marker = new kakao.maps.Marker({
+    position: position,
+  });
+  const options = {
+    center: position,
+    level: 4,
+  };
+
   useEffect(() => {
-    let container = document.getElementById("map");
-    let options = {
-      center: new kakao.maps.LatLng(37.365264512305174, 127.10676860117488),
-      level: 3,
-    };
-    let map = new kakao.maps.Map(container, options);
-    let markerPosition = new kakao.maps.LatLng(
-      37.365264512305174,
-      127.10676860117488
-    );
-    let marker = new kakao.maps.Marker({
-      position: markerPosition,
-    });
-    marker.setMap(map);
+    {
+      const mapTypeControl = new kakao.maps.MapTypeControl();
+      const map = new kakao.maps.Map(mapContainer.current, options);
+      map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+      marker.setMap(map);
+    }
   }, []);
 
   return (
@@ -25,7 +31,11 @@ const AccommodationMap = () => {
         <span className="text-subtitle4">숙소 위치</span>
       </div>
       <div>
-        <div id="map" style={{ width: "100%", height: "300px" }}></div>
+        <div
+          id="map"
+          ref={mapContainer}
+          style={{ width: "100%", height: "300px" }}
+        ></div>
       </div>
     </div>
   );
