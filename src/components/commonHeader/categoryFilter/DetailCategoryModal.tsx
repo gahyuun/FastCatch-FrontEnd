@@ -7,7 +7,7 @@ interface detailProps {
 }
 
 const DetailCategoryModal = (props: detailProps) => {
-  const commitHandler = (e: React.MouseEvent) => {};
+  // const commitHandler = (e: React.MouseEvent) => {};
 
   return (
     <div className="detail-modal__container">
@@ -36,7 +36,7 @@ const DetailCategoryModal = (props: detailProps) => {
             colorName="coral200"
             onClick={props.onClick as React.MouseEventHandler}
           />
-          <CommonButton text="확인" onClick={commitHandler} />
+          <CommonButton text="확인" /*onClick={commitHandler}*/ />
         </footer>
       </div>
     </div>
