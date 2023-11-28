@@ -6,7 +6,8 @@ import guestHouse from "../../../assets/categoryIcons/guest-house.jpg";
 import hotel from "../../../assets/categoryIcons/hotel.jpg";
 import motel from "../../../assets/categoryIcons/motel.jpg";
 import { IoOptionsOutline } from "react-icons/io5";
-// import ReactDOM from "react-dom";
+import DetailCategoryModal from "./DetailCategoryModal";
+import ReactDOM from "react-dom";
 
 interface categoryTypes {
   name: string;
@@ -23,9 +24,12 @@ const CategoryFilter = () => {
     { name: "팬션/풀빌라", img: hotel, select: false },
     { name: "게스트하우스", img: motel, select: false },
   ];
+  const [openDetail, setOpenDetail] = useState(false);
 
   const [categories, setCategories] = useState(categoriesData);
-  const detailOpenHandler = () => {};
+  const toggleDetailHandler = () => {
+    setOpenDetail((prev) => !prev);
+  };
 
   const changeCategoryHandler = (categoryName: string) => {
     const copy: categoryTypes[] = categories.slice().map((arg) => {
@@ -62,12 +66,12 @@ const CategoryFilter = () => {
           )
         )}
         <div className="filter__adjust-height">
-          <button className="filter__button-detail" onClick={detailOpenHandler}>
+          <button className="filter__button-detail" onClick={toggleDetailHandler}>
             <IoOptionsOutline className="detail__icon" />
             <span className="text-body3">필터</span>
           </button>
         </div>
-        {/* {ReactDOM.createPortal()} */}
+        {openDetail ? ReactDOM.createPortal(<DetailCategoryModal onClick={toggleDetailHandler} />, document.getElementById("root") as Element) : ""}
       </div>
     </div>
   );

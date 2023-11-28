@@ -12,13 +12,13 @@
 
 .modal-wrap {
   position: absolute;
-  z-index: 100;
+  z-index: 1002;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   min-width: 490px;
   background-color: white;
-  box-shadow: boxshadow(1);
+  box-shadow: shadow(1);
   border-radius: 8px;
   &__header {
     padding: 0 24px;
