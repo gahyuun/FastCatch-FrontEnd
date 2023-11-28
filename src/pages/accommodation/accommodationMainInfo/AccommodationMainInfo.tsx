@@ -4,11 +4,12 @@ import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 interface AccommodationMainInfoProps {
   accommodationName: string;
   accommodationLocation: string;
+  // accommodationPhone: string;
 }
 
 const AccommodationMainInfo = ({
   accommodationName,
-  accommodationLocation,
+  accommodationLocation, // accommodationPhone
 }: AccommodationMainInfoProps) => {
   return (
     <div className="accommodation__main-info">
@@ -19,6 +20,9 @@ const AccommodationMainInfo = ({
       <div className="accommodation__main-info__detail">
         <span className="text-body1"> 호텔 | </span>
         <span className="text-body1">{accommodationLocation}</span>
+      </div>
+      <div className="accommodation__main-info__detail">
+        {/* <span className="text-body1">dd</span> */}
       </div>
     </div>
   );

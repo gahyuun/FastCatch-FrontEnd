@@ -7,6 +7,7 @@ import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo
 import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntroduce";
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationImgSwiper from "./accommodationImgSwiper/AccommodationImgSwiper";
+import AccommodationMap from "./accommodationMap/AccommodationMap";
 
 const Accommodation = () => {
   const fetchListData = async () => {
@@ -42,9 +43,12 @@ const Accommodation = () => {
       <AccommodationMainInfo
         accommodationName={data.accommodationName}
         accommodationLocation={data.accommodationLocation}
+        // accommodationPhone={data.accommodationPhone}
       />
       <div className="accommodation__divider"></div>
       <AccommodationIntroduce accommodationInfo={data.description} />
+      <div className="accommodation__divider"></div>
+      <AccommodationMap />
       <div className="accommodation__divider"></div>
       <AccommodationOptions accommodationOptions={data.accommodationOptions} />
       <div className="accommodation__divider"></div>
