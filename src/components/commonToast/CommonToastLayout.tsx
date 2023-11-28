@@ -30,6 +30,7 @@ const CommonToastLayout = ({ theme, message }: toastPropI) => {
   let backgroundColor = "";
 
   const showToast = () => {
+    
     setIsVisible(true);
     backgroundColor =
       theme === "success"

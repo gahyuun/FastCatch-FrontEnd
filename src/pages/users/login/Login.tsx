@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
+import { useForm } from "react-hook-form";
 import { CommonButton } from "@/src/components";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import "../users.scss";
+import { sendRequest } from "@/src/hooks/apiHook";
 
 const Login = () => {
 
@@ -29,16 +29,12 @@ const Login = () => {
   }
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<loginData>();
-  const onSubmit: SubmitHandler<loginData> = (data: loginData) => {
-    const postUser = async () => {
-      try {
-        const response = await axios.post('/members/login', data);
-        console.log('post 요청😀:', response.data);
-      } catch (error) {
-        console.error('에러 발생:', error);
-      }
-    };
-    postUser();
+  const onSubmit = (data: loginData) => {
+    sendRequest({
+      method: 'post',
+      url: '/members/login',
+      data,
+    });
     reset();
   }
 
