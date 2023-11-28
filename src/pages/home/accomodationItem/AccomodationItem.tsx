@@ -7,7 +7,7 @@ interface accommodationProps {
   data: any;
 }
 
-const AccomodationItem = ({ data }: accommodationProps) => {
+const AccommodationItem = ({ data }: accommodationProps) => {
   const navigate = useNavigate();
 
   const navigateHandler = () => {
@@ -42,4 +42,4 @@ const AccomodationItem = ({ data }: accommodationProps) => {
   );
 };
 
-export default AccomodationItem;
+export default AccommodationItem;
