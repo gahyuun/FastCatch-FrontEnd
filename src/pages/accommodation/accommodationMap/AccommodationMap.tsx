@@ -1,5 +1,7 @@
 /* global kakao */
 import { useEffect, useRef } from "react";
+import "./accommodationMap.scss";
+import markerIcon from "../../../assets/icons/markerImg.svg";
 
 const AccommodationMap = () => {
   const { kakao }: any = window;
@@ -8,18 +10,33 @@ const AccommodationMap = () => {
     37.365264512305174,
     127.10676860117488
   );
-  const marker = new kakao.maps.Marker({
-    position: position,
-  });
   const options = {
     center: position,
     level: 4,
   };
+  const imageSize = new kakao.maps.Size(40, 40);
 
   useEffect(() => {
     {
-      const mapTypeControl = new kakao.maps.MapTypeControl();
       const map = new kakao.maps.Map(mapContainer.current, options);
+      const mapTypeControl = new kakao.maps.MapTypeControl();
+      const markerImage = new kakao.maps.MarkerImage(markerIcon, imageSize);
+      const marker = new kakao.maps.Marker({
+        position: position,
+        image: markerImage,
+      });
+
+      const content = `
+      <div class="customoverlay">
+        <span>호텔&리조트</span>
+      </div>`;
+
+      new kakao.maps.CustomOverlay({
+        map,
+        position,
+        content,
+      });
+
       map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
       marker.setMap(map);
     }
