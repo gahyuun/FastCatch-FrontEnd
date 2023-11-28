@@ -3,7 +3,7 @@ import "./commonFilter.scss";
 import { regionCategoryData } from "@/src/constant/categories";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/atom";
+import { filterState } from "@/src/states/filterState";
 
 import { format } from "date-fns";
 import { IoFilter } from "react-icons/io5";

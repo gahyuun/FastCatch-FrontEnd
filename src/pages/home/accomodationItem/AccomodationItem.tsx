@@ -1,14 +1,21 @@
 import { CommonBadge } from "@/src/components";
 import "./accomodationItem.scss";
 import numberFormat from "@/src/utils/numberFormat";
+import { useNavigate } from "react-router-dom";
 
 interface accommodationProps {
   data: any;
 }
 
 const AccomodationItem = ({ data }: accommodationProps) => {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => {
+    navigate(`/accommodation?id=${data.id}`);
+  };
+
   return (
-    <div className="accomdationItem-container">
+    <div className="accomdationItem-container" onClick={navigateHandler}>
       <div className="accomdationItem-container__image-box">
         <img src="https://dhdfh3vybe18.cloudfront.net/product/yanolja/yanolja-b0ed8c51362d4fb88e9dcb51c4c49063/thum/7a16c72f-da3d-46d3-80f7-4607fff30434.jpg" />
       </div>
