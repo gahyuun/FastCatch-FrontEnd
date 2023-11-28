@@ -1,8 +1,9 @@
 import ReactDOM from "react-dom";
 import "./commonFilter.scss";
+import { regionCategoryData } from "@/src/constant/categories";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/atom";
+import { filterState } from "@/src/states/filterState";
 
 import { format } from "date-fns";
 import { IoFilter } from "react-icons/io5";
@@ -17,16 +18,6 @@ interface filterProps {
 }
 
 const CommonFilter = (props: filterProps) => {
-  const categoryData = {
-    GYEONGGI: "경기",
-    SEOUL: "서울",
-    GANGWON: "강원",
-    CHUNGCHEONG: "충청",
-    HONAM: "호남",
-    GYEONGSANG: "경상",
-    JEJU: "제주",
-  };
-
   const [isSelected, setIsSelected] = useState<"location" | "date" | "amount" | null>(null);
 
   const [filterStates] = useRecoilState(filterState);
@@ -44,11 +35,11 @@ const CommonFilter = (props: filterProps) => {
             className={isSelected === "location" ? "filter__location select" : "filter__location"}
           >
             <span className="text-caption2 small-label">지역</span>
-            <p>{categoryData[filterStates.locale]}</p>
+            <p>{regionCategoryData[filterStates.locale]}</p>
             <LocationDropdown //
               isSelected={isSelected}
               onChangeSelected={setIsSelected}
-              categoryData={categoryData}
+              categoryData={regionCategoryData}
             />
           </div>
         )}
@@ -79,7 +70,7 @@ const CommonFilter = (props: filterProps) => {
           <IoFilter />
         </button>
       </div>
-      {isSelected !== null && ReactDOM.createPortal(<div className="backdrop" onClick={() => setIsSelected(null)}></div>, document.getElementById("root") as Element)}
+      {isSelected !== null && ReactDOM.createPortal(<div className={props.isLocale ? "backdrop" : "backdrop transparent"} onClick={() => setIsSelected(null)}></div>, document.getElementById("root") as Element)}
     </div>
   );
 };
