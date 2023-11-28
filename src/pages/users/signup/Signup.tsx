@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CommonButton } from "@/src/components";
@@ -6,8 +6,9 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import "../users.scss";
-import { TermsAgreementContext } from "@/src/context/TermsAgreementContext";
 import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
+import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 const Signup = () => {
 
@@ -26,7 +27,7 @@ const Signup = () => {
     }
   };
 
-  interface FormData {
+  interface SignupData {
     name: string;
     email: string;
     nickname: string;
@@ -35,16 +36,25 @@ const Signup = () => {
     password: string;
   }
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
-  const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    console.log(data);
-    reset();
+  const [isAllCheck, setIsAllCheck] = useState(false);
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<SignupData>();
+  const onSubmit: SubmitHandler<SignupData> = (data: SignupData) => {
+    if (isAllCheck) {
+      const postUser = async () => {
+        try {
+          const response = await axios.post('/members/signup', data);
+          console.log('post 요청 성공:', response.data);
+        } catch (error) {
+          console.error('에러 발생:', error);
+        }
+      };
+      postUser();
+      reset();
+    } else {
+      alert('약관에 동의해주세요!');
+    }
   }
-
-  const { isAllCheck } = useContext(TermsAgreementContext);
-
-  console.log(isAllCheck);
-  
 
   return (
     <>
@@ -98,19 +108,22 @@ const Signup = () => {
               <div className="input-inner">
                 <label htmlFor="">닉네임</label>
                 <div className="input-inner__item">
-                  <input 
-                  type="text" 
-                  placeholder="닉네임을 입력하세요"
-                  {...register("nickname", {
-                    required: "닉네임을 입력하세요",
-                    maxLength: {
-                      value: 30,
-                      message: "닉네임은 최대 30글자를 초과할 수 없습니다",
-                    }
-                  })}
-                  />
+                  <div className="button-inner">
+                    <input 
+                    type="text" 
+                    placeholder="닉네임을 입력하세요"
+                    {...register("nickname", {
+                      required: "닉네임을 입력하세요",
+                      maxLength: {
+                        value: 30,
+                        message: "닉네임은 최대 30글자를 초과할 수 없습니다",
+                      }
+                    })}
+                    />
+                    <button className="btn-check">중복확인</button>
+                  </div>
                   {errors.nickname && <p className="alert-message">{errors.nickname.message}</p>}
-                  <button className="btn-check">중복확인</button>
+                 
                 </div>
               </div>
               <div className="input-inner">
@@ -146,6 +159,7 @@ const Signup = () => {
               <div className="input-inner">
                 <label htmlFor="">비밀번호</label>
                 <div className="input-inner__item">
+                <div className="button-inner">
                   <input
                     type={isPwVisible ? "text" : "password"}
                     placeholder="영문자, 숫자 포함 최소 8~20자로 입력하세요"
@@ -157,17 +171,21 @@ const Signup = () => {
                       },
                     })}
                   />
-                  {errors.password && <p className="alert-message">{errors.password.message}</p>}
                   <button type="button"
                     className="btn-visible"
                     onClick={() => togglePw('password')}
                   >
                     {isPwVisible ? <FaRegEyeSlash /> : <FaRegEye />}
                   </button>
+                  </div>
+                  {errors.password && <p className="alert-message">{errors.password.message}</p>}
                 </div>
               </div>
               <ul className="agree-inner">
-                <TermsAgreement />
+              <TermsAgreement
+                isAllCheck={isAllCheck}
+                setIsAllCheck={setIsAllCheck}
+              />
               </ul>
                 <CommonButton
                 text={'회원가입'}
@@ -175,6 +193,7 @@ const Signup = () => {
                 />
               </div>
             </form>
+          <ToastContainer />
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { TermsAgreementContext } from "@/src/context/TermsAgreementContext";
+import { useState } from "react";
 
 import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
 import CommonButton from "@/src/components/commonButton/CommonButton";
@@ -14,8 +13,8 @@ import OrderItem from "@/src/pages/order/orderItem/OrderItem";
 import "./order.scss";
 
 const Order = () => {
-  const { isAllCheck } = useContext(TermsAgreementContext);
-
+  const [isAllCheck, setIsAllCheck] = useState(false);
+  
   return (
     <div className="order">
       <OrderItem />
@@ -23,7 +22,7 @@ const Order = () => {
       <EventBanner />
       <BookerInformation />
       <PaymentMethod />
-      <TermsAgreement />
+      <TermsAgreement isAllCheck={isAllCheck} setIsAllCheck={setIsAllCheck} />
       <CommonButton
         text={"195,000원 예약하기"}
         buttonSize={"exLarge"}
