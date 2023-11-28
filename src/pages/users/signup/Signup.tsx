@@ -30,7 +30,7 @@ const Signup = () => {
     email: string;
     nickname: string;
     birthday: string; 
-    phoneNumber: number;
+    phoneNumber: string;
     password: string;
   }
 
@@ -74,13 +74,9 @@ const Signup = () => {
                       placeholder="이름을 입력하세요"
                       {...register("name", {
                         required: "이름을 입력하세요",
-                        minLength: {
-                          value: 2,
+                        pattern: {
+                          value: /^[A-Za-z가-힣]{2,}$/,
                           message: "이름은 최소 2글자 이상 입력하세요",
-                        },
-                        maxLength: {
-                          value: 30,
-                          message: "이름은 최대 30글자를 초과할 수 없습니다",
                         }
                       })}
                     />
@@ -109,9 +105,17 @@ const Signup = () => {
                       placeholder="닉네임을 입력하세요"
                       {...register("nickname", {
                         required: "닉네임을 입력하세요",
+                        minLength: {
+                          value: 2,
+                          message: "닉네임은 최소 2글자 이상 입력하세요",
+                        },
                         maxLength: {
-                          value: 30,
-                          message: "닉네임은 최대 30글자를 초과할 수 없습니다",
+                          value: 14,
+                          message: "닉네임은 최대 14글자를 초과할 수 없습니다",
+                        },
+                        pattern: {
+                          value: /^[A-Za-z가-힣]+$/,
+                          message: "영어와 한글만 입력 가능합니다",
                         }
                       })}
                       />
