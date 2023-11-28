@@ -4,8 +4,8 @@ import Header from "./components/commonHeader/CommonHeader";
 export default function App() {
   return (
     <div>
-        <Header />
-        <Outlet />
+      <Header />
+      <Outlet />
     </div>
   );
 }
