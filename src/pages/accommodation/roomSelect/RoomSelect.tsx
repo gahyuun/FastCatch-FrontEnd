@@ -1,6 +1,7 @@
 import "./roomSelect.scss";
 import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 import RoomInfo from "./roomInfo/RoomInfo";
+import CommonFilter from "@/src/components/commonFilter/CommonFilter";
 
 const RoomSelect = ({ roomsInfo }: any) => {
   return (
@@ -9,7 +10,9 @@ const RoomSelect = ({ roomsInfo }: any) => {
         <span className="text-subtitle4">객실 선택</span>
       </div>
 
-      <div>룸 필터링 컴포넌트</div>
+      <div className="small-filter__container">
+        <CommonFilter />
+      </div>
 
       <div className="room-container">
         {roomsInfo.map((room: any) => (
