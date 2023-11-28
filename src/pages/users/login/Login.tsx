@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { CommonButton } from "@/src/components";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import "../users.scss";
+import { sendRequest } from "@/src/hooks/apiHook";
 
 const Login = () => {
 
@@ -21,6 +23,21 @@ const Login = () => {
     setIsPwVisible((prev) => !prev);
   };
 
+  interface loginData {
+    email: string;
+    password: string;
+  }
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<loginData>();
+  const onSubmit = (data: loginData) => {
+    sendRequest({
+      method: 'post',
+      url: '/members/login',
+      data,
+    });
+    reset();
+  }
+
   return (
     <>
       <div className="user-wrap">
@@ -35,25 +52,49 @@ const Login = () => {
                 onClick={goToSignUp}>회원가입</a>
               </li>
             </ul> 
-            <form action="">
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="login-wrap__body">
                 <div className="input-inner">
-                  <label htmlFor="">아이디</label>
-                  <input type="text" placeholder="아이디를 입력해주세요" />
+                  <label htmlFor="">이메일</label>
+                  <input 
+                  type="email" 
+                  placeholder="이메일을 입력하세요"
+                  {...register("email", {
+                    required: "이메일을 입력하세요",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: '유효한 이메일 주소를 입력하세요',
+                    },
+                  })}
+                  data-cy="id-input"
+                  />
+                {errors.email && <p className="alert-message">{errors.email.message}</p>}
                 </div>
                 <div className="input-inner">
                 <label htmlFor="">비밀번호</label>
                 <div className="input-inner__item">
-                  <input
-                    placeholder="비밀번호를 입력해주세요"
-                    type={isPwVisible ? "text" : "password"}
-                  />
-                  <button type="button"
-                    className="btn-visible"
-                    onClick={() => togglePw()}
-                  >
-                    {isPwVisible ? <FaRegEyeSlash /> : <FaRegEye />}
-                  </button>
+                  <div className="button-inner">
+                    <input
+                      placeholder="비밀번호를 입력하세요"
+                      type={isPwVisible ? "text" : "password"}
+                      {...register("password", {
+                        required: '비밀번호를 입력하세요',
+                        pattern: {
+                          value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
+                          message: '영문자, 숫자 포함 최소 8~20자로 입력하세요',
+                        },
+                      })}
+                      data-cy="password-input"
+                    />
+                    <button type="button"
+                      className="btn-visible"
+                      onClick={() => togglePw()}
+                      data-cy="login-button"
+                    >
+                      {isPwVisible ? <FaRegEyeSlash /> : <FaRegEye />}
+                    </button>
+                  </div>
+                  {errors.password && <p className="alert-message">{errors.password.message}</p>}
                 </div>
               </div>
                 <CommonButton
@@ -70,3 +111,4 @@ const Login = () => {
 }
 
 export default Login
+
