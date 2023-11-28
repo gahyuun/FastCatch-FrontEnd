@@ -1,11 +1,14 @@
 @import "../../../styles/common.scss";
 
 .accomdationItem-container {
+  margin-top: rem(24);
   display: flex;
   flex-direction: column;
   gap: rem(8);
   width: rem(280);
   height: rem(380);
+  cursor: pointer;
+  transition: all 0.1s;
 
   &__image-box {
     width: 100%;
@@ -43,5 +46,9 @@
         color: gray(700);
       }
     }
+  }
+
+  &:hover {
+    transform: translateY(rem(-4));
   }
 }

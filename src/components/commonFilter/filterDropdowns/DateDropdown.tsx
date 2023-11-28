@@ -1,4 +1,4 @@
-import { filterState } from "@/src/states/atom";
+import { filterState } from "@/src/states/filterState";
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 

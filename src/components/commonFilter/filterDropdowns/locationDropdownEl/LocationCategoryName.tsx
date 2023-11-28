@@ -2,8 +2,8 @@ import React from "react";
 import "./locationDropdownEls.scss";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/atom";
-import { filterStateTypes } from "@/src/states/atom";
+import { filterState } from "@/src/states/filterState";
+import { filterStateTypes } from "@/src/states/filterState";
 
 interface locationProps {
   allocated: [string, string];

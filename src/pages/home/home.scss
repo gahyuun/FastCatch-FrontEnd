@@ -1,5 +1,13 @@
 @import "../../styles/common.scss";
 
 .home-wrapper {
-  margin: 2rem 8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.home-inner {
+  width: rem(1192);
+  display: flex;
+  justify-content: space-between;
+  gap: rem(24);
 }
