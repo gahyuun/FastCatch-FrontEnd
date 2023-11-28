@@ -70,7 +70,7 @@ const CommonFilter = (props: filterProps) => {
           <IoFilter />
         </button>
       </div>
-      {isSelected !== null && ReactDOM.createPortal(<div className="backdrop" onClick={() => setIsSelected(null)}></div>, document.getElementById("root") as Element)}
+      {isSelected !== null && ReactDOM.createPortal(<div className={props.isLocale ? "backdrop" : "backdrop transparent"} onClick={() => setIsSelected(null)}></div>, document.getElementById("root") as Element)}
     </div>
   );
 };
