@@ -1,4 +1,4 @@
-@import '../../styles/common.scss';
+@import "../../styles/common.scss";
 
 .user-wrap {
   background-color: #9199a4;
@@ -70,12 +70,12 @@
         &::placeholder {
           color: gray(600);
         }
-        &[type='number']::-webkit-inner-spin-button,
-        &[type='number']::-webkit-outer-spin-button {
+        &[type="number"]::-webkit-inner-spin-button,
+        &[type="number"]::-webkit-outer-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
-        &[type='number'] {
+        &[type="number"] {
           -moz-appearance: textfield;
         }
       }
@@ -103,7 +103,7 @@
       }
     }
     .alert-message {
-      font-size: map-get($body3, 'font-size');
+      font-size: map-get($body3, "font-size");
       color: $error;
       text-align: start;
       margin: 5px 0 0;
