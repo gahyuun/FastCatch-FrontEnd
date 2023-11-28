@@ -51,11 +51,17 @@
   &__buttons-container{
     display: flex;
     margin: 16px 0 0;
+    :hover{
+      transition: background-color 0.5s ease;
+      background-color: gray(300);
+    }
     &__basket{
       padding:0 8px;
       border: 3px solid coral(800);
       border-radius: 8px;
       margin: 0 8px 0 0;
+      outline: none;
+      transition: background-color 0.5s ease;
       img{
         scale: 1.1;
       }

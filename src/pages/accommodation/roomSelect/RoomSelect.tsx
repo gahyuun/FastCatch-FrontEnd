@@ -20,7 +20,6 @@ const RoomSelect = ({ roomsInfo }: any) => {
             <div className="room__imgs">
               <RoomImgSwiper roomImg={room.roomImage} />
             </div>
-
             <RoomInfo room={room} />
           </div>
         ))}
