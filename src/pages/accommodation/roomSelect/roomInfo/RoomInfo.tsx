@@ -47,7 +47,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
   const endDate = format(filterData.startDate, "yyyy-MM-dd");
   const totalPrice = filterData.amount * price;
 
-  const postBasket: any = (roomId: string) => {
+  const postBasket: any = () => {
     try {
       const response = axios.post(
         "http://43.201.113.97/api/carts/1?memberId=1",
