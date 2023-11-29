@@ -1,4 +1,5 @@
-// import { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { format } from "date-fns";
 import "./accommodation.scss";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -6,16 +7,22 @@ import RoomSelect from "./roomSelect/RoomSelect";
 import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
 import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntroduce";
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
-import AccommodationImgSwiper from "./accommodationImgSwiper/AccommodationImgSwiper";
+import AccommodationMap from "./accommodationMap/AccommodationMap";
+import { filterState } from "@/src/states/filterState";
 
 const Accommodation = () => {
+  const filterData = useRecoilValue(filterState);
+  const startDate = format(filterData.startDate, "yyyy-MM-dd");
+  const endDate = format(filterData.startDate, "yyyy-MM-dd");
+
   const fetchListData = async () => {
     try {
       const res = await axios.get(
-        "../../../public/data/accommodationDetail.json"
+        `http://54.180.97.194/api/accommodations/1?startDate=${startDate}&endDate=${endDate}`
       );
-      return res.data;
+      return res.data.data;
     } catch (error) {
+      console.log("에러발생!!!!!!!!!", error);
       throw new Error("Failed to fetch data");
     }
   };
@@ -24,10 +31,6 @@ const Accommodation = () => {
     queryKey: ["postDetail"],
     queryFn: fetchListData,
     staleTime: 500000,
-    select: (data) => {
-      const accommodationValue = data[0];
-      return accommodationValue;
-    },
   });
   if (isLoading) {
     return <div>로딩중..!!!!!</div>;
@@ -35,20 +38,31 @@ const Accommodation = () => {
   if (isError) {
     return <div>여기는 에러 페이지!!!!! {error.message}</div>;
   }
-
   return (
     <div className="accommodation-container">
-      <AccommodationImgSwiper accommodationImage={data.accommodationImage} />
+      <img
+        style={{ height: "550px", width: "100%", objectFit: "cover" }}
+        src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${data.image}`}
+        alt={data.name}
+      />
       <AccommodationMainInfo
-        accommodationName={data.accommodationName}
-        accommodationLocation={data.accommodationLocation}
+        accommodationName={data.name}
+        accommodationLocation={data.address}
+        accommodationPhone={data.phoneNumber}
+        accommodationCategory={data.category}
       />
       <div className="accommodation__divider"></div>
       <AccommodationIntroduce accommodationInfo={data.description} />
       <div className="accommodation__divider"></div>
-      <AccommodationOptions accommodationOptions={data.accommodationOptions} />
+      <AccommodationMap
+        accommodationName={data.name}
+        latitude={data.latitude}
+        longitude={data.longitude}
+      />
       <div className="accommodation__divider"></div>
-      <RoomSelect roomsInfo={data.roomsInfo} />
+      <AccommodationOptions accommodationOptions={data.accommodationOption} />
+      <div className="accommodation__divider"></div>
+      <RoomSelect roomsInfo={data.rooms} />
     </div>
   );
 };

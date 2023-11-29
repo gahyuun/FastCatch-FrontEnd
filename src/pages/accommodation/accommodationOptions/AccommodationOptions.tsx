@@ -21,15 +21,15 @@ const AccommodationOptions = ({
   accommodationOptions,
 }: AccommodationOptions) => {
   const template: TemplateItem = {
-    has_smoking_room: ["흡연 가능", <FaSmoking size="50px" />],
-    has_pet_room: ["반려견 동반", <PiDogBold size="50px" />],
-    has_parking_lot: ["주차 가능", <MdLocalParking size="50px" />],
-    has_wifi: ["와이파이", <TbWifi size="50px" />],
-    has_swimming_pool: ["수영장", <TbSwimming size="50px" />],
-    has_gym: ["헬스장", <BiDumbbell size="50px" />],
-    has_breakfast: ["조식", <MdOutlineFreeBreakfast size="50px" />],
-    has_restaurant: ["레스토랑", <MdRestaurant size="50px" />],
-    has_cooking_room: ["취사 가능", <PiCookingPotBold size="50px" />],
+    hasSmokingRoom: ["흡연 가능", <FaSmoking size="50px" />],
+    hasPetRoom: ["반려견 동반", <PiDogBold size="50px" />],
+    hasParkingLot: ["주차 가능", <MdLocalParking size="50px" />],
+    hasWifi: ["와이파이", <TbWifi size="50px" />],
+    hasSwimmingPool: ["수영장", <TbSwimming size="50px" />],
+    hasGym: ["헬스장", <BiDumbbell size="50px" />],
+    hasBreakfast: ["조식", <MdOutlineFreeBreakfast size="50px" />],
+    hasRestaurant: ["레스토랑", <MdRestaurant size="50px" />],
+    hasCookingRoom: ["취사 가능", <PiCookingPotBold size="50px" />],
   };
 
   return (
