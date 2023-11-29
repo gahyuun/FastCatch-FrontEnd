@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
@@ -15,15 +15,11 @@ const Accommodation = () => {
   const [filterData, setFilterData] = useRecoilState(filterState);
   const startDate = format(filterData.current.startDate, "yyyy-MM-dd");
   const endDate = format(filterData.current.startDate, "yyyy-MM-dd");
-  const [prevId, setPrevId] = useState("");
   const params = new URLSearchParams(window.location.search);
-  const curId = params.get("id");
+  const id = params.get("id");
 
   const fetchListData = async () => {
     try {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      setPrevId(id!);
       const res = await axios.get(
         `http://54.180.97.194/api/accommodations/${id}?startDate=${startDate}&endDate=${endDate}`
       );
@@ -35,7 +31,7 @@ const Accommodation = () => {
   };
 
   const { data, error, isError, isLoading, refetch }: any = useQuery({
-    queryKey: ["postDetail"],
+    queryKey: [id, "postDetail"],
     queryFn: fetchListData,
     staleTime: 500000,
     // enabled: false,
@@ -62,11 +58,6 @@ const Accommodation = () => {
     refetch();
     console.log("리패치");
   };
-
-  if (prevId !== curId) {
-    refetch();
-    setPrevId(curId!);
-  }
 
   return (
     <div className="accommodation-container">
