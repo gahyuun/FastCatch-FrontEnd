@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import "./commonFilter.scss";
 import { regionData } from "@/src/constant/categories";
 
@@ -19,13 +18,24 @@ interface filterProps {
 }
 
 const CommonFilter = (props: filterProps) => {
-  const [isSelected, setIsSelected] = useState<"location" | "date" | "amount" | null>(null);
+  const [isSelected, setIsSelected] = useState<
+    "location" | "date" | "amount" | null
+  >(null);
 
   const [filterStates] = useRecoilState(filterState);
 
   // date-fns 라이브러리로 Formatting을 합니다.
   const startDate = format(filterStates.startDate, "yyyy. MM. dd.");
-  const endDate = filterStates.endDate ? format(filterStates.endDate, "yyyy. MM. dd.") : startDate;
+  const endDate = filterStates.endDate
+    ? format(filterStates.endDate, "yyyy. MM. dd.")
+    : startDate;
+
+  const filterSubmitHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    props.onClick(e);
+    setIsSelected(null);
+  };
 
   return (
     <div className="overall-container">
@@ -33,7 +43,11 @@ const CommonFilter = (props: filterProps) => {
         {props.isLocale && (
           <div
             onClick={() => setIsSelected("location")} //
-            className={isSelected === "location" ? "filter__location select" : "filter__location"}
+            className={
+              isSelected === "location"
+                ? "filter__location select"
+                : "filter__location"
+            }
           >
             <span className="text-caption2 small-label">지역</span>
             <p>{regionData[filterStates.locale]}</p>
@@ -46,7 +60,11 @@ const CommonFilter = (props: filterProps) => {
         )}
         <div
           onClick={() => setIsSelected("date")} //
-          className={isSelected === "date" ? "filter__schedule select" : "filter__schedule"}
+          className={
+            isSelected === "date"
+              ? "filter__schedule select"
+              : "filter__schedule"
+          }
         >
           <span className="text-caption2 small-label">일정</span>
           <p>
@@ -61,17 +79,29 @@ const CommonFilter = (props: filterProps) => {
         <div
           onClick={() => setIsSelected("amount")} //
           onBlur={() => setIsSelected(null)}
-          className={isSelected === "amount" ? "filter__accompany select" : "filter__accompany"}
+          className={
+            isSelected === "amount"
+              ? "filter__accompany select"
+              : "filter__accompany"
+          }
         >
           <span className="text-caption2 small-label">인원</span>
           <p>{filterStates.amount}명</p>
           <AmountDropdown isSelected={isSelected} />
         </div>
-        <button className="filter__primary-button" onClick={props.onClick}>
+        <button
+          className="filter__primary-button"
+          onClick={filterSubmitHandler}
+        >
           <IoFilter />
         </button>
       </div>
-      {isSelected !== null && ReactDOM.createPortal(<div className={props.isLocale ? "backdrop" : "backdrop transparent"} onClick={() => setIsSelected(null)}></div>, document.getElementById("root") as Element)}
+      {isSelected !== null && (
+        <div
+          className={props.isLocale ? "backdrop" : "backdrop transparent"}
+          onClick={() => setIsSelected(null)}
+        ></div>
+      )}
     </div>
   );
 };
