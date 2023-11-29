@@ -3,9 +3,8 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 
 interface RoomImgSwiperProps {
-  roomImg: string[];
+  roomImg: object[];
 }
-
 const RoomImgSwiper = ({ roomImg }: RoomImgSwiperProps) => {
   return (
     <Swiper
@@ -19,11 +18,11 @@ const RoomImgSwiper = ({ roomImg }: RoomImgSwiperProps) => {
       resistance={false}
       style={{ height: "100%", margin: "0 4px" }}
     >
-      {roomImg.map((url: string) => (
-        <SwiperSlide key={url}>
+      {roomImg.map((obj: any) => (
+        <SwiperSlide key={obj.fileName}>
           <img
             style={{ height: "100%", width: "100%", objectFit: "cover" }}
-            src={url}
+            src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${obj.fileName}`}
             alt={"이미지"}
           />
         </SwiperSlide>
