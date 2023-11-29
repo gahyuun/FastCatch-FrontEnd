@@ -102,7 +102,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
     mutation.mutate();
   };
   const onClickOrder = () => {
-    navigate("/order");
+    navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
 
