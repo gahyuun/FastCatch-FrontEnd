@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import { filterState } from "@/src/states/filterState";
 import { orderState } from "@/src/states/orderState";
 import { useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import CommonButton from "@/src/components/commonButton/CommonButton";
 import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
@@ -107,9 +108,10 @@ const RoomInfo = ({
     canCooking: "취사 가능",
   };
 
-  const onClickBasket = () => {
+  const onClickBasket = debounce(() => {
     mutation.mutate();
-  };
+  }, 1000);
+
   const onClickOrder = () => {
     setOrderData([
       {

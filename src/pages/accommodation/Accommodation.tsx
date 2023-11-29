@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
