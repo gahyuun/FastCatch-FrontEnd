@@ -1,12 +1,11 @@
 @function em($val, $std: 16) {
-	@return calc(#{$val} / #{$std} * 1em);
+  @return calc(#{$val} / #{$std} * 1em);
 }
 
 @function rem($val, $std: 16) {
-	@return calc(#{$val} / #{$std} * 1rem);
+  @return calc(#{$val} / #{$std} * 1rem);
 }
 
 @function vw($val, $std: 1920) {
-	@return calc(#{$val} / #{$std} * 1vw);
+  @return calc(#{$val} / #{$std} * 1vw);
 }
-

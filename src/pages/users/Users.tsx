@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
-import Login from "./login/Login";
-import Signup from "./signup/Signup";
+import { Login, Signup } from "..";
 
 const Users = () => {
 
