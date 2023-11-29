@@ -8,7 +8,7 @@
 .bg-wrap {
   display: flex;
   justify-content: flex-end;
-  margin: 200px 0;
+  margin: 220px 0;
   padding-right: 200px;
   height: 100%;
   @include mdq-max(1200) {
@@ -70,9 +70,20 @@
         &::placeholder {
           color: gray(600);
         }
+        &[type="number"]::-webkit-inner-spin-button,
+        &[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        &[type="number"] {
+          -moz-appearance: textfield;
+        }
       }
       &__item {
         position: relative;
+        .button-inner {
+          position: relative;
+        }
         button {
           position: absolute;
           right: 16px;
@@ -90,6 +101,12 @@
           }
         }
       }
+    }
+    .alert-message {
+      font-size: map-get($body3, "font-size");
+      color: $error;
+      text-align: start;
+      margin: 5px 0 0;
     }
     .agree-inner {
       margin-top: 70px;
