@@ -1,7 +1,7 @@
 import "./commonHeader.scss";
 
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { IoIosSearch } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
@@ -10,12 +10,10 @@ import CommonFilter from "../commonFilter/CommonFilter";
 import MyInfo from "./myInfo/MyInfo";
 import CommonButton from "../commonButton/CommonButton";
 import CartButton from "./cartButton/CartButton";
-import CategoryFilter from "./categoryFilter/CategoryFilter";
 import SearchFilter from "./searchFilter/SearchFilter";
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [isLoggedIn] = useState(true);
   const [filterMode, setFilterMode] = useState<"filter" | "search">("filter");
@@ -37,6 +35,8 @@ const Header = () => {
     navigate("/");
   };
 
+  const handler = () => {};
+
   return (
     <>
       <header className="header-container">
@@ -47,7 +47,7 @@ const Header = () => {
             </div>
           </section>
           <section className="header-container__center">
-            {filterMode === "filter" && <CommonFilter isLocale={true} />}
+            {filterMode === "filter" && <CommonFilter onClick={handler} isLocale={true} />}
             {filterMode === "search" && <SearchFilter />}
             <button className="filter__secondary-button" onClick={changeFilterModeHandler}>
               {filterMode === "filter" && <IoIosSearch className="secondary-button__icon" />}
@@ -66,7 +66,6 @@ const Header = () => {
           </section>
         </div>
       </header>
-      {location.pathname === "/" && <CategoryFilter />}
     </>
   );
 };
