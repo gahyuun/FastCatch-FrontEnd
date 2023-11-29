@@ -17,4 +17,10 @@
   flex-wrap: wrap;
   gap: rem(24);
   overflow-y: scroll;
+  padding-bottom: rem(120);
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

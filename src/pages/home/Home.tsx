@@ -6,32 +6,33 @@ import { useRecoilState } from "recoil";
 import { filterState } from "@/src/states/filterState";
 import { format } from "date-fns";
 import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
-import { Accommodation, AccommodationType } from "../../types/accommodations";
-import CategoryFilter from "./categoryFilter/CategoryFilter";
-import { useState } from "react";
+import { Accommodation } from "../../types/accommodations";
 
 const Home = () => {
   const [filterStates] = useRecoilState(filterState);
 
-  const [selectedCategory, SetSelectedCategory] =
-    useState<AccommodationType>("ALL");
-
+  // 시작일 종료일 만들기
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
   const endDate = filterStates.endDate
     ? format(filterStates.endDate, "yyyy-MM-dd")
     : startDate;
 
+  // 리액트 쿼리
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["accommodations"],
+    queryKey: ["accommodations", filterStates.current],
     queryFn: () =>
       fetchAccommodationsData(
-        filterStates.locale,
+        filterStates.current.locale,
         startDate,
         endDate,
-        filterStates.amount
+        filterStates.current.category,
+        filterStates.current.amount
       ),
     staleTime: 500000,
     select: data => data.data,
+    onSuccess: () => {
+      // 토스트 호출
+    },
   });
 
   if (isLoading) {
@@ -41,24 +42,14 @@ const Home = () => {
     return <div>에러~</div>;
   }
 
-  console.log(data, "데이터~");
-
   return (
     <div className="home-wrapper">
-      <CategoryFilter onChangeCategory={SetSelectedCategory} />
       <div className="home-inner">
-        {selectedCategory === "ALL" &&
-          data.accommodations.map((acc: Accommodation) => (
-            <AccomodationItem key={acc.id} data={acc} />
-          ))}
-        {selectedCategory !== "ALL" &&
-          data.accommodations.map((acc: Accommodation) =>
-            acc.category === selectedCategory ? (
+        {data.accommodations.length !== 0
+          ? data.accommodations.map((acc: Accommodation) => (
               <AccomodationItem key={acc.id} data={acc} />
-            ) : (
-              ""
-            )
-          )}
+            ))
+          : "없어요"}
       </div>
     </div>
   );
