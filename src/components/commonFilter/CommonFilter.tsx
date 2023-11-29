@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import "./commonFilter.scss";
-import { regionCategoryData } from "@/src/constant/categories";
+import { regionData } from "@/src/constant/categories";
 
 import { useRecoilState } from "recoil";
 import { filterState } from "@/src/states/filterState";
@@ -15,6 +15,7 @@ import LocationDropdown from "./filterDropdowns/LocationDropdown";
 
 interface filterProps {
   isLocale?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const CommonFilter = (props: filterProps) => {
@@ -35,11 +36,11 @@ const CommonFilter = (props: filterProps) => {
             className={isSelected === "location" ? "filter__location select" : "filter__location"}
           >
             <span className="text-caption2 small-label">지역</span>
-            <p>{regionCategoryData[filterStates.locale]}</p>
+            <p>{regionData[filterStates.locale]}</p>
             <LocationDropdown //
               isSelected={isSelected}
               onChangeSelected={setIsSelected}
-              categoryData={regionCategoryData}
+              categoryData={regionData}
             />
           </div>
         )}
@@ -66,7 +67,7 @@ const CommonFilter = (props: filterProps) => {
           <p>{filterStates.amount}명</p>
           <AmountDropdown isSelected={isSelected} />
         </div>
-        <button className="filter__primary-button">
+        <button className="filter__primary-button" onClick={props.onClick}>
           <IoFilter />
         </button>
       </div>
