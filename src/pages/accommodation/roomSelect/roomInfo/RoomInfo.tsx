@@ -1,34 +1,43 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { format } from "date-fns";
+import axios from "axios";
+import { useMutation } from "react-query";
+import { filterState } from "@/src/states/filterState";
+import { orderState } from "@/src/states/orderState";
 import { useNavigate } from "react-router-dom";
+import _debounce from "lodash/debounce";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import CommonButton from "@/src/components/commonButton/CommonButton";
 import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
-import { useMutation } from "react-query";
-import axios from "axios";
-import { filterState } from "@/src/states/filterState";
 
 interface RoomInfoProps {
   room: {
     price: number;
-    roomId: string;
+    roomId: number;
     name: string;
     roomOption: any;
     baseHeadCount: number;
     maxHeadCount: number;
     checkInTime: string;
     checkOutTime: string;
+    soldOut: boolean;
     description: string;
   };
+  accommodationId: number;
+  accommodationName: string;
 }
 interface Template {
   [key: string]: string;
 }
 
-const RoomInfo = ({ room }: RoomInfoProps) => {
+const RoomInfo = ({
+  room,
+  accommodationId,
+  accommodationName,
+}: RoomInfoProps) => {
   const {
     name,
     price,
@@ -38,11 +47,14 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
     maxHeadCount,
     checkInTime,
     checkOutTime,
+    soldOut,
     // description,
   } = room;
+
+  const setOrderData = useSetRecoilState(orderState);
   const navigate = useNavigate();
 
-  const filterData = useRecoilValue(filterState);
+  const filterData = useRecoilValue(filterState).current;
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
   const endDate = format(filterData.startDate, "yyyy-MM-dd");
   let totalPrice = 0;
@@ -56,16 +68,14 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
 
   const postBasket: any = () => {
     try {
-      const response = axios.post(
-        "http://43.201.113.97/api/carts/1?memberId=1",
-        {
-          roomId: roomId,
-          startDate: startDate,
-          endDate: endDate,
-          headCount: filterData.amount,
-          orderPrice: totalPrice,
-        }
-      );
+      const response = axios.post("http://43.201.113.97/api/carts/members/1", {
+        //memberId 나중에 전역변수 만들어지면 수정해주기
+        roomId: roomId,
+        startDate: startDate,
+        endDate: endDate,
+        headCount: filterData.amount,
+        orderPrice: totalPrice,
+      });
       return response;
     } catch (error) {
       console.log("에러에러에러엘에러엘", error);
@@ -98,11 +108,28 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
     canCooking: "취사 가능",
   };
 
-  const onClickBasket = () => {
+  const onClickBasket = _debounce(() => {
     mutation.mutate();
-  };
+  }, 1000);
+
   const onClickOrder = () => {
-    navigate("/order");
+    setOrderData([
+      {
+        accommodationId: accommodationId,
+        accommodationName: accommodationName,
+        checkInTime: checkInTime,
+        checkOutTime: checkOutTime,
+        headCount: filterData.amount,
+        maxHeadCount: maxHeadCount,
+        orderPrice: totalPrice,
+        roomId: roomId,
+        roomName: name,
+        startDate: startDate,
+        endDate: endDate,
+      },
+    ]);
+
+    navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
 
@@ -141,17 +168,27 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          <button
-            className="room__buttons-container__basket"
-            onClick={onClickBasket}
-          >
-            <IoCartOutline size="30px" color="#93114E" />
-          </button>
-          <CommonButton
-            text="예약하기"
-            buttonSize="large"
-            onClick={onClickOrder}
-          />
+          {soldOut ? (
+            <CommonButton
+              text="예약 불가"
+              buttonSize="large"
+              colorName="coral200"
+            />
+          ) : (
+            <>
+              <button
+                className="room__buttons-container__basket"
+                onClick={onClickBasket}
+              >
+                <IoCartOutline size="30px" color="#93114E" />
+              </button>
+              <CommonButton
+                text="예약하기"
+                buttonSize="large"
+                onClick={onClickOrder}
+              />
+            </>
+          )}
         </div>
         {ToastContainer}
       </div>
