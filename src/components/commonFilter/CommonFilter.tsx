@@ -1,7 +1,7 @@
 import "./commonFilter.scss";
 import { regionData } from "@/src/constant/categories";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { filterState } from "@/src/states/filterState";
 
 import { format } from "date-fns";
@@ -11,6 +11,7 @@ import { useState } from "react";
 import AmountDropdown from "./filterDropdowns/AmountDropdown";
 import DateDropdown from "./filterDropdowns/DateDropdown";
 import LocationDropdown from "./filterDropdowns/LocationDropdown";
+import { responseState } from "@/src/states/responseState";
 
 interface filterProps {
   isLocale?: boolean;
@@ -18,6 +19,7 @@ interface filterProps {
 }
 
 const CommonFilter = (props: filterProps) => {
+  const setResponseStates = useSetRecoilState(responseState);
   const [isSelected, setIsSelected] = useState<
     "location" | "date" | "amount" | null
   >(null);
@@ -34,6 +36,10 @@ const CommonFilter = (props: filterProps) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     props.onClick(e);
+    setResponseStates({
+      pageIndex: 0,
+      responseArray: [],
+    });
     setIsSelected(null);
   };
 

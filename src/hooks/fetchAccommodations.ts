@@ -6,9 +6,10 @@ export const fetchAccommodationsData = async (
   ENDDATE: string,
   CATEGORY: string,
   AMOUNT: number,
-  PAGE: number = 1
+  PAGE: number
 ) => {
   try {
+    console.log(PAGE, "PAGEPAGE");
     const res = await axios.get(
       `http://54.180.97.194/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );

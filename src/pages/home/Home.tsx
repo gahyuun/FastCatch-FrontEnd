@@ -7,9 +7,11 @@ import { filterState } from "@/src/states/filterState";
 import { format } from "date-fns";
 import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
 import { Accommodation } from "../../types/accommodations";
+import { responseState } from "@/src/states/responseState";
 
 const Home = () => {
   const [filterStates] = useRecoilState(filterState);
+  const [responseStates, setResponseStates] = useRecoilState(responseState);
 
   // 시작일 종료일 만들기
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
@@ -18,7 +20,7 @@ const Home = () => {
     : startDate;
 
   // 리액트 쿼리
-  const { data, isLoading, isError } = useQuery({
+  const { data, refetch, isLoading, isError } = useQuery({
     queryKey: ["accommodations", filterStates.current],
     queryFn: () =>
       fetchAccommodationsData(
@@ -26,12 +28,14 @@ const Home = () => {
         startDate,
         endDate,
         filterStates.current.category,
-        filterStates.current.amount
+        filterStates.current.amount,
+        responseStates.pageIndex
       ),
-    staleTime: 500000,
-    select: data => data.data,
-    onSuccess: () => {
-      // 토스트 호출
+    onSuccess: data => {
+      setResponseStates(prev => ({
+        pageIndex: prev.pageIndex + 1,
+        responseArray: [...prev.responseArray, ...data.data.accommodations],
+      }));
     },
   });
 
@@ -41,16 +45,19 @@ const Home = () => {
   if (isError) {
     return <div>에러~</div>;
   }
+  if (data) {
+  }
 
   return (
     <div className="home-wrapper">
       <div className="home-inner">
-        {data.accommodations.length !== 0
-          ? data.accommodations.map((acc: Accommodation) => (
+        {responseStates.responseArray.length !== 0
+          ? responseStates.responseArray.map((acc: Accommodation) => (
               <AccomodationItem key={acc.id} data={acc} />
             ))
           : "없어요"}
       </div>
+      <button onClick={() => refetch()}>리패치</button>
     </div>
   );
 };

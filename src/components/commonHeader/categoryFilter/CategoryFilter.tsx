@@ -16,6 +16,7 @@ import { useSetRecoilState } from "recoil";
 import DetailCategoryModal from "./DetailCategoryModal";
 import { filterState, filterStateTypes } from "@/src/states/filterState";
 import { AccommodationType } from "@/src/types/accommodations";
+import { responseState } from "@/src/states/responseState";
 
 interface categoryTypes {
   name: string;
@@ -26,6 +27,7 @@ interface categoryTypes {
 
 const CategoryFilter = () => {
   const setFilterStates = useSetRecoilState(filterState);
+  const setResponseStates = useSetRecoilState(responseState);
 
   const categoriesData: //
   categoryTypes[] = [
@@ -67,6 +69,10 @@ const CategoryFilter = () => {
       return { ...arg, select: false };
     });
     setCategories(copy);
+    setResponseStates({
+      pageIndex: 0,
+      responseArray: [],
+    });
 
     setTimeout(() =>
       setFilterStates((prev: filterStateTypes) => ({
