@@ -32,7 +32,7 @@ const Login = () => {
   const onSubmit = (data: loginData) => {
     sendRequest({
       method: 'post',
-      url: '/members/login',
+      endpoint: '/api/members/login',
       data,
     });
     reset();

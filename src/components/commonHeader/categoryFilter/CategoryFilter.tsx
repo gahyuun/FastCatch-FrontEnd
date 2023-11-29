@@ -6,7 +6,7 @@ import guestHouse from "../../../assets/categoryIcons/guest-house.jpg";
 import hotel from "../../../assets/categoryIcons/hotel.jpg";
 import motel from "../../../assets/categoryIcons/motel.jpg";
 import { IoOptionsOutline } from "react-icons/io5";
-import DetailCategoryModal from "./DetailCategoryModal";
+import DetailCategoryModal from "../detailFilter/DetailCategoryModal";
 import ReactDOM from "react-dom";
 
 interface categoryTypes {
@@ -71,7 +71,7 @@ const CategoryFilter = () => {
             <span className="text-body3">필터</span>
           </button>
         </div>
-        {openDetail ? ReactDOM.createPortal(<DetailCategoryModal onClick={toggleDetailHandler} />, document.getElementById("root") as Element) : ""}
+        {openDetail ? ReactDOM.createPortal(<DetailCategoryModal onClick={toggleDetailHandler} setOpenDetail={setOpenDetail} />, document.getElementById("root") as Element) : ""}
       </div>
     </div>
   );

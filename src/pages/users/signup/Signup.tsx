@@ -41,7 +41,7 @@ const Signup = () => {
     if(isAllCheck){
       sendRequest({
         method: 'post',
-        url: '/members/signup',
+        endpoint: '/api/members/signup',
         data,
       });
       reset();
