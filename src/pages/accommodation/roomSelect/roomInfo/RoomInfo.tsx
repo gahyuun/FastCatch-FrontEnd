@@ -45,7 +45,14 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
   const filterData = useRecoilValue(filterState);
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
   const endDate = format(filterData.startDate, "yyyy-MM-dd");
-  const totalPrice = filterData.amount * price;
+  let totalPrice = 0;
+  if (filterData.amount < baseHeadCount) {
+    totalPrice = price;
+  } else if (filterData.amount > maxHeadCount) {
+    totalPrice = price + 15000 * (maxHeadCount - baseHeadCount);
+  } else {
+    totalPrice = price + 15000 * (filterData.amount - baseHeadCount);
+  }
 
   const postBasket: any = () => {
     try {
@@ -127,7 +134,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
             <span className="text-body2">체크인 {checkInTime}</span>
             <span className="text-body2">체크아웃 {checkOutTime}</span>
           </div>
-          <div className="text-subtitle4">{numberFormat(price)} 원</div>
+          <div className="text-subtitle4">{numberFormat(totalPrice)} 원</div>
         </div>
       </div>
 
