@@ -7,7 +7,7 @@ interface ButtonType {
   shape?: "fill" | "line";
   colorName?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  isAllValidationPass?: boolean;
+  isPassed?: boolean;
   type?: "button" | "submit";
 }
 
@@ -17,13 +17,13 @@ function CommonButton({
   shape,
   colorName,
   onClick,
-  isAllValidationPass,
+  isPassed,
   type,
 }: ButtonType) {
   return (
     <button
       className={`common-button ${buttonSize} ${shape}-${colorName} ${
-        isAllValidationPass ? "" : "disabled"
+        isPassed ? "" : "disabled"
       }`}
       onClick={onClick}
       type={type}
@@ -37,7 +37,7 @@ CommonButton.defaultProps = {
   buttonSize: "small",
   shape: "fill",
   colorName: "coral500",
-  isAllValidationPass: true,
+  isPassed: true,
   type: "button",
 };
 

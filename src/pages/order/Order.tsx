@@ -11,7 +11,6 @@ import SubDescription from "@/src/pages/order/subDescription/SubDescription";
 import OrderItem from "@/src/pages/order/orderItem/OrderItem";
 
 import "./order.scss";
-import { axiosInstance } from "@/src/api/instanceApi";
 
 const Order = () => {
   const [userName, setUserName] = useState("");
@@ -28,11 +27,6 @@ const Order = () => {
     }
     setIsAllValidationPass(true);
   }, [isAllCheck, isBookerValidationPass]);
-
-  const api = async () => {
-    const { data } = await axiosInstance.get("/api/carts?memberId=1");
-    console.log(data);
-  };
 
   return (
     <div className="order">
@@ -55,8 +49,7 @@ const Order = () => {
         <CommonButton
           text={"195,000원 예약하기"}
           buttonSize={"exLarge"}
-          isAllValidationPass={isAllValidationPass}
-          onClick={api}
+          isPassed={isAllValidationPass}
         />
         <SubDescription />
       </form>
