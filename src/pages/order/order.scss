@@ -3,7 +3,24 @@
 .order {
   max-width: rem(962);
   width: 100%;
-  padding: 0 rem(24);
+  padding: rem(40) rem(24);
   margin: 0 auto;
-  margin-top: rem(100);
+  &__submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: rem(20);
+
+    background-color: coral(500);
+    border-radius: rem(8);
+    color: white;
+    transition: all 0.3s;
+
+    &.disabled {
+      opacity: 0.3;
+    }
+
+    &:hover {
+      background-color: coral(600);
+    }
+  }
 }
