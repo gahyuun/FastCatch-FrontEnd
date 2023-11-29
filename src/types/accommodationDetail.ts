@@ -18,7 +18,7 @@ export interface roomOption {
   cityView?: boolean;
   oceanView?: boolean;
   hasNetflix?: boolean;
-  petAccompanying?: boolean;
+  hasPetRoom?: boolean;
   hasSmokingRoom?: boolean;
   hasParkingLot?: boolean;
   hasWifi?: boolean;
