@@ -21,6 +21,7 @@ interface RoomInfoProps {
     maxHeadCount: number;
     checkInTime: string;
     checkOutTime: string;
+    soldOut: boolean;
     description: string;
   };
 }
@@ -38,11 +39,13 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
     maxHeadCount,
     checkInTime,
     checkOutTime,
+    soldOut,
     // description,
   } = room;
+
   const navigate = useNavigate();
 
-  const filterData = useRecoilValue(filterState);
+  const filterData = useRecoilValue(filterState).current;
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
   const endDate = format(filterData.startDate, "yyyy-MM-dd");
   let totalPrice = 0;
@@ -141,17 +144,28 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          <button
-            className="room__buttons-container__basket"
-            onClick={onClickBasket}
-          >
-            <IoCartOutline size="30px" color="#93114E" />
-          </button>
-          <CommonButton
-            text="예약하기"
-            buttonSize="large"
-            onClick={onClickOrder}
-          />
+          {soldOut ? (
+            <CommonButton
+              text="예약 불가"
+              buttonSize="large"
+              colorName="coral200"
+              //  onClick={onClickOrder}
+            />
+          ) : (
+            <>
+              <button
+                className="room__buttons-container__basket"
+                onClick={onClickBasket}
+              >
+                <IoCartOutline size="30px" color="#93114E" />
+              </button>
+              <CommonButton
+                text="예약하기"
+                buttonSize="large"
+                onClick={onClickOrder}
+              />
+            </>
+          )}
         </div>
         {ToastContainer}
       </div>

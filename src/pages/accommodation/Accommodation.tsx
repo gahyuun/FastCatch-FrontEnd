@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
 import axios from "axios";
@@ -11,9 +11,9 @@ import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/src/states/filterState";
 
 const Accommodation = () => {
-  const filterData = useRecoilValue(filterState);
-  const startDate = format(filterData.startDate, "yyyy-MM-dd");
-  const endDate = format(filterData.startDate, "yyyy-MM-dd");
+  const [filterData, setFilterData] = useRecoilState(filterState);
+  const startDate = format(filterData.current.startDate, "yyyy-MM-dd");
+  const endDate = format(filterData.current.startDate, "yyyy-MM-dd");
 
   const fetchListData = async () => {
     try {
@@ -27,10 +27,11 @@ const Accommodation = () => {
     }
   };
 
-  const { data, error, isError, isLoading }: any = useQuery({
+  const { data, error, isError, isLoading, refetch }: any = useQuery({
     queryKey: ["postDetail"],
     queryFn: fetchListData,
     staleTime: 500000,
+    // enabled: false,
   });
   if (isLoading) {
     return <div>로딩중..!!!!!</div>;
@@ -38,6 +39,22 @@ const Accommodation = () => {
   if (isError) {
     return <div>여기는 에러 페이지!!!!! {error.message}</div>;
   }
+
+  const handleClick = () => {
+    setFilterData(prevStates => {
+      return {
+        ...prevStates,
+        current: {
+          ...prevStates.current,
+          startDate: filterData.startDate,
+          endDate: filterData.endDate,
+          amount: filterData.amount,
+        },
+      };
+    });
+    refetch();
+    console.log("리패치");
+  };
   return (
     <div className="accommodation-container">
       <img
@@ -62,7 +79,7 @@ const Accommodation = () => {
       <div className="accommodation__divider"></div>
       <AccommodationOptions accommodationOptions={data.accommodationOption} />
       <div className="accommodation__divider"></div>
-      <RoomSelect roomsInfo={data.rooms} />
+      <RoomSelect roomsInfo={data.rooms} handleClick={handleClick} />
     </div>
   );
 };
