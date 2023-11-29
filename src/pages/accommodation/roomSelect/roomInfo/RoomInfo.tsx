@@ -14,6 +14,7 @@ import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { room } from "@/src/types/accommodationDetail";
+import countDays from "@/src/utils/countDays";
 
 interface RoomInfoProps {
   room: room;
@@ -52,17 +53,18 @@ const RoomInfo = ({
   const endDate = filterData.endDate
     ? format(filterData.endDate, "yyyy-MM-dd")
     : format(filterData.startDate, "yyyy-MM-dd");
+  const countDay = countDays(startDate, endDate);
   const curAmount = filterData.amount;
 
   const [isPossible, setIsPossible] = useState(false);
 
   let totalPrice = 0;
   if (curAmount < baseHeadCount) {
-    totalPrice = price;
+    totalPrice = price * countDay;
   } else if (curAmount > maxHeadCount) {
-    totalPrice = price * +15000 * (maxHeadCount - baseHeadCount);
+    totalPrice = price * countDay + 15000 * (maxHeadCount - baseHeadCount);
   } else {
-    totalPrice = price + 15000 * (curAmount - baseHeadCount);
+    totalPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
   }
   useEffect(() => {
     if (curAmount < baseHeadCount) {

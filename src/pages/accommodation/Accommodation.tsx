@@ -13,7 +13,9 @@ import { filterState } from "@/src/states/filterState";
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
   const startDate = format(filterData.current.startDate, "yyyy-MM-dd");
-  const endDate = format(filterData.current.startDate, "yyyy-MM-dd");
+  const endDate = filterData.endDate
+    ? format(filterData.endDate, "yyyy-MM-dd")
+    : format(filterData.startDate, "yyyy-MM-dd");
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
