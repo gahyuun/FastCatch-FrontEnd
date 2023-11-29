@@ -1,12 +1,13 @@
-import { IoClose } from "react-icons/io5";
-import "./detailCategoryModal.scss";
-import CommonButton from "../../commonButton/CommonButton";
 import { useRef, useState } from "react";
-import TermsAgreementItem from "../../termsAgreementItem/TermsAgreementItem";
 import { useQueryClient } from "react-query";
 import { useSetRecoilState } from "recoil";
 import { detailState } from "@/src/states/detailState";
 import { commitOptions } from './detailCommitFnc';
+import { CommonButton } from "@/src/components";
+import TermsAgreementItem from "@/src/components/termsAgreementItem/TermsAgreementItem";
+import { IoClose } from "react-icons/io5";
+
+import "./detailCategoryModal.scss";
 
 export interface OptionI {
   key: string;
