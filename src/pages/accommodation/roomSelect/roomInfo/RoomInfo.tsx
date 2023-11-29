@@ -92,7 +92,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
   };
 
   const onClickBasket = () => {
-    mutation.mutate(roomId);
+    mutation.mutate();
   };
   const onClickOrder = () => {
     navigate("/order");

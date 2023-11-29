@@ -12,13 +12,18 @@ interface LatLng {
   getLat(): number;
   getLng(): number;
 }
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 
 const AccommodationMap = ({
   accommodationName,
   latitude,
   longitude,
 }: PropType) => {
-  const { kakao }: any = window;
+  const { kakao } = window;
   const mapContainer = useRef(null);
   const position: LatLng = new kakao.maps.LatLng(
     Number(latitude),

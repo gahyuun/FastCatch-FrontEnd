@@ -59,7 +59,6 @@ const Accommodation = () => {
         latitude={data.latitude}
         longitude={data.longitude}
       />
-      {/* <AccommodationMap /> */}
       <div className="accommodation__divider"></div>
       <AccommodationOptions accommodationOptions={data.accommodationOption} />
       <div className="accommodation__divider"></div>
