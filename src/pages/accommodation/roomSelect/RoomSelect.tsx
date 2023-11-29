@@ -4,6 +4,8 @@ import RoomInfo from "./roomInfo/RoomInfo";
 import CommonFilter from "@/src/components/commonFilter/CommonFilter";
 
 const RoomSelect = ({ roomsInfo }: any) => {
+  // onClick을 추가했는데 이 부분에서 없어서 vercel preview에러가 떠서 임시방편으로 넣었습니다.
+  const handler = () => {};
   console.log(roomsInfo);
   return (
     <div className="accommodation__select-room">
@@ -12,7 +14,7 @@ const RoomSelect = ({ roomsInfo }: any) => {
       </div>
 
       <div className="small-filter__container">
-        <CommonFilter />
+        <CommonFilter onClick={handler} /> {/* 핸들러 */}
       </div>
 
       <div className="room-container">
