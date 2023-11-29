@@ -1,9 +1,8 @@
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
 import axios from "axios";
 import { useQuery } from "react-query";
-import _debounce from "lodash/debounce";
 import RoomSelect from "./roomSelect/RoomSelect";
 import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
 import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntroduce";
@@ -12,7 +11,7 @@ import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/src/states/filterState";
 
 const Accommodation = () => {
-  const [filterData, setFilterData] = useRecoilState(filterState);
+  const filterData = useRecoilValue(filterState);
   const startDate = format(filterData.current.startDate, "yyyy-MM-dd");
   const endDate = format(filterData.current.startDate, "yyyy-MM-dd");
   const params = new URLSearchParams(window.location.search);
@@ -43,22 +42,6 @@ const Accommodation = () => {
     return <div>여기는 에러 페이지!!!!! {error.message}</div>;
   }
 
-  const handleClick = _debounce(() => {
-    setFilterData(prevStates => {
-      return {
-        ...prevStates,
-        current: {
-          ...prevStates.current,
-          startDate: filterData.startDate,
-          endDate: filterData.endDate,
-          amount: filterData.amount,
-        },
-      };
-    });
-    refetch();
-    console.log("리패치");
-  }, 1000);
-
   return (
     <div className="accommodation-container">
       <img
@@ -87,7 +70,7 @@ const Accommodation = () => {
         roomsInfo={data.rooms}
         accommodationId={data.id}
         accommodationName={data.name}
-        handleClick={handleClick}
+        refetch={refetch}
       />
     </div>
   );
