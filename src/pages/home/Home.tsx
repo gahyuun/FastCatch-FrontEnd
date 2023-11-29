@@ -5,7 +5,7 @@ import "./home.scss";
 import { useRecoilState } from "recoil";
 import { filterState } from "@/src/states/filterState";
 import { format } from "date-fns";
-import { fetchAccommodationsData } from "@/src/api/fetchAccommodations";
+import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
 import { Accommodation, AccommodationType } from "../../types/accommodations";
 import CategoryFilter from "./categoryFilter/CategoryFilter";
 import { useState } from "react";
@@ -13,16 +13,25 @@ import { useState } from "react";
 const Home = () => {
   const [filterStates] = useRecoilState(filterState);
 
-  const [selectedCategory, SetSelectedCategory] = useState<AccommodationType>("ALL");
+  const [selectedCategory, SetSelectedCategory] =
+    useState<AccommodationType>("ALL");
 
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
-  const endDate = filterStates.endDate ? format(filterStates.endDate, "yyyy-MM-dd") : startDate;
+  const endDate = filterStates.endDate
+    ? format(filterStates.endDate, "yyyy-MM-dd")
+    : startDate;
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["accommodations"],
-    queryFn: () => fetchAccommodationsData(filterStates.locale, startDate, endDate, filterStates.amount),
+    queryFn: () =>
+      fetchAccommodationsData(
+        filterStates.locale,
+        startDate,
+        endDate,
+        filterStates.amount
+      ),
     staleTime: 500000,
-    select: (data) => data.data,
+    select: data => data.data,
   });
 
   if (isLoading) {
@@ -38,8 +47,18 @@ const Home = () => {
     <div className="home-wrapper">
       <CategoryFilter onChangeCategory={SetSelectedCategory} />
       <div className="home-inner">
-        {selectedCategory === "ALL" && data.accommodations.map((acc: Accommodation) => <AccomodationItem key={acc.id} data={acc} />)}
-        {selectedCategory !== "ALL" && data.accommodations.map((acc: Accommodation) => (acc.category === selectedCategory ? <AccomodationItem key={acc.id} data={acc} /> : ""))}
+        {selectedCategory === "ALL" &&
+          data.accommodations.map((acc: Accommodation) => (
+            <AccomodationItem key={acc.id} data={acc} />
+          ))}
+        {selectedCategory !== "ALL" &&
+          data.accommodations.map((acc: Accommodation) =>
+            acc.category === selectedCategory ? (
+              <AccomodationItem key={acc.id} data={acc} />
+            ) : (
+              ""
+            )
+          )}
       </div>
     </div>
   );
