@@ -1,6 +1,6 @@
 import { IoClose } from "react-icons/io5";
 import "./detailCategoryModal.scss";
-import CommonButton from "../../commonButton/CommonButton";
+import CommonButton from "../../../components/commonButton/CommonButton";
 
 interface detailProps {
   onClick: React.MouseEventHandler<HTMLDivElement>;

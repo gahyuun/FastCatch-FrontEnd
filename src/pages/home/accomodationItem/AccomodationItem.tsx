@@ -2,9 +2,10 @@ import { CommonBadge } from "@/src/components";
 import "./accomodationItem.scss";
 import numberFormat from "@/src/utils/numberFormat";
 import { useNavigate } from "react-router-dom";
-
+import { accommodationCategoryData, regionData } from "@/src/constant/categories";
+import { Accommodation } from "../../../types/accommodations";
 interface accommodationProps {
-  data: any;
+  data: Accommodation;
 }
 
 const AccommodationItem = ({ data }: accommodationProps) => {
@@ -24,8 +25,9 @@ const AccommodationItem = ({ data }: accommodationProps) => {
           <div>
             <strong className="text-subtitle5">{data.name}</strong>
             <div className="text-body2 item-info__lacation">
-              {/* <p>{accommodationCategoryData[data.category]} | 한국 용산구</p> */}
-              <p>호텔/리조트 | 한국 용산구</p>
+              <p>
+                {accommodationCategoryData[data.category]} | {regionData[data.region]}
+              </p>
             </div>
           </div>
           <div className="item-info__status">{data.soldOut && <CommonBadge text="예약마감" badgeType="fill" />}</div>
