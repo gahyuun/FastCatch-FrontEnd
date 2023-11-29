@@ -17,9 +17,4 @@ interface OrderItemTypes {
   roomName: string;
   startDate: string;
   endDate: string;
-  roomOption: AccommodationData;
 }
-
-type AccommodationData = {
-  [key: string]: boolean;
-};
