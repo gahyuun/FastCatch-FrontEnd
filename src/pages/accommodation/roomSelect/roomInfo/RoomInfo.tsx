@@ -67,16 +67,14 @@ const RoomInfo = ({
 
   const postBasket: any = () => {
     try {
-      const response = axios.post(
-        "http://43.201.113.97/api/carts/1?memberId=1",
-        {
-          roomId: roomId,
-          startDate: startDate,
-          endDate: endDate,
-          headCount: filterData.amount,
-          orderPrice: totalPrice,
-        }
-      );
+      const response = axios.post("http://43.201.113.97/api/carts/members/1", {
+        //memberId 나중에 전역변수 만들어지면 수정해주기
+        roomId: roomId,
+        startDate: startDate,
+        endDate: endDate,
+        headCount: filterData.amount,
+        orderPrice: totalPrice,
+      });
       return response;
     } catch (error) {
       console.log("에러에러에러엘에러엘", error);
