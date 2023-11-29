@@ -111,7 +111,7 @@ const RoomInfo = ({
 
   const { showToast, ToastContainer } = CommonToastLayout({
     theme: "success",
-    message: "장바구니에 상품이 담겼습니다",
+    message: "장바구니에 객실이 담겼습니다",
   });
 
   const template: Template = {
@@ -148,10 +148,10 @@ const RoomInfo = ({
     navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
-
+  const A = true;
   let text = "";
-  if (soldOut) {
-    text = "판매된 상품입니다";
+  if (A) {
+    text = "판매된 객실입니다";
   } else if (!isPossible) {
     text = "인원을 변경해주세요";
   } else {
@@ -193,7 +193,7 @@ const RoomInfo = ({
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          {soldOut || !isPossible ? (
+          {A || !isPossible ? (
             <CommonButton
               text={text}
               buttonSize="large"
