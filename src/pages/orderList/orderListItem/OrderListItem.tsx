@@ -1,13 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CommonButton, SelectedRoomItem } from "@/src/components";
+import { CommonButton } from "@/src/components";
+import { Order } from "@/src/types/order";
+import numberFormat from "@/src/utils/numberFormat";
+import OrderRoomItem from "../orderRoomItem/OrderRoomItem";
 
 import "swiper/css";
 import "./orderListItem.scss";
-import { Order } from "@/src/types/order";
-import numberFormat from "@/src/utils/numberFormat";
 
-const OrderListItem = ({ orderInfo }: OrderListItemProps) => {
-  const { orderDate, orderItems, totalPrice, orderStatus } = orderInfo;
+const OrderListItem = ({ roomInfo }: OrderListItemProps) => {
+  const { orderDate, orderItems, totalPrice, orderStatus } = roomInfo;
 
   const formattedTotalPrice = numberFormat(totalPrice);
 
@@ -28,9 +29,9 @@ const OrderListItem = ({ orderInfo }: OrderListItemProps) => {
           slidesPerView={orderItems.length === 1 ? 1 : 1.5}
           className="order-list-item__swiper"
         >
-          {orderItems.map((orderInfo, index) => (
+          {orderItems.map((roomInfo, index) => (
             <SwiperSlide key={index}>
-              <SelectedRoomItem pageType={"orderList"} orderInfo={orderInfo} />
+              <OrderRoomItem pageType={"orderList"} roomInfo={roomInfo} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -45,5 +46,5 @@ const OrderListItem = ({ orderInfo }: OrderListItemProps) => {
 export default OrderListItem;
 
 interface OrderListItemProps {
-  orderInfo: Order;
+  roomInfo: Order;
 }

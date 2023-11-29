@@ -22,20 +22,6 @@ export interface OrderItem {
   orderPrice: number;
 }
 
-export interface OrderInfo {
-  accommodationId: number;
-  accommodationName: string;
-  checkInTime: string;
-  checkOutTime: string;
-  headCount: number;
-  maxHeadCount: number;
-  orderPrice: number;
-  roomId: number;
-  roomName: string;
-  startDate: string;
-  endDate: string;
-}
-
 export interface OrderDataTypes {
   status: string;
   pageSize: number;

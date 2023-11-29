@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { CommonButton } from "@/src/components";
+import { getOrderApi } from "@/src/api/getOrderApi";
+import { Order } from "@/src/types/order";
 
 import MembersHeader from "@/src/pages/members/membersHeader/MembersHeader";
 import OrderListItem from "@/src/pages/orderList/orderListItem/OrderListItem";
-import instance from "@/src/api/instanceApi";
-import { Order, OrderDataTypes } from "@/src/types/order";
 
 import "./orderList.scss";
 
@@ -14,30 +14,17 @@ const OrderList = () => {
   const [canceledList, setCanceledList] = useState<Order[]>([]);
 
   useEffect(() => {
-    const fetchOrderList = async () => {
-      try {
-        const res = await instance.get("/api/orders");
-        const orderData = res.data.data.orders;
-
-        const reservedOrders =
-          orderData.find((order: OrderDataTypes) => order.status === "reserved")
-            ?.orderResponses || [];
-        setReservedList(reservedOrders);
-
-        const usedOrders =
-          orderData.find((order: OrderDataTypes) => order.status === "used")
-            ?.orderResponses || [];
-        setUsedList(usedOrders);
-
-        const canceledOrders =
-          orderData.find((order: OrderDataTypes) => order.status === "canceled")
-            ?.orderResponses || [];
-        setCanceledList(canceledOrders);
-      } catch (error) {
-        console.log(error);
+    const fetchData = async () => {
+      const orderData = await getOrderApi();
+      if (orderData) {
+        const { reservedOrders, usedOrders, canceledOrders } = orderData;
+        setReservedList(reservedOrders || []);
+        setUsedList(usedOrders || []);
+        setCanceledList(canceledOrders || []);
       }
     };
-    fetchOrderList();
+
+    fetchData();
   }, []);
 
   return (
@@ -51,7 +38,7 @@ const OrderList = () => {
           <div className="order-list__item">
             {reservedList.length !== 0 ? (
               reservedList.map(item => (
-                <OrderListItem key={item.orderId} orderInfo={item} />
+                <OrderListItem key={item.orderId} roomInfo={item} />
               ))
             ) : (
               <p className="order-list__error-msg">
@@ -70,7 +57,7 @@ const OrderList = () => {
           <div className="order-list__item">
             {usedList.length !== 0 ? (
               usedList.map(item => (
-                <OrderListItem key={item.orderId} orderInfo={item} />
+                <OrderListItem key={item.orderId} roomInfo={item} />
               ))
             ) : (
               <p className="order-list__error-msg">
@@ -89,7 +76,7 @@ const OrderList = () => {
           <div className="order-list__item">
             {canceledList.length !== 0 ? (
               canceledList.map(item => (
-                <OrderListItem key={item.orderId} orderInfo={item} />
+                <OrderListItem key={item.orderId} roomInfo={item} />
               ))
             ) : (
               <p className="order-list__error-msg">
