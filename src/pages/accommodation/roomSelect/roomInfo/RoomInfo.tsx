@@ -148,9 +148,9 @@ const RoomInfo = ({
     navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
-  const A = true;
+
   let text = "";
-  if (A) {
+  if (soldOut) {
     text = "판매된 객실입니다";
   } else if (!isPossible) {
     text = "인원을 변경해주세요";
@@ -193,7 +193,7 @@ const RoomInfo = ({
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          {A || !isPossible ? (
+          {soldOut || !isPossible ? (
             <CommonButton
               text={text}
               buttonSize="large"

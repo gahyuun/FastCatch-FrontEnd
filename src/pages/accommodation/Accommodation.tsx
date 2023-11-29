@@ -5,7 +5,6 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import RoomSelect from "./roomSelect/RoomSelect";
 import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
-import AccommodationIntroduce from "./accommodationIntroduce/AccommodationIntroduce";
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/src/states/filterState";
@@ -51,6 +50,7 @@ const Accommodation = () => {
         src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${data.image}`}
         alt={data.name}
       />
+
       <AccommodationMainInfo
         accommodationName={data.name}
         accommodationLocation={data.address}
@@ -58,7 +58,16 @@ const Accommodation = () => {
         accommodationCategory={data.category}
       />
       <div className="accommodation__divider"></div>
-      <AccommodationIntroduce accommodationInfo={data.description} />
+
+      <div className="accommodation__introduce">
+        <div className="accommodation__menu-title">
+          <span className="text-subtitle4">숙소 소개</span>
+        </div>
+        <div>
+          <span className="text-body1">{data.description}</span>
+        </div>
+      </div>
+
       <div className="accommodation__divider"></div>
       <AccommodationMap
         accommodationName={data.name}
