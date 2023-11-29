@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
@@ -10,11 +10,12 @@ import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useMutation } from "react-query";
 import axios from "axios";
 import { filterState } from "@/src/states/filterState";
+import { orderState } from "@/src/states/orderState";
 
 interface RoomInfoProps {
   room: {
     price: number;
-    roomId: string;
+    roomId: number;
     name: string;
     roomOption: any;
     baseHeadCount: number;
@@ -24,12 +25,18 @@ interface RoomInfoProps {
     soldOut: boolean;
     description: string;
   };
+  accommodationId: number;
+  accommodationName: string;
 }
 interface Template {
   [key: string]: string;
 }
 
-const RoomInfo = ({ room }: RoomInfoProps) => {
+const RoomInfo = ({
+  room,
+  accommodationId,
+  accommodationName,
+}: RoomInfoProps) => {
   const {
     name,
     price,
@@ -43,6 +50,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
     // description,
   } = room;
 
+  const setOrderData = useSetRecoilState(orderState);
   const navigate = useNavigate();
 
   const filterData = useRecoilValue(filterState).current;
@@ -105,6 +113,22 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
     mutation.mutate();
   };
   const onClickOrder = () => {
+    setOrderData([
+      {
+        accommodationId: accommodationId,
+        accommodationName: accommodationName,
+        checkInTime: checkInTime,
+        checkOutTime: checkOutTime,
+        headCount: filterData.amount,
+        maxHeadCount: maxHeadCount,
+        orderPrice: totalPrice,
+        roomId: roomId,
+        roomName: name,
+        startDate: startDate,
+        endDate: endDate,
+      },
+    ]);
+
     navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };

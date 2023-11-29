@@ -3,7 +3,12 @@ import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 import RoomInfo from "./roomInfo/RoomInfo";
 import CommonFilter from "@/src/components/commonFilter/CommonFilter";
 
-const RoomSelect = ({ roomsInfo, handleClick }: any) => {
+const RoomSelect = ({
+  accommodationId,
+  accommodationName,
+  roomsInfo,
+  handleClick,
+}: any) => {
   return (
     <div className="accommodation__select-room">
       <div className="accommodation__menu-title">
@@ -20,7 +25,11 @@ const RoomSelect = ({ roomsInfo, handleClick }: any) => {
             <div className="room__imgs">
               <RoomImgSwiper roomImg={room.images} />
             </div>
-            <RoomInfo room={room} />
+            <RoomInfo
+              room={room}
+              accommodationId={accommodationId}
+              accommodationName={accommodationName}
+            />
           </div>
         ))}
       </div>

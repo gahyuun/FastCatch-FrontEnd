@@ -55,6 +55,7 @@ const Accommodation = () => {
     refetch();
     console.log("리패치");
   };
+
   return (
     <div className="accommodation-container">
       <img
@@ -79,7 +80,12 @@ const Accommodation = () => {
       <div className="accommodation__divider"></div>
       <AccommodationOptions accommodationOptions={data.accommodationOption} />
       <div className="accommodation__divider"></div>
-      <RoomSelect roomsInfo={data.rooms} handleClick={handleClick} />
+      <RoomSelect
+        roomsInfo={data.rooms}
+        accommodationId={data.id}
+        accommodationName={data.name}
+        handleClick={handleClick}
+      />
     </div>
   );
 };
