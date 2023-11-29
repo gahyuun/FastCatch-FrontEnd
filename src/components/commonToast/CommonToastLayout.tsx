@@ -3,7 +3,7 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import "./commonToastLayout.scss";
 
-type toastTheme = 'success' | 'error' | 'info';
+type toastTheme = "success" | "error" | "info";
 
 interface toastOptionI {
   autoClose: number;
@@ -21,18 +21,23 @@ interface toastOptionI {
 }
 
 interface toastPropI {
-  theme: toastTheme,
-  message: string
+  theme: toastTheme;
+  message: string;
 }
 
-const CommonToastLayout = ({theme, message}: toastPropI) => {
+const CommonToastLayout = ({ theme, message }: toastPropI) => {
   const [isVisible, setIsVisible] = useState(false);
-  let backgroundColor = '';
+  let backgroundColor = "";
 
   const showToast = () => {
     setIsVisible(true);
-    backgroundColor = theme === 'success' ? '#0CBC72' : (theme === 'error' ? '#EE5151' : '#5C656C');
-    
+    backgroundColor =
+      theme === "success"
+        ? "#0CBC72"
+        : theme === "error"
+          ? "#EE5151"
+          : "#5C656C";
+
     const toastOptions: toastOptionI = {
       autoClose: 2000,
       hideProgressBar: true,
@@ -40,22 +45,22 @@ const CommonToastLayout = ({theme, message}: toastPropI) => {
       position: "top-center",
       style: {
         backgroundColor,
-        color: 'white',
-        gap: '8px',
-        padding: '10px 24px',
-        borderRadius: '8px',
-        fontSize: '14px',
+        color: "white",
+        gap: "8px",
+        padding: "10px 24px",
+        borderRadius: "8px",
+        fontSize: "14px",
       },
     };
 
     switch (theme) {
-      case 'info':
+      case "info":
         toast.info(message, toastOptions);
         break;
-      case 'error':
+      case "error":
         toast.error(message, toastOptions);
         break;
-      case 'success':
+      case "success":
         toast.success(message, toastOptions);
         break;
       default:
@@ -65,7 +70,7 @@ const CommonToastLayout = ({theme, message}: toastPropI) => {
 
   return {
     showToast,
-    ToastContainer: isVisible && <ToastContainer/>
+    ToastContainer: isVisible && <ToastContainer />,
   };
 };
 

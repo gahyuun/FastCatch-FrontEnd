@@ -1,15 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import CommonButton from "@/src/components/commonButton/CommonButton";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
-import React from "react";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 interface RoomInfoProps {
   room: {
     price: number;
     roomId: string;
-    roomImage: string[];
     roomName: string;
     roomOptions: any;
   };
@@ -18,8 +20,30 @@ interface Template {
   [key: string]: string;
 }
 
-const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
-  const { roomName, price, roomOptions } = room;
+const RoomInfo = ({ room }: RoomInfoProps) => {
+  const { roomName, price, roomOptions, roomId } = room;
+  const navigate = useNavigate();
+
+  const postBasket = (roomId: string) => {
+    const response = axios.post("/accommodation", { roomId });
+    return response;
+  };
+
+  const mutation = useMutation({
+    mutationFn: postBasket,
+    onSuccess: (data) => {
+      console.log("데이터 전송 성공", data);
+      showToast();
+    },
+    onError: (error) => {
+      console.log("전송 실패했습니다!!", error);
+    },
+  });
+
+  const { showToast, ToastContainer } = CommonToastLayout({
+    theme: "success",
+    message: "장바구니에 상품이 담겼습니다",
+  });
 
   const template: Template = {
     city_view: "시티뷰",
@@ -31,6 +55,14 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
     has_pc: "PC",
     has_amenity: "어메니티",
     can_cooking: "취사 가능",
+  };
+
+  const onClickBasket = () => {
+    mutation.mutate(roomId);
+  };
+  const onClickOrder = () => {
+    navigate("/order");
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -63,11 +95,19 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          <button className="room__buttons-container__basket">
+          <button
+            className="room__buttons-container__basket"
+            onClick={onClickBasket}
+          >
             <IoCartOutline size="30px" color="#93114E" />
           </button>
-          <CommonButton text="예약하기" buttonSize="large" />
+          <CommonButton
+            text="예약하기"
+            buttonSize="large"
+            onClick={onClickOrder}
+          />
         </div>
+        {ToastContainer}
       </div>
     </div>
   );

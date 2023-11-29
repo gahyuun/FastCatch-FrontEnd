@@ -1,20 +1,17 @@
 import { http, HttpResponse } from "msw";
-import hotel from "./dummy.json";
+import accommodationDetail from "../../public/data/accommodationDetail.json";
+
+const getHotelResolver = () => {
+  return HttpResponse.json(accommodationDetail)
+}
+const postHotelResolver = async ({ request }:any) => {
+  const newPost = await request.json()
+  console.log('newPost',newPost)
+
+  return HttpResponse.json(newPost,{status:201})
+}
 
 export const handlers = [
-  http.get("/accommodation", ()=>{
-    console.log('get 성공');
-    return HttpResponse.json(hotel)
-  }),
-  http.post("/accommodation", () => {
-    hotel.push({
-      id: "345",
-      name: "sadHotel",
-      location: "강원도",
-    });
-    console.log('post 성공')
-  }),
-  http.delete('/posts/:id', ({ params }) => {
-    console.log(`Captured a "DELETE /posts/${params.id}" request`)
-  }),
+  http.get("/accommodation", getHotelResolver),
+  http.post("/accommodation", postHotelResolver),
 ];

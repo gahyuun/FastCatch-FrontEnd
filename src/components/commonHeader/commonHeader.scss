@@ -1,16 +1,20 @@
 @import "../../styles/common.scss";
 
 .header-container {
+  position: relative;
+  z-index: 1000;
   display: flex;
   justify-content: center;
 
   width: 100%;
-  height: rem(80);
+  height: rem(88);
+  background-color: white;
 
-  border-bottom: 1px solid gray(400);
+  border-bottom: 1px solid gray(300);
 }
 
 .header-container__inner {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,9 +32,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 }
 
 .header-container__center {
+  position: relative;
   width: 40%;
   height: 100%;
 
@@ -39,16 +45,23 @@
   align-items: center;
 }
 
+.filter__divider {
+  width: rem(1);
+  height: rem(16);
+  background-color: gray(500);
+}
+
 .header-container__right {
   width: 20%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: rem(16);
 }
 
 .header-container__logo {
   font-family: "CWDangamAsac-Bold";
-  color: red;
+  color: coral(500);
   font-size: rem(32);
 }
