@@ -124,6 +124,7 @@ const RoomInfo = ({
         roomName: name,
         startDate: startDate,
         endDate: endDate,
+        roomOption: roomOption,
       },
     ]);
 
