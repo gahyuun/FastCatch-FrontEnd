@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { format } from "date-fns";
 import axios from "axios";
 import { useMutation } from "react-query";
@@ -13,20 +13,10 @@ import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import { room } from "@/src/types/accommodationDetail";
 
 interface RoomInfoProps {
-  room: {
-    price: number;
-    roomId: number;
-    name: string;
-    roomOption: any;
-    baseHeadCount: number;
-    maxHeadCount: number;
-    checkInTime: string;
-    checkOutTime: string;
-    soldOut: boolean;
-    description: string;
-  };
+  room: room;
   accommodationId: number;
   accommodationName: string;
   isClicked: boolean;
@@ -70,7 +60,7 @@ const RoomInfo = ({
   if (curAmount < baseHeadCount) {
     totalPrice = price;
   } else if (curAmount > maxHeadCount) {
-    totalPrice = price + 15000 * (maxHeadCount - baseHeadCount);
+    totalPrice = price * +15000 * (maxHeadCount - baseHeadCount);
   } else {
     totalPrice = price + 15000 * (curAmount - baseHeadCount);
   }

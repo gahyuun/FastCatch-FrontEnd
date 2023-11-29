@@ -29,7 +29,7 @@ const Accommodation = () => {
     }
   };
 
-  const { data, error, isError, isLoading, refetch }: any = useQuery({
+  const { data, isError, isLoading, refetch } = useQuery({
     queryKey: [id, "postDetail"],
     queryFn: fetchListData,
     staleTime: 500000,
@@ -39,7 +39,7 @@ const Accommodation = () => {
     return <div>로딩중..!!!!!</div>;
   }
   if (isError) {
-    return <div>여기는 에러 페이지!!!!! {error.message}</div>;
+    return <div>여기는 에러 페이지!</div>;
   }
 
   return (
