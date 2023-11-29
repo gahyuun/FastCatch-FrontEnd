@@ -173,7 +173,6 @@ const RoomInfo = ({
               text="예약 불가"
               buttonSize="large"
               colorName="coral200"
-              //  onClick={onClickOrder}
             />
           ) : (
             <>

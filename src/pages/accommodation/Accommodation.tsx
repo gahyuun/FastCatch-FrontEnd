@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
 import axios from "axios";
