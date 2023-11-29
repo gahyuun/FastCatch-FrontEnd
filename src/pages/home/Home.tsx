@@ -5,7 +5,7 @@ import "./home.scss";
 import { useRecoilState } from "recoil";
 import { filterState } from "@/src/states/filterState";
 import { format } from "date-fns";
-import { fetchAccommodationsData } from "@/src/api/api";
+import { fetchAccommodationsData } from "@/src/api/fetchAccommodations";
 import { Accommodation, AccommodationType } from "../../types/accommodations";
 import CategoryFilter from "./categoryFilter/CategoryFilter";
 import { useState } from "react";
