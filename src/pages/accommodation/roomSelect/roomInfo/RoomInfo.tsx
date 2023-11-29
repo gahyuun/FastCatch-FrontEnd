@@ -7,7 +7,7 @@ import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import axios from "axios";
 import { filterState } from "@/src/states/filterState";
 
@@ -46,30 +46,6 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
   const endDate = format(filterData.startDate, "yyyy-MM-dd");
   const totalPrice = filterData.amount * price;
-
-  // 멤버 get 나중에 필요없을듯
-  // const fetchListData = async () => {
-  //   try {
-  //     const res = await axios.get(`http://43.201.113.97/api/carts?memberId=1`);
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log("에러발생!!!!!!!!!", error);
-  //     throw new Error("Failed to fetch data");
-  //   }
-  // };
-
-  // const { data }: any = useQuery({
-  //   queryKey: ["postMember"],
-  //   queryFn: fetchListData,
-  //   staleTime: 500000,
-  //   // select: data => {
-  //   //   const accommodationValue = data[1].data;
-  //   //   return accommodationValue;
-  //   // },
-  // });
-  // console.log(data);
-
-  //
 
   const postBasket: any = (roomId: string) => {
     try {

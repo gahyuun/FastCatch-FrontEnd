@@ -5,14 +5,24 @@ import markerIcon from "../../../assets/icons/markerImg.svg";
 
 interface PropType {
   accommodationName: string;
+  latitude: string;
+  longitude: string;
+}
+interface LatLng {
+  getLat(): number;
+  getLng(): number;
 }
 
-const AccommodationMap = ({ accommodationName }: PropType) => {
+const AccommodationMap = ({
+  accommodationName,
+  latitude,
+  longitude,
+}: PropType) => {
   const { kakao }: any = window;
   const mapContainer = useRef(null);
-  const position = new kakao.maps.LatLng(
-    37.365264512305174,
-    127.10676860117488
+  const position: LatLng = new kakao.maps.LatLng(
+    Number(latitude),
+    Number(longitude)
   );
   const options = {
     center: position,

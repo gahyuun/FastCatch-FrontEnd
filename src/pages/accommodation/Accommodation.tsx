@@ -38,12 +38,11 @@ const Accommodation = () => {
   if (isError) {
     return <div>여기는 에러 페이지!!!!! {error.message}</div>;
   }
-
   return (
     <div className="accommodation-container">
       <img
-        style={{ height: "300px", width: "100%", objectFit: "cover" }}
-        src="https://i.pinimg.com/564x/10/dc/c1/10dcc131c6d0ca34e2ca119af059cb6a.jpg"
+        style={{ height: "550px", width: "100%", objectFit: "cover" }}
+        src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${data.image}`}
         alt={data.name}
       />
       <AccommodationMainInfo
@@ -55,7 +54,11 @@ const Accommodation = () => {
       <div className="accommodation__divider"></div>
       <AccommodationIntroduce accommodationInfo={data.description} />
       <div className="accommodation__divider"></div>
-      <AccommodationMap accommodationName={data.name} />
+      <AccommodationMap
+        accommodationName={data.name}
+        latitude={data.latitude}
+        longitude={data.longitude}
+      />
       {/* <AccommodationMap /> */}
       <div className="accommodation__divider"></div>
       <AccommodationOptions accommodationOptions={data.accommodationOption} />
