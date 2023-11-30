@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
-interface userInfoI {
+export interface userInfoI {
   id: number;
   email: string;
   name: string;
@@ -11,6 +11,6 @@ interface userInfoI {
 }
 
 export const userState = atom<userInfoI | null>({
-  key: 'userState',
-  default: null
+  key: "userState",
+  default: null,
 });
