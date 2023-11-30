@@ -132,13 +132,13 @@ const RoomInfo = ({
   const onClickOrder = () => {
     setOrderData([
       {
-        accommodationId: accommodationId,
+        // accommodationId: accommodationId,
         accommodationName: accommodationName,
         checkInTime: checkInTime,
         checkOutTime: checkOutTime,
         headCount: filterData.amount,
         maxHeadCount: maxHeadCount,
-        orderPrice: totalPrice,
+        price: totalPrice,
         roomId: roomId,
         roomName: name,
         startDate: startDate,

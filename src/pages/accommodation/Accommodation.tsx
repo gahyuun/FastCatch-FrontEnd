@@ -1,13 +1,13 @@
-import { useRecoilValue } from "recoil";
-import { format } from "date-fns";
-import "./accommodation.scss";
-import axios from "axios";
-import { useQuery } from "react-query";
-import RoomSelect from "./roomSelect/RoomSelect";
-import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
-import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
-import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/src/states/filterState";
+import axios from "axios";
+import { format } from "date-fns";
+import { useQuery } from "react-query";
+import { useRecoilValue } from "recoil";
+import "./accommodation.scss";
+import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
+import AccommodationMap from "./accommodationMap/AccommodationMap";
+import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
+import RoomSelect from "./roomSelect/RoomSelect";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
