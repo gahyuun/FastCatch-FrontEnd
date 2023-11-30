@@ -34,14 +34,13 @@ export const commitOptions = (
     }
 
     // 두번째 필터 (옵션선택)
-    const filteredData = sortedData.filter(item => {
-      const accommodationOption = item.accommodationOption;
-      return selectedOptions.every(selectedOption => accommodationOption[selectedOption.key]);
-    });
+    const filteredData = selectedOptions.length
+    ? sortedData.filter(item => selectedOptions.every(selectedOption => item.accommodationOption[selectedOption.key]))
+    : sortedData;
 
     // 필터된 값 전역상태 저장
     setFilteredAtom(filteredData);
-    console.log(filteredData);
+    console.log('필터된 데이터', filteredData);
 
     // 모달창 닫기
     setOpenDetail(false);
