@@ -5,6 +5,7 @@ const accessToken =
 
 const instance: AxiosInstance = axios.create({
   baseURL: "http://ec2-43-201-113-97.ap-northeast-2.compute.amazonaws.com/",
+  // baseURL: "back/",
   timeout: 5000,
   headers: {
     Authorization: `Bearer ${accessToken}`,
