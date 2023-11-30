@@ -9,7 +9,7 @@ import { useSetRecoilState } from "recoil";
 import { CommonButton } from "../../components";
 import "./basket.scss";
 import SelectedAccomodation from "./selectedAccomodation/SelectedAccomodation";
-
+import { CiShoppingBasket } from "react-icons/ci";
 export interface RoomDescriptionType {
   cartItemId: number;
   checkInTime: string;
@@ -119,6 +119,12 @@ const Basket = () => {
     navigate("/order?cart=true");
   };
 
+  const handleDeleteAllClick = () => {
+    if (window.confirm("장바구니를 비우시겠습니까?")) {
+      deleteAllCartItems();
+    }
+  };
+
   useEffect(() => {
     getCartItems();
   }, []);
@@ -133,11 +139,11 @@ const Basket = () => {
           <CommonButton
             text="장바구니 비우기"
             shape="line"
-            onClick={() => deleteAllCartItems()}
+            onClick={handleDeleteAllClick}
           />
         )}
       </div>
-      {cartItems && cartItems.length !== 0 && (
+      {cartItems && cartItems.length !== 0 ? (
         <div className="basket-container__body">
           {cartItems?.map((item: CartItemType, index: number) => (
             <section key={item.accommodationId}>
@@ -164,6 +170,11 @@ const Basket = () => {
             />
           </div>
           {ToastContainer}
+        </div>
+      ) : (
+        <div className="empty-basket">
+          <CiShoppingBasket />
+          <p>장바구니가 비어있어요.</p>
         </div>
       )}
     </div>

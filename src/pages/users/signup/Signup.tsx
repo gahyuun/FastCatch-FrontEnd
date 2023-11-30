@@ -45,7 +45,6 @@ const Signup = () => {
 
   // TODO : .env에서 가져올것
   const baseURL =
-
     "http://ec2-54-180-97-194.ap-northeast-2.compute.amazonaws.com/";
 
   // 데이터 호출 함수
