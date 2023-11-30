@@ -83,7 +83,7 @@ const Home = () => {
             ))
           : "없어요"}
         <div className="target-div" ref={scrollRef}>
-          모든 상품을 조회했습니다.
+          모든 상품을 조회했습니다. <button>더보기</button>
         </div>
       </div>
     </div>
