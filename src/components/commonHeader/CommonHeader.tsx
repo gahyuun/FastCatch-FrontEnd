@@ -25,7 +25,6 @@ const Header = () => {
   const navigate = useNavigate();
   const [filterStates, setFilterStates] = useRecoilState(filterState);
 
-  const [isLoggedIn] = useState(true);
   const [filterMode, setFilterMode] = useState<"filter" | "search">("filter");
 
   const changeFilterModeHandler = () => {
@@ -105,7 +104,7 @@ const Header = () => {
             </button>
           </section>
           <section className="header-container__right">
-            {isLoggedIn ? ( //
+            {localStorage.getItem("accessToken") ? ( //
               <>
                 <CartButton />
                 <LogoutButton />

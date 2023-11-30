@@ -94,7 +94,16 @@ const Home = () => {
       {detailFiltered.length !== 0 && (
         <button
           className="home__filter-reset"
-          onClick={() => setDetailFiltered([])}
+          onClick={() => {
+            const searchInput = document.querySelector(
+              ".search-filter__input"
+            ) as HTMLInputElement;
+            if (searchInput) {
+              searchInput.value = "";
+              console.log(searchInput);
+            }
+            setDetailFiltered([]);
+          }}
         >
           세부필터 해제
         </button>
