@@ -131,12 +131,26 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
         theme: "error",
         message: "로그인을 해주세요",
       });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1700);
       return;
     }
     mutation.mutate();
   }, 700);
 
   const onClickOrder = async () => {
+    if (!userData) {
+      showToast({
+        theme: "error",
+        message: "로그인을 해주세요",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1700);
+      return;
+    }
+
     await setOrderData([
       {
         accommodationName: accommodationName,
