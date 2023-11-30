@@ -1,10 +1,11 @@
 // Accommodations 객체입니다.
 export interface Accommodation {
-  category: "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE";
+  category: "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE" | string;
   id: number;
   image: string;
   lowestPrice: number;
   name: string;
+  address?: string;
   region:
     | "ALL"
     | "GYEONGGI"
@@ -13,13 +14,15 @@ export interface Accommodation {
     | "CHUNGCHEONG"
     | "HONAM"
     | "GYEONGSANG"
-    | "JEJU";
-  soldOut: false;
+    | "JEJU"
+    | string;
+  soldOut: boolean;
 }
 
 export interface Accommodations {
   category: "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE";
   accommodations: Accommodation[];
+  address?: string;
   id: number;
   image: string;
   lowestPrice: number;

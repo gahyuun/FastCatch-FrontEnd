@@ -18,6 +18,7 @@ import DetailCategoryModal from "../../../pages/home/detailFilter/DetailCategory
 import { filterState, filterStateTypes } from "@/src/states/filterState";
 import { AccommodationType } from "@/src/types/accommodations";
 import { responseState } from "@/src/states/responseState";
+import { detailState } from "@/src/states/detailState";
 
 interface categoryTypes {
   name: string;
@@ -29,6 +30,7 @@ interface categoryTypes {
 const CategoryFilter = () => {
   const setFilterStates = useSetRecoilState(filterState);
   const setResponseStates = useSetRecoilState(responseState);
+  const setDetailStates = useSetRecoilState(detailState);
 
   const categoriesData: //
   categoryTypes[] = [
@@ -94,10 +96,10 @@ const CategoryFilter = () => {
             <button //
               key={`category-filter-${idx}`}
               className="filter__button categorySelect"
-              onClick={_debounce(
-                () => changeCategoryHandler(category.name),
-                100
-              )}
+              onClick={_debounce(() => {
+                setDetailStates([]);
+                changeCategoryHandler(category.name);
+              }, 100)}
             >
               <img src={category.img}></img>
               <span>{category.name}</span>
@@ -106,10 +108,10 @@ const CategoryFilter = () => {
             <button //
               key={idx}
               className="filter__button"
-              onClick={_debounce(
-                () => changeCategoryHandler(category.name),
-                100
-              )}
+              onClick={_debounce(() => {
+                setDetailStates([]);
+                changeCategoryHandler(category.name);
+              }, 100)}
             >
               <img src={category.img}></img>
               <span>{category.name}</span>

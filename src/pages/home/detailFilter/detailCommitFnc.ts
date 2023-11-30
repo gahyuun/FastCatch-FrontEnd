@@ -9,9 +9,8 @@ export const commitOptions = (
   setFilteredAtom: React.Dispatch<React.SetStateAction<Accommodation[]>>,
   setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-
-  const selectedOptions = options.filter((option) => option.state);
-  const cachedMainData: any = queryClient.getQueryData(['accommodations']);
+  const selectedOptions = options.filter(option => option.state);
+  const cachedMainData: any = queryClient.getQueryData(["accommodations"]);
   const cachedData = cachedMainData.data.accommodations;
 
   if (cachedData) {
@@ -20,13 +19,19 @@ export const commitOptions = (
     // 첫번째 필터 (순서정렬)
     switch (activeTab) {
       case 1:
-        sortedData = [...cachedData].sort((a, b) => a.lowestPrice - b.lowestPrice);
+        sortedData = [...cachedData].sort(
+          (a, b) => a.lowestPrice - b.lowestPrice
+        );
         break;
       case 2:
-        sortedData = [...cachedData].sort((a, b) => b.lowestPrice - a.lowestPrice);
+        sortedData = [...cachedData].sort(
+          (a, b) => b.lowestPrice - a.lowestPrice
+        );
         break;
       case 3:
-        sortedData = [...cachedData].sort((a, b) => a.name.localeCompare(b.name));
+        sortedData = [...cachedData].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
         break;
       default:
         sortedData = [...cachedData];
@@ -35,12 +40,16 @@ export const commitOptions = (
 
     // 두번째 필터 (옵션선택)
     const filteredData = selectedOptions.length
-    ? sortedData.filter(item => selectedOptions.every(selectedOption => item.accommodationOption[selectedOption.key]))
-    : sortedData;
+      ? sortedData.filter(item =>
+          selectedOptions.every(
+            selectedOption => item.accommodationOption[selectedOption.key]
+          )
+        )
+      : sortedData;
 
     // 필터된 값 전역상태 저장
     setFilteredAtom(filteredData);
-    console.log('필터된 데이터', filteredData);
+    console.log("필터된 데이터", filteredData);
 
     // 모달창 닫기
     setOpenDetail(false);

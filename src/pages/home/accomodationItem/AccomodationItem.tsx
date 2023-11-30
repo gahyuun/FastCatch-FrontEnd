@@ -2,10 +2,7 @@ import { CommonBadge } from "@/src/components";
 import "./accomodationItem.scss";
 import numberFormat from "@/src/utils/numberFormat";
 import { useNavigate } from "react-router-dom";
-import {
-  accommodationCategoryData,
-  regionData,
-} from "@/src/constant/categories";
+import { accommodationCategoryData } from "@/src/constant/categories";
 import { Accommodation } from "../../../types/accommodations";
 interface accommodationProps {
   data: Accommodation;
@@ -29,10 +26,10 @@ const AccommodationItem = ({ data }: accommodationProps) => {
         <div className="item-info">
           <div>
             <strong className="text-subtitle5">{data.name}</strong>
-            <div className="text-body2 item-info__lacation">
+            <div className="text-body2 item-info__location">
               <p>
                 {accommodationCategoryData[data.category]} |{" "}
-                {regionData[data.region]}
+                {data.address?.split(" ").slice(0, 3).join(" ") || data.region}
               </p>
             </div>
           </div>
