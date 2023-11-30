@@ -12,6 +12,7 @@ import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
+import { useEffect } from "react";
 
 interface RoomInfoProps {
   room: {
@@ -56,7 +57,9 @@ const RoomInfo = ({
 
   const filterData = useRecoilValue(filterState).current;
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
-  const endDate = format(filterData.startDate, "yyyy-MM-dd");
+  const endDate = filterData.endDate
+    ? format(filterData.endDate, "yyyy-MM-dd")
+    : format(filterData.startDate, "yyyy-MM-dd");
   let totalPrice = 0;
   if (filterData.amount < baseHeadCount) {
     totalPrice = price;
@@ -112,8 +115,8 @@ const RoomInfo = ({
     mutation.mutate();
   }, 1000);
 
-  const onClickOrder = () => {
-    setOrderData([
+  const onClickOrder = async () => {
+    await setOrderData([
       {
         accommodationId: accommodationId,
         accommodationName: accommodationName,
@@ -129,7 +132,7 @@ const RoomInfo = ({
       },
     ]);
 
-    navigate("/order?cart=false");
+    await navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
 

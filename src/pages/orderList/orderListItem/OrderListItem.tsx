@@ -1,25 +1,50 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CommonButton } from "@/src/components";
+import { CommonBadge, CommonButton } from "@/src/components";
 import { Order } from "@/src/types/order";
 import numberFormat from "@/src/utils/numberFormat";
 import OrderRoomItem from "../orderRoomItem/OrderRoomItem";
 
 import "swiper/css";
 import "./orderListItem.scss";
+import { deleteOrderApi } from "@/src/api/deleteOrderApi";
+import { SetStateAction } from "react";
 
-const OrderListItem = ({ roomInfo }: OrderListItemProps) => {
-  const { orderDate, orderItems, totalPrice, orderStatus } = roomInfo;
+const OrderListItem = ({
+  roomInfo,
+  reservedList,
+  setReservedList,
+}: OrderListItemProps) => {
+  const { orderDate, orderItems, totalPrice, orderStatus, orderId } = roomInfo;
 
   const formattedTotalPrice = numberFormat(totalPrice);
+
+  const handleCancel = async () => {
+    const bookingCancelConfirm = confirm("정말 취소하시겠습니까?");
+    if (bookingCancelConfirm) {
+      if (reservedList && setReservedList) {
+        const updatedReservedList = reservedList.filter(
+          order => order.orderId !== orderId
+        );
+        setReservedList(updatedReservedList);
+        await deleteOrderApi(orderId);
+      }
+    }
+  };
 
   return (
     <div className="order-list-item">
       <div className="order-list-item__header">
         <div className="order-list-item__left">
-          <h4 className="text-subtitle4">{orderDate}</h4>
+          <h4 className="text-subtitle5">{orderDate}</h4>
           <span className="text-body2">총 {orderItems.length}건</span>
         </div>
         <div className="order-list-item__right">
+          {orderStatus === "canceled" ? (
+            <CommonBadge text={"예약 취소"} badgeStatus={orderStatus} />
+          ) : null}
+          {orderStatus === "used" ? (
+            <CommonBadge text={"사용 완료"} badgeStatus={orderStatus} />
+          ) : null}
           <h5 className="text-subtitle5">총 {formattedTotalPrice}원</h5>
         </div>
       </div>
@@ -36,7 +61,12 @@ const OrderListItem = ({ roomInfo }: OrderListItemProps) => {
           ))}
         </Swiper>
         {orderStatus === "reserved" && (
-          <CommonButton text={"취소하기"} buttonSize="exLarge" shape="line" />
+          <CommonButton
+            text={"취소하기"}
+            buttonSize="exLarge"
+            shape="line"
+            onClick={handleCancel}
+          />
         )}
       </div>
     </div>
@@ -47,4 +77,6 @@ export default OrderListItem;
 
 interface OrderListItemProps {
   roomInfo: Order;
+  reservedList?: Order[];
+  setReservedList?: React.Dispatch<SetStateAction<Order[]>>;
 }

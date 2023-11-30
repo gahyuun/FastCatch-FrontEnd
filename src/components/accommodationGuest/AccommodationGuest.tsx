@@ -7,7 +7,7 @@ const AccommodationGuest = ({ minimum, maximum }: AccommodationGuestProps) => {
     <div className="accommodation-guest text-body1">
       <HiMiniUsers></HiMiniUsers>
       <div className="accommodation-guest__count">
-        <span>기준 {minimum}인</span>
+        <span>인원 {minimum}인</span>
         <span>/</span>
         <span>최대 {maximum}인</span>
       </div>
