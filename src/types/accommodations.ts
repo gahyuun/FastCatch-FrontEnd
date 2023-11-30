@@ -5,7 +5,15 @@ export interface Accommodation {
   image: string;
   lowestPrice: number;
   name: string;
-  region: "ALL" | "GYEONGGI" | "SEOUL" | "GANGWON" | "CHUNGCHEONG" | "HONAM" | "GYEONGSANG" | "JEJU";
+  region:
+    | "ALL"
+    | "GYEONGGI"
+    | "SEOUL"
+    | "GANGWON"
+    | "CHUNGCHEONG"
+    | "HONAM"
+    | "GYEONGSANG"
+    | "JEJU";
   soldOut: false;
 }
 
@@ -16,7 +24,15 @@ export interface Accommodations {
   image: string;
   lowestPrice: number;
   name: string;
-  region: "ALL" | "GYEONGGI" | "SEOUL" | "GANGWON" | "CHUNGCHEONG" | "HONAM" | "GYEONGSANG" | "JEJU";
+  region:
+    | "ALL"
+    | "GYEONGGI"
+    | "SEOUL"
+    | "GANGWON"
+    | "CHUNGCHEONG"
+    | "HONAM"
+    | "GYEONGSANG"
+    | "JEJU";
   soldOut: false;
   isFirst: boolean;
   isLast: boolean;
@@ -26,6 +42,19 @@ export interface Accommodations {
   totalPage: number;
 }
 
-export type localeType = "SEOUL" | "GYEONGGI" | "GANGWON" | "CHUNGCHEONG" | "HONAM" | "GYEONGSANG" | "JEJU";
+export type localeType =
+  | "ALL"
+  | "SEOUL"
+  | "GYEONGGI"
+  | "GANGWON"
+  | "CHUNGCHEONG"
+  | "HONAM"
+  | "GYEONGSANG"
+  | "JEJU";
 
-export type AccommodationType = "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE";
+export type AccommodationType =
+  | "ALL"
+  | "PENSION"
+  | "HOTELRESORT"
+  | "MOTEL"
+  | "GUESTHOUSE";
