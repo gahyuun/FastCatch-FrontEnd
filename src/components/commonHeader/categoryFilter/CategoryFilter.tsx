@@ -13,7 +13,7 @@ import { IoOptionsOutline } from "react-icons/io5";
 import { useSetRecoilState } from "recoil";
 
 // 다른 컴포넌트
-import DetailCategoryModal from "./DetailCategoryModal";
+import DetailCategoryModal from "../../../pages/home/detailFilter/DetailCategoryModal";
 import { filterState, filterStateTypes } from "@/src/states/filterState";
 import { AccommodationType } from "@/src/types/accommodations";
 import { responseState } from "@/src/states/responseState";
