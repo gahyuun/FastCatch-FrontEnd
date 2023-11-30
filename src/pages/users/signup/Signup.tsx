@@ -45,8 +45,8 @@ const Signup = () => {
   const onSubmit = (data: SignupData) => {
     if (isAllCheck) {
       sendRequest({
-        method: "post",
-        url: "/members/signup",
+        method: 'post',
+        endpoint: '/api/members/signup',
         data,
       });
       reset();

@@ -12,7 +12,7 @@ import { IoOptionsOutline } from "react-icons/io5";
 import { AccommodationType } from "../../../types/accommodations";
 
 // 다른 컴포넌트
-import DetailCategoryModal from "./DetailCategoryModal";
+import DetailCategoryModal from "../detailFilter/DetailCategoryModal";
 
 interface categoryTypes {
   name: string;
@@ -82,7 +82,7 @@ const CategoryFilter = ({ onChangeCategory }: { onChangeCategory: React.Dispatch
             <span className="text-body3">필터</span>
           </button>
         </div>
-        {openDetail ? ReactDOM.createPortal(<DetailCategoryModal onClick={toggleDetailHandler} />, document.getElementById("root") as Element) : ""}
+        {openDetail ? ReactDOM.createPortal(<DetailCategoryModal onClick={toggleDetailHandler} setOpenDetail={setOpenDetail} />, document.getElementById("root") as Element) : ""}
       </div>
     </div>
   );
