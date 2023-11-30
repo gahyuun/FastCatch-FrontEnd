@@ -26,7 +26,8 @@ interface PostOrderApiRequestBodyType {
   reservationPersonName: string;
   reservationPhoneNumber: string;
   totalPrice: number;
-  orderItems: OrderItemType[];
+  orderItems?: OrderItemType[];
+  cartItemIds?: number[];
 }
 
 export interface PostOrderApiErrorResponse {

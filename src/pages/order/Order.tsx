@@ -45,21 +45,18 @@ const Order = () => {
   }, [orderData]);
 
   const handleClick = async () => {
-    const requestBody = {
-      ageConsent: isAllCheck,
-      reservationPersonName: userName,
-      reservationPhoneNumber: userPhoneNumber,
-      totalPrice: totalOrderPrice,
-      orderItems: orderData.map(item => ({
-        roomId: item.roomId,
-        startDate: item.startDate,
-        endDate: item.endDate,
-        headCount: item.headCount,
-        orderPrice: item.price,
-      })),
-    };
-
     if (cartParam === "true") {
+      const cartItemIds: number[] = orderData
+        .map(item => item.cartItemIds)
+        .filter((cartIds): cartIds is number[] => !!cartIds)
+        .flat();
+      const requestBody = {
+        ageConsent: isAllCheck,
+        reservationPersonName: userName,
+        reservationPhoneNumber: userPhoneNumber,
+        totalPrice: totalOrderPrice,
+        cartItemIds: cartItemIds,
+      };
       try {
         const res = await postOrderApi("/api/orders/carts", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
@@ -70,6 +67,19 @@ const Order = () => {
       }
     }
     if (cartParam === "false") {
+      const requestBody = {
+        ageConsent: isAllCheck,
+        reservationPersonName: userName,
+        reservationPhoneNumber: userPhoneNumber,
+        totalPrice: totalOrderPrice,
+        orderItems: orderData.map(item => ({
+          roomId: item.roomId,
+          startDate: item.startDate,
+          endDate: item.endDate,
+          headCount: item.headCount,
+          orderPrice: item.price,
+        })),
+      };
       try {
         const res = await postOrderApi("/api/orders", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);

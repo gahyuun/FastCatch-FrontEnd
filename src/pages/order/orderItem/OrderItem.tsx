@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import AccommodationGuest from "@/src/components/accommodationGuest/AccommodationGuest";
 import HotelName from "@/src/components/accommodationName/AccommodationName";
 import RoomName from "@/src/components/roomName/RoomName";
@@ -22,9 +20,6 @@ const OrderItem = ({ orderData }: OrderItemProps) => {
     checkOutTime,
     price,
   } = orderData;
-  useEffect(() => {
-    console.log(orderData);
-  }, [orderData]);
 
   return (
     <div className="order-item">
