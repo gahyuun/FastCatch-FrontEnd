@@ -1,9 +1,17 @@
 import axios from "axios";
 
-export const fetchAccommodationsData = async (REGION: string, STARTDATE: string, ENDDATE: string, AMOUNT: number) => {
+export const fetchAccommodationsData = async (
+  REGION: string,
+  STARTDATE: string,
+  ENDDATE: string,
+  CATEGORY: string,
+  AMOUNT: number,
+  PAGE: number
+) => {
   try {
-    const res = await axios.get(`http://54.180.97.194/api/accommodations?category=ALL&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}`);
-    console.log(res, "res");
+    const res = await axios.get(
+      `http://54.180.97.194/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
+    );
     return res.data;
   } catch (error) {
     throw new Error("Failed to fetch accs data");
