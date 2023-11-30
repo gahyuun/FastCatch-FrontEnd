@@ -1,11 +1,32 @@
-import { useState } from "react";
 import CommonInput from "@/src/components/commonInput/CommonInput";
+import {
+  REGEX_NAME,
+  REGEX_PHONE_NUMBER,
+  validationErrorMessage,
+} from "@/src/constant/validation";
 
 import "./bookerInformation.scss";
+import { useValidation } from "@/src/hooks/useValidation";
 
-const BookerInformation = () => {
-  const [userName, setUserName] = useState<string>("");
-  const [userPhoneNumber, setUserPhoneNumber] = useState("");
+const BookerInformation = ({
+  userName,
+  setUserName,
+  userPhoneNumber,
+  setUserPhoneNumber,
+  setIsBookerValidationPass,
+}: BookerInformationProps) => {
+  const { isValidation: isUserNameValidation } = useValidation(
+    userName,
+    REGEX_NAME
+  );
+  const { isValidation: isPhoneNumberValidation } = useValidation(
+    userPhoneNumber,
+    REGEX_PHONE_NUMBER
+  );
+
+  const checkUserValidation = () => {
+    setIsBookerValidationPass(isUserNameValidation && isPhoneNumberValidation);
+  };
 
   const handleUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -24,12 +45,18 @@ const BookerInformation = () => {
           placeholder={"예약자 이름을 입력해주세요"}
           onChange={handleUserName}
           value={userName}
+          onBlur={checkUserValidation}
+          inputStyle={isUserNameValidation ? "default" : "inValid"}
+          inValidAlertMessage={validationErrorMessage.nameErrorMsg}
         />
         <CommonInput
           title={"휴대폰 번호"}
           placeholder={"휴대폰 번호를 입력해주세요"}
           onChange={handleUserPhoneNumber}
           value={userPhoneNumber}
+          onBlur={checkUserValidation}
+          inputStyle={isPhoneNumberValidation ? "default" : "inValid"}
+          inValidAlertMessage={validationErrorMessage.phoneNumberErrorMsg}
         />
       </div>
     </div>
@@ -37,3 +64,11 @@ const BookerInformation = () => {
 };
 
 export default BookerInformation;
+
+interface BookerInformationProps {
+  userName: string;
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+  userPhoneNumber: string;
+  setUserPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
+  setIsBookerValidationPass: React.Dispatch<React.SetStateAction<boolean>>;
+}

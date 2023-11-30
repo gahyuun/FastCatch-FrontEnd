@@ -12,19 +12,16 @@ const SelectedAccomodation = ({
   deleteRoom,
 }: SelectedAccomodationProps) => {
   const { accommodationName, rooms } = accomdationItems;
+  console.log(accomdationItems);
   return (
     <section className="selected-room-container">
       <h2 className="text-subtitle4">{accommodationName}</h2>
       <div className="item-list">
         {rooms &&
           rooms.map(room => (
-            <>
-              <SelectedRoomItem
-                key={room.cartItemId}
-                room={room}
-                deleteRoom={deleteRoom}
-              />
-            </>
+            <div key={room.cartItemId}>
+              <SelectedRoomItem room={room} deleteRoom={deleteRoom} />
+            </div>
           ))}
       </div>
     </section>

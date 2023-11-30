@@ -32,9 +32,11 @@ const SelectedRoomItem = ({
         <div className="item-content__left-box">
           <p className="text-subtitle4">{roomName}</p>
           <div>
-            <p className="text-body1">{`${startDate} - ${endDate}`}</p>
             <p className="text-body1">
-              {`예약인원 ${headCount}인 / 최대인원 ${maxHeadCount}인`}
+              {startDate} - {endDate}
+            </p>
+            <p className="text-body1">
+              예약인원 {headCount}인 / 최대인원 {maxHeadCount}인
             </p>
             <div className="check-in-out">
               <div className="check-in-out__content">
@@ -50,7 +52,7 @@ const SelectedRoomItem = ({
           </div>
         </div>
         <div className="item-content__right-box">
-          <span className="price text-subtitle5">{`${roomPrice}원`}</span>
+          <span className="price text-subtitle5">{roomPrice}원</span>
           {pageType === "basket" && (
             <span
               className="delete-button text-body2"

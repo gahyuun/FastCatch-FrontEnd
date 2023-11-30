@@ -1,8 +1,8 @@
-import axios from "axios";
+import instance from "@/src/api/instanceApi";
+import numberFormat from "@/src/utils/numberFormat";
 import { useEffect, useState } from "react";
 import { CommonButton, SelectedAccomodation } from "../../components";
 import "./basket.scss";
-import numberFormat from "@/src/utils/numberFormat";
 
 export interface RoomDescriptionType {
   cartItemId: number;
@@ -27,48 +27,45 @@ const Basket = () => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   console.log(cartItems);
 
-  const getCartItems = async () => {
-    const { data } = await axios.get(
-      "http://43.201.113.97/api/carts?memberId=1"
-    );
+  const updateCartItems = async (cartItemId?: number) => {
     try {
-      setCartItems(data.data.cartItemResponseList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      let endpoint = "/api/carts";
 
-  const deleteRoom = async (cartItemId: number) => {
-    try {
-      const { data } = await axios.delete(
-        `http://43.201.113.97/api/cart-items/${cartItemId}?memberId=1`
-      );
+      if (cartItemId !== undefined) {
+        endpoint = `/api/cart-items/${cartItemId}`;
+      }
+
+      const { data } = await (cartItemId !== undefined
+        ? instance.delete(endpoint)
+        : instance.get(endpoint));
+
       setCartItems(data.data.cartItemResponseList);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const calculateTotalRoomsAndPrice = (
-    data: any[]
-  ): { totalRooms: number; totalPrice: string } => {
-    let totalRooms = 0;
+    data: CartItemType[]
+  ): { totalRoomsConunt: number; totalPrice: string } => {
+    let totalRoomsConunt = 0;
     let price = 0;
 
-    data.forEach((accommodation: any) => {
+    data.forEach((accommodation: CartItemType) => {
       accommodation.rooms.forEach((room: { price: number }) => {
-        totalRooms++;
+        totalRoomsConunt++;
         price += room.price;
       });
     });
     const totalPrice = numberFormat(price);
-    return { totalRooms, totalPrice };
+    return { totalRoomsConunt, totalPrice };
   };
 
-  const { totalRooms, totalPrice } = calculateTotalRoomsAndPrice(cartItems);
+  const { totalRoomsConunt, totalPrice } =
+    calculateTotalRoomsAndPrice(cartItems);
 
   useEffect(() => {
-    getCartItems();
+    updateCartItems();
   }, []);
 
   return (
@@ -84,7 +81,7 @@ const Basket = () => {
             <div key={item.accommodationId}>
               <SelectedAccomodation
                 accomdationItems={item}
-                deleteRoom={deleteRoom}
+                deleteRoom={updateCartItems}
               />
               {index !== cartItems.length - 1 && (
                 <hr className="basket-container__hr" />
@@ -94,7 +91,7 @@ const Basket = () => {
           <div className="basket-container__bottom">
             <div className="total-info">
               <span className="text-subtitle5 total-info__count">
-                {`총 ${totalRooms}건`}
+                총 {totalRoomsConunt}건
               </span>
               <span className="text-subtitle3">{}</span>
             </div>
