@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { CommonButton } from "@/src/components";
 import { getOrderApi } from "@/src/api/getOrderApi";
 import { Order } from "@/src/types/order";

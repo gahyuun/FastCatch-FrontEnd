@@ -6,8 +6,6 @@ export const getOrderApi = async () => {
     const res = await instance.get("/api/orders");
     const orderData = res.data.data.orders;
 
-    console.log(orderData);
-
     const reservedOrders =
       orderData.find((order: OrderDataTypes) => order.status === "reserved")
         ?.orderResponses || [];
