@@ -58,11 +58,9 @@ const Order = () => {
         cartItemIds: cartItemIds,
       };
       try {
-        console.log("#", orderData);
         const res = await postOrderApi("/api/orders/carts", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
-        console.log("#", orderData);
         navigate("/order/result?=false");
         const postOrderApiError = error as PostOrderApiErrorResponse;
         setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
