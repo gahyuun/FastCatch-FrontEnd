@@ -11,6 +11,7 @@ import {
   Login,
 } from "../pages";
 import App from "../App";
+import OrderResult from "../pages/orderResult/OrderResult";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: PATH.ORDER,
         element: <Order />,
+      },
+      {
+        path: PATH.ORDERTRESULT,
+        element: <OrderResult />,
       },
       {
         path: PATH.MEMBERS,

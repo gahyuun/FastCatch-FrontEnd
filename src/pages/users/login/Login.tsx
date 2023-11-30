@@ -41,7 +41,7 @@ const Login = () => {
 
   // TODO : .env에서 가져올것
   const baseURL =
-    "http://ec2-54-180-97-194.ap-northeast-2.compute.amazonaws.com/";
+    "http://ec2-43-201-113-97.ap-northeast-2.compute.amazonaws.com/";
 
   // 데이터 호출 함수
   const sendRequest = async ({ method, endpoint, data }: axiosI) => {
@@ -79,10 +79,7 @@ const Login = () => {
   // 오류메시지 노출
   useEffect(() => {
     if (errorMsg) {
-      showToast({
-        theme: "error",
-        message: errorMsg,
-      });
+      showToast({ theme: "error", message: errorMsg });
     }
   }, [errorMsg]);
 

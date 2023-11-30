@@ -105,14 +105,15 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
       console.log("데이터 전송 성공", data);
       showToast({
         theme: "success",
-        message: "장바구니에 객실이 담겼습니다!",
+        message: "장바구니에 객실이 담겼습니다",
       });
-      return;
     },
     onError: error => {
       console.log("전송 실패했습니다!!", error);
     },
   });
+
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   const template: Template = {
     cityView: "시티뷰",
@@ -124,7 +125,6 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     canCooking: "취사 가능",
   };
 
-  const { showToast, ToastContainer } = CommonToastLayout();
   const onClickBasket = _debounce(() => {
     if (!userData) {
       showToast({
@@ -136,8 +136,8 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     mutation.mutate();
   }, 700);
 
-  const onClickOrder = () => {
-    setOrderData([
+  const onClickOrder = async () => {
+    await setOrderData([
       {
         accommodationName: accommodationName,
         checkInTime: checkInTime,
@@ -152,7 +152,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
       },
     ]);
 
-    navigate("/order?cart=false");
+    await navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
 
