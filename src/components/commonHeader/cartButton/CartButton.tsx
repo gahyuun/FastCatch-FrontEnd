@@ -12,13 +12,6 @@ const CartButton = () => {
     navigate("/basket");
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/...")
-  //     .then((response) => setCartItems(response.data))
-  //     .catch((error) => console.error("장바구니 데이터 가져오기 에러 발생: ", error));
-  // }, [cartItems]);
-
   return (
     <button className="header__cart-button" onClick={moveToBasketHandler}>
       <FiShoppingCart className="cart-button__icon" />
