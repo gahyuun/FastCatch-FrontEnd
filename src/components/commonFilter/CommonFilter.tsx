@@ -24,7 +24,7 @@ const CommonFilter = (props: filterProps) => {
     "location" | "date" | "amount" | null
   >(null);
 
-  const [filterStates] = useRecoilState(filterState);
+  const [filterStates, setFilterStates] = useRecoilState(filterState);
 
   // date-fns 라이브러리로 Formatting을 합니다.
   const startDate = format(filterStates.startDate, "yyyy. MM. dd.");
@@ -104,8 +104,18 @@ const CommonFilter = (props: filterProps) => {
       </div>
       {isSelected !== null && (
         <div
-          className={props.isLocale ? "backdrop" : "backdrop transparent"}
-          onClick={() => setIsSelected(null)}
+          className="backdrop"
+          onClick={() => {
+            setFilterStates(prev => ({
+              ...prev,
+              locale: prev.current.locale,
+              startDate: prev.current.startDate,
+              endDate: prev.current.endDate,
+              category: prev.current.category,
+              amount: prev.current.amount,
+            }));
+            setIsSelected(null);
+          }}
         ></div>
       )}
     </div>

@@ -71,8 +71,6 @@ const Home = () => {
   if (isError) {
     return <div>에러~</div>;
   }
-  if (data) {
-  }
 
   return (
     <div className="home-wrapper">
@@ -83,7 +81,7 @@ const Home = () => {
             ))
           : "없어요"}
         <div className="target-div" ref={scrollRef}>
-          모든 상품을 조회했습니다. <button>더보기</button>
+          @2023 빨리 잡아
         </div>
       </div>
     </div>
