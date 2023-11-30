@@ -24,5 +24,5 @@ export interface OrderItemTypes {
   roomName: string;
   startDate: string;
   endDate: string;
-  cartItemId: number;
+  cartItemIds?: number[];
 }

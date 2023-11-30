@@ -46,7 +46,10 @@ const Order = () => {
 
   const handleClick = async () => {
     if (cartParam === "true") {
-      const cartItemIds = orderData.map(item => item.cartItemId);
+      const cartItemIds: number[] = orderData
+        .map(item => item.cartItemIds)
+        .filter((cartIds): cartIds is number[] => !!cartIds)
+        .flat();
       const requestBody = {
         ageConsent: isAllCheck,
         reservationPersonName: userName,
