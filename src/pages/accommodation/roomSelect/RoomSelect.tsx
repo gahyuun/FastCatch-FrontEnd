@@ -41,8 +41,8 @@ const RoomSelect = ({
       };
     });
     refetch();
-    console.log("리패치");
-  }, 1000);
+    console.log("리패치 성공");
+  }, 600);
 
   return (
     <div className="accommodation__select-room">

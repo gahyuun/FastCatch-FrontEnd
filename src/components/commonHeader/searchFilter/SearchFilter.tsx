@@ -1,20 +1,40 @@
 import { useEffect, useRef } from "react";
 import { IoIosSearch } from "react-icons/io";
 import "./searchFilter.scss";
+import { searchAccommodationByName } from "@/src/hooks/fetchAccommodations";
+import { useSetRecoilState } from "recoil";
+import { detailState } from "@/src/states/detailState";
+import { Accommodation } from "@/src/states/detailState";
+import { useNavigate } from "react-router-dom";
 
 const SearchFilter = () => {
+  const navigate = useNavigate();
+  const setDetailStates = useSetRecoilState(detailState);
   const inputRef = useRef<HTMLInputElement | null>(null);
+
   useEffect(() => {
     console.log(inputRef.current, "cur!");
   }, []);
 
-  const searchSubmitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const searchSubmitHandler: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    // if (e.target instanceof HTMLInputElement) {
-    //   console.log("typing in input...")
-    // } else {
-    //   console.log("submitted!");
-    // }
+    const name = inputRef.current?.value;
+    if (name?.trim().length === 0) {
+      window.alert("검색어를 입력해주세요.");
+      return;
+    }
+
+    navigate("/");
+    searchAccommodationByName(name!)
+      .then(res => {
+        if (res.accommodations.length) {
+          return res.accommodations;
+        } else {
+          alert("해당하는 조건의 숙소가 없습니다.");
+          throw new Error("해당하는 조건의 숙소가 없습니다.");
+        }
+      })
+      .then((res: Accommodation[]) => setDetailStates(res));
   };
 
   return (

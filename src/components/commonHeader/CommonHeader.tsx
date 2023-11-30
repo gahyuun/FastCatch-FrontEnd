@@ -18,13 +18,13 @@ import { filterState } from "@/src/states/filterState";
 import { format } from "date-fns";
 import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
 import { useQuery } from "react-query";
+import LogoutButton from "./logoutButton/LogoutButton";
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [filterStates, setFilterStates] = useRecoilState(filterState);
 
-  const [isLoggedIn] = useState(true);
   const [filterMode, setFilterMode] = useState<"filter" | "search">("filter");
 
   const changeFilterModeHandler = () => {
@@ -104,9 +104,10 @@ const Header = () => {
             </button>
           </section>
           <section className="header-container__right">
-            {isLoggedIn ? ( //
+            {localStorage.getItem("accessToken") ? ( //
               <>
                 <CartButton />
+                <LogoutButton />
                 <MyInfo />
               </>
             ) : (

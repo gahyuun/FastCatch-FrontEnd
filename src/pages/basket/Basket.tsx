@@ -37,10 +37,7 @@ interface ApiResponseType {
 const Basket = () => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const setOrderData = useSetRecoilState(orderState);
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "success",
-    message: "객실이 삭제 되었습니다.",
-  });
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   const navigate = useNavigate();
 
@@ -59,7 +56,10 @@ const Basket = () => {
         `/api/cart-items/${cartItemId}`
       );
       setCartItems(data.data.cartItemResponseList);
-      showToast();
+      showToast({
+        theme: "success",
+        message: "객실이 삭제 되었습니다.",
+      });
     } catch (error) {
       const axiosError = error as AxiosError;
       console.error(axiosError);
@@ -70,7 +70,10 @@ const Basket = () => {
     try {
       const { data } = await instance.delete<ApiResponseType>("/api/carts");
       setCartItems(data.data.cartItemResponseList);
-      showToast();
+      showToast({
+        theme: "success",
+        message: "객실이 삭제 되었습니다.",
+      });
     } catch (error) {
       const axiosError = error as AxiosError;
       console.error(axiosError);
