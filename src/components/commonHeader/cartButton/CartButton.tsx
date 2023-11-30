@@ -58,7 +58,7 @@ const CartButton = () => {
   return (
     <button className="header__cart-button" onClick={moveToBasketHandler}>
       <FiShoppingCart className="cart-button__icon" />
-      <div className="cart-button__amount">{cartItems}</div>
+      {cartItems && <div className="alert-dot"></div>}
     </button>
   );
 };

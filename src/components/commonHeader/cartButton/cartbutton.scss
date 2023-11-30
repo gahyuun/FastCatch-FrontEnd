@@ -10,9 +10,20 @@
   position: relative;
   color: gray(700);
 
-  & .cart-button__icon {
+  .cart-button__icon {
     font-size: rem(20);
     margin: 6px;
+    transform: translateX(rem(-2));
+  }
+
+  .alert-dot {
+    position: absolute;
+    width: rem(8);
+    height: rem(8);
+    background-color: coral(500);
+    border-radius: 50%;
+    top: rem(10);
+    right: rem(8);
   }
 
   &:hover {
