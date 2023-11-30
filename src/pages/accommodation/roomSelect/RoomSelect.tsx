@@ -42,7 +42,7 @@ const RoomSelect = ({
     });
     refetch();
     console.log("리패치 성공");
-  }, 800);
+  }, 600);
 
   return (
     <div className="accommodation__select-room">

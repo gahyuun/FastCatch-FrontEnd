@@ -103,16 +103,15 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     mutationFn: postBasket,
     onSuccess: data => {
       console.log("데이터 전송 성공", data);
-      showToast();
+      showToast({
+        theme: "success",
+        message: "장바구니에 객실이 담겼습니다!",
+      });
+      return;
     },
     onError: error => {
       console.log("전송 실패했습니다!!", error);
     },
-  });
-
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "success",
-    message: "장바구니에 객실이 담겼습니다",
   });
 
   const template: Template = {
@@ -125,9 +124,17 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     canCooking: "취사 가능",
   };
 
+  const { showToast, ToastContainer } = CommonToastLayout();
   const onClickBasket = _debounce(() => {
+    if (!userData) {
+      showToast({
+        theme: "error",
+        message: "로그인을 해주세요",
+      });
+      return;
+    }
     mutation.mutate();
-  }, 1000);
+  }, 700);
 
   const onClickOrder = () => {
     setOrderData([

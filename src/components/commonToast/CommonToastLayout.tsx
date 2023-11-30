@@ -25,11 +25,11 @@ interface toastPropI {
   message: string;
 }
 
-const CommonToastLayout = ({ theme, message }: toastPropI) => {
+const CommonToastLayout = () => {
   const [isVisible, setIsVisible] = useState(false);
   let backgroundColor = "";
 
-  const showToast = () => {
+  const showToast = ({ theme, message }: toastPropI) => {
     setIsVisible(true);
     backgroundColor =
       theme === "success"
