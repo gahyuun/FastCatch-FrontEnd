@@ -15,4 +15,17 @@
     padding: 2px 8px;
     @extend .text-body1;
   }
+  &.used {
+    color: white;
+    border: 1px solid coral(300);
+    background-color: coral(300);
+    border-radius: 8px;
+    padding: 2px 8px;
+    @extend .text-body1;
+  }
+  &.canceled {
+    padding: 2px 8px;
+    border: 1px solid coral(300);
+    color: coral(300);
+  }
 }

@@ -1,12 +1,15 @@
+import { useValidation } from "@/src/hooks/useValidation";
 import CommonInput from "@/src/components/commonInput/CommonInput";
 import {
   REGEX_NAME,
   REGEX_PHONE_NUMBER,
   validationErrorMessage,
 } from "@/src/constant/validation";
+import { useEffect } from "react";
 
 import "./bookerInformation.scss";
-import { useValidation } from "@/src/hooks/useValidation";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/src/states/userState";
 
 const BookerInformation = ({
   userName,
@@ -15,6 +18,7 @@ const BookerInformation = ({
   setUserPhoneNumber,
   setIsBookerValidationPass,
 }: BookerInformationProps) => {
+  const userInfo = useRecoilValue(userState);
   const { isValidation: isUserNameValidation } = useValidation(
     userName,
     REGEX_NAME
@@ -23,6 +27,14 @@ const BookerInformation = ({
     userPhoneNumber,
     REGEX_PHONE_NUMBER
   );
+
+  useEffect(() => {
+    if (userState) {
+      setUserName(userInfo?.name || "");
+      setUserPhoneNumber(userInfo?.phoneNumber || "");
+      setIsBookerValidationPass(true);
+    }
+  }, [userState]);
 
   const checkUserValidation = () => {
     setIsBookerValidationPass(isUserNameValidation && isPhoneNumberValidation);

@@ -27,6 +27,7 @@ function CommonButton({
       }`}
       onClick={onClick}
       type={type}
+      disabled={!isPassed}
     >
       {text}
     </button>

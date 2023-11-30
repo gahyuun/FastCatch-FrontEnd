@@ -5,6 +5,7 @@ export const PATH = {
   BASKET: "/basket",
   ACCOMMODATION: "/accommodation",
   ORDER: "/order",
+  ORDERTRESULT: "/order/result",
   MEMBERS: "/members",
   ORDERLIST: "/members/orderlist",
   INVALID: "/*",
