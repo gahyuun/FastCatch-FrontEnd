@@ -65,9 +65,9 @@ const Home = () => {
     },
   });
 
-  if (isLoading) {
-    return <div>로딩~</div>;
-  }
+  // if (isLoading) {
+  //   return <div>로딩~</div>;
+  // }
   if (isError) {
     return <div>에러~</div>;
   }
@@ -83,7 +83,7 @@ const Home = () => {
             ))
           : "없어요"}
         <div className="target-div" ref={scrollRef}>
-          <button onClick={() => refetch()}>더보기</button>
+          모든 상품을 조회했습니다.
         </div>
       </div>
     </div>
