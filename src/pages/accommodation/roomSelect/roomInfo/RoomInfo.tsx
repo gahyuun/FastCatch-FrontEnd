@@ -1,6 +1,5 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { format } from "date-fns";
-import axios from "axios";
 import { useMutation } from "react-query";
 import { filterState } from "@/src/states/filterState";
 import { orderState } from "@/src/states/orderState";
@@ -15,6 +14,7 @@ import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { room } from "@/src/types/accommodationDetail";
 import countDays from "@/src/utils/countDays";
+import instance from "@/src/api/instanceApi";
 
 interface RoomInfoProps {
   room: room;
@@ -84,7 +84,7 @@ const RoomInfo = ({
 
   const postBasket: any = () => {
     try {
-      const response = axios.post("http://43.201.113.97/api/carts/members/1", {
+      const response = instance.post("/api/carts?memberId=1", {
         //memberId 나중에 전역변수 만들어지면 수정해주기
         roomId: roomId,
         startDate: startDate,
