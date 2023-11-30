@@ -186,7 +186,6 @@ const AccommodationMap = ({
       }
     }
 
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
     customOverlay.setMap(map);
     placeOverlay.setMap(map);
     marker.setMap(map);
