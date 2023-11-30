@@ -1,5 +1,4 @@
 import "./accommodationMainInfo.scss";
-import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import { accommodationCategoryData } from "@/src/constant/categories";
 
 interface AccommodationMainInfoProps {
@@ -22,8 +21,9 @@ const AccommodationMainInfo = ({
   return (
     <div className="accommodation__main-info">
       <div className="accommodation__name">
+        <div className="accommondation__name__deco"></div>
         <span className="text-subtitle3">{accommodationName}</span>
-        <CommonBadge text="예약 가능" badgeType="fill" />
+        {/* <CommonBadge text="예약 가능" badgeType="fill" /> */}
       </div>
       <div className="accommodation__main-info__detail">
         <span className="text-body1">{categoryName} |</span>
