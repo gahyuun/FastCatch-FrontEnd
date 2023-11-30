@@ -17,3 +17,14 @@ export const fetchAccommodationsData = async (
     throw new Error("Failed to fetch accs data");
   }
 };
+
+export const searchAccommodationByName = async (NAME: string) => {
+  try {
+    const res = await axios.get(
+      `http://54.180.97.194/api/accommodations/search-by-name?query=${NAME}`
+    );
+    return res.data.data;
+  } catch {
+    throw new Error("No Valid data with this name");
+  }
+};

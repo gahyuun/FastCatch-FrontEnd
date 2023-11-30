@@ -3,6 +3,7 @@ import { getDayOfWeek } from "@/src/utils/getDayOfWeek";
 import numberFormat from "@/src/utils/numberFormat";
 
 import "./orderRoomItem.scss";
+import { calculateNightStay } from "@/src/utils/calculateNightStay";
 
 const OrderRoomItem = ({ pageType, roomInfo }: RoomPropsType) => {
   const {
@@ -28,7 +29,9 @@ const OrderRoomItem = ({ pageType, roomInfo }: RoomPropsType) => {
           <div>
             <p className="text-body1">
               {startDate} {getDayOfWeek(startDate)} - {endDate}{" "}
-              {getDayOfWeek(endDate)} (2박)
+              {getDayOfWeek(endDate)}{" "}
+              {`(${calculateNightStay(startDate, endDate)}`}
+              {"박)"}
             </p>
             <p className="text-body1">
               인원 {headCount}인 / 최대 {maxHeadCount}인

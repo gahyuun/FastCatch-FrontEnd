@@ -285,9 +285,3 @@ interface SignupData {
   phoneNumber: string;
   password: string;
 }
-
-interface axiosI {
-  method: AxiosRequestConfig["method"];
-  endpoint: string;
-  data?: AxiosRequestConfig["data"];
-}

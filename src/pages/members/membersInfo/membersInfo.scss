@@ -16,4 +16,33 @@
     flex-direction: column;
     gap: rem(24);
   }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+  }
+  &__title {
+    color: gray(600);
+  }
+  &__value {
+    width: 100%;
+    padding: rem(8) 0;
+    background-color: transparent;
+  }
+  &__input {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid gray(400);
+  }
+  &__block {
+    font-size: rem(32);
+    color: coral(500);
+  }
+  &__check {
+    font-size: rem(32);
+    color: $success;
+  }
+  &__error-msg {
+    color: $error;
+  }
 }

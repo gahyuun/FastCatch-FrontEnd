@@ -1,20 +1,21 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { format } from "date-fns";
-import axios from "axios";
-import { useMutation } from "react-query";
-import { filterState } from "@/src/states/filterState";
-import { orderState } from "@/src/states/orderState";
-import { useNavigate } from "react-router-dom";
-import _debounce from "lodash/debounce";
+import instance from "@/src/api/instanceApi";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import CommonButton from "@/src/components/commonButton/CommonButton";
 import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
-import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
-import numberFormat from "@/src/utils/numberFormat";
-import { IoCartOutline, IoPeople } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { filterState } from "@/src/states/filterState";
+import { orderState } from "@/src/states/orderState";
+import { userState } from "@/src/states/userState";
 import { room } from "@/src/types/accommodationDetail";
 import countDays from "@/src/utils/countDays";
+import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
+import numberFormat from "@/src/utils/numberFormat";
+import { format } from "date-fns";
+import _debounce from "lodash/debounce";
+import { useEffect, useState } from "react";
+import { IoCartOutline, IoPeople } from "react-icons/io5";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface RoomInfoProps {
   room: room;
@@ -26,12 +27,7 @@ interface Template {
   [key: string]: string;
 }
 
-const RoomInfo = ({
-  room,
-  accommodationId,
-  accommodationName,
-  isClicked,
-}: RoomInfoProps) => {
+const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
   const {
     name,
     price,
@@ -42,11 +38,12 @@ const RoomInfo = ({
     checkInTime,
     checkOutTime,
     soldOut,
-    // description,
   } = room;
 
   const setOrderData = useSetRecoilState(orderState);
   const navigate = useNavigate();
+
+  const userData = useRecoilValue(userState);
 
   const filterData = useRecoilValue(filterState).current;
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
@@ -84,7 +81,11 @@ const RoomInfo = ({
 
   const postBasket: any = () => {
     try {
-      const response = axios.post("http://43.201.113.97/api/carts/members/1", {
+      if (!userData) {
+        return;
+      }
+
+      const response = instance.post(`/api/carts?memberId=${userData.id}`, {
         //memberId 나중에 전역변수 만들어지면 수정해주기
         roomId: roomId,
         startDate: startDate,
@@ -102,17 +103,17 @@ const RoomInfo = ({
     mutationFn: postBasket,
     onSuccess: data => {
       console.log("데이터 전송 성공", data);
-      showToast();
+      showToast({
+        theme: "success",
+        message: "장바구니에 객실이 담겼습니다",
+      });
     },
     onError: error => {
       console.log("전송 실패했습니다!!", error);
     },
   });
 
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "success",
-    message: "장바구니에 객실이 담겼습니다",
-  });
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   const template: Template = {
     cityView: "시티뷰",
@@ -125,19 +126,39 @@ const RoomInfo = ({
   };
 
   const onClickBasket = _debounce(() => {
+    if (!userData) {
+      showToast({
+        theme: "error",
+        message: "로그인을 해주세요",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1700);
+      return;
+    }
     mutation.mutate();
-  }, 1000);
+  }, 700);
 
-  const onClickOrder = () => {
-    setOrderData([
+  const onClickOrder = async () => {
+    if (!userData) {
+      showToast({
+        theme: "error",
+        message: "로그인을 해주세요",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1700);
+      return;
+    }
+
+    await setOrderData([
       {
-        accommodationId: accommodationId,
         accommodationName: accommodationName,
         checkInTime: checkInTime,
         checkOutTime: checkOutTime,
         headCount: filterData.amount,
         maxHeadCount: maxHeadCount,
-        orderPrice: totalPrice,
+        price: totalPrice,
         roomId: roomId,
         roomName: name,
         startDate: startDate,
@@ -145,7 +166,7 @@ const RoomInfo = ({
       },
     ]);
 
-    navigate("/order?cart=false");
+    await navigate("/order?cart=false");
     window.scrollTo(0, 0);
   };
 
@@ -164,9 +185,6 @@ const RoomInfo = ({
         <div className="accommodation__menu-title">
           <span className="text-subtitle4">{name}</span>
         </div>
-        {/* <div>
-          <span>{description}</span>
-        </div> */}
 
         <div className="accommodation__main-info__detail">
           <IoPeople size="17px" />

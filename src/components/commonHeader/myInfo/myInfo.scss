@@ -5,6 +5,7 @@
   height: fit-content;
 
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 8px;
   padding: 8px;
@@ -13,11 +14,28 @@
   border: 1px solid gray(400);
   border-radius: rem(8);
   box-shadow: shadow(1);
-}
 
-.my-info-profileImage {
-  width: 32px;
-  height: 32px;
-  background-color: gray(300);
-  border-radius: 50%;
+  .my-info-profileImage {
+    width: 32px;
+    height: 32px;
+    background-color: gray(300);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    overflow: hidden;
+
+    .icon {
+      transform: translateY(rem(4));
+      color: gray(500);
+    }
+  }
+
+  .my-info-textbox {
+    max-width: 72px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
