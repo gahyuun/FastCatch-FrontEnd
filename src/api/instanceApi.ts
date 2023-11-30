@@ -6,15 +6,11 @@ const accessToken =
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL_TEST_SERVER,
   timeout: 5000,
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${accessToken}`,
-  },
 });
 
 instance.interceptors.request.use(
   config => {
-    // config.headers["Content-Type"] = "application/json";
+    config.headers["Content-Type"] = "application/json";
     config.headers["Authorization"] = `Bearer ${accessToken}`;
 
     https: return config;
@@ -34,19 +30,6 @@ instance.interceptors.response.use(
     return response;
   },
   async error => {
-    // if (error.response?.status === 401) {
-    //   if (isTokenExpired()) await tokenRefresh();
-
-    //   const accessToken = getToken();
-
-    //   error.config.headers = {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${accessToken}`,
-    //   };
-
-    //   const response = await axios.request(error.config);
-    //   return response;
-    // }
     return Promise.reject(error);
   }
 );

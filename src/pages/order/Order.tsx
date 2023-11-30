@@ -64,8 +64,9 @@ const Order = () => {
         const res = await postOrderApi("/api/orders/carts", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
-        console.log(error);
         navigate("/order/result?=false");
+        const postOrderApiError = error as PostOrderApiErrorResponse;
+        setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
       }
     }
     if (cartParam === "false") {
