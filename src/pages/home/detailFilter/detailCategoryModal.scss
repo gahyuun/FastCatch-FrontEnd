@@ -143,6 +143,17 @@
       display: block;
       margin-bottom: 8px;
     }
+    .tipped {
+      margin-top: rem(40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: rem(8);
+      background-color: gray(200);
+      height: rem(48);
+      color: gray(800);
+    }
   }
 
   .detail-modal__footer {

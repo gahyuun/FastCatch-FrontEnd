@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import { detailState } from "@/src/states/detailState";
-import { commitOptions } from './detailCommitFnc';
+import { commitOptions } from "./detailCommitFnc";
 import { CommonButton } from "@/src/components";
 import TermsAgreementItem from "@/src/components/termsAgreementItem/TermsAgreementItem";
 import { IoClose } from "react-icons/io5";
@@ -17,7 +17,7 @@ export interface OptionI {
 
 interface detailProps {
   onClick: React.MouseEventHandler<HTMLDivElement>;
-  setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>; 
+  setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const filterOption = {
@@ -29,32 +29,41 @@ const filterOption = {
   hasGym: "헬스장",
   hasBreakfast: "조식",
   hasRestaurant: "레스토랑",
-  hasCookingRoom: "취사 가능"
+  hasCookingRoom: "취사 가능",
 };
 
-const DetailCategoryModal = (props : detailProps) => {
-
+const DetailCategoryModal = (props: detailProps) => {
   const queryClient = useQueryClient();
+  const [detail] = useRecoilState(detailState);
   const setFilteredAtom = useSetRecoilState(detailState);
-  const setOpenDetail = props.setOpenDetail
+  const setOpenDetail = props.setOpenDetail;
+
+  useEffect(() => {
+    console.log(detail);
+  }, [detail]);
 
   const [activeTab, setActiveTab] = useState<number>(0);
   const [options, setOptions] = useState<OptionI[]>([
-    { key: 'hasSmokingRoom', label: filterOption.hasSmokingRoom, state: false },
-    { key: 'hasPetRoom', label: filterOption.hasPetRoom, state: false },
-    { key: 'hasParkingLot', label: filterOption.hasParkingLot, state: false },
-    { key: 'hasWifi', label: filterOption.hasWifi, state: false },
-    { key: 'hasSwimmingPool', label: filterOption.hasSwimmingPool, state: false },
-    { key: 'hasGym', label: filterOption.hasGym, state: false },
-    { key: 'hasBreakfast', label: filterOption.hasBreakfast, state: false },
-    { key: 'hasRestaurant', label: filterOption.hasRestaurant, state: false },
-    { key: 'hasCookingRoom', label: filterOption.hasCookingRoom, state: false },
+    { key: "hasSmokingRoom", label: filterOption.hasSmokingRoom, state: false },
+    { key: "hasPetRoom", label: filterOption.hasPetRoom, state: false },
+    { key: "hasParkingLot", label: filterOption.hasParkingLot, state: false },
+    { key: "hasWifi", label: filterOption.hasWifi, state: false },
+    {
+      key: "hasSwimmingPool",
+      label: filterOption.hasSwimmingPool,
+      state: false,
+    },
+    { key: "hasGym", label: filterOption.hasGym, state: false },
+    { key: "hasBreakfast", label: filterOption.hasBreakfast, state: false },
+    { key: "hasRestaurant", label: filterOption.hasRestaurant, state: false },
+    { key: "hasCookingRoom", label: filterOption.hasCookingRoom, state: false },
   ]);
-  const [translateFilterSlider, setTranslateFilterSlider] = useState<string>("0");
+  const [translateFilterSlider, setTranslateFilterSlider] =
+    useState<string>("0");
   const filterButtonsRef = useRef<Array<HTMLButtonElement | null>>(
     Array.from({ length: 4 }, () => null)
   );
-  
+
   // 첫번째 필터 (순서정렬)
   const sortOptions = (index: number, value: string) => {
     setActiveTab(index);
@@ -65,7 +74,7 @@ const DetailCategoryModal = (props : detailProps) => {
       }
     });
     if (filterButtonsRef.current[index]!) {
-      filterButtonsRef.current[index]!.classList.add('filter-active');
+      filterButtonsRef.current[index]!.classList.add("filter-active");
     }
   };
 
@@ -75,10 +84,16 @@ const DetailCategoryModal = (props : detailProps) => {
     updatedOptions[index].state = !updatedOptions[index].state;
     setOptions(updatedOptions);
   };
-  
+
   // 필터 함수 실행
   const commitOptionsHandler = () => {
-    commitOptions(activeTab, options, queryClient, setFilteredAtom, setOpenDetail);
+    commitOptions(
+      activeTab,
+      options,
+      queryClient,
+      setFilteredAtom,
+      setOpenDetail
+    );
   };
 
   return (
@@ -91,22 +106,22 @@ const DetailCategoryModal = (props : detailProps) => {
         </header>
         <section className="detail-modal__body">
           <div className="body__section">
-            <p className="text-subtitle5 filter-tit">
-              정렬
-            </p>
+            <p className="text-subtitle5 filter-tit">정렬</p>
             <div className="filters-wrapper">
               <ul className="filter-tabs">
                 {[
-                  { index: 0, label: '등록순', value: '0' },
-                  { index: 1, label: '가격낮은순', value: '100%' },
-                  { index: 2, label: '가격높은순', value: '200%' },
-                  { index: 3, label: '가나다순', value: '300%' },
+                  { index: 0, label: "등록순", value: "0" },
+                  { index: 1, label: "가격낮은순", value: "100%" },
+                  { index: 2, label: "가격높은순", value: "200%" },
+                  { index: 3, label: "가나다순", value: "300%" },
                 ].map(({ index, label, value }) => (
                   <li key={`filter-${index}`}>
                     <button
-                      className={`filter-button ${activeTab === index ? "filter-active" : ""}`}
+                      className={`filter-button ${
+                        activeTab === index ? "filter-active" : ""
+                      }`}
                       onClick={() => sortOptions(index, value)}
-                      ref={(element) => {
+                      ref={element => {
                         filterButtonsRef.current[index] = element;
                       }}
                     >
@@ -116,15 +131,17 @@ const DetailCategoryModal = (props : detailProps) => {
                 ))}
               </ul>
               <div className="filter-slider" aria-hidden="true">
-                <div className="filter-slider-rect" 
-                style={{ transform: `translateX(${translateFilterSlider})`}}>&nbsp;</div>
+                <div
+                  className="filter-slider-rect"
+                  style={{ transform: `translateX(${translateFilterSlider})` }}
+                >
+                  &nbsp;
+                </div>
               </div>
             </div>
           </div>
           <div className="body__section">
-            <p className="text-subtitle5 filter-tit">
-              숙소 옵션
-            </p>
+            <p className="text-subtitle5 filter-tit">숙소 옵션</p>
             <div className="option-wrap">
               {options.map((option, index) => (
                 <TermsAgreementItem
@@ -137,6 +154,10 @@ const DetailCategoryModal = (props : detailProps) => {
                 />
               ))}
             </div>
+            <div className="text-body3 tipped">
+              *현 시점에서 세부 필터는 현재까지 불러온 데이터들을 추려보는
+              용도로만 사용가능합니다.
+            </div>
           </div>
         </section>
         <footer className="detail-modal__footer">
@@ -145,9 +166,7 @@ const DetailCategoryModal = (props : detailProps) => {
             colorName="coral200"
             onClick={props.onClick as React.MouseEventHandler}
           />
-          <CommonButton 
-          text="확인" 
-          onClick={commitOptionsHandler} />
+          <CommonButton text="확인" onClick={commitOptionsHandler} />
         </footer>
       </div>
     </div>
