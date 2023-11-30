@@ -12,23 +12,15 @@ import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { room } from "@/src/types/accommodationDetail";
+import countDays from "@/src/utils/countDays";
 
 interface RoomInfoProps {
-  room: {
-    price: number;
-    roomId: number;
-    name: string;
-    roomOption: any;
-    baseHeadCount: number;
-    maxHeadCount: number;
-    checkInTime: string;
-    checkOutTime: string;
-    soldOut: boolean;
-    description: string;
-  };
+  room: room;
   accommodationId: number;
   accommodationName: string;
+  isClicked: boolean;
 }
 interface Template {
   [key: string]: string;
@@ -38,6 +30,7 @@ const RoomInfo = ({
   room,
   accommodationId,
   accommodationName,
+  isClicked,
 }: RoomInfoProps) => {
   const {
     name,
@@ -60,14 +53,34 @@ const RoomInfo = ({
   const endDate = filterData.endDate
     ? format(filterData.endDate, "yyyy-MM-dd")
     : format(filterData.startDate, "yyyy-MM-dd");
+  const countDay = countDays(startDate, endDate);
+  const curAmount = filterData.amount;
+
+  const [isPossible, setIsPossible] = useState(false);
+
   let totalPrice = 0;
-  if (filterData.amount < baseHeadCount) {
-    totalPrice = price;
-  } else if (filterData.amount > maxHeadCount) {
-    totalPrice = price + 15000 * (maxHeadCount - baseHeadCount);
+  if (curAmount < baseHeadCount) {
+    totalPrice = price * countDay;
+  } else if (curAmount > maxHeadCount) {
+    totalPrice = price * countDay + 15000 * (maxHeadCount - baseHeadCount);
   } else {
-    totalPrice = price + 15000 * (filterData.amount - baseHeadCount);
+    totalPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
   }
+  useEffect(() => {
+    if (curAmount < baseHeadCount) {
+      totalPrice = price;
+      setIsPossible(false);
+      return;
+    } else if (curAmount > maxHeadCount) {
+      totalPrice = price + 15000 * (maxHeadCount - baseHeadCount);
+      setIsPossible(false);
+      return;
+    } else {
+      totalPrice = price + 15000 * (curAmount - baseHeadCount);
+      setIsPossible(true);
+      return;
+    }
+  }, [window.location.search, isClicked]);
 
   const postBasket: any = () => {
     try {
@@ -76,7 +89,7 @@ const RoomInfo = ({
         roomId: roomId,
         startDate: startDate,
         endDate: endDate,
-        headCount: filterData.amount,
+        headCount: curAmount,
         orderPrice: totalPrice,
       });
       return response;
@@ -98,7 +111,7 @@ const RoomInfo = ({
 
   const { showToast, ToastContainer } = CommonToastLayout({
     theme: "success",
-    message: "장바구니에 상품이 담겼습니다",
+    message: "장바구니에 객실이 담겼습니다",
   });
 
   const template: Template = {
@@ -136,6 +149,15 @@ const RoomInfo = ({
     window.scrollTo(0, 0);
   };
 
+  let text = "";
+  if (soldOut) {
+    text = "판매된 객실입니다";
+  } else if (!isPossible) {
+    text = "인원을 변경해주세요";
+  } else {
+    text = "예약불가";
+  }
+
   return (
     <div className="room__info">
       <div>
@@ -171,11 +193,12 @@ const RoomInfo = ({
       <div>
         <div className="room__divider"></div>
         <div className="room__buttons-container">
-          {soldOut ? (
+          {soldOut || !isPossible ? (
             <CommonButton
-              text="예약 불가"
+              text={text}
               buttonSize="large"
-              colorName="coral200"
+              colorName="coral400"
+              isPassed={false}
             />
           ) : (
             <>

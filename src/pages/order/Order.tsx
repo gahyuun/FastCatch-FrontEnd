@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { OrderItemTypes, orderState } from "@/src/states/orderState";
 import { postOrderApi } from "@/src/api/postOrderApi";
 
@@ -18,6 +18,7 @@ import "./order.scss";
 import { useNavigate } from "react-router-dom";
 
 const Order = () => {
+  const [orderErrorMsg, setOrderErrorMsg] = useRecoilState(orderErrorMsgState);
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
@@ -56,7 +57,7 @@ const Order = () => {
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
         console.log(error);
-        navigate("/order/result?=false");
+        // navigate("/order/result?=false");
       }
     }
     if (cartParam === "false") {
@@ -64,8 +65,11 @@ const Order = () => {
         const res = await postOrderApi("/api/orders", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
-        console.log(error);
-        navigate("/order/result?=false");
+        setOrderErrorMsg(
+          error.response?.data?.errorMessage || "알 수 없는 에러 발생"
+        );
+        console.log(error.response?.data?.errorMessage);
+        // navigate("/order/result?=false");
       }
     }
   };

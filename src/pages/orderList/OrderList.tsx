@@ -38,7 +38,7 @@ const OrderList = () => {
 
   const getReservedList = async () => {
     const getReservedListData = await getOrderListApi("reserved");
-    if (getReservedListData.length > 0) {
+    if (getReservedListData?.length > 0) {
       setReservedList(prev => [...prev, ...getReservedListData]);
     } else {
       alert("더 이상의 데이터가 없습니다");
@@ -48,7 +48,7 @@ const OrderList = () => {
 
   const getUsedList = async () => {
     const getUsedListData = await getOrderListApi("used");
-    if (getUsedListData.length > 0) {
+    if (getUsedListData?.length > 0) {
       setUsedList(prev => [...prev, ...getUsedListData]);
     } else {
       alert("더 이상의 데이터가 없습니다");
@@ -58,7 +58,7 @@ const OrderList = () => {
 
   const getCancelList = async () => {
     const getCancelListData = await getOrderListApi("canceled");
-    if (getCancelListData.length > 0) {
+    if (getCancelListData?.length > 0) {
       setCanceledList(prev => [...prev, ...getCancelListData]);
     } else {
       alert("더 이상의 데이터가 없습니다");

@@ -2,12 +2,24 @@ import { useState } from "react";
 import MembersItem from "@/src/pages/members/membersItem/MembersItem";
 
 import "./membersInfo.scss";
+import instance from "@/src/api/instanceApi";
 
 const MembersInfo = () => {
   const [isSettingMode, setIsSettingMode] = useState(false);
 
   const handleClick = () => {
     setIsSettingMode(!isSettingMode);
+    const getTest = async () => {
+      try {
+        const res = await instance.get(
+          "/api/accommodations?category=ALL&region=ALL&startDate=2023-11-30&endDate=2023-11-30&headCount=2"
+        );
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getTest();
 
     if (isSettingMode) {
     }
