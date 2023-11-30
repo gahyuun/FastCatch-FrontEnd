@@ -8,6 +8,7 @@ import MembersHeader from "@/src/pages/members/membersHeader/MembersHeader";
 import OrderListItem from "@/src/pages/orderList/orderListItem/OrderListItem";
 
 import "./orderList.scss";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 
 const OrderList = () => {
   const [reservedList, setReservedList] = useState<Order[]>([]);
@@ -41,7 +42,7 @@ const OrderList = () => {
     if (getReservedListData?.length > 0) {
       setReservedList(prev => [...prev, ...getReservedListData]);
     } else {
-      alert("더 이상의 데이터가 없습니다");
+      showToast();
       setIsReservedList(false);
     }
   };
@@ -51,7 +52,7 @@ const OrderList = () => {
     if (getUsedListData?.length > 0) {
       setUsedList(prev => [...prev, ...getUsedListData]);
     } else {
-      alert("더 이상의 데이터가 없습니다");
+      showToast();
       setIsUsedList(false);
     }
   };
@@ -61,10 +62,15 @@ const OrderList = () => {
     if (getCancelListData?.length > 0) {
       setCanceledList(prev => [...prev, ...getCancelListData]);
     } else {
-      alert("더 이상의 데이터가 없습니다");
+      showToast();
       setIsCanceledList(false);
     }
   };
+
+  const { showToast, ToastContainer } = CommonToastLayout({
+    theme: "info",
+    message: "더이상 불러올 데이터가 없습니다",
+  });
 
   return (
     <div className="order-list">
@@ -132,6 +138,7 @@ const OrderList = () => {
           </div>
         </div>
       </div>
+      {ToastContainer}
     </div>
   );
 };

@@ -36,7 +36,7 @@ const Order = () => {
   const urlParams = new URLSearchParams(queryString);
   const cartParam = urlParams.get("cart");
   const totalOrderPrice = orderData.reduce(
-    (total, item) => total + item.orderPrice,
+    (total, item) => total + item.price,
     0
   );
 
@@ -55,7 +55,7 @@ const Order = () => {
         startDate: item.startDate,
         endDate: item.endDate,
         headCount: item.headCount,
-        orderPrice: item.orderPrice,
+        orderPrice: item.price,
       })),
     };
 

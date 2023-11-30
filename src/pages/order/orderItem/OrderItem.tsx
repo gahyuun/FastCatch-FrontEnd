@@ -20,7 +20,7 @@ const OrderItem = ({ orderData }: OrderItemProps) => {
     checkInTime,
     endDate,
     checkOutTime,
-    orderPrice,
+    price,
   } = orderData;
   useEffect(() => {
     console.log(orderData);
@@ -42,7 +42,7 @@ const OrderItem = ({ orderData }: OrderItemProps) => {
         </div>
         <OrderPrice
           nightCount={calculateNightStay(startDate, endDate)}
-          roomPrice={orderPrice}
+          roomPrice={price}
         />
       </div>
     </div>
@@ -61,6 +61,6 @@ interface OrderItemProps {
     checkInTime: string;
     endDate: string;
     checkOutTime: string;
-    orderPrice: number;
+    price: number;
   };
 }

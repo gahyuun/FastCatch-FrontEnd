@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdBlock, MdCheckCircleOutline } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { userInfoI, userState } from "@/src/states/userState";
+import { putUserInfoApi } from "@/src/api/putUserInfoApi";
 
 import { useValidation } from "@/src/hooks/useValidation";
 import {
@@ -12,6 +13,7 @@ import {
 } from "@/src/constant/validation";
 
 import "./membersInfo.scss";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 
 const MembersInfo = () => {
   const [isSettingMode, setIsSettingMode] = useState(false);
@@ -33,7 +35,7 @@ const MembersInfo = () => {
     }));
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (
       !isNameValidationPass ||
       !isNickNameValidationPass ||
@@ -43,19 +45,34 @@ const MembersInfo = () => {
       alert("모든 정보를 정확히 입력하세요");
       return;
     }
+
     setIsSettingMode(!isSettingMode);
 
     if (isSettingMode) {
       setUserInfo(copyUserInfo);
-      const { name, nickname, birthday, phoneNumber } = userInfo!;
+
+      const { name, nickname, birthday, phoneNumber } = copyUserInfo!;
       const requestBody = {
         name,
         nickname,
         birthday,
         phoneNumber,
       };
+
+      try {
+        const res = await putUserInfoApi(requestBody);
+        showToast();
+        console.log(res);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
+
+  const { showToast, ToastContainer } = CommonToastLayout({
+    theme: "success",
+    message: "정보가 수정 되었습니다",
+  });
 
   const checkNameValidation = () => {
     setIsNameValidationPass(isNameValidation);
@@ -202,6 +219,7 @@ const MembersInfo = () => {
             : "10~11자리 사이의 숫자만 입력하세요"}
         </div>
       </div>
+      {ToastContainer}
     </div>
   );
 };

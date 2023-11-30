@@ -14,13 +14,12 @@ export const orderStateFromLocalStorage = selector({
 });
 
 export interface OrderItemTypes {
-  accommodationId: number;
   accommodationName: string;
   checkInTime: string;
   checkOutTime: string;
   headCount: number;
   maxHeadCount: number;
-  orderPrice: number;
+  price: number;
   roomId: number;
   roomName: string;
   startDate: string;
