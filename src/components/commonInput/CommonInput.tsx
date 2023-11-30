@@ -4,11 +4,12 @@ interface CommonInputType {
   title?: string;
   placeholder?: string;
   value: string;
-  onChange: any;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   ifSecret?: boolean;
   inputStyle?: "default" | "valid" | "inValid";
   validAlertMessage?: string;
   inValidAlertMessage?: string;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 function CommonInput({
@@ -20,6 +21,7 @@ function CommonInput({
   inputStyle = "default",
   validAlertMessage,
   inValidAlertMessage,
+  onBlur,
 }: CommonInputType) {
   let alertMessage: string | undefined = "";
   switch (inputStyle) {
@@ -45,6 +47,7 @@ function CommonInput({
         value={value}
         onChange={onChange}
         type={ifSecret ? "password" : "text"}
+        onBlur={onBlur}
       />
       <div className={`text-body3 common-input__alert-message ${inputStyle}`}>
         {alertMessage}

@@ -21,7 +21,7 @@ const RoomImgSwiper = ({ roomImg }: RoomImgSwiperProps) => {
       {roomImg.map((obj: any) => (
         <SwiperSlide key={obj.fileName}>
           <img
-            style={{ height: "100%", width: "100%", objectFit: "cover" }}
+            style={{ maxHeight: "286px", width: "100%", objectFit: "cover" }}
             src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${obj.fileName}`}
             alt={"이미지"}
           />
