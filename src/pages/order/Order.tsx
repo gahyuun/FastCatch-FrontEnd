@@ -47,9 +47,10 @@ const Order = () => {
   const handleClick = async () => {
     if (cartParam === "true") {
       const cartItemIds: number[] = orderData
-        .map(item => item.cartItemIds)
-        .filter((cartIds): cartIds is number[] => !!cartIds)
-        .flat();
+        .map(item => {
+          return item.cartItemId;
+        })
+        .filter((cartId): cartId is number => typeof cartId === "number");
       const requestBody = {
         ageConsent: isAllCheck,
         reservationPersonName: userName,
@@ -58,6 +59,7 @@ const Order = () => {
         cartItemIds: cartItemIds,
       };
       try {
+        console.log(requestBody);
         const res = await postOrderApi("/api/orders/carts", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
