@@ -36,7 +36,10 @@ const AccommodationMap = ({
     level: 4,
   };
   const imageSize = new kakao.maps.Size(40, 40);
-
+  const { showToast, ToastContainer } = CommonToastLayout({
+    theme: "error",
+    message: "주변에 해당 시설이 없습니다",
+  });
   useEffect(() => {
     let markers: any[] = [];
     let currCategory = "";
@@ -79,10 +82,7 @@ const AccommodationMap = ({
       if (status === kakao.maps.services.Status.OK) {
         displayPlaces(data);
       } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        CommonToastLayout({
-          theme: "success",
-          message: "주변에 해당 시설이 없습니다",
-        });
+        showToast();
       } else if (status === kakao.maps.services.Status.ERROR) {
         console.log("에러 발생");
       }
@@ -216,6 +216,7 @@ const AccommodationMap = ({
             </li>
           </ul>
         </div>
+        {ToastContainer}
       </div>
     </div>
   );
