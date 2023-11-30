@@ -7,7 +7,7 @@ interface ButtonType {
   shape?: "fill" | "line";
   colorName?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  isPassed?: boolean;
+  isPassed?: boolean | boolean[] | null | undefined;
   type?: "button" | "submit";
 }
 
