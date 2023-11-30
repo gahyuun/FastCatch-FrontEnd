@@ -11,6 +11,7 @@ module.exports = {
     "airbnb-typescript",
     "airbnb/hooks",
     "eslint-config-prettier",
+    "plugin:cypress/recommended"
   ],
   overrides: [
     {

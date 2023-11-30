@@ -1,6 +1,9 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
-interface userInfoI {
+
+
+export interface userInfoI {
   id: number;
   email: string;
   name: string;
@@ -14,3 +17,5 @@ export const userState = atom<userInfoI | null>({
   key: 'userState',
   default: null
 });
+
+// persistAtom(userState);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios, { AxiosRequestConfig } from "axios";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "@/src/states/userState";
 
 import { FaRegEye } from "react-icons/fa";
@@ -12,8 +12,15 @@ import { CommonButton } from "@/src/components";
 import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 
 import "../users.scss";
+import { recoilPersist } from "recoil-persist";
 
 const Login = () => {
+
+  // const { persistAtom } = recoilPersist();
+  const atom = useRecoilValue(userState);
+  console.log('상태', atom);
+  // const good = persistAtom(atom);
+  // console.log('저장된상태', good);
 
   // 회원가입/로그인 링크이동
   const navigate = useNavigate();
@@ -120,6 +127,7 @@ const Login = () => {
                       message: '유효한 이메일 주소를 입력하세요',
                     },
                   })}
+                  data-cy="email-input"
                   />
                 {errors.email && <p className="alert-message">{errors.email.message}</p>}
                 </div>
@@ -153,6 +161,7 @@ const Login = () => {
                 type="submit"
                 text={'로그인'}
                 buttonSize={'large'}
+                data-cy="login-btn"
                 />
                 {ToastContainer}
               </div>
