@@ -13,7 +13,6 @@ import { ToastContainer } from "react-toastify";
 import "../users.scss";
 
 const Signup = () => {
-
   // 회원가입/로그인 링크이동
   const navigate = useNavigate();
   const goToLogin = () => {
@@ -38,14 +37,15 @@ const Signup = () => {
     formState: { errors },
     reset,
     watch,
-    setError
+    setError,
   } = useForm<SignupData>({
-    mode: 'onBlur', 
+    mode: "onBlur",
   });
-  const nickname = watch("nickname") ?? '';
+  const nickname = watch("nickname") ?? "";
 
   // TODO : .env에서 가져올것
-  const baseURL = 'http://ec2-43-201-113-97.ap-northeast-2.compute.amazonaws.com/';
+  const baseURL =
+    "http://ec2-54-180-97-194.ap-northeast-2.compute.amazonaws.com/";
 
   // 데이터 호출 함수
   const sendRequest = async ({ method, endpoint, data }: axiosI) => {
@@ -59,18 +59,17 @@ const Signup = () => {
       const nameData = response.data;
 
       if (nameData.data) {
-        setNicknameError('중복된 닉네임입니다');
+        setNicknameError("중복된 닉네임입니다");
         setIsNicknameValid(false);
       } else {
-        setNicknameError('사용가능한 닉네임입니다');
+        setNicknameError("사용가능한 닉네임입니다");
         setIsNicknameValid(true);
       }
 
       return response.data;
-  
     } catch (error) {
       console.error(`에러 발생 (${method} 요청):`, error);
-      throw error; 
+      throw error;
     }
   };
 
@@ -78,33 +77,33 @@ const Signup = () => {
   const onSubmit = (data: SignupData) => {
     if (isAllCheck) {
       sendRequest({
-        method: 'post',
-        endpoint: 'api/members/signup',
+        method: "post",
+        endpoint: "api/members/signup",
         data,
       });
       reset();
-      window.alert('회원가입이 완료되었습니다');
+      window.alert("회원가입이 완료되었습니다");
       goToLogin();
     }
   };
 
   // 닉네임 중복확인
   const checkName = () => {
-    setError('nickname', {
-      type: 'manual',
-      message: '', 
+    setError("nickname", {
+      type: "manual",
+      message: "",
     });
     sendRequest({
-      method: 'get',
+      method: "get",
       endpoint: `api/members/nickname?nickname=${nickname}`,
     });
-  }
+  };
 
   // 중복확인 조건문
   const isNicknameValids =
-  /^[A-Za-z가-힣]+$/.test(nickname) &&
-  nickname.length >= 2 &&
-  nickname.length <= 14;
+    /^[A-Za-z가-힣]+$/.test(nickname) &&
+    nickname.length >= 2 &&
+    nickname.length <= 14;
 
   return (
     <>
@@ -180,9 +179,15 @@ const Signup = () => {
                           message: "영어와 한글만 입력 가능합니다",
                         },
                       })}
-                      onFocus={() => setNicknameError('')}
+                      onFocus={() => setNicknameError("")}
                     />
-                    <button className="btn-check" onClick={checkName} disabled={!isNicknameValids}>중복확인</button>
+                    <button
+                      className="btn-check"
+                      onClick={checkName}
+                      disabled={!isNicknameValids}
+                    >
+                      중복확인
+                    </button>
                   </div>
                   {errors.nickname && (
                     <p className="alert-message">{errors.nickname.message}</p>
