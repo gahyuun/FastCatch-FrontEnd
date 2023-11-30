@@ -71,6 +71,8 @@ const Home = () => {
   if (isError) {
     return <div>에러~</div>;
   }
+  if (data) {
+  }
 
   return (
     <div className="home-wrapper">
