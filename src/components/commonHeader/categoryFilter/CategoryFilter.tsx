@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import "./categoryFilter.scss";
+import _debounce from "lodash/debounce";
 
 // 이미지들
 import ALL from "../../../assets/categoryIcons/all.jpg";
@@ -9,10 +10,15 @@ import GUESTHOUSE from "../../../assets/categoryIcons/guest-house.jpg";
 import HOTELRESORT from "../../../assets/categoryIcons/hotel.jpg";
 import MOTEL from "../../../assets/categoryIcons/motel.jpg";
 import { IoOptionsOutline } from "react-icons/io5";
-import { AccommodationType } from "../../../types/accommodations";
+
+import { useSetRecoilState } from "recoil";
 
 // 다른 컴포넌트
-import DetailCategoryModal from "./DetailCategoryModal";
+import DetailCategoryModal from "../../../pages/home/detailFilter/DetailCategoryModal";
+import { filterState, filterStateTypes } from "@/src/states/filterState";
+import { AccommodationType } from "@/src/types/accommodations";
+import { responseState } from "@/src/states/responseState";
+import { detailState } from "@/src/states/detailState";
 
 interface categoryTypes {
   name: string;
@@ -21,13 +27,27 @@ interface categoryTypes {
   engName: string;
 }
 
-const CategoryFilter = ({ onChangeCategory }: { onChangeCategory: React.Dispatch<React.SetStateAction<AccommodationType>> }) => {
+const CategoryFilter = () => {
+  const setFilterStates = useSetRecoilState(filterState);
+  const setResponseStates = useSetRecoilState(responseState);
+  const setDetailStates = useSetRecoilState(detailState);
+
   const categoriesData: //
   categoryTypes[] = [
     { name: "전체", img: ALL, engName: "ALL", select: true },
-    { name: "호텔/리조트", img: PENSION, engName: "HOTELRESORT", select: false },
+    {
+      name: "호텔/리조트",
+      img: PENSION,
+      engName: "HOTELRESORT",
+      select: false,
+    },
     { name: "모텔", img: GUESTHOUSE, engName: "MOTEL", select: false },
-    { name: "팬션/풀빌라", img: HOTELRESORT, engName: "PENSION", select: false },
+    {
+      name: "팬션/풀빌라",
+      img: HOTELRESORT,
+      engName: "PENSION",
+      select: false,
+    },
     { name: "게스트하우스", img: MOTEL, engName: "GUESTHOUSE", select: false },
   ];
 
@@ -38,18 +58,34 @@ const CategoryFilter = ({ onChangeCategory }: { onChangeCategory: React.Dispatch
   const [categories, setCategories] = useState(categoriesData);
 
   const toggleDetailHandler = () => {
-    setOpenDetail((prev) => !prev);
+    setOpenDetail(prev => !prev);
   };
 
   const changeCategoryHandler = (categoryName: string) => {
-    const copy: categoryTypes[] = categories.slice().map((arg) => {
+    // 카테고리 데이터가 바뀔때마다 서버호출을 다시합니다....
+    let engName = "";
+    const copy: categoryTypes[] = categories.slice().map(arg => {
       if (arg.name === categoryName) {
-        onChangeCategory(arg.engName as AccommodationType);
+        engName = arg.engName;
         return { ...arg, select: true };
       }
       return { ...arg, select: false };
     });
     setCategories(copy);
+    setResponseStates({
+      pageIndex: 0,
+      responseArray: [],
+    });
+
+    setTimeout(() =>
+      setFilterStates((prev: filterStateTypes) => ({
+        ...prev,
+        current: {
+          ...prev.current,
+          category: engName as AccommodationType,
+        },
+      }))
+    );
   };
 
   return (
@@ -60,7 +96,10 @@ const CategoryFilter = ({ onChangeCategory }: { onChangeCategory: React.Dispatch
             <button //
               key={`category-filter-${idx}`}
               className="filter__button categorySelect"
-              onClick={() => changeCategoryHandler(category.name)}
+              onClick={_debounce(() => {
+                setDetailStates([]);
+                changeCategoryHandler(category.name);
+              }, 100)}
             >
               <img src={category.img}></img>
               <span>{category.name}</span>
@@ -69,7 +108,10 @@ const CategoryFilter = ({ onChangeCategory }: { onChangeCategory: React.Dispatch
             <button //
               key={idx}
               className="filter__button"
-              onClick={() => changeCategoryHandler(category.name)}
+              onClick={_debounce(() => {
+                setDetailStates([]);
+                changeCategoryHandler(category.name);
+              }, 100)}
             >
               <img src={category.img}></img>
               <span>{category.name}</span>
@@ -77,12 +119,23 @@ const CategoryFilter = ({ onChangeCategory }: { onChangeCategory: React.Dispatch
           )
         )}
         <div className="filter__adjust-height">
-          <button className="filter__button-detail" onClick={toggleDetailHandler}>
+          <button
+            className="filter__button-detail"
+            onClick={toggleDetailHandler}
+          >
             <IoOptionsOutline className="detail__icon" />
             <span className="text-body3">필터</span>
           </button>
         </div>
-        {openDetail ? ReactDOM.createPortal(<DetailCategoryModal onClick={toggleDetailHandler} />, document.getElementById("root") as Element) : ""}
+        {openDetail
+          ? ReactDOM.createPortal(
+              <DetailCategoryModal
+                onClick={toggleDetailHandler}
+                setOpenDetail={setOpenDetail}
+              />,
+              document.getElementById("root") as Element
+            )
+          : ""}
       </div>
     </div>
   );

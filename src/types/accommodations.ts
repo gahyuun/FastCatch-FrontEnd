@@ -1,22 +1,41 @@
 // Accommodations 객체입니다.
 export interface Accommodation {
-  category: "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE";
+  category: "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE" | string;
   id: number;
   image: string;
   lowestPrice: number;
   name: string;
-  region: "ALL" | "GYEONGGI" | "SEOUL" | "GANGWON" | "CHUNGCHEONG" | "HONAM" | "GYEONGSANG" | "JEJU";
-  soldOut: false;
+  address?: string;
+  region:
+    | "ALL"
+    | "GYEONGGI"
+    | "SEOUL"
+    | "GANGWON"
+    | "CHUNGCHEONG"
+    | "HONAM"
+    | "GYEONGSANG"
+    | "JEJU"
+    | string;
+  soldOut: boolean;
 }
 
 export interface Accommodations {
   category: "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE";
   accommodations: Accommodation[];
+  address?: string;
   id: number;
   image: string;
   lowestPrice: number;
   name: string;
-  region: "ALL" | "GYEONGGI" | "SEOUL" | "GANGWON" | "CHUNGCHEONG" | "HONAM" | "GYEONGSANG" | "JEJU";
+  region:
+    | "ALL"
+    | "GYEONGGI"
+    | "SEOUL"
+    | "GANGWON"
+    | "CHUNGCHEONG"
+    | "HONAM"
+    | "GYEONGSANG"
+    | "JEJU";
   soldOut: false;
   isFirst: boolean;
   isLast: boolean;
@@ -26,6 +45,19 @@ export interface Accommodations {
   totalPage: number;
 }
 
-export type localeType = "SEOUL" | "GYEONGGI" | "GANGWON" | "CHUNGCHEONG" | "HONAM" | "GYEONGSANG" | "JEJU";
+export type localeType =
+  | "ALL"
+  | "SEOUL"
+  | "GYEONGGI"
+  | "GANGWON"
+  | "CHUNGCHEONG"
+  | "HONAM"
+  | "GYEONGSANG"
+  | "JEJU";
 
-export type AccommodationType = "ALL" | "PENSION" | "HOTELRESORT" | "MOTEL" | "GUESTHOUSE";
+export type AccommodationType =
+  | "ALL"
+  | "PENSION"
+  | "HOTELRESORT"
+  | "MOTEL"
+  | "GUESTHOUSE";
