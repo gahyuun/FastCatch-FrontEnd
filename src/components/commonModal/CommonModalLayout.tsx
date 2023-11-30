@@ -17,6 +17,8 @@ interface modalPropI {
   buttons: buttonInfo[];
   isVisible: boolean;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isVisible: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CommonModalLayout = ({
@@ -28,6 +30,12 @@ const CommonModalLayout = ({
 }: modalPropI) => {
   const closeModal = () => {
     setIsVisible(false);
+  };
+
+  const closeBg = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
   };
 
   const closeBg = (e: React.MouseEvent<HTMLDivElement>) => {
