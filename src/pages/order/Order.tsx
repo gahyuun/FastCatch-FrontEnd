@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { OrderItemTypes, orderState } from "@/src/states/orderState";
-import { postOrderApi } from "@/src/api/postOrderApi";
+import {
+  PostOrderApiErrorResponse,
+  postOrderApi,
+} from "@/src/api/postOrderApi";
 import { useNavigate } from "react-router-dom";
 import _debounce from "lodash/debounce";
 
@@ -17,6 +20,7 @@ import OrderItem from "@/src/pages/order/orderItem/OrderItem";
 import numberFormat from "@/src/utils/numberFormat";
 
 import "./order.scss";
+import { orderErrorMsgState } from "@/src/states/orderErrorMsgState";
 
 const Order = () => {
   const [userName, setUserName] = useState("");
@@ -27,6 +31,7 @@ const Order = () => {
   const [isBookerValidationPass, setIsBookerValidationPass] = useState(false);
   const [isAllValidationPass, setIsAllValidationPass] = useState(false);
   const orderData: OrderItemTypes[] = useRecoilValue(orderState);
+  const setOrderErrorMsg = useSetRecoilState(orderErrorMsgState);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const cartParam = urlParams.get("cart");
@@ -67,10 +72,10 @@ const Order = () => {
       try {
         const res = await postOrderApi("/api/orders", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
-        console.log("#");
       } catch (error) {
-        console.log(error);
         navigate("/order/result?=false");
+        const postOrderApiError = error as PostOrderApiErrorResponse;
+        setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
       }
     }
   };

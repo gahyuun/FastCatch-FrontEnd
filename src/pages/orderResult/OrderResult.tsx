@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { orderErrorMsgState } from "@/src/states/orderErrorMsgState";
 
 import "./orderResult.scss";
 
 const OrderResult = () => {
   const [result, setResult] = useState(false);
   const [orderId, setOrderId] = useState(0);
+  const orderErrorMsg = useRecoilValue(orderErrorMsgState);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -18,10 +21,12 @@ const OrderResult = () => {
 
   return (
     <div className="order-result">
-      {result && (
+      {result ? (
         <p className="order-result__order-number text-body1">
           주문번호 {orderId}
         </p>
+      ) : (
+        <p className="order-result__order-number text-body1">{orderErrorMsg}</p>
       )}
       <h3 className="text-subtitle3">
         {result === true

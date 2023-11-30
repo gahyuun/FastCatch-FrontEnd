@@ -28,3 +28,21 @@ interface PostOrderApiRequestBodyType {
   totalPrice: number;
   orderItems: OrderItemType[];
 }
+
+export interface PostOrderApiErrorResponse {
+  message: string;
+  name: string;
+  stack: string;
+  response: {
+    data: {
+      errorMessage: string;
+    };
+  };
+  config: {
+    method: string;
+    url: string;
+    data: string;
+  };
+  code: string;
+  status: number;
+}
