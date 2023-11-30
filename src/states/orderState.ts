@@ -25,5 +25,5 @@ export interface OrderItemTypes {
   startDate: string;
   endDate: string;
   cartItemIds?: number[];
-  cartItemId: number;
+  cartItemId?: number;
 }
