@@ -11,9 +11,7 @@ const MembersInfo = () => {
     setIsSettingMode(!isSettingMode);
     const getTest = async () => {
       try {
-        const res = await instance.get(
-          "/api/accommodations?category=ALL&region=ALL&startDate=2023-11-30&endDate=2023-11-30&headCount=2"
-        );
+        const res = await instance.get(`/api/orders/status/reserved?page=1`);
         console.log(res);
       } catch (error) {
         console.log(error);
