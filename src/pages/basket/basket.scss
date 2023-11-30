@@ -3,6 +3,12 @@
 .basket-container {
   max-width: rem(962);
   margin: 3rem auto;
+  padding: 0 rem(30);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &__body {
     padding: rem(24);

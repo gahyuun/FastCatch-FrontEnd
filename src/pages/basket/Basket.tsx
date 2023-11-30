@@ -1,8 +1,14 @@
 import instance from "@/src/api/instanceApi";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import numberFormat from "@/src/utils/numberFormat";
-import { useEffect, useState } from "react";
-import { CommonButton, SelectedAccomodation } from "../../components";
+import { AxiosError } from "axios";
+import { useEffect, useMemo, useState } from "react";
+import { CommonButton } from "../../components";
 import "./basket.scss";
+import SelectedAccomodation from "./selectedAccomodation/SelectedAccomodation";
+import { useSetRecoilState } from "recoil";
+import { orderState } from "@/src/states/orderState";
+import { useNavigate } from "react-router-dom";
 
 export interface RoomDescriptionType {
   cartItemId: number;
@@ -23,25 +29,51 @@ export interface CartItemType {
   rooms: RoomDescriptionType[];
 }
 
+interface ApiResponseType {
+  data: { cartItemResponseList: CartItemType[] };
+  status?: "SUCCESS" | "FAIL" | "ERROR";
+}
+
 const Basket = () => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-  console.log(cartItems);
+  const setOrderData = useSetRecoilState(orderState);
+  const { showToast, ToastContainer } = CommonToastLayout({
+    theme: "success",
+    message: "객실이 삭제 되었습니다.",
+  });
 
-  const updateCartItems = async (cartItemId?: number) => {
+  const navigate = useNavigate();
+
+  const getCartItems = async () => {
     try {
-      let endpoint = "/api/carts";
-
-      if (cartItemId !== undefined) {
-        endpoint = `/api/cart-items/${cartItemId}`;
-      }
-
-      const { data } = await (cartItemId !== undefined
-        ? instance.delete(endpoint)
-        : instance.get(endpoint));
-
+      const { data } = await instance.get<ApiResponseType>("/api/carts");
       setCartItems(data.data.cartItemResponseList);
     } catch (error) {
-      console.error(error);
+      const axiosError = error as AxiosError;
+      console.error(axiosError);
+    }
+  };
+  const deleteCartItem = async (cartItemId: number) => {
+    try {
+      const { data } = await instance.delete<ApiResponseType>(
+        `/api/cart-items/${cartItemId}`
+      );
+      setCartItems(data.data.cartItemResponseList);
+      showToast();
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      console.error(axiosError);
+    }
+  };
+
+  const deleteAllCartItems = async () => {
+    try {
+      const { data } = await instance.delete<ApiResponseType>("/api/carts");
+      setCartItems(data.data.cartItemResponseList);
+      showToast();
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      console.error(axiosError);
     }
   };
 
@@ -64,8 +96,28 @@ const Basket = () => {
   const { totalRoomsConunt, totalPrice } =
     calculateTotalRoomsAndPrice(cartItems);
 
+  const flattenData = (data: any[]) => {
+    return data.reduce((flattenedData, accommodation) => {
+      const { accommodationName, rooms } = accommodation;
+
+      return [
+        ...flattenedData,
+        ...rooms.map((room: RoomDescriptionType) => ({
+          accommodationName,
+          ...room,
+        })),
+      ];
+    }, []);
+  };
+
+  const handlePaymentClick = () => {
+    const flattenedData = flattenData(cartItems);
+    setOrderData(flattenedData);
+    navigate("/order?cart=true");
+  };
+
   useEffect(() => {
-    updateCartItems();
+    getCartItems();
   }, []);
 
   return (
@@ -74,19 +126,26 @@ const Basket = () => {
         <h1 className="basket-container__header-title text-subtitle2">
           장바구니
         </h1>
+        {cartItems.length !== 0 && (
+          <CommonButton
+            text="장바구니 비우기"
+            shape="line"
+            onClick={() => deleteAllCartItems()}
+          />
+        )}
       </div>
-      {cartItems && (
+      {cartItems && cartItems.length !== 0 && (
         <div className="basket-container__body">
-          {cartItems?.map((item: any, index: number) => (
-            <div key={item.accommodationId}>
+          {cartItems?.map((item: CartItemType, index: number) => (
+            <section key={item.accommodationId}>
               <SelectedAccomodation
                 accomdationItems={item}
-                deleteRoom={updateCartItems}
+                deleteRoom={deleteCartItem}
               />
               {index !== cartItems.length - 1 && (
                 <hr className="basket-container__hr" />
               )}
-            </div>
+            </section>
           ))}
           <div className="basket-container__bottom">
             <div className="total-info">
@@ -98,8 +157,10 @@ const Basket = () => {
             <CommonButton
               text={`${totalPrice}원 결제하기`}
               buttonSize="large"
+              onClick={handlePaymentClick}
             />
           </div>
+          {ToastContainer}
         </div>
       )}
     </div>
