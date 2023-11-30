@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import "./categoryFilter.scss";
+import _debounce from "lodash/debounce";
 
 // 이미지들
 import ALL from "../../../assets/categoryIcons/all.jpg";
@@ -93,7 +94,10 @@ const CategoryFilter = () => {
             <button //
               key={`category-filter-${idx}`}
               className="filter__button categorySelect"
-              onClick={() => changeCategoryHandler(category.name)}
+              onClick={_debounce(
+                () => changeCategoryHandler(category.name),
+                100
+              )}
             >
               <img src={category.img}></img>
               <span>{category.name}</span>
@@ -102,7 +106,10 @@ const CategoryFilter = () => {
             <button //
               key={idx}
               className="filter__button"
-              onClick={() => changeCategoryHandler(category.name)}
+              onClick={_debounce(
+                () => changeCategoryHandler(category.name),
+                100
+              )}
             >
               <img src={category.img}></img>
               <span>{category.name}</span>
