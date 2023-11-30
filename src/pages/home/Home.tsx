@@ -36,7 +36,7 @@ const Home = () => {
         observer.observe(targetElements!);
       }
     }, 1000);
-  }, [filterStates]); // 처음 한 번만 등록하도록 빈 배열을 전달
+  }, [filterStates]);
 
   // 시작일 종료일 만들기
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
