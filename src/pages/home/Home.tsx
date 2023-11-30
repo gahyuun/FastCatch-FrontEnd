@@ -8,10 +8,35 @@ import { format } from "date-fns";
 import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
 import { Accommodation } from "../../types/accommodations";
 import { responseState } from "@/src/states/responseState";
+import { useEffect, useRef } from "react";
 
 const Home = () => {
   const [filterStates] = useRecoilState(filterState);
   const [responseStates, setResponseStates] = useRecoilState(responseState);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Intersection Observer 생성
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 타겟 요소가 화면에 나타남
+          // console.log("타겟이 화면에 나타났습니다!");
+          setTimeout(() => refetch(), 500);
+        } else {
+          // 타겟 요소가 화면에서 사라짐
+          // console.log("타겟이 화면에서 사라졌습니다!");
+        }
+      });
+    });
+    // 감시 대상 요소들
+    setTimeout(() => {
+      if (scrollRef.current) {
+        const targetElements = document.querySelector(".target-div");
+        observer.observe(targetElements!);
+      }
+    }, 1000);
+  }, [filterStates]); // 처음 한 번만 등록하도록 빈 배열을 전달
 
   // 시작일 종료일 만들기
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
@@ -31,6 +56,7 @@ const Home = () => {
         filterStates.current.amount,
         responseStates.pageIndex
       ),
+    staleTime: 500000,
     onSuccess: data => {
       setResponseStates(prev => ({
         pageIndex: prev.pageIndex + 1,
@@ -56,8 +82,10 @@ const Home = () => {
               <AccomodationItem key={acc.id} data={acc} />
             ))
           : "없어요"}
+        <div className="target-div" ref={scrollRef}>
+          <button onClick={() => refetch()}>더보기</button>
+        </div>
       </div>
-      <button onClick={() => refetch()}>리패치</button>
     </div>
   );
 };
