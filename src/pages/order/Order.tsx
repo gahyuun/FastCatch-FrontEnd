@@ -51,8 +51,6 @@ const Order = () => {
       })),
     };
 
-    console.log(requestBody);
-
     if (cartParam === "true") {
       try {
         const res = await postOrderApi("/api/orders/carts", requestBody);
@@ -65,10 +63,10 @@ const Order = () => {
     if (cartParam === "false") {
       try {
         const res = await postOrderApi("/api/orders", requestBody);
-        // navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
+        navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
         console.log(error);
-        // navigate("/order/result?=false");
+        navigate("/order/result?=false");
       }
     }
   };
