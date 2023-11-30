@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { CommonButton } from "@/src/components";
 import { ToastContainer } from "react-toastify";
 
 import "../users.scss";
+import instance from "@/src/api/instanceApi";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동
@@ -33,7 +34,6 @@ const Signup = () => {
   const [isNicknameValid, setIsNicknameValid] = useState<boolean | null>(null);
   const {
     register,
-    handleSubmit,
     formState: { errors },
     reset,
     watch,
@@ -41,22 +41,39 @@ const Signup = () => {
   } = useForm<SignupData>({
     mode: "onBlur",
   });
+
   const nickname = watch("nickname") ?? "";
+  const name = watch("name");
+  const email = watch("email");
+  const birthday = watch("birthday");
+  const phoneNumber = watch("phoneNumber");
+  const password = watch("password");
 
-  // TODO : .env에서 가져올것
-  const baseURL =
-    "http://ec2-54-180-97-194.ap-northeast-2.compute.amazonaws.com";
-
-  // 데이터 호출 함수
-  const sendRequest = async ({ method, endpoint, data }: axiosI) => {
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const requestBody = { name, nickname, birthday, phoneNumber, email, password };
     try {
-      const response = await axios({
-        method,
-        url: `${baseURL}${endpoint}`,
-        data,
-      });
+      const res = await instance.post("/api/members/signup", requestBody);
+      const data = res.data.data;
+      console.log(data);
+      reset();
+      window.alert("회원가입이 완료되었습니다");
+      goToLogin();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-      const nameData = response.data;
+  // 닉네임 중복확인
+  const checkName = async () => {
+    setError("nickname", {
+      type: "manual",
+      message: "",
+    });
+
+    try {
+      const res = await instance.get(`/api/members/nickname?nickname=${nickname}`);
+      const nameData = res.data;
 
       if (nameData.data) {
         setNicknameError("중복된 닉네임입니다");
@@ -65,38 +82,9 @@ const Signup = () => {
         setNicknameError("사용가능한 닉네임입니다");
         setIsNicknameValid(true);
       }
-
-      return response.data;
     } catch (error) {
-      console.error(`에러 발생 (${method} 요청):`, error);
-      throw error;
+      console.log(error);
     }
-  };
-
-  // 회원가입 폼 제출
-  const onSubmit = (data: SignupData) => {
-    if (isAllCheck) {
-      sendRequest({
-        method: "post",
-        endpoint: "api/members/signup",
-        data,
-      });
-      reset();
-      window.alert("회원가입이 완료되었습니다");
-      goToLogin();
-    }
-  };
-
-  // 닉네임 중복확인
-  const checkName = () => {
-    setError("nickname", {
-      type: "manual",
-      message: "",
-    });
-    sendRequest({
-      method: "get",
-      endpoint: `api/members/nickname?nickname=${nickname}`,
-    });
   };
 
   // 중복확인 조건문
@@ -122,7 +110,7 @@ const Signup = () => {
                 </a>
               </li>
             </ul>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
               <div className="login-wrap__body">
                 <div className="input-inner">
                   <label htmlFor="">이름</label>

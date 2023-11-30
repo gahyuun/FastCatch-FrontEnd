@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 
 const instance: AxiosInstance = axios.create({
-  baseURL: "http://ec2-43-201-113-97.ap-northeast-2.compute.amazonaws.com/",
+  baseURL: "http://ec2-54-180-97-194.ap-northeast-2.compute.amazonaws.com/", 
   timeout: 5000,
 });
 
