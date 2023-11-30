@@ -41,7 +41,6 @@ const AccommodationMap = ({
     let markers: any[] = [];
     let currCategory = "";
     const map = new kakao.maps.Map(mapContainer.current, options);
-    const mapTypeControl = new kakao.maps.MapTypeControl();
     const markerImage = new kakao.maps.MarkerImage(markerIcon, imageSize);
     const marker = new kakao.maps.Marker({
       position: position,
