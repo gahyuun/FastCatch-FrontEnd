@@ -6,7 +6,7 @@
   justify-content: center;
   width: 100%;
   align-items: center;
-  height: calc(100vh - rem(87));
+  height: calc(100vh - rem(174));
   overflow-y: hidden;
 }
 
@@ -17,4 +17,22 @@
   flex-wrap: wrap;
   gap: rem(24);
   overflow-y: scroll;
+  padding-bottom: rem(120);
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.target-div {
+  width: 100%;
+  height: rem(160);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray(100);
+  color: gray(600);
+  margin-top: rem(40);
 }

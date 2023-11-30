@@ -2,7 +2,10 @@ import { CommonBadge } from "@/src/components";
 import "./accomodationItem.scss";
 import numberFormat from "@/src/utils/numberFormat";
 import { useNavigate } from "react-router-dom";
-import { accommodationCategoryData, regionData } from "@/src/constant/categories";
+import {
+  accommodationCategoryData,
+  regionData,
+} from "@/src/constant/categories";
 import { Accommodation } from "../../../types/accommodations";
 interface accommodationProps {
   data: Accommodation;
@@ -18,7 +21,9 @@ const AccommodationItem = ({ data }: accommodationProps) => {
   return (
     <div className="accomdationItem-container" onClick={navigateHandler}>
       <div className="accomdationItem-container__image-box">
-        <img src="https://dhdfh3vybe18.cloudfront.net/product/yanolja/yanolja-b0ed8c51362d4fb88e9dcb51c4c49063/thum/7a16c72f-da3d-46d3-80f7-4607fff30434.jpg" />
+        <img
+          src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${data.image}`}
+        />
       </div>
       <div className="accomdationItem-container__desc-box">
         <div className="item-info">
@@ -26,11 +31,14 @@ const AccommodationItem = ({ data }: accommodationProps) => {
             <strong className="text-subtitle5">{data.name}</strong>
             <div className="text-body2 item-info__lacation">
               <p>
-                {accommodationCategoryData[data.category]} | {regionData[data.region]}
+                {accommodationCategoryData[data.category]} |{" "}
+                {regionData[data.region]}
               </p>
             </div>
           </div>
-          <div className="item-info__status">{data.soldOut && <CommonBadge text="예약마감" badgeType="fill" />}</div>
+          <div className="item-info__status">
+            {data.soldOut && <CommonBadge text="예약마감" badgeType="fill" />}
+          </div>
         </div>
         <div className="item-price">
           <span className="text-body1">최저가</span>
