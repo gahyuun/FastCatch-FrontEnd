@@ -18,6 +18,7 @@ import { filterState } from "@/src/states/filterState";
 import { format } from "date-fns";
 import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
 import { useQuery } from "react-query";
+import LogoutButton from "./logoutButton/LogoutButton";
 
 const Header = () => {
   const location = useLocation();
@@ -107,6 +108,7 @@ const Header = () => {
             {isLoggedIn ? ( //
               <>
                 <CartButton />
+                <LogoutButton />
                 <MyInfo />
               </>
             ) : (
