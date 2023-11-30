@@ -1,61 +1,60 @@
-@import '../../styles/common.scss';
+@import "../../styles/common.scss";
 
 .modal-bg {
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: -1;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-wrap {
-	position: absolute;
-	z-index: 100;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	min-width: 490px;
-	background-color: white;
-	box-shadow: boxshadow(1);
-	border-radius: 8px;
-	&__header {
-		padding: 0 24px;
-		height: 70px;
-		line-height: 70px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		.btn-close {
-			background-color: white;
-			padding: 0;
-			font-size: rem(30);
-			border: none;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			&:focus {
-				outline: none;
-				border: none;
-			}
-		}
-	}
-	&__body {
-		padding: 16px 24px;
-		border-top: 1px solid #e5e9ed;
-		border-bottom: 1px solid #e5e9ed;
-		min-height: 160px;
-		max-height: 260px;
-		overflow-y: scroll;
-	}
-	&__footer {
-		padding: 0 24px;
-		height: 70px;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		gap: 12px;
-	}
+  position: absolute;
+  z-index: 1002;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 490px;
+  background-color: white;
+  box-shadow: shadow(1);
+  border-radius: 8px;
+  &__header {
+    padding: 0 24px;
+    height: 70px;
+    line-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn-close {
+      background-color: white;
+      padding: 0;
+      font-size: rem(30);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      &:focus {
+        outline: none;
+        border: none;
+      }
+    }
+  }
+  &__body {
+    padding: 16px 24px;
+    border-top: 1px solid #e5e9ed;
+    border-bottom: 1px solid #e5e9ed;
+    min-height: 160px;
+    max-height: 260px;
+    overflow-y: scroll;
+  }
+  &__footer {
+    padding: 0 24px;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+  }
 }
-

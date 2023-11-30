@@ -2,18 +2,24 @@ import "./dropdown.scss";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
+import { useRecoilState } from "recoil";
+import { filterState } from "@/src/states/filterState";
+
 interface dropdownProps {
   isSelected: "location" | "date" | "amount" | null;
-  amount: number;
-  onChangeAmount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const AmountDropdown = (props: dropdownProps) => {
+  const [filterStates, setFilterStates] = useRecoilState(filterState);
+
   const amountChangeHander = (event: React.MouseEvent, arg: number) => {
     event.stopPropagation();
-    if (props.amount === 15 && arg === 1) return; //15명인 상황에서 +1을 하면 바로 return
-    if (props.amount === 1 && arg === -1) return; //1명인 상황에서 -1을 하면 바로 return
-    props.onChangeAmount((prev) => prev + arg);
+    if (filterStates.amount === 15 && arg === 1) return; //15명인 상황에서 +1을 하면 바로 return
+    if (filterStates.amount === 1 && arg === -1) return; //1명인 상황에서 -1을 하면 바로 return
+    setFilterStates((prevStates) => ({
+      ...prevStates,
+      amount: prevStates.amount + arg,
+    }));
   };
 
   return (
@@ -28,7 +34,7 @@ const AmountDropdown = (props: dropdownProps) => {
             >
               <FaPlus />
             </div>
-            <div className="text-body2">{props.amount}명</div>
+            <div className="text-body2">{filterStates.amount}명</div>
             <div //
               className="amountChangeButton"
               onClick={(event) => amountChangeHander(event, -1)}

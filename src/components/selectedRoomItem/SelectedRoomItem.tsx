@@ -1,22 +1,31 @@
+import { RoomDescriptionType } from "@/src/pages/basket/Basket";
 import "./selectedRoomItem.scss";
+import numberFormat from "@/src/utils/numberFormat";
 
 interface RoomPropsType {
   pageType?: "basket" | "orderList";
-  roomName: string;
-  startDate: string;
-  endDate: string;
-  headCount: number;
-  price: number;
+  room: RoomDescriptionType;
+  deleteRoom: (cartId: number) => Promise<void>;
 }
 
 const SelectedRoomItem = ({
   pageType = "basket",
-  roomName,
-  startDate,
-  endDate,
-  headCount,
-  price,
+  room,
+  deleteRoom,
 }: RoomPropsType) => {
+  const {
+    cartItemId,
+    checkInTime,
+    checkOutTime,
+    endDate,
+    headCount,
+    maxHeadCount,
+    price,
+    roomId,
+    roomName,
+    startDate,
+  } = room;
+  const roomPrice = numberFormat(price);
   return (
     <div className="room-list__item">
       <div className="item-content">
@@ -24,24 +33,31 @@ const SelectedRoomItem = ({
           <p className="text-subtitle4">{roomName}</p>
           <div>
             <p className="text-body1">{`${startDate} - ${endDate}`}</p>
-            <p className="text-body1">{headCount}인</p>
+            <p className="text-body1">
+              {`예약인원 ${headCount}인 / 최대인원 ${maxHeadCount}인`}
+            </p>
             <div className="check-in-out">
               <div className="check-in-out__content">
                 <span className="check-in__span">체크인</span>
-                <span>15:00</span>
+                <span>{checkInTime}</span>
               </div>
               <div className="check-in-out__retangle">|</div>
               <div className="check-in-out__content">
                 <span className="check-in__span">체크아웃</span>
-                <span>11:00</span>
+                <span>{checkOutTime}</span>
               </div>
             </div>
           </div>
         </div>
         <div className="item-content__right-box">
-          <span className="price text-subtitle5">{price}원</span>
+          <span className="price text-subtitle5">{`${roomPrice}원`}</span>
           {pageType === "basket" && (
-            <span className="delete-button text-body2">삭제</span>
+            <span
+              className="delete-button text-body2"
+              onClick={() => deleteRoom(cartItemId)}
+            >
+              삭제
+            </span>
           )}
         </div>
       </div>

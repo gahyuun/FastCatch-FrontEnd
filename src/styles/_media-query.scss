@@ -1,13 +1,11 @@
 $grid-breakpoints: (
-	700: 700px,
-	1200: 1200px,
+  700: 700px,
+  1200: 1200px,
 );
 
 @mixin mdq-max($breakpoint) {
-	$max: map-get($grid-breakpoints, $breakpoint);
-	@media all and (max-width: $max) {
-		@content;
-	}
-	// 테스트 4
+  $max: map-get($grid-breakpoints, $breakpoint);
+  @media all and (max-width: $max) {
+    @content;
+  }
 }
-

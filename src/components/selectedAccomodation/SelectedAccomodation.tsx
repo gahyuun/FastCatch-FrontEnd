@@ -4,30 +4,28 @@ import "./selectedAccomodation.scss";
 
 interface SelectedAccomodationProps {
   accomdationItems: CartItemType;
+  deleteRoom: (cartId: number) => Promise<void>;
 }
 
 const SelectedAccomodation = ({
   accomdationItems,
+  deleteRoom,
 }: SelectedAccomodationProps) => {
-  const {
-    accommodationName,
-    cartItemId,
-    endDate,
-    headCount,
-    price,
-    startDate,
-  } = accomdationItems;
+  const { accommodationName, rooms } = accomdationItems;
   return (
     <section className="selected-room-container">
-      <h2 className="text-subtitle4">{accomdationItems.accommodationName}</h2>
+      <h2 className="text-subtitle4">{accommodationName}</h2>
       <div className="item-list">
-        <SelectedRoomItem
-          roomName={accommodationName}
-          startDate={startDate}
-          endDate={endDate}
-          headCount={headCount}
-          price={price}
-        />
+        {rooms &&
+          rooms.map(room => (
+            <>
+              <SelectedRoomItem
+                key={room.cartItemId}
+                room={room}
+                deleteRoom={deleteRoom}
+              />
+            </>
+          ))}
       </div>
     </section>
   );

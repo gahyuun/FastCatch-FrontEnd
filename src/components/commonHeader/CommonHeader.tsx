@@ -1,7 +1,8 @@
 import "./commonHeader.scss";
 
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { IoIosSearch } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 
@@ -9,27 +10,10 @@ import CommonFilter from "../commonFilter/CommonFilter";
 import MyInfo from "./myInfo/MyInfo";
 import CommonButton from "../commonButton/CommonButton";
 import CartButton from "./cartButton/CartButton";
-import CategoryFilter from "./categoryFilter/CategoryFilter";
 import SearchFilter from "./searchFilter/SearchFilter";
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const categoryData: [string, boolean][] = [
-    ["서울", true],
-    ["경기", false],
-    ["강원", false],
-    ["충청", false],
-    ["전라", false],
-    ["경상", false],
-    ["제주", false],
-  ];
-
-  const [locale, setLocale] = useState(categoryData);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const [amount, setAmount] = useState(2);
 
   const [isLoggedIn] = useState(true);
   const [filterMode, setFilterMode] = useState<"filter" | "search">("filter");
@@ -51,6 +35,8 @@ const Header = () => {
     navigate("/");
   };
 
+  const handler = () => {};
+
   return (
     <>
       <header className="header-container">
@@ -61,18 +47,7 @@ const Header = () => {
             </div>
           </section>
           <section className="header-container__center">
-            {filterMode === "filter" && (
-              <CommonFilter //
-                locale={locale}
-                onChangeLocale={setLocale}
-                startDate={startDate}
-                onChangeStartDate={setStartDate}
-                endDate={endDate}
-                onChangeEndDate={setEndDate}
-                amount={amount}
-                onChangeAmount={setAmount}
-              />
-            )}
+            {filterMode === "filter" && <CommonFilter onClick={handler} isLocale={true} />}
             {filterMode === "search" && <SearchFilter />}
             <button className="filter__secondary-button" onClick={changeFilterModeHandler}>
               {filterMode === "filter" && <IoIosSearch className="secondary-button__icon" />}
@@ -91,7 +66,6 @@ const Header = () => {
           </section>
         </div>
       </header>
-      {location.pathname === "/" && <CategoryFilter />}
     </>
   );
 };

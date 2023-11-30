@@ -1,28 +1,33 @@
 import React from "react";
 import "./locationDropdownEls.scss";
 
+import { useRecoilState } from "recoil";
+import { filterState } from "@/src/states/filterState";
+import { filterStateTypes } from "@/src/states/filterState";
+
 interface locationProps {
-  wholeLocale: [string, boolean][];
-  locale: [string, boolean];
-  onChangeLocale: React.Dispatch<React.SetStateAction<[string, boolean][]>>;
-  onChangeFilter: React.Dispatch<React.SetStateAction<"location" | "date" | "amount" | null>>;
+  allocated: [string, string];
+  onChangeSelected: React.Dispatch<React.SetStateAction<"location" | "date" | "amount" | null>>;
 }
 
 const LocationCategoryName = (props: locationProps) => {
+  const [filterStates, setFilterStates] = useRecoilState(filterState);
+
   const selectionHandler = (event: React.MouseEvent) => {
     event.stopPropagation(); // 버블링 방지
-    const copy = props.wholeLocale.slice().map((arg) => (arg[0] === props.locale[0] ? [arg[0], true] : [arg[0], false])) as [string, boolean][]; // 선택한 지역을 true로, 아닌 지역은 false로 바꿈(두번째 인자)
+    setFilterStates((prevStates) => {
+      return { ...prevStates, locale: props.allocated[0] as filterStateTypes["locale"] };
+    });
 
-    props.onChangeLocale(copy);
-    props.onChangeFilter("date"); // 일정 필터로 바꿈
+    props.onChangeSelected("date"); // 일정 필터로 바꿈
   };
 
   return (
     <div
-      className={props?.locale[1] ? "selected" : "unSelected"} //
+      className={props?.allocated[0] === filterStates.locale ? "selected" : "unSelected"} //
       onClick={selectionHandler}
     >
-      {props.locale[0]}
+      {props.allocated[1]}
     </div>
   );
 };

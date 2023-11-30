@@ -1,5 +1,20 @@
 @import "../../styles/common.scss";
 
 .home-wrapper {
-  margin: 2rem 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  height: calc(100vh - rem(87));
+  overflow-y: hidden;
+}
+
+.home-inner {
+  display: flex;
+  width: rem(1192);
+  height: 100%;
+  flex-wrap: wrap;
+  gap: rem(24);
+  overflow-y: scroll;
 }

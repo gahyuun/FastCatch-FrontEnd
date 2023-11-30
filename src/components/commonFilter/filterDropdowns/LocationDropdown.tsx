@@ -5,24 +5,31 @@ import "./dropdown.scss";
 
 interface dropdownProps {
   isSelected: "location" | "date" | "amount" | null;
-  locale: [string, boolean][];
-  onChangeLocale: React.Dispatch<React.SetStateAction<[string, boolean][]>>;
-  onChangeFilter: React.Dispatch<React.SetStateAction<"location" | "date" | "amount" | null>>;
+  onChangeSelected: React.Dispatch<React.SetStateAction<"location" | "date" | "amount" | null>>;
+  categoryData: {
+    GYEONGGI: string;
+    SEOUL: string;
+    GANGWON: string;
+    CHUNGCHEONG: string;
+    HONAM: string;
+    GYEONGSANG: string;
+    JEJU: string;
+  };
 }
 
 const LocationDropdown = (props: dropdownProps) => {
+  const entries = Object.entries(props.categoryData);
+
   return (
     <>
       {props.isSelected === "location" && ( //
         <div className="location-container">
           <section className="categoryNames">
-            {props.locale.map((arg) => (
+            {entries.map((arg) => (
               <LocationCategoryName //
-                onChangeFilter={props.onChangeFilter}
+                onChangeSelected={props.onChangeSelected}
                 key={arg[0]}
-                wholeLocale={props.locale}
-                locale={arg}
-                onChangeLocale={props.onChangeLocale}
+                allocated={arg}
               />
             ))}
           </section>
@@ -33,7 +40,3 @@ const LocationDropdown = (props: dropdownProps) => {
 };
 
 export default LocationDropdown;
-
-// const truthy = copy.find((value) => value[1] === true) as [string, boolean];
-
-// props.onChangeLocale(truthy[0] as "서울" | "경기");
