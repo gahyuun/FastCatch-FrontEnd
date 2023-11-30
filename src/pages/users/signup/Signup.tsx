@@ -57,7 +57,6 @@ const Signup = () => {
       });
 
       const nameData = response.data;
-      console.log(`${method} 요청 성공:`, nameData);
 
       if (nameData.data) {
         setNicknameError('중복된 닉네임입니다');
@@ -84,6 +83,8 @@ const Signup = () => {
         data,
       });
       reset();
+      window.alert('회원가입이 완료되었습니다');
+      goToLogin();
     }
   };
 
