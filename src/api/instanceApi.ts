@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import { getToken } from "../utils/getToken";
 
 const instance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL_TEST_SERVER,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 5000,
 });
 

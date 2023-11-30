@@ -11,9 +11,9 @@ import {
   REGEX_NICK_NAME,
   REGEX_PHONE_NUMBER,
 } from "@/src/constant/validation";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 
 import "./membersInfo.scss";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 
 const MembersInfo = () => {
   const [isSettingMode, setIsSettingMode] = useState(false);
@@ -42,7 +42,10 @@ const MembersInfo = () => {
       !isPhoneNumberValidationPass ||
       !isBirthDayValidationPass
     ) {
-      alert("모든 정보를 정확히 입력하세요");
+      showToast({
+        theme: "error",
+        message: "모든 정보를 정확히 입력하세요",
+      });
       return;
     }
 
@@ -61,7 +64,10 @@ const MembersInfo = () => {
 
       try {
         const res = await putUserInfoApi(requestBody);
-        showToast();
+        showToast({
+          theme: "success",
+          message: "정보가 수정 되었습니다",
+        });
         console.log(res);
       } catch (error) {
         console.error(error);
@@ -69,10 +75,7 @@ const MembersInfo = () => {
     }
   };
 
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "success",
-    message: "정보가 수정 되었습니다",
-  });
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   const checkNameValidation = () => {
     setIsNameValidationPass(isNameValidation);
@@ -147,7 +150,13 @@ const MembersInfo = () => {
               <MdCheckCircleOutline className={"members-info__check"} />
             ) : null}
           </div>
-          {isNameValidationPass ? "" : "2글자 이상 영어와 한글로 입력하세요"}
+          {isNameValidationPass ? (
+            ""
+          ) : (
+            <p className="members-info__error-msg">
+              2글자 이상 영어와 한글로 입력하세요
+            </p>
+          )}
         </div>
         <div className="members-info__item">
           <label htmlFor="nickName" className="members-info__title">
@@ -168,9 +177,13 @@ const MembersInfo = () => {
               <MdCheckCircleOutline className={"members-info__check"} />
             ) : null}
           </div>
-          {isNickNameValidationPass
-            ? ""
-            : "2글자 ~ 14글자 사이 영어와 한글만 입력하세요"}
+          {isNickNameValidationPass ? (
+            ""
+          ) : (
+            <p className="members-info__error-msg">
+              2글자 ~ 14글자 사이 영어와 한글만 입력하세요
+            </p>
+          )}
         </div>
         <div className="members-info__item">
           <label htmlFor="birthDay" className="members-info__title">
@@ -191,9 +204,13 @@ const MembersInfo = () => {
               <MdCheckCircleOutline className={"members-info__check"} />
             ) : null}
           </div>
-          {isBirthDayValidationPass
-            ? ""
-            : "올바른 형식의 생년월일을 입력하세요 (yyyy-mm-dd)"}
+          {isBirthDayValidationPass ? (
+            ""
+          ) : (
+            <p className="members-info__error-msg">
+              올바른 형식의 생년월일을 입력하세요 (yyyy-mm-dd)
+            </p>
+          )}
         </div>
         <div className="members-info__item">
           <label htmlFor="userPhoneNumber" className="members-info__title">
@@ -214,9 +231,13 @@ const MembersInfo = () => {
               <MdCheckCircleOutline className={"members-info__check"} />
             ) : null}
           </div>
-          {isPhoneNumberValidationPass
-            ? ""
-            : "10~11자리 사이의 숫자만 입력하세요"}
+          {isPhoneNumberValidationPass ? (
+            ""
+          ) : (
+            <p className="members-info__error-msg">
+              10~11자리 사이의 숫자만 입력하세요
+            </p>
+          )}
         </div>
       </div>
       {ToastContainer}

@@ -32,6 +32,7 @@ const BookerInformation = ({
     if (userState) {
       setUserName(userInfo?.name || "");
       setUserPhoneNumber(userInfo?.phoneNumber || "");
+      setIsBookerValidationPass(true);
     }
   }, [userState]);
 

@@ -42,4 +42,7 @@
     font-size: rem(32);
     color: $success;
   }
+  &__error-msg {
+    color: $error;
+  }
 }
