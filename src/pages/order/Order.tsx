@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { OrderItemTypes, orderState } from "@/src/states/orderState";
 import { postOrderApi } from "@/src/api/postOrderApi";
+import { useNavigate } from "react-router-dom";
+import _debounce from "lodash/debounce";
 
 import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
 import CommonButton from "@/src/components/commonButton/CommonButton";
@@ -15,7 +17,6 @@ import OrderItem from "@/src/pages/order/orderItem/OrderItem";
 import numberFormat from "@/src/utils/numberFormat";
 
 import "./order.scss";
-import { useNavigate } from "react-router-dom";
 
 const Order = () => {
   const [userName, setUserName] = useState("");
@@ -34,9 +35,11 @@ const Order = () => {
     0
   );
 
-  const handleClick = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    localStorage.setItem("orderState", JSON.stringify(orderData));
+  }, [orderData]);
 
+  const handleClick = async () => {
     const requestBody = {
       ageConsent: isAllCheck,
       reservationPersonName: userName,
@@ -64,6 +67,7 @@ const Order = () => {
       try {
         const res = await postOrderApi("/api/orders", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
+        console.log("#");
       } catch (error) {
         console.log(error);
         navigate("/order/result?=false");
@@ -103,7 +107,9 @@ const Order = () => {
           text={`${numberFormat(totalOrderPrice)}원 예약하기`}
           buttonSize={"exLarge"}
           isPassed={isAllValidationPass}
-          onClick={handleClick}
+          onClick={_debounce(() => {
+            handleClick();
+          }, 1000)}
         />
         <SubDescription />
       </form>
