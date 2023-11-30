@@ -1,21 +1,20 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { format } from "date-fns";
-import axios from "axios";
-import { useMutation } from "react-query";
-import { filterState } from "@/src/states/filterState";
-import { orderState } from "@/src/states/orderState";
-import { useNavigate } from "react-router-dom";
-import _debounce from "lodash/debounce";
+import instance from "@/src/api/instanceApi";
 import CommonBadge from "@/src/components/commonBadge/CommonBadge";
 import CommonButton from "@/src/components/commonButton/CommonButton";
 import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
-import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
-import numberFormat from "@/src/utils/numberFormat";
-import { IoCartOutline, IoPeople } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { filterState } from "@/src/states/filterState";
+import { orderState } from "@/src/states/orderState";
 import { room } from "@/src/types/accommodationDetail";
 import countDays from "@/src/utils/countDays";
-import instance from "@/src/api/instanceApi";
+import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
+import numberFormat from "@/src/utils/numberFormat";
+import { format } from "date-fns";
+import _debounce from "lodash/debounce";
+import { useEffect, useState } from "react";
+import { IoCartOutline, IoPeople } from "react-icons/io5";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface RoomInfoProps {
   room: room;
@@ -29,7 +28,7 @@ interface Template {
 
 const RoomInfo = ({
   room,
-  accommodationId,
+  // accommodationId,
   accommodationName,
   isClicked,
 }: RoomInfoProps) => {
