@@ -3,6 +3,7 @@
 .category-filter__container {
   width: 100%;
   height: rem(88);
+  flex-shrink: 0;
   background-color: white;
   position: relative;
 
