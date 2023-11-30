@@ -4,6 +4,7 @@ import CommonButton from "@/src/components/commonButton/CommonButton";
 import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import { filterState } from "@/src/states/filterState";
 import { orderState } from "@/src/states/orderState";
+import { userState } from "@/src/states/userState";
 import { room } from "@/src/types/accommodationDetail";
 import countDays from "@/src/utils/countDays";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
@@ -26,12 +27,7 @@ interface Template {
   [key: string]: string;
 }
 
-const RoomInfo = ({
-  room,
-  // accommodationId,
-  accommodationName,
-  isClicked,
-}: RoomInfoProps) => {
+const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
   const {
     name,
     price,
@@ -42,11 +38,12 @@ const RoomInfo = ({
     checkInTime,
     checkOutTime,
     soldOut,
-    // description,
   } = room;
 
   const setOrderData = useSetRecoilState(orderState);
   const navigate = useNavigate();
+
+  const userData = useRecoilValue(userState);
 
   const filterData = useRecoilValue(filterState).current;
   const startDate = format(filterData.startDate, "yyyy-MM-dd");
@@ -84,7 +81,11 @@ const RoomInfo = ({
 
   const postBasket: any = () => {
     try {
-      const response = instance.post("/api/carts?memberId=1", {
+      if (!userData) {
+        return;
+      }
+
+      const response = instance.post(`/api/carts?memberId=${userData.id}`, {
         //memberId 나중에 전역변수 만들어지면 수정해주기
         roomId: roomId,
         startDate: startDate,
@@ -125,13 +126,19 @@ const RoomInfo = ({
   };
 
   const onClickBasket = _debounce(() => {
+    if (!userData) {
+      showToast({
+        theme: "error",
+        message: "로그인을 해주세요",
+      });
+      return;
+    }
     mutation.mutate();
-  }, 1000);
+  }, 700);
 
   const onClickOrder = async () => {
     await setOrderData([
       {
-        // accommodationId: accommodationId,
         accommodationName: accommodationName,
         checkInTime: checkInTime,
         checkOutTime: checkOutTime,
@@ -164,9 +171,6 @@ const RoomInfo = ({
         <div className="accommodation__menu-title">
           <span className="text-subtitle4">{name}</span>
         </div>
-        {/* <div>
-          <span>{description}</span>
-        </div> */}
 
         <div className="accommodation__main-info__detail">
           <IoPeople size="17px" />

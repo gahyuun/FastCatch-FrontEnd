@@ -1,13 +1,13 @@
-import { filterState } from "@/src/states/filterState";
-import axios from "axios";
-import { format } from "date-fns";
-import { useQuery } from "react-query";
 import { useRecoilValue } from "recoil";
+import { format } from "date-fns";
 import "./accommodation.scss";
-import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
-import AccommodationMap from "./accommodationMap/AccommodationMap";
-import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
+import { useQuery } from "react-query";
 import RoomSelect from "./roomSelect/RoomSelect";
+import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
+import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
+import AccommodationMap from "./accommodationMap/AccommodationMap";
+import { filterState } from "@/src/states/filterState";
+import instance from "@/src/api/instanceApi";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
@@ -20,8 +20,8 @@ const Accommodation = () => {
 
   const fetchListData = async () => {
     try {
-      const res = await axios.get(
-        `http://54.180.97.194/api/accommodations/${id}?startDate=${startDate}&endDate=${endDate}`
+      const res = await instance.get(
+        `/api/accommodations/${id}?startDate=${startDate}&endDate=${endDate}`
       );
       return res.data.data;
     } catch (error) {
@@ -34,7 +34,6 @@ const Accommodation = () => {
     queryKey: [id, "postDetail"],
     queryFn: fetchListData,
     staleTime: 500000,
-    // enabled: false,
   });
   if (isLoading) {
     return <div>로딩중..!!!!!</div>;
