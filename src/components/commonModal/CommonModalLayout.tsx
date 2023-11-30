@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CommonButton from "../commonButton/CommonButton";
 import "./commonModalLayout.scss";
 import { IoClose } from "react-icons/io5";
@@ -16,21 +15,27 @@ interface modalPropI {
   title: string;
   content: string;
   buttons: buttonInfo[];
+  isVisible: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CommonModalLayout = ({ title, content, buttons }: modalPropI) => {
-
-  const [isVisible, setIsVisible] = useState(true);
+const CommonModalLayout = ({ title, content, buttons, isVisible, setIsVisible }: modalPropI) => {
 
   const closeModal = () => {
     setIsVisible(false);
+  };
+
+  const closeBg = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
   };
 
   return (
     <>
     {isVisible && (
       <>
-        <div className='modal-bg'></div>
+        <div className='modal-bg' onClick={closeBg}></div>
         <div className="modal-wrap">
           <div className="modal-wrap__header">
             <p className="text-subtitle4">{title}</p>

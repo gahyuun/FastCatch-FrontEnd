@@ -9,10 +9,13 @@ import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
 import { Accommodation } from "../../types/accommodations";
 import { responseState } from "@/src/states/responseState";
 import { useEffect, useRef } from "react";
+import { detailState } from "@/src/states/detailState";
 
 const Home = () => {
+  const [detailFiltered, setDetailFiltered] = useRecoilState(detailState);
   const [filterStates] = useRecoilState(filterState);
   const [responseStates, setResponseStates] = useRecoilState(responseState);
+
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -77,17 +80,27 @@ const Home = () => {
   return (
     <div className="home-wrapper">
       <div className="home-inner">
-        {responseStates.responseArray.length !== 0
+        {detailFiltered.length === 0
           ? responseStates.responseArray.map((acc: Accommodation) => (
               <AccomodationItem key={acc.id} data={acc} />
             ))
-          : "없어요"}
+          : detailFiltered.map(acc => (
+              <AccomodationItem key={acc.id} data={acc} />
+            ))}
         <div className="target-div" ref={scrollRef}>
           @2023 빨리 잡아
         </div>
       </div>
+      {detailFiltered.length !== 0 && (
+        <button
+          className="home__filter-reset"
+          onClick={() => setDetailFiltered([])}
+        >
+          세부필터 해제
+        </button>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

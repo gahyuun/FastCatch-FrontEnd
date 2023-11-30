@@ -6,13 +6,13 @@ export const orderState = atom<OrderItemTypes[]>({
 });
 
 interface OrderItemTypes {
-  accommodationId: number;
+  // accommodationId: number;
   accommodationName: string;
   checkInTime: string;
   checkOutTime: string;
   headCount: number;
   maxHeadCount: number;
-  orderPrice: number;
+  price: number;
   roomId: number;
   roomName: string;
   startDate: string;

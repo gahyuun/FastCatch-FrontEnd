@@ -36,3 +36,22 @@
   color: gray(600);
   margin-top: rem(40);
 }
+
+.home__filter-reset {
+  position: absolute;
+  bottom: rem(40);
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  width: rem(240);
+  height: rem(40);
+  box-shadow: shadow(3);
+  color: white;
+  border-radius: rem(8);
+  background-color: coral(300);
+
+  &:hover {
+    background-color: coral(400);
+  }
+}
