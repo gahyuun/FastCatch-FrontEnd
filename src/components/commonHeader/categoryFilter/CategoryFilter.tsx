@@ -120,7 +120,10 @@ const CategoryFilter = () => {
         </div>
         {openDetail
           ? ReactDOM.createPortal(
-              <DetailCategoryModal onClick={toggleDetailHandler} />,
+              <DetailCategoryModal
+                onClick={toggleDetailHandler}
+                setOpenDetail={setOpenDetail}
+              />,
               document.getElementById("root") as Element
             )
           : ""}
