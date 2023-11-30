@@ -100,7 +100,7 @@ const Home = () => {
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
