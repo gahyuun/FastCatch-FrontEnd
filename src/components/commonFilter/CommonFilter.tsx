@@ -12,6 +12,7 @@ import AmountDropdown from "./filterDropdowns/AmountDropdown";
 import DateDropdown from "./filterDropdowns/DateDropdown";
 import LocationDropdown from "./filterDropdowns/LocationDropdown";
 import { responseState } from "@/src/states/responseState";
+import { detailState } from "@/src/states/detailState";
 
 interface filterProps {
   isLocale?: boolean;
@@ -20,6 +21,7 @@ interface filterProps {
 
 const CommonFilter = (props: filterProps) => {
   const setResponseStates = useSetRecoilState(responseState);
+  const setDetailStates = useSetRecoilState(detailState);
   const [isSelected, setIsSelected] = useState<
     "location" | "date" | "amount" | null
   >(null);
@@ -40,6 +42,7 @@ const CommonFilter = (props: filterProps) => {
       pageIndex: 0,
       responseArray: [],
     });
+    setDetailStates([]);
     setIsSelected(null);
   };
 
