@@ -37,10 +37,7 @@ const Login = () => {
   });
   const setUserInfo = useSetRecoilState(userState);
   const [errorMsg, setErrorMsg] = useState("");
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "error",
-    message: errorMsg,
-  });
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   // TODO : .env에서 가져올것
   const baseURL =
@@ -82,7 +79,7 @@ const Login = () => {
   // 오류메시지 노출
   useEffect(() => {
     if (errorMsg) {
-      showToast();
+      showToast({ theme: "error", message: errorMsg });
     }
   }, [errorMsg]);
 

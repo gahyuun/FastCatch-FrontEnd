@@ -42,7 +42,10 @@ const OrderList = () => {
     if (getReservedListData?.length > 0) {
       setReservedList(prev => [...prev, ...getReservedListData]);
     } else {
-      showToast();
+      showToast({
+        theme: "info",
+        message: '"더이상 불러올 데이터가 없습니다"',
+      });
       setIsReservedList(false);
     }
   };
@@ -52,7 +55,10 @@ const OrderList = () => {
     if (getUsedListData?.length > 0) {
       setUsedList(prev => [...prev, ...getUsedListData]);
     } else {
-      showToast();
+      showToast({
+        theme: "info",
+        message: '"더이상 불러올 데이터가 없습니다"',
+      });
       setIsUsedList(false);
     }
   };
@@ -62,15 +68,15 @@ const OrderList = () => {
     if (getCancelListData?.length > 0) {
       setCanceledList(prev => [...prev, ...getCancelListData]);
     } else {
-      showToast();
+      showToast({
+        theme: "info",
+        message: '"더이상 불러올 데이터가 없습니다"',
+      });
       setIsCanceledList(false);
     }
   };
 
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "info",
-    message: "더이상 불러올 데이터가 없습니다",
-  });
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   return (
     <div className="order-list">

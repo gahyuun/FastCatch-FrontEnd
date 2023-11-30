@@ -102,17 +102,17 @@ const RoomInfo = ({
     mutationFn: postBasket,
     onSuccess: data => {
       console.log("데이터 전송 성공", data);
-      showToast();
+      showToast({
+        theme: "success",
+        message: "장바구니에 객실이 담겼습니다",
+      });
     },
     onError: error => {
       console.log("전송 실패했습니다!!", error);
     },
   });
 
-  const { showToast, ToastContainer } = CommonToastLayout({
-    theme: "success",
-    message: "장바구니에 객실이 담겼습니다",
-  });
+  const { showToast, ToastContainer } = CommonToastLayout();
 
   const template: Template = {
     cityView: "시티뷰",
