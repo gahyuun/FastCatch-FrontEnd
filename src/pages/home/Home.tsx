@@ -65,9 +65,9 @@ const Home = () => {
     },
   });
 
-  // if (isLoading) {
-  //   return <div>로딩~</div>;
-  // }
+  if (isLoading) {
+    return <div>로딩~</div>;
+  }
   if (isError) {
     return <div>에러~</div>;
   }

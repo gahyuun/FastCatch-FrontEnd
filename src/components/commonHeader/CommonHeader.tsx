@@ -57,7 +57,8 @@ const Header = () => {
         startDate,
         endDate,
         filterStates.current.category,
-        filterStates.current.amount
+        filterStates.current.amount,
+        1
       ),
     select: data => data.data,
   });
