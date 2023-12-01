@@ -7,10 +7,10 @@ import { FaRegEyeSlash } from "react-icons/fa";
 
 import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
 import { CommonButton } from "@/src/components";
-import { ToastContainer } from "react-toastify";
 
 import "../users.scss";
 import instance from "@/src/api/instanceApi";
+import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동
@@ -34,55 +34,57 @@ const Signup = () => {
   const {
     register,
     formState: { errors },
-    reset,
     watch,
-    setError,
   } = useForm<SignupData>({
     mode: "onBlur",
   });
-
+  const email = watch("email") ?? "";
   const nickname = watch("nickname") ?? "";
-  const name = watch("name");
-  const email = watch("email");
-  const birthday = watch("birthday");
-  const phoneNumber = watch("phoneNumber");
-  const password = watch("password");
+  const password = watch("password") ?? "";
+  const name = watch("name") ?? "";
+  const birthday = watch("birthday") ?? "";
+  const phoneNumber = watch("phoneNumber") ?? "";
+  const { showToast, ToastContainer } = CommonToastLayout();
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const requestBody = { name, nickname, birthday, phoneNumber, email, password };
+  const duplicatedNickName = async () => {
     try {
-      const res = await instance.post("/api/members/signup", requestBody);
-      const data = res.data.data;
-      console.log(data);
-      reset();
-      window.alert("회원가입이 완료되었습니다");
-      goToLogin();
+      const res = await instance.get(
+        `/api/members/nickname?nickname=${nickname}`
+      );
+
+      if (res.status === 200) {
+        setIsNicknameValid(true);
+        showToast({ theme: "success", message: "사용가능한 닉네임입니다" });
+      }
+
+      return res;
     } catch (error) {
       console.log(error);
     }
   };
 
-  // 닉네임 중복확인
-  const checkName = async () => {
-    setError("nickname", {
-      type: "manual",
-      message: "",
-    });
-
-    try {
-      const res = await instance.get(`/api/members/nickname?nickname=${nickname}`);
-      const nameData = res.data;
-
-      if (nameData.data) {
-        setNicknameError("중복된 닉네임입니다");
-        setIsNicknameValid(false);
-      } else {
-        setNicknameError("사용가능한 닉네임입니다");
-        setIsNicknameValid(true);
-      }
-    } catch (error) {
-      console.log(error);
+  // 회원가입 폼 제출
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isAllCheck && isNicknameValid) {
+      const requestBody = {
+        email,
+        password,
+        nickname,
+        name,
+        birthday,
+        phoneNumber,
+      };
+      const signUp = async () => {
+        try {
+          const res = await instance.post("/api/members/signup", requestBody);
+          await navigate("/login");
+          return res;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      signUp();
     }
   };
 
@@ -170,7 +172,7 @@ const Signup = () => {
                     />
                     <button
                       className="btn-check"
-                      onClick={checkName}
+                      onClick={duplicatedNickName}
                       disabled={!isNicknameValids}
                     >
                       중복확인
@@ -266,7 +268,7 @@ const Signup = () => {
                 />
               </div>
             </form>
-            <ToastContainer />
+            {ToastContainer}
           </div>
         </div>
       </div>
