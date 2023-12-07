@@ -8,6 +8,7 @@ import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/src/states/filterState";
 import instance from "@/src/api/instanceApi";
+import { IAccommodationDetail } from "@/src/types/accommodationDetail";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
@@ -18,7 +19,7 @@ const Accommodation = () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
-  const fetchListData = async () => {
+  const fetchListData = async (): Promise<IAccommodationDetail> => {
     try {
       const res = await instance.get(
         `/api/accommodations/${id}?startDate=${startDate}&endDate=${endDate}`
@@ -41,7 +42,9 @@ const Accommodation = () => {
   if (isError) {
     return <div>여기는 에러 페이지!</div>;
   }
-
+  if (!data) {
+    return <div>로딩페이지</div>;
+  }
   return (
     <div className="accommodation-container">
       <img

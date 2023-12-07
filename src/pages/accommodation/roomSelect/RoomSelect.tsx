@@ -6,12 +6,12 @@ import RoomInfo from "./roomInfo/RoomInfo";
 import CommonFilter from "@/src/components/commonFilter/CommonFilter";
 import { useRecoilState } from "recoil";
 import { filterState } from "@/src/states/filterState";
-import { room } from "@/src/types/accommodationDetail";
+import { IRoom } from "@/src/types/accommodationDetail";
 
 interface RoomSelectProps {
   accommodationId: number;
   accommodationName: string;
-  roomsInfo: Array<room>;
+  roomsInfo: Array<IRoom>;
   refetch: any;
 }
 

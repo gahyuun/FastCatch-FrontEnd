@@ -5,7 +5,7 @@ import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
 import { filterState } from "@/src/states/filterState";
 import { orderState } from "@/src/states/orderState";
 import { userState } from "@/src/states/userState";
-import { room } from "@/src/types/accommodationDetail";
+import { IRoom } from "@/src/types/accommodationDetail";
 import countDays from "@/src/utils/countDays";
 import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
 import numberFormat from "@/src/utils/numberFormat";
@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface RoomInfoProps {
-  room: room;
+  room: IRoom;
   accommodationId: number;
   accommodationName: string;
   isClicked: boolean;
@@ -86,7 +86,6 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
       }
 
       const response = instance.post(`/api/carts?memberId=${userData.id}`, {
-        //memberId 나중에 전역변수 만들어지면 수정해주기
         roomId: roomId,
         startDate: startDate,
         endDate: endDate,

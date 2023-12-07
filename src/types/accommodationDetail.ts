@@ -1,8 +1,8 @@
-export interface room {
+export interface IRoom {
     price: number;
     roomId: number;
     name: string;
-    roomOption: roomOption;
+    roomOption: IRoomOption;
     baseHeadCount: number;
     maxHeadCount: number;
     checkInTime: string;
@@ -12,7 +12,7 @@ export interface room {
     images?:Array<Object>
 }
 
-export interface roomOption {
+export interface IRoomOption {
   canCooking?: boolean;
   canSmoking?: boolean;
   cityView?: boolean;
@@ -27,4 +27,30 @@ export interface roomOption {
   hasBreakfast?: boolean;
   hasRestaurant?: boolean;
   hasCookingRoom?: boolean;
+}
+
+export interface IAccommodationOptionsType {
+  hasBreakfast: boolean;
+  hasCookingRoom: boolean;
+  hasGym: boolean;
+  hasParkingLot: boolean;
+  hasPetRoom: boolean;
+  hasRestaurant: boolean;
+  hasSmokingRoom: boolean;
+  hasSwimmingPool: boolean;
+  hasWifi: boolean;
+}
+export interface IAccommodationDetail {
+  accommodationOption:IAccommodationOptionsType;
+  address: string;
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  latitude:string;
+  longitude: string;
+  name: string;
+  phoneNumber: string;
+  region: string;
+  rooms:Array<IRoom>
 }
