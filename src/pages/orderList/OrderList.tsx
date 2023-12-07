@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { CommonButton } from "@/src/components";
-import { getOrderApi } from "@/src/api/getOrderApi";
-import { Order } from "@/src/types/order";
-import { getOrderListApi } from "@/src/api/getOrderListApi";
+import { CommonButton } from "@/components";
+import { getOrderApi } from "@/api/getOrderApi";
+import { Order } from "@/types/order";
+import { getOrderListApi } from "@/api/getOrderListApi";
 
-import MembersHeader from "@/src/pages/members/membersHeader/MembersHeader";
-import OrderListItem from "@/src/pages/orderList/orderListItem/OrderListItem";
+import MembersHeader from "@/pages/members/membersHeader/MembersHeader";
+import OrderListItem from "@/pages/orderList/orderListItem/OrderListItem";
 
 import "./orderList.scss";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
+import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 
 const OrderList = () => {
   const [reservedList, setReservedList] = useState<Order[]>([]);

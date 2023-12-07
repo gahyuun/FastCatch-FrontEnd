@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
-import { userState } from "@/src/states/userState";
+import { userState } from "@/states/userState";
 
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-import { CommonButton } from "@/src/components";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
+import { CommonButton } from "@/components";
+import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 
 import "../users.scss";
-import instance from "@/src/api/instanceApi";
+import instance from "@/api/instanceApi";
 
 const Login = () => {
   // 회원가입/로그인 링크이동

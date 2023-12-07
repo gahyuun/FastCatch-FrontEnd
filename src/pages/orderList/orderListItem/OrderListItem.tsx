@@ -1,12 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CommonBadge, CommonButton } from "@/src/components";
-import { Order } from "@/src/types/order";
-import numberFormat from "@/src/utils/numberFormat";
+import { CommonBadge, CommonButton } from "@/components";
+import { Order } from "@/types/order";
+import numberFormat from "@/utils/numberFormat";
 import OrderRoomItem from "../orderRoomItem/OrderRoomItem";
 
 import "swiper/css";
 import "./orderListItem.scss";
-import { deleteOrderApi } from "@/src/api/deleteOrderApi";
+import { deleteOrderApi } from "@/api/deleteOrderApi";
 import { SetStateAction } from "react";
 
 const OrderListItem = ({

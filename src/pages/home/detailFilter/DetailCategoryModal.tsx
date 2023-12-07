@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { detailState } from "@/src/states/detailState";
+import { detailState } from "@/states/detailState";
 import { commitOptions } from "./detailCommitFnc";
-import { CommonButton } from "@/src/components";
-import TermsAgreementItem from "@/src/components/termsAgreementItem/TermsAgreementItem";
+import { CommonButton } from "@/components";
+import TermsAgreementItem from "@/components/termsAgreementItem/TermsAgreementItem";
 import { IoClose } from "react-icons/io5";
 
 import "./detailCategoryModal.scss";

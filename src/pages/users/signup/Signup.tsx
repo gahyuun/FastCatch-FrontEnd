@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
-import { CommonButton } from "@/src/components";
+import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
+import { CommonButton } from "@/components";
 
 import "../users.scss";
-import instance from "@/src/api/instanceApi";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
+import instance from "@/api/instanceApi";
+import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동

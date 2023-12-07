@@ -22,10 +22,10 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@types/*": ["types/*"],
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"]
+      "@/*": ["./src/*"],
+      "@types/*": ["./src/types/*"],
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"]
     }
   },
   "include": [".eslintrc.cjs", "src", "**/*.ts", "**/*.tsx"],

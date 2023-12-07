@@ -6,8 +6,8 @@ import RoomSelect from "./roomSelect/RoomSelect";
 import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
-import { filterState } from "@/src/states/filterState";
-import instance from "@/src/api/instanceApi";
+import { filterState } from "@/states/filterState";
+import instance from "@/api/instanceApi";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);

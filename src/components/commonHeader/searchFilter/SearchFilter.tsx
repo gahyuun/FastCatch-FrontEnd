@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { IoIosSearch } from "react-icons/io";
 import "./searchFilter.scss";
-import { searchAccommodationByName } from "@/src/hooks/fetchAccommodations";
+import { searchAccommodationByName } from "@/hooks/fetchAccommodations";
 import { useSetRecoilState } from "recoil";
-import { detailState } from "@/src/states/detailState";
-import { Accommodation } from "@/src/states/detailState";
+import { detailState } from "@/states/detailState";
+import { Accommodation } from "@/states/detailState";
 import { useNavigate } from "react-router-dom";
 
 const SearchFilter = () => {

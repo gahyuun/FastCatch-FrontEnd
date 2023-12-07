@@ -15,10 +15,10 @@ import { useSetRecoilState } from "recoil";
 
 // 다른 컴포넌트
 import DetailCategoryModal from "../../../pages/home/detailFilter/DetailCategoryModal";
-import { filterState, filterStateTypes } from "@/src/states/filterState";
-import { AccommodationType } from "@/src/types/accommodations";
-import { responseState } from "@/src/states/responseState";
-import { detailState } from "@/src/states/detailState";
+import { filterState, filterStateTypes } from "@/states/filterState";
+import { AccommodationType } from "@/types/accommodations";
+import { responseState } from "@/states/responseState";
+import { detailState } from "@/states/detailState";
 
 interface categoryTypes {
   name: string;

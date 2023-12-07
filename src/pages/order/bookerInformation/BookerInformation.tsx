@@ -1,15 +1,15 @@
-import { useValidation } from "@/src/hooks/useValidation";
-import CommonInput from "@/src/components/commonInput/CommonInput";
+import { useValidation } from "@/hooks/useValidation";
+import CommonInput from "@/components/commonInput/CommonInput";
 import {
   REGEX_NAME,
   REGEX_PHONE_NUMBER,
   validationErrorMessage,
-} from "@/src/constant/validation";
+} from "@/constant/validation";
 import { useEffect } from "react";
 
 import "./bookerInformation.scss";
 import { useRecoilValue } from "recoil";
-import { userState } from "@/src/states/userState";
+import { userState } from "@/states/userState";
 
 const BookerInformation = ({
   userName,

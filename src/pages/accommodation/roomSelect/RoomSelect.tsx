@@ -3,10 +3,10 @@ import _debounce from "lodash/debounce";
 import "./roomSelect.scss";
 import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 import RoomInfo from "./roomInfo/RoomInfo";
-import CommonFilter from "@/src/components/commonFilter/CommonFilter";
+import CommonFilter from "@/components/commonFilter/CommonFilter";
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
-import { room } from "@/src/types/accommodationDetail";
+import { filterState } from "@/states/filterState";
+import { room } from "@/types/accommodationDetail";
 
 interface RoomSelectProps {
   accommodationId: number;

@@ -1,8 +1,8 @@
-import { CommonBadge } from "@/src/components";
+import { CommonBadge } from "@/components";
 import "./accomodationItem.scss";
-import numberFormat from "@/src/utils/numberFormat";
+import numberFormat from "@/utils/numberFormat";
 import { useNavigate } from "react-router-dom";
-import { accommodationCategoryData } from "@/src/constant/categories";
+import { accommodationCategoryData } from "@/constant/categories";
 import { Accommodation } from "../../../types/accommodations";
 interface accommodationProps {
   data: Accommodation;

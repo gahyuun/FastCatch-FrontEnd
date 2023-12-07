@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { OrderItemTypes, orderState } from "@/src/states/orderState";
-import {
-  PostOrderApiErrorResponse,
-  postOrderApi,
-} from "@/src/api/postOrderApi";
+import { OrderItemTypes, orderState } from "@/states/orderState";
+import { PostOrderApiErrorResponse, postOrderApi } from "@/api/postOrderApi";
 import { useNavigate } from "react-router-dom";
 import _debounce from "lodash/debounce";
 
-import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
-import CommonButton from "@/src/components/commonButton/CommonButton";
+import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
+import CommonButton from "@/components/commonButton/CommonButton";
 
-import BookerInformation from "@/src/pages/order/bookerInformation/BookerInformation";
-import OrderTotalPrice from "@/src/pages/order/orderTotalPrice/OrderTotalPrice";
-import PaymentMethod from "@/src/pages/order/paymentMethod/PaymentMethod";
-import EventBanner from "@/src/pages/order/eventBanner/EventBanner";
-import SubDescription from "@/src/pages/order/subDescription/SubDescription";
-import OrderItem from "@/src/pages/order/orderItem/OrderItem";
-import numberFormat from "@/src/utils/numberFormat";
+import BookerInformation from "@/pages/order/bookerInformation/BookerInformation";
+import OrderTotalPrice from "@/pages/order/orderTotalPrice/OrderTotalPrice";
+import PaymentMethod from "@/pages/order/paymentMethod/PaymentMethod";
+import EventBanner from "@/pages/order/eventBanner/EventBanner";
+import SubDescription from "@/pages/order/subDescription/SubDescription";
+import OrderItem from "@/pages/order/orderItem/OrderItem";
+import numberFormat from "@/utils/numberFormat";
 
 import "./order.scss";
-import { orderErrorMsgState } from "@/src/states/orderErrorMsgState";
+import { orderErrorMsgState } from "@/states/orderErrorMsgState";
 
 const Order = () => {
   const [userName, setUserName] = useState("");

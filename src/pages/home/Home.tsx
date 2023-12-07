@@ -3,13 +3,13 @@ import AccomodationItem from "./accomodationItem/AccomodationItem";
 import "./home.scss";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
+import { filterState } from "@/states/filterState";
 import { format } from "date-fns";
-import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
+import { fetchAccommodationsData } from "@/hooks/fetchAccommodations";
 import { Accommodation } from "../../types/accommodations";
-import { responseState } from "@/src/states/responseState";
+import { responseState } from "@/states/responseState";
 import { useEffect, useRef } from "react";
-import { detailState } from "@/src/states/detailState";
+import { detailState } from "@/states/detailState";
 
 const Home = () => {
   const [detailFiltered, setDetailFiltered] = useRecoilState(detailState);
@@ -109,7 +109,7 @@ const Home = () => {
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import TermsAgreementItem from "@/src/components/termsAgreementItem/TermsAgreementItem";
+import TermsAgreementItem from "@/components/termsAgreementItem/TermsAgreementItem";
 
 import "./termsAgreement.scss";
 

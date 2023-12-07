@@ -14,9 +14,9 @@ import SearchFilter from "./searchFilter/SearchFilter";
 import CategoryFilter from "./categoryFilter/CategoryFilter";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
+import { filterState } from "@/states/filterState";
 import { format } from "date-fns";
-import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
+import { fetchAccommodationsData } from "@/hooks/fetchAccommodations";
 import { useQuery } from "react-query";
 import LogoutButton from "./logoutButton/LogoutButton";
 

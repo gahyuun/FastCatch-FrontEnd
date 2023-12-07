@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./myInfo.scss";
 import { useEffect, useState } from "react";
-import instance from "@/src/api/instanceApi";
+import instance from "@/api/instanceApi";
 import { AxiosError } from "axios";
 import { FaUser } from "react-icons/fa";
 

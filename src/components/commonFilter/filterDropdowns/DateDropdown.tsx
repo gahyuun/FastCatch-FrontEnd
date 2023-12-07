@@ -1,4 +1,4 @@
-import { filterState } from "@/src/states/filterState";
+import { filterState } from "@/states/filterState";
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 
@@ -18,7 +18,7 @@ const DateDropdown = (props: dropdownProps) => {
 
   const onChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
-    setFilterStates((prevStates) => ({
+    setFilterStates(prevStates => ({
       ...prevStates,
       startDate: start as Date,
       endDate: end,

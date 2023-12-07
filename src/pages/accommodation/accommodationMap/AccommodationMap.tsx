@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import "./accommodationMap.scss";
 import markerIcon from "../../../assets/icons/markerImg.svg";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
+import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 
 interface PropType {
   accommodationName: string;

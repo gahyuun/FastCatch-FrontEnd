@@ -1,18 +1,15 @@
+import { regionData } from "@/constant/categories";
 import "./commonFilter.scss";
-import { regionData } from "@/src/constant/categories";
-
+import { filterState } from "@/states/filterState";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
-
 import { format } from "date-fns";
-import { IoFilter } from "react-icons/io5";
 import { useState } from "react";
-
+import { IoFilter } from "react-icons/io5";
+import { detailState } from "@/states/detailState";
+import { responseState } from "@/states/responseState";
 import AmountDropdown from "./filterDropdowns/AmountDropdown";
 import DateDropdown from "./filterDropdowns/DateDropdown";
 import LocationDropdown from "./filterDropdowns/LocationDropdown";
-import { responseState } from "@/src/states/responseState";
-import { detailState } from "@/src/states/detailState";
 
 interface filterProps {
   isLocale?: boolean;

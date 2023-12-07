@@ -1,4 +1,4 @@
-import instance from "@/src/api/instanceApi";
+import instance from "@/api/instanceApi";
 import { FiShoppingCart } from "react-icons/fi";
 import "./cartbutton.scss";
 import { useEffect, useState /*, useEffect */ } from "react";

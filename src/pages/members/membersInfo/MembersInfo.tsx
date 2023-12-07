@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { MdBlock, MdCheckCircleOutline } from "react-icons/md";
 import { useRecoilState } from "recoil";
-import { userInfoI, userState } from "@/src/states/userState";
-import { putUserInfoApi } from "@/src/api/putUserInfoApi";
+import { userInfoI, userState } from "@/states/userState";
+import { putUserInfoApi } from "@/api/putUserInfoApi";
 
-import { useValidation } from "@/src/hooks/useValidation";
+import { useValidation } from "@/hooks/useValidation";
 import {
   REGEX_BIRTH_DAY,
   REGEX_NAME,
   REGEX_NICK_NAME,
   REGEX_PHONE_NUMBER,
-} from "@/src/constant/validation";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
+} from "@/constant/validation";
+import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 
 import "./membersInfo.scss";
 
