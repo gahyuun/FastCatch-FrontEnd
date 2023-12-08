@@ -3,11 +3,11 @@ import { useQueryClient } from "react-query";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { detailState } from "@/states/detailState";
 import { commitOptions } from "./detailCommitFnc";
-import { CommonButton } from "@/components";
 import TermsAgreementItem from "@/components/termsAgreementItem/TermsAgreementItem";
 import { IoClose } from "react-icons/io5";
 
 import "./detailCategoryModal.scss";
+import { Button } from "@/components/common";
 
 export interface OptionI {
   key: string;
@@ -161,12 +161,12 @@ const DetailCategoryModal = (props: detailProps) => {
           </div>
         </section>
         <footer className="detail-modal__footer">
-          <CommonButton
+          <Button
             text="취소"
             colorName="coral200"
             onClick={props.onClick as React.MouseEventHandler}
           />
-          <CommonButton text="확인" onClick={commitOptionsHandler} />
+          <Button text="확인" onClick={commitOptionsHandler} />
         </footer>
       </div>
     </div>

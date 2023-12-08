@@ -11,9 +11,9 @@ import {
   REGEX_NICK_NAME,
   REGEX_PHONE_NUMBER,
 } from "@/constant/validation";
-import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 
 import "./membersInfo.scss";
+import { ToastLayout } from "@/components/common";
 
 const MembersInfo = () => {
   const [isSettingMode, setIsSettingMode] = useState(false);
@@ -75,7 +75,7 @@ const MembersInfo = () => {
     }
   };
 
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
 
   const checkNameValidation = () => {
     setIsNameValidationPass(isNameValidation);

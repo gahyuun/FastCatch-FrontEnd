@@ -1,7 +1,5 @@
 import instance from "@/api/instanceApi";
-import CommonBadge from "@/components/commonBadge/CommonBadge";
-import CommonButton from "@/components/commonButton/CommonButton";
-import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
+import { Badge, Button, ToastLayout } from "@/components/common";
 import { filterState } from "@/states/filterState";
 import { orderState } from "@/states/orderState";
 import { userState } from "@/states/userState";
@@ -113,7 +111,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     },
   });
 
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
 
   const template: Template = {
     cityView: "시티뷰",
@@ -195,7 +193,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
         <div className="room__options-container">
           {englishToKoreanFormat(roomOption, template).map((option: any) => (
-            <CommonBadge key={option} text={option} badgeType="line" />
+            <Badge key={option} text={option} badgeType="line" />
           ))}
         </div>
 
@@ -212,7 +210,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
         <div className="room__divider"></div>
         <div className="room__buttons-container">
           {soldOut || !isPossible ? (
-            <CommonButton
+            <Button
               text={text}
               buttonSize="large"
               colorName="coral400"
@@ -226,7 +224,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
               >
                 <IoCartOutline size="30px" color="#93114E" />
               </button>
-              <CommonButton
+              <Button
                 text="예약하기"
                 buttonSize="large"
                 onClick={onClickOrder}

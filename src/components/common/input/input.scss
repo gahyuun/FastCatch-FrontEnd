@@ -1,0 +1,41 @@
+@import "../../../styles/common.scss";
+
+.common-input__title {
+  color: gray(600);
+  margin: 0 0 24px;
+  text-align: start;
+}
+.common-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid gray(400);
+  transition: all 0.3s ease;
+  color: gray(900);
+  &::placeholder {
+    color: gray(600);
+  }
+  &:focus {
+    border: none;
+    border-bottom: 2px solid coral(500);
+  }
+  &.valid {
+    border-bottom: 2px solid $success;
+  }
+  &.inValid {
+    border-bottom: 2px solid $error;
+  }
+}
+.common-input__alert-message {
+  text-align: start;
+  margin: 5px 0 0;
+  &.default {
+    color: transparent;
+  }
+  &.valid {
+    color: $success;
+  }
+  &.inValid {
+    color: $error;
+  }
+}

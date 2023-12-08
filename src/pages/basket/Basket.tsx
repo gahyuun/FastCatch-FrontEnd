@@ -3,15 +3,14 @@ import { useEffect, useState } from "react";
 import { CiShoppingBasket } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { CommonButton } from "../../components";
 import "./basket.scss";
 import SelectedAccomodation from "./selectedAccomodation/SelectedAccomodation";
 import { CartItemType } from "@/types/basket";
 import { orderState } from "@/states/orderState";
-import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
 import { calculateTotalRoomsAndPrice } from "@/utils/calculateTotalRoomsAndPrice";
 import instance from "@/api/instanceApi";
 import { flattenCartItemsData } from "@/utils/flattenCartItemsData";
+import { Button, ToastLayout } from "@/components/common";
 
 interface ApiResponseType {
   data: { cartItemResponseList: CartItemType[] };
@@ -22,7 +21,7 @@ const Basket = () => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const navigate = useNavigate();
   const setOrderData = useSetRecoilState(orderState);
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
   const totalData = calculateTotalRoomsAndPrice(cartItems);
 
   const getCartItems = async () => {
@@ -88,7 +87,7 @@ const Basket = () => {
           장바구니
         </h1>
         {cartItems.length !== 0 && (
-          <CommonButton
+          <Button
             text="장바구니 비우기"
             shape="line"
             onClick={handleDeleteAllClick}
@@ -115,7 +114,7 @@ const Basket = () => {
               </span>
               <span className="text-subtitle3">{}</span>
             </div>
-            <CommonButton
+            <Button
               text={`${totalData.totalPrice}원 결제하기`}
               buttonSize="large"
               onClick={handlePaymentClick}

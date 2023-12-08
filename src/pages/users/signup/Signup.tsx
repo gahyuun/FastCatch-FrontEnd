@@ -6,11 +6,10 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
-import { CommonButton } from "@/components";
 
 import "../users.scss";
 import instance from "@/api/instanceApi";
-import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
+import { Button, ToastLayout } from "@/components/common";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동
@@ -44,7 +43,7 @@ const Signup = () => {
   const name = watch("name") ?? "";
   const birthday = watch("birthday") ?? "";
   const phoneNumber = watch("phoneNumber") ?? "";
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
 
   const duplicatedNickName = async () => {
     try {
@@ -260,7 +259,7 @@ const Signup = () => {
                   isAllCheck={isAllCheck}
                   setIsAllCheck={setIsAllCheck}
                 />
-                <CommonButton
+                <Button
                   type="submit"
                   buttonSize="large"
                   text="회원가입"

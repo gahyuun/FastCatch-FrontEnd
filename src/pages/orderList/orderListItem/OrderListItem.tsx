@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CommonBadge, CommonButton } from "@/components";
 import { Order } from "@/types/order";
 import numberFormat from "@/utils/numberFormat";
 import OrderRoomItem from "../orderRoomItem/OrderRoomItem";
@@ -8,6 +7,7 @@ import "swiper/css";
 import "./orderListItem.scss";
 import { deleteOrderApi } from "@/api/deleteOrderApi";
 import { SetStateAction } from "react";
+import { Badge, Button } from "@/components/common";
 
 const OrderListItem = ({
   roomInfo,
@@ -40,10 +40,10 @@ const OrderListItem = ({
         </div>
         <div className="order-list-item__right">
           {orderStatus === "canceled" ? (
-            <CommonBadge text={"예약 취소"} badgeStatus={orderStatus} />
+            <Badge text={"예약 취소"} badgeStatus={orderStatus} />
           ) : null}
           {orderStatus === "used" ? (
-            <CommonBadge text={"사용 완료"} badgeStatus={orderStatus} />
+            <Badge text={"사용 완료"} badgeStatus={orderStatus} />
           ) : null}
           <h5 className="text-subtitle5">총 {formattedTotalPrice}원</h5>
         </div>
@@ -61,7 +61,7 @@ const OrderListItem = ({
           ))}
         </Swiper>
         {orderStatus === "reserved" && (
-          <CommonButton
+          <Button
             text={"취소하기"}
             buttonSize="exLarge"
             shape="line"

@@ -1,4 +1,3 @@
-import axios from "axios";
 import instance from "../api/instanceApi";
 
 export const fetchAccommodationsData = async (

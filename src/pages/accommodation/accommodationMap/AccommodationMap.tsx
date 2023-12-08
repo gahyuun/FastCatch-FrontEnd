@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import "./accommodationMap.scss";
 import markerIcon from "../../../assets/icons/markerImg.svg";
-import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
+import { ToastLayout } from "@/components/common";
 
 interface PropType {
   accommodationName: string;
@@ -36,7 +36,7 @@ const AccommodationMap = ({
     level: 4,
   };
   const imageSize = new kakao.maps.Size(40, 40);
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
 
   useEffect(() => {
     let markers: any[] = [];

@@ -1,9 +1,9 @@
-import { CommonBadge } from "@/components";
 import "./accomodationItem.scss";
 import numberFormat from "@/utils/numberFormat";
 import { useNavigate } from "react-router-dom";
 import { accommodationCategoryData } from "@/constant/categories";
 import { Accommodation } from "../../../types/accommodations";
+import { Badge } from "@/components/common";
 interface accommodationProps {
   data: Accommodation;
 }
@@ -34,7 +34,7 @@ const AccommodationItem = ({ data }: accommodationProps) => {
             </div>
           </div>
           <div className="item-info__status">
-            {data.soldOut && <CommonBadge text="예약마감" badgeType="fill" />}
+            {data.soldOut && <Badge text="예약마감" badgeType="fill" />}
           </div>
         </div>
         <div className="item-price">

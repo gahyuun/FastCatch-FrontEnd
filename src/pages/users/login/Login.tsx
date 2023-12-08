@@ -7,11 +7,9 @@ import { userState } from "@/states/userState";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-import { CommonButton } from "@/components";
-import CommonToastLayout from "@/components/commonToast/CommonToastLayout";
-
 import "../users.scss";
 import instance from "@/api/instanceApi";
+import { Button, ToastLayout } from "@/components/common";
 
 const Login = () => {
   // 회원가입/로그인 링크이동
@@ -35,7 +33,7 @@ const Login = () => {
     mode: "onBlur",
   });
   const setUserInfo = useSetRecoilState(userState);
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
   const email = watch("email");
   const password = watch("password");
 
@@ -121,11 +119,7 @@ const Login = () => {
                     )}
                   </div>
                 </div>
-                <CommonButton
-                  type="submit"
-                  text={"로그인"}
-                  buttonSize={"large"}
-                />
+                <Button type="submit" text={"로그인"} buttonSize={"large"} />
                 {ToastContainer}
               </div>
             </form>
