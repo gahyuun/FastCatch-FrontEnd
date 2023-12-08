@@ -7,8 +7,7 @@ import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/src/states/filterState";
-import instance from "@/src/api/instanceApi";
-import { IAccommodationDetail } from "@/src/types/accommodationDetail";
+import { getAccommodationDetailApi } from "@/src/api/getAccommodationDetailApi";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
@@ -19,32 +18,24 @@ const Accommodation = () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
-  const fetchListData = async (): Promise<IAccommodationDetail> => {
-    try {
-      const res = await instance.get(
-        `/api/accommodations/${id}?startDate=${startDate}&endDate=${endDate}`
-      );
-      return res.data.data;
-    } catch (error) {
-      console.log("에러발생!!!!!!!!!", error);
-      throw new Error("Failed to fetch data");
-    }
+  const getAccommodationDetailData = async () => {
+    const result = await getAccommodationDetailApi(id, startDate, endDate);
+    return result;
   };
 
-  const { data, isError, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: [id, "postDetail"],
-    queryFn: fetchListData,
+    queryFn: getAccommodationDetailData,
     staleTime: 500000,
+    onError: error => {
+      console.log(error);
+    },
   });
-  if (isLoading) {
+
+  if (isLoading || !data) {
     return <div>로딩중..!!!!!</div>;
   }
-  if (isError) {
-    return <div>여기는 에러 페이지!</div>;
-  }
-  if (!data) {
-    return <div>로딩페이지</div>;
-  }
+
   return (
     <div className="accommodation-container">
       <img
