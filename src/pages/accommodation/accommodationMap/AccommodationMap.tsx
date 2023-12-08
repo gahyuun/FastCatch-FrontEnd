@@ -99,17 +99,16 @@ const AccommodationMap = ({
         .current!.querySelector(`#${currCategory}`)!
         .getAttribute("data-order");
 
-      for (let i = 0; i < places.length; i++) {
-        // 마커를 생성 & 표시
+      for (const place of places) {
         const marker = addMarker(
-          new kakao.maps.LatLng(places[i].y, places[i].x),
+          new kakao.maps.LatLng(place.y, place.x),
           order
         );
         (function (marker, place) {
           kakao.maps.event.addListener(marker, "click", function () {
             displayPlaceInfo(place);
           });
-        })(marker, places[i]);
+        })(marker, place);
       }
     }
 
@@ -140,8 +139,8 @@ const AccommodationMap = ({
     }
 
     function removeMarker() {
-      for (let i = 0; i < markers.length; i++) {
-        markers[i].setMap();
+      for (const marker of markers) {
+        marker.setMap();
       }
       markers = [];
     }
@@ -154,11 +153,9 @@ const AccommodationMap = ({
     // 각 카테고리에 클릭 이벤트
     function addCategoryClickEvent() {
       const category = categoryRef.current!;
-      const children: any = category!.children;
-      console.log(children, "children");
-      for (let i = 0; i < children.length; i++) {
-        // children[i].addEventListener("click", onClickCategory);
-        children[i].onclick = onClickCategory;
+      const children: any = category.children;
+      for (const child of children) {
+        child.onclick = onClickCategory;
       }
     }
     function onClickCategory(this: HTMLElement, event: any) {
@@ -181,8 +178,8 @@ const AccommodationMap = ({
     function changeCategoryClass(el: { className: string } | null) {
       const category = categoryRef.current!;
       const children = category!.children;
-      for (let i = 0; i < children.length; i++) {
-        children[i].className = "";
+      for (const child of children) {
+        child.className = "";
       }
 
       if (el) {
