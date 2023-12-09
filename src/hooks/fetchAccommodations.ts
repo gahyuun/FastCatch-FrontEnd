@@ -12,7 +12,7 @@ export const fetchAccommodationsData = async (
 ): Promise<Accommodations> => {
   try {
     const res = await axios.get(
-      `${22}api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
+      `${VITE_API_BASE_URL}api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );
     return res.data.data;
   } catch (error) {

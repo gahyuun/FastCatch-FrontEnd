@@ -31,13 +31,12 @@ const Home = () => {
       });
     });
     // 감시 대상 요소들
-    setTimeout(() => {
-      if (scrollRef.current) {
-        const targetElements = document.querySelector(".target-div");
-        observer.observe(targetElements!);
-      }
-    }, 1000);
-  }, [filterStates]);
+
+    if (scrollRef.current) {
+      const targetElements = document.querySelector(".target-div");
+      observer.observe(targetElements!);
+    }
+  }, [filterStates, scrollRef.current]);
 
   // 시작일 종료일 만들기
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
