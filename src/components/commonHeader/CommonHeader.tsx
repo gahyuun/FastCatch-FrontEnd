@@ -73,7 +73,7 @@ const Header = () => {
         amount: filterStates.amount,
       },
     }));
-    setTimeout(() => refetch(), 200);
+    refetch();
   };
 
   return (
