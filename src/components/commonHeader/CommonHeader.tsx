@@ -28,7 +28,6 @@ const Header = () => {
   const [filterMode, setFilterMode] = useState<"filter" | "search">("filter");
 
   const changeFilterModeHandler = () => {
-    console.log(filterMode, "!");
     if (filterMode === "filter") {
       setFilterMode("search");
     } else {

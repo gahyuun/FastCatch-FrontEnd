@@ -17,18 +17,14 @@ const Home = () => {
   const [responseStates, setResponseStates] = useRecoilState(responseState);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
+  //api.fastcatch.store/
+  https: useEffect(() => {
     // Intersection Observer 생성
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           // 타겟 요소가 화면에 나타남
-          // console.log("타겟이 화면에 나타났습니다!");
           setTimeout(() => refetch(), 500);
-        } else {
-          // 타겟 요소가 화면에서 사라짐
-          // console.log("타겟이 화면에서 사라졌습니다!");
         }
       });
     });
@@ -48,7 +44,7 @@ const Home = () => {
     : startDate;
 
   // 리액트 쿼리
-  const { data, refetch, isLoading, isError } = useQuery({
+  const { refetch, isLoading, isError } = useQuery({
     queryKey: ["accommodations", filterStates.current],
     queryFn: () =>
       fetchAccommodationsData(
@@ -73,8 +69,6 @@ const Home = () => {
   }
   if (isError) {
     return <div>에러~</div>;
-  }
-  if (data) {
   }
 
   return (
@@ -109,7 +103,7 @@ const Home = () => {
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
