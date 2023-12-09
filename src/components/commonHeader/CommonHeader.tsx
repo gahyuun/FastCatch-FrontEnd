@@ -59,7 +59,6 @@ const Header = () => {
         filterStates.current.amount,
         1
       ),
-    select: data => data.data,
   });
 
   const changeFilterHandler = () => {

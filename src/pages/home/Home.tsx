@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import AccomodationItem from "./accomodationItem/AccomodationItem";
+import LoadingAnimation from "@/src/components/loadingAnimation/LoadingAnimation";
 import "./home.scss";
 
 import { useRecoilState } from "recoil";
@@ -10,6 +11,7 @@ import { Accommodation } from "../../types/accommodations";
 import { responseState } from "@/src/states/responseState";
 import { useEffect, useRef } from "react";
 import { detailState } from "@/src/states/detailState";
+import ErrorAnimation from "@/src/components/errorAnimation/ErrorAnimation";
 
 const Home = () => {
   const [detailFiltered, setDetailFiltered] = useRecoilState(detailState);
@@ -59,16 +61,25 @@ const Home = () => {
     onSuccess: data => {
       setResponseStates(prev => ({
         pageIndex: prev.pageIndex + 1,
-        responseArray: [...prev.responseArray, ...data.data.accommodations],
+        responseArray: [...prev.responseArray, ...data.accommodations],
       }));
     },
   });
 
   if (isLoading) {
-    return <div>로딩~</div>;
+    return (
+      <div className="home__animation-container">
+        <LoadingAnimation width="200px" height="200px" />
+      </div>
+    );
   }
   if (isError) {
-    return <div>에러~</div>;
+    return (
+      <div className="home__animation-container">
+        <ErrorAnimation width="200px" height="200px" />
+        <p>에러가 발생하였습니다. 다시 시도해주세요!</p>
+      </div>
+    );
   }
 
   return (

@@ -11,6 +11,7 @@
     "cypress": "npx cypress open"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@types/lodash": "^4.14.202",
     "@types/react-datepicker": "^4.19.3",
     "axios": "^1.6.2",

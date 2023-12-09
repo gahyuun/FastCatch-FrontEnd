@@ -1,5 +1,6 @@
 import axios from "axios";
-const { VITE_API_URL } = import.meta.env;
+import { Accommodations } from "../types/accommodations";
+const { VITE_API_BASE_URL } = import.meta.env;
 
 export const fetchAccommodationsData = async (
   REGION: string,
@@ -8,12 +9,12 @@ export const fetchAccommodationsData = async (
   CATEGORY: string,
   AMOUNT: number,
   PAGE: number
-) => {
+): Promise<Accommodations> => {
   try {
     const res = await axios.get(
-      `${VITE_API_URL}api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
+      `${22}api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );
-    return res.data;
+    return res.data.data;
   } catch (error) {
     throw new Error("Failed to fetch accs data");
   }
@@ -22,7 +23,7 @@ export const fetchAccommodationsData = async (
 export const searchAccommodationByName = async (NAME: string) => {
   try {
     const res = await axios.get(
-      `${VITE_API_URL}api/accommodations/search-by-name?query=${NAME}`
+      `${VITE_API_BASE_URL}api/accommodations/search-by-name?query=${NAME}`
     );
     return res.data.data;
   } catch {
