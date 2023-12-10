@@ -19,8 +19,7 @@ const Home = () => {
   const [responseStates, setResponseStates] = useRecoilState(responseState);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  //api.fastcatch.store/
-  https: useEffect(() => {
+  useEffect(() => {
     // Intersection Observer 생성
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
