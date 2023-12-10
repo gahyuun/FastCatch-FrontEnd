@@ -1,7 +1,7 @@
 import { SetStateAction } from "react";
 
-import PaymentMethodItem from "@/src/pages/order/paymentMethodItem/PaymentMethodItem";
-import { initialPaymentMethod } from "@/src/constant/initialPaymentMethod";
+import PaymentMethodItem from "@/pages/order/paymentMethodItem/PaymentMethodItem";
+import { initialPaymentMethod } from "@/constant/initialPaymentMethod";
 
 import "./paymentMethod.scss";
 

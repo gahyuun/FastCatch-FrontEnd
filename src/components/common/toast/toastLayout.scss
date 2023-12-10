@@ -1,0 +1,22 @@
+@import "../../../styles/common.scss";
+
+.Toastify__toast {
+  min-height: auto;
+  box-shadow: box-shadow(2);
+  &-container {
+    top: 70px;
+    width: auto;
+  }
+  &-body {
+    min-height: auto;
+    padding: 0;
+    > div {
+      white-space: nowrap;
+    }
+  }
+  &-icon {
+    svg {
+      fill: white !important;
+    }
+  }
+}

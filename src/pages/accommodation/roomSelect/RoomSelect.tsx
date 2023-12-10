@@ -3,10 +3,10 @@ import _debounce from "lodash/debounce";
 import "./roomSelect.scss";
 import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 import RoomInfo from "./roomInfo/RoomInfo";
-import CommonFilter from "@/src/components/commonFilter/CommonFilter";
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
-import { room } from "@/src/types/accommodationDetail";
+import { filterState } from "@/states/filterState";
+import { room } from "@/types/accommodationDetail";
+import { Filter } from "@/components/common";
 
 interface RoomSelectProps {
   accommodationId: number;
@@ -51,7 +51,7 @@ const RoomSelect = ({
       </div>
 
       <div className="small-filter__container">
-        <CommonFilter onClick={handleClick} />
+        <Filter onClick={handleClick} />
       </div>
 
       <div className="room-container">

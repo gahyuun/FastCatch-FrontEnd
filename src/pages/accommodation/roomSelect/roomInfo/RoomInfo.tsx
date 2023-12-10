@@ -1,14 +1,12 @@
-import instance from "@/src/api/instanceApi";
-import CommonBadge from "@/src/components/commonBadge/CommonBadge";
-import CommonButton from "@/src/components/commonButton/CommonButton";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
-import { filterState } from "@/src/states/filterState";
-import { orderState } from "@/src/states/orderState";
-import { userState } from "@/src/states/userState";
-import { room } from "@/src/types/accommodationDetail";
-import countDays from "@/src/utils/countDays";
-import englishToKoreanFormat from "@/src/utils/englishToKoreanFormat";
-import numberFormat from "@/src/utils/numberFormat";
+import instance from "@/api/instanceApi";
+import { Badge, Button, ToastLayout } from "@/components/common";
+import { filterState } from "@/states/filterState";
+import { orderState } from "@/states/orderState";
+import { userState } from "@/states/userState";
+import { room } from "@/types/accommodationDetail";
+import countDays from "@/utils/countDays";
+import englishToKoreanFormat from "@/utils/englishToKoreanFormat";
+import numberFormat from "@/utils/numberFormat";
 import { format } from "date-fns";
 import _debounce from "lodash/debounce";
 import { useEffect, useState } from "react";
@@ -113,7 +111,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     },
   });
 
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
 
   const template: Template = {
     cityView: "시티뷰",
@@ -195,7 +193,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
         <div className="room__options-container">
           {englishToKoreanFormat(roomOption, template).map((option: any) => (
-            <CommonBadge key={option} text={option} badgeType="line" />
+            <Badge key={option} text={option} badgeType="line" />
           ))}
         </div>
 
@@ -212,7 +210,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
         <div className="room__divider"></div>
         <div className="room__buttons-container">
           {soldOut || !isPossible ? (
-            <CommonButton
+            <Button
               text={text}
               buttonSize="large"
               colorName="coral400"
@@ -226,7 +224,7 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
               >
                 <IoCartOutline size="30px" color="#93114E" />
               </button>
-              <CommonButton
+              <Button
                 text="예약하기"
                 buttonSize="large"
                 onClick={onClickOrder}

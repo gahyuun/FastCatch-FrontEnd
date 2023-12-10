@@ -1,4 +1,4 @@
-import axios from "axios";
+import instance from "../api/instanceApi";
 
 export const fetchAccommodationsData = async (
   REGION: string,
@@ -9,8 +9,8 @@ export const fetchAccommodationsData = async (
   PAGE: number
 ) => {
   try {
-    const res = await axios.get(
-      `http://54.180.97.194/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
+    const res = await instance.get(
+      `/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );
     return res.data;
   } catch (error) {
@@ -20,8 +20,8 @@ export const fetchAccommodationsData = async (
 
 export const searchAccommodationByName = async (NAME: string) => {
   try {
-    const res = await axios.get(
-      `http://54.180.97.194/api/accommodations/search-by-name?query=${NAME}`
+    const res = await instance.get(
+      `/api/accommodations/search-by-name?query=${NAME}`
     );
     return res.data.data;
   } catch {
