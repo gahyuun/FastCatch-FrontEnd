@@ -1,9 +1,9 @@
-import { RoomInfo } from "@/src/types/roomInfo";
-import { getDayOfWeek } from "@/src/utils/getDayOfWeek";
-import numberFormat from "@/src/utils/numberFormat";
+import { RoomInfo } from "@/types/roomInfo";
+import { getDayOfWeek } from "@/utils/getDayOfWeek";
+import numberFormat from "@/utils/numberFormat";
 
 import "./orderRoomItem.scss";
-import { calculateNightStay } from "@/src/utils/calculateNightStay";
+import { calculateNightStay } from "@/utils/calculateNightStay";
 
 const OrderRoomItem = ({ pageType, roomInfo }: RoomPropsType) => {
   const {

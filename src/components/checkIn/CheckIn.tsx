@@ -1,4 +1,4 @@
-import { getDayOfWeek } from "@/src/utils/getDayOfWeek";
+import { getDayOfWeek } from "@/utils/getDayOfWeek";
 import "./checkIn.scss";
 
 const CheckIn = ({ checkInDate, checkInTime }: CheckInProps) => {

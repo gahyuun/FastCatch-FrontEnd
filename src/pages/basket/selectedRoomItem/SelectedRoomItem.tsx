@@ -1,6 +1,6 @@
-import { RoomDescriptionType } from "@/src/pages/basket/Basket";
-import numberFormat from "@/src/utils/numberFormat";
+import { RoomDescriptionType } from "@/types/basket";
 import "./selectedRoomItem.scss";
+import numberFormat from "@/utils/numberFormat";
 
 interface RoomPropsType {
   pageType?: "basket" | "orderList";
