@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import AccomodationItem from "./accomodationItem/AccomodationItem";
-import LoadingAnimation from "@/src/components/loadingAnimation/LoadingAnimation";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
 import "./home.scss";
 
 import { useRecoilState } from "recoil";
@@ -35,6 +35,7 @@ const Home = () => {
       const targetElements = document.querySelector(".target-div");
       observer.observe(targetElements!);
     }
+    return () => observer.disconnect();
   }, [filterStates, scrollRef.current]);
 
   // 시작일 종료일 만들기
