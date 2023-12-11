@@ -1,4 +1,5 @@
 import instance from "../api/instanceApi";
+import { Accommodations } from "@/types/accommodations";
 
 export const fetchAccommodationsData = async (
   REGION: string,
@@ -7,12 +8,12 @@ export const fetchAccommodationsData = async (
   CATEGORY: string,
   AMOUNT: number,
   PAGE: number
-) => {
+): Promise<Accommodations> => {
   try {
     const res = await instance.get(
       `/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );
-    return res.data;
+    return res.data.data;
   } catch (error) {
     throw new Error("Failed to fetch accs data");
   }

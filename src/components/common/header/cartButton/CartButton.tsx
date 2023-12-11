@@ -36,7 +36,7 @@ const CartButton = () => {
       return data.data.cartItemResponseList;
     } catch (error) {
       const axiosError = error as AxiosError;
-      console.error(axiosError);
+      console.error("에러", axiosError);
     }
   };
 

@@ -77,15 +77,13 @@ const CategoryFilter = () => {
       responseArray: [],
     });
 
-    setTimeout(() =>
-      setFilterStates((prev: filterStateTypes) => ({
-        ...prev,
-        current: {
-          ...prev.current,
-          category: engName as AccommodationType,
-        },
-      }))
-    );
+    setFilterStates((prev: filterStateTypes) => ({
+      ...prev,
+      current: {
+        ...prev.current,
+        category: engName as AccommodationType,
+      },
+    }));
   };
 
   return (
