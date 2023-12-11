@@ -1,4 +1,5 @@
 import instance from "../api/instanceApi";
+import { Accommodations } from "@/types/accommodations";
 
 export const fetchAccommodationsData = async (
   REGION: string,
