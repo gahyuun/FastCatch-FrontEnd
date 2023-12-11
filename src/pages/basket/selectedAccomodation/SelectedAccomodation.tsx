@@ -1,4 +1,4 @@
-import { CartItemType } from "@/src/pages/basket/Basket";
+import { CartItemType } from "@/types/basket";
 import SelectedRoomItem from "../selectedRoomItem/SelectedRoomItem";
 import "./selectedAccomodation.scss";
 
@@ -18,9 +18,11 @@ const SelectedAccomodation = ({
       <div className="item-list">
         {rooms &&
           rooms.map(room => (
-            <div key={room.cartItemId}>
-              <SelectedRoomItem room={room} deleteRoom={deleteRoom} />
-            </div>
+            <SelectedRoomItem
+              room={room}
+              deleteRoom={deleteRoom}
+              key={room.cartItemId}
+            />
           ))}
       </div>
     </section>

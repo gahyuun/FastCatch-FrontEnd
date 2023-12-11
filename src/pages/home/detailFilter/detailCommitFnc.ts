@@ -1,6 +1,6 @@
 import { QueryClient } from "react-query";
 import { OptionI } from "./DetailCategoryModal";
-import { Accommodation } from "@/src/states/detailState";
+import { Accommodation } from "@/states/detailState";
 
 export const commitOptions = (
   activeTab: number,

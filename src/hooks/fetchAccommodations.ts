@@ -1,6 +1,4 @@
-import axios from "axios";
-import { Accommodations } from "../types/accommodations";
-const { VITE_API_BASE_URL } = import.meta.env;
+import instance from "../api/instanceApi";
 
 export const fetchAccommodationsData = async (
   REGION: string,
@@ -11,8 +9,8 @@ export const fetchAccommodationsData = async (
   PAGE: number
 ): Promise<Accommodations> => {
   try {
-    const res = await axios.get(
-      `${VITE_API_BASE_URL}api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
+    const res = await instance.get(
+      `/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );
     return res.data.data;
   } catch (error) {
@@ -22,8 +20,8 @@ export const fetchAccommodationsData = async (
 
 export const searchAccommodationByName = async (NAME: string) => {
   try {
-    const res = await axios.get(
-      `${VITE_API_BASE_URL}api/accommodations/search-by-name?query=${NAME}`
+    const res = await instance.get(
+      `/api/accommodations/search-by-name?query=${NAME}`
     );
     return res.data.data;
   } catch {

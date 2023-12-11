@@ -4,14 +4,14 @@ import LoadingAnimation from "@/src/components/loadingAnimation/LoadingAnimation
 import "./home.scss";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
+import { filterState } from "@/states/filterState";
 import { format } from "date-fns";
-import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
+import { fetchAccommodationsData } from "@/hooks/fetchAccommodations";
 import { Accommodation } from "../../types/accommodations";
-import { responseState } from "@/src/states/responseState";
+import { responseState } from "@/states/responseState";
 import { useEffect, useRef } from "react";
-import { detailState } from "@/src/states/detailState";
-import ErrorAnimation from "@/src/components/errorAnimation/ErrorAnimation";
+import { detailState } from "@/states/detailState";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
 
 const Home = () => {
   const [detailFiltered, setDetailFiltered] = useRecoilState(detailState);

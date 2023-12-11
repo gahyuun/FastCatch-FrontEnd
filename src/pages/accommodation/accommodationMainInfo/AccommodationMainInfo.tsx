@@ -1,5 +1,5 @@
 import "./accommodationMainInfo.scss";
-import { accommodationCategoryData } from "@/src/constant/categories";
+import { accommodationCategoryData } from "@/constant/categories";
 
 interface AccommodationMainInfoProps {
   accommodationName: string;

@@ -1,15 +1,15 @@
-import { useValidation } from "@/src/hooks/useValidation";
-import CommonInput from "@/src/components/commonInput/CommonInput";
+import { useValidation } from "@/hooks/useValidation";
 import {
   REGEX_NAME,
   REGEX_PHONE_NUMBER,
   validationErrorMessage,
-} from "@/src/constant/validation";
+} from "@/constant/validation";
 import { useEffect } from "react";
 
 import "./bookerInformation.scss";
 import { useRecoilValue } from "recoil";
-import { userState } from "@/src/states/userState";
+import { userState } from "@/states/userState";
+import { Input } from "@/components/common";
 
 const BookerInformation = ({
   userName,
@@ -52,7 +52,7 @@ const BookerInformation = ({
     <div className="booker-information">
       <h4 className="text-subtitle4">예약자 정보</h4>
       <div className="booker-information__input">
-        <CommonInput
+        <Input
           title={"예약자 이름"}
           placeholder={"예약자 이름을 입력해주세요"}
           onChange={handleUserName}
@@ -61,7 +61,7 @@ const BookerInformation = ({
           inputStyle={isUserNameValidation ? "default" : "inValid"}
           inValidAlertMessage={validationErrorMessage.nameErrorMsg}
         />
-        <CommonInput
+        <Input
           title={"휴대폰 번호"}
           placeholder={"휴대폰 번호를 입력해주세요"}
           onChange={handleUserPhoneNumber}
