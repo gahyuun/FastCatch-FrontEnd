@@ -1,7 +1,20 @@
 @import "../../styles/common.scss";
 
+.common-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: url("/src/assets/images/login-bg.jpg") no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  @include mdq-max(700) {
+    background-position: center center;
+  }
+}
+
 .user-wrap {
-  background-color: #9199a4;
   overflow-y: scroll;
 }
 
@@ -13,6 +26,7 @@
   height: 100%;
   @include mdq-max(1200) {
     padding-right: 0;
+    padding: 0 20px;
     justify-content: center;
   }
 }
@@ -46,11 +60,17 @@
           background-color: white;
           color: black;
         }
+        @include mdq-max(700) {
+          font-size: rem(18);
+        }
       }
     }
   }
   &__body {
     padding: 44px;
+    @include mdq-max(700) {
+      padding: 20px;
+    }
     .input-inner {
       margin-bottom: 24px;
       label {
@@ -58,6 +78,10 @@
         width: 100%;
         font-size: rem(18);
         margin-bottom: 8px;
+        @include mdq-max(700) {
+          font-size: rem(16);
+          flex: 1 1 80%;
+        }
       }
       input {
         display: block;
@@ -78,6 +102,15 @@
         &[type="number"] {
           -moz-appearance: textfield;
         }
+        @include mdq-max(700) {
+          font-size: rem(16);
+          &.input-visible {
+            padding-right: 30px;
+          }
+          &::placeholder {
+            font-size: rem(13);
+          }
+        }
       }
       &__item {
         position: relative;
@@ -92,12 +125,20 @@
           &.btn-check {
             font-size: rem(18);
             color: coral(500);
+            @include mdq-max(700) {
+              right: 12px;
+              font-size: rem(14);
+            }
           }
           &.btn-visible {
             display: inline-flex;
             align-items: center;
             font-size: 24px;
             color: gray(500);
+            @include mdq-max(700) {
+              right: 12px;
+              font-size: rem(14);
+            }
           }
         }
       }
@@ -107,6 +148,9 @@
       color: $error;
       text-align: start;
       margin: 5px 0 0;
+      @include mdq-max(700) {
+        font-size: rem(13);
+      }
     }
     .agree-inner {
       margin-top: 70px;
@@ -114,6 +158,9 @@
     .common-button {
       margin-top: 24px;
       height: 60px;
+      @include mdq-max(700) {
+        height: 50px;
+      }
     }
   }
 }

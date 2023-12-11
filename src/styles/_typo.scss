@@ -1,3 +1,10 @@
+@mixin adjustFontSize($fontSize, $lineHeight, $factor) {
+  font-size: $fontSize * $factor;
+  line-height: $lineHeight * $factor;
+}
+
+$breakpoint-small: 700px;
+
 $subtitle1: (
   font-weight: Bold,
   font-size: 40px,
@@ -90,6 +97,13 @@ $caption2: (
   .text-#{$name} {
     @each $property, $value in $styles {
       #{$property}: $value;
+    }
+    @media screen and ($breakpoint-small) {
+      @include adjustFontSize(
+        map-get($styles, "font-size"),
+        map-get($styles, "line-height"),
+        0.7
+      );
     }
   }
 }

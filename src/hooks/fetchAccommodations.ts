@@ -10,7 +10,7 @@ export const fetchAccommodationsData = async (
 ) => {
   try {
     const res = await axios.get(
-      `http://54.180.97.194/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
+      `https://api.fastcatch.store/api/accommodations?category=${CATEGORY}&region=${REGION}&startDate=${STARTDATE}&endDate=${ENDDATE}&headCount=${AMOUNT}&page=${PAGE}`
     );
     return res.data;
   } catch (error) {
@@ -21,7 +21,7 @@ export const fetchAccommodationsData = async (
 export const searchAccommodationByName = async (NAME: string) => {
   try {
     const res = await axios.get(
-      `http://54.180.97.194/api/accommodations/search-by-name?query=${NAME}`
+      `https://api.fastcatch.store/api/accommodations/search-by-name?query=${NAME}`
     );
     return res.data.data;
   } catch {

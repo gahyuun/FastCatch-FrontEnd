@@ -59,6 +59,7 @@ const Login = () => {
 
   return (
     <>
+    <div className="common-bg"></div>
       <div className="user-wrap">
         <div className="bg-wrap">
           <div className="login-wrap">

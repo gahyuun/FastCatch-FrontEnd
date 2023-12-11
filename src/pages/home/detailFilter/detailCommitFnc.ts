@@ -49,7 +49,6 @@ export const commitOptions = (
 
     // 필터된 값 전역상태 저장
     setFilteredAtom(filteredData);
-    console.log("필터된 데이터", filteredData);
 
     // 모달창 닫기
     setOpenDetail(false);
