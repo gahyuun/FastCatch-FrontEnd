@@ -1,4 +1,4 @@
-import { useState, useMemo, lazy, Suspense } from "react";
+import { useState, useMemo } from "react";
 import _debounce from "lodash/debounce";
 import "./roomSelect.scss";
 import RoomInfo from "./roomInfo/RoomInfo";
@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { filterState } from "@/states/filterState";
 import { IRoom } from "@/types/accommodationDetail";
 import { Filter } from "@/components/common";
+import RoomImgSwiper from "./roomImgSwiper/RoomImgSwiper";
 
 interface RoomSelectProps {
   accommodationId: number;
@@ -22,7 +23,6 @@ const RoomSelect = ({
 }: RoomSelectProps) => {
   const [isClicked, setIsClicked] = useState(true);
   const [filterData, setFilterData] = useRecoilState(filterState);
-  const RoomImgSwiper = lazy(() => import("./roomImgSwiper/RoomImgSwiper"));
 
   const handleClick = useMemo(
     () =>
@@ -67,9 +67,7 @@ const RoomSelect = ({
         {roomsInfo.map((room: any) => (
           <div className="room-container__list" key={room.roomId}>
             <div className="room__imgs">
-              <Suspense fallback={<div>Loading...</div>}>
-                <RoomImgSwiper roomImg={room.images} />
-              </Suspense>
+              <RoomImgSwiper roomImg={room.images} />
             </div>
             <RoomInfo
               room={room}

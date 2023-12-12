@@ -16,7 +16,7 @@ const RoomImgSwiper = ({ roomImg }: RoomImgSwiperProps) => {
         delay: 5000,
       }}
       resistance={false}
-      style={{ height: "100%", margin: "0 4px" }}
+      style={{ height: "280px", margin: "0 4px" }}
     >
       {roomImg.map((obj: any) => (
         <SwiperSlide key={obj.fileName}>

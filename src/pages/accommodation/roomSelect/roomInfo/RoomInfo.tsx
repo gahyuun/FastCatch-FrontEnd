@@ -208,7 +208,12 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
         <div className="room__options-container">
           {englishToKoreanFormat(roomOption, template).map((option: any) => (
-            <Badge key={option} text={option} badgeType="line" />
+            <Badge
+              key={option}
+              text={option}
+              badgeType="line"
+              badgeStatus="canceled"
+            />
           ))}
         </div>
 

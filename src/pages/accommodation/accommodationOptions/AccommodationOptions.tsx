@@ -9,7 +9,7 @@ import {
   MdRestaurant,
 } from "react-icons/md";
 import { PiCookingPotBold, PiDogBold } from "react-icons/pi";
-import { IAccommodationOptionsType } from "@/src/types/accommodationDetail";
+import { IAccommodationOptionsType } from "@/types/accommodationDetail";
 
 interface TemplateItem {
   [key: string]: [string, JSX.Element];

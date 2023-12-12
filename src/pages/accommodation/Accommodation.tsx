@@ -9,6 +9,8 @@ import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/states/filterState";
 import { getAccommodationDetailApi } from "@/api/getAccommodationDetailApi";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
@@ -26,18 +28,27 @@ const Accommodation = () => {
 
   const memoizedQueryKey = useMemo(() => [id, "postDetail"], [id]);
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch, isError } = useQuery({
     queryKey: memoizedQueryKey,
     queryFn: getAccommodationDetailData,
     staleTime: 500000,
     cacheTime: 5000000,
-    onError: error => {
-      console.log(error);
-    },
   });
 
-  if (isLoading || !data) {
-    return <div>로딩중..!!!!!</div>;
+  if (isLoading) {
+    return (
+      <div className="accommodation__animation-container">
+        <LoadingAnimation width="200px" height="200px" />
+      </div>
+    );
+  }
+  if (isError || !data) {
+    return (
+      <div className="home__animation-container">
+        <ErrorAnimation width="200px" height="200px" />
+        <p>에러가 발생하였습니다. 다시 시도해주세요!</p>
+      </div>
+    );
   }
 
   // const optimizeImage = async () => {
