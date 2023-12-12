@@ -193,6 +193,7 @@ const AccommodationMap = ({
     customOverlay.setMap(map);
     placeOverlay.setMap(map);
     marker.setMap(map);
+    map.setZoomable(false);
   }, [window.kakao]);
 
   return (
