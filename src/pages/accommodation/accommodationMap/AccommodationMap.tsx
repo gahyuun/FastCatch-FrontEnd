@@ -39,9 +39,6 @@ const AccommodationMap = ({
   const { showToast, ToastContainer } = ToastLayout();
 
   useEffect(() => {
-    if (!window.kakao) {
-      return;
-    }
     let markers: any[] = [];
     let currCategory = "";
     const map = new kakao.maps.Map(mapContainer.current, options);
@@ -102,16 +99,17 @@ const AccommodationMap = ({
         .current!.querySelector(`#${currCategory}`)!
         .getAttribute("data-order");
 
-      for (const place of places) {
+      for (let i = 0; i < places.length; i++) {
+        // 마커를 생성 & 표시
         const marker = addMarker(
-          new kakao.maps.LatLng(place.y, place.x),
+          new kakao.maps.LatLng(places[i].y, places[i].x),
           order
         );
         (function (marker, place) {
           kakao.maps.event.addListener(marker, "click", function () {
             displayPlaceInfo(place);
           });
-        })(marker, place);
+        })(marker, places[i]);
       }
     }
 
@@ -142,8 +140,8 @@ const AccommodationMap = ({
     }
 
     function removeMarker() {
-      for (const marker of markers) {
-        marker.setMap();
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap();
       }
       markers = [];
     }
@@ -156,9 +154,11 @@ const AccommodationMap = ({
     // 각 카테고리에 클릭 이벤트
     function addCategoryClickEvent() {
       const category = categoryRef.current!;
-      const children: any = category.children;
-      for (const child of children) {
-        child.onclick = onClickCategory;
+      const children: any = category!.children;
+      console.log(children, "children");
+      for (let i = 0; i < children.length; i++) {
+        // children[i].addEventListener("click", onClickCategory);
+        children[i].onclick = onClickCategory;
       }
     }
     function onClickCategory(this: HTMLElement, event: any) {
@@ -181,8 +181,8 @@ const AccommodationMap = ({
     function changeCategoryClass(el: { className: string } | null) {
       const category = categoryRef.current!;
       const children = category!.children;
-      for (const child of children) {
-        child.className = "";
+      for (let i = 0; i < children.length; i++) {
+        children[i].className = "";
       }
 
       if (el) {
@@ -193,7 +193,7 @@ const AccommodationMap = ({
     customOverlay.setMap(map);
     placeOverlay.setMap(map);
     marker.setMap(map);
-  }, [window.kakao]);
+  }, []);
 
   return (
     <div className="accommodation__map">
