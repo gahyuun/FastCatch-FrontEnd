@@ -1,17 +1,16 @@
-import { QueryClient } from "react-query";
+import { responseStateTypes } from "./../../../states/responseState";
 import { OptionI } from "./DetailCategoryModal";
 import { Accommodation } from "@/states/detailState";
 
 export const commitOptions = (
   activeTab: number,
   options: OptionI[],
-  queryClient: QueryClient,
+  responseStates: any,
   setFilteredAtom: React.Dispatch<React.SetStateAction<Accommodation[]>>,
   setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const selectedOptions = options.filter(option => option.state);
-  const cachedMainData: any = queryClient.getQueryData(["accommodations"]);
-  const cachedData = cachedMainData.data.accommodations;
+  const cachedData = responseStates.responseArray;
 
   if (cachedData) {
     let sortedData;
