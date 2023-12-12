@@ -39,6 +39,9 @@ const AccommodationMap = ({
   const { showToast, ToastContainer } = ToastLayout();
 
   useEffect(() => {
+    if (!window.kakao) {
+      return;
+    }
     let markers: any[] = [];
     let currCategory = "";
     const map = new kakao.maps.Map(mapContainer.current, options);
@@ -190,7 +193,7 @@ const AccommodationMap = ({
     customOverlay.setMap(map);
     placeOverlay.setMap(map);
     marker.setMap(map);
-  }, []);
+  }, [window.kakao]);
 
   return (
     <div className="accommodation__map">
