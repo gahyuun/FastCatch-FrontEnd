@@ -6,4 +6,7 @@
   input[type="checkbox"] {
     display: none;
   }
+  @include mdq-max(700) {
+    gap: 5px;
+  }
 }

@@ -95,6 +95,7 @@ const Signup = () => {
 
   return (
     <>
+    <div className="common-bg"></div>
       <div className="user-wrap">
         <div className="bg-wrap">
           <div className="login-wrap">
@@ -235,6 +236,7 @@ const Signup = () => {
                     <input
                       type={isPwVisible ? "text" : "password"}
                       placeholder="영문자, 숫자 포함 최소 8~20자로 입력하세요"
+                      className="input-visible"
                       {...register("password", {
                         required: "비밀번호를 입력하세요",
                         pattern: {
