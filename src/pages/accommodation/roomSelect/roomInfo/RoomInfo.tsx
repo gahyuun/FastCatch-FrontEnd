@@ -68,15 +68,6 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
     return calculatedPrice;
   }, [curAmount, baseHeadCount, maxHeadCount, price, countDay]);
 
-  // let totalPrice = 0;
-  // if (curAmount < baseHeadCount) {
-  //   totalPrice = price * countDay;
-  // } else if (curAmount > maxHeadCount) {
-  //   totalPrice = price * countDay + 15000 * (maxHeadCount - baseHeadCount);
-  // } else {
-  //   totalPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
-  // }
-
   useEffect(() => {
     if (curAmount < baseHeadCount) {
       totalPrice = price;
