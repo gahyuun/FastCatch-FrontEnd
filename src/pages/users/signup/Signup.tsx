@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios, { AxiosRequestConfig } from "axios";
 
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-import TermsAgreement from "@/src/components/termsAgreement/TermsAgreement";
-import { CommonButton } from "@/src/components";
-import { ToastContainer } from "react-toastify";
+import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
 
 import "../users.scss";
+import instance from "@/api/instanceApi";
+import { Button, ToastLayout } from "@/components/common";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동
@@ -33,70 +32,59 @@ const Signup = () => {
   const [isNicknameValid, setIsNicknameValid] = useState<boolean | null>(null);
   const {
     register,
-    handleSubmit,
     formState: { errors },
-    reset,
     watch,
-    setError,
   } = useForm<SignupData>({
     mode: "onBlur",
   });
+  const email = watch("email") ?? "";
   const nickname = watch("nickname") ?? "";
+  const password = watch("password") ?? "";
+  const name = watch("name") ?? "";
+  const birthday = watch("birthday") ?? "";
+  const phoneNumber = watch("phoneNumber") ?? "";
+  const { showToast, ToastContainer } = ToastLayout();
 
-  // TODO : .env에서 가져올것
-  const baseURL =
-    "http://ec2-54-180-97-194.ap-northeast-2.compute.amazonaws.com/";
-
-  // 데이터 호출 함수
-  const sendRequest = async ({ method, endpoint, data }: axiosI) => {
+  const duplicatedNickName = async () => {
     try {
-      const response = await axios({
-        method,
-        url: `${baseURL}${endpoint}`,
-        data,
-      });
+      const res = await instance.get(
+        `/api/members/nickname?nickname=${nickname}`
+      );
 
-      const nameData = response.data;
-
-      if (nameData.data) {
-        setNicknameError("중복된 닉네임입니다");
-        setIsNicknameValid(false);
-      } else {
-        setNicknameError("사용가능한 닉네임입니다");
+      if (res.status === 200) {
         setIsNicknameValid(true);
+        showToast({ theme: "success", message: "사용가능한 닉네임입니다" });
       }
 
-      return response.data;
+      return res;
     } catch (error) {
-      console.error(`에러 발생 (${method} 요청):`, error);
-      throw error;
+      console.log(error);
     }
   };
 
   // 회원가입 폼 제출
-  const onSubmit = (data: SignupData) => {
-    if (isAllCheck) {
-      sendRequest({
-        method: "post",
-        endpoint: "api/members/signup",
-        data,
-      });
-      reset();
-      window.alert("회원가입이 완료되었습니다");
-      goToLogin();
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isAllCheck && isNicknameValid) {
+      const requestBody = {
+        email,
+        password,
+        nickname,
+        name,
+        birthday,
+        phoneNumber,
+      };
+      const signUp = async () => {
+        try {
+          const res = await instance.post("/api/members/signup", requestBody);
+          await navigate("/login");
+          return res;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      signUp();
     }
-  };
-
-  // 닉네임 중복확인
-  const checkName = () => {
-    setError("nickname", {
-      type: "manual",
-      message: "",
-    });
-    sendRequest({
-      method: "get",
-      endpoint: `api/members/nickname?nickname=${nickname}`,
-    });
   };
 
   // 중복확인 조건문
@@ -122,7 +110,7 @@ const Signup = () => {
                 </a>
               </li>
             </ul>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
               <div className="login-wrap__body">
                 <div className="input-inner">
                   <label htmlFor="">이름</label>
@@ -183,7 +171,7 @@ const Signup = () => {
                     />
                     <button
                       className="btn-check"
-                      onClick={checkName}
+                      onClick={duplicatedNickName}
                       disabled={!isNicknameValids}
                     >
                       중복확인
@@ -271,7 +259,7 @@ const Signup = () => {
                   isAllCheck={isAllCheck}
                   setIsAllCheck={setIsAllCheck}
                 />
-                <CommonButton
+                <Button
                   type="submit"
                   buttonSize="large"
                   text="회원가입"
@@ -279,7 +267,7 @@ const Signup = () => {
                 />
               </div>
             </form>
-            <ToastContainer />
+            {ToastContainer}
           </div>
         </div>
       </div>
@@ -296,10 +284,4 @@ interface SignupData {
   birthday: string;
   phoneNumber: string;
   password: string;
-}
-
-interface axiosI {
-  method: AxiosRequestConfig["method"];
-  endpoint: string;
-  data?: AxiosRequestConfig["data"];
 }

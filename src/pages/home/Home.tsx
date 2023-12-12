@@ -1,15 +1,17 @@
 import { useQuery } from "react-query";
 import AccomodationItem from "./accomodationItem/AccomodationItem";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
 import "./home.scss";
 
 import { useRecoilState } from "recoil";
-import { filterState } from "@/src/states/filterState";
+import { filterState } from "@/states/filterState";
 import { format } from "date-fns";
-import { fetchAccommodationsData } from "@/src/hooks/fetchAccommodations";
+import { fetchAccommodationsData } from "@/hooks/fetchAccommodations";
 import { Accommodation } from "../../types/accommodations";
-import { responseState } from "@/src/states/responseState";
+import { responseState } from "@/states/responseState";
 import { useEffect, useRef } from "react";
-import { detailState } from "@/src/states/detailState";
+import { detailState } from "@/states/detailState";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
 
 const Home = () => {
   const [detailFiltered, setDetailFiltered] = useRecoilState(detailState);
@@ -17,29 +19,24 @@ const Home = () => {
   const [responseStates, setResponseStates] = useRecoilState(responseState);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     // Intersection Observer 생성
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           // 타겟 요소가 화면에 나타남
-          // console.log("타겟이 화면에 나타났습니다!");
           setTimeout(() => refetch(), 500);
-        } else {
-          // 타겟 요소가 화면에서 사라짐
-          // console.log("타겟이 화면에서 사라졌습니다!");
         }
       });
     });
     // 감시 대상 요소들
-    setTimeout(() => {
-      if (scrollRef.current) {
-        const targetElements = document.querySelector(".target-div");
-        observer.observe(targetElements!);
-      }
-    }, 1000);
-  }, [filterStates]);
+
+    if (scrollRef.current) {
+      const targetElements = document.querySelector(".target-div");
+      observer.observe(targetElements!);
+    }
+    return () => observer.disconnect();
+  }, [filterStates, scrollRef.current]);
 
   // 시작일 종료일 만들기
   const startDate = format(filterStates.startDate, "yyyy-MM-dd");
@@ -48,7 +45,7 @@ const Home = () => {
     : startDate;
 
   // 리액트 쿼리
-  const { data, refetch, isLoading, isError } = useQuery({
+  const { refetch, isLoading, isError } = useQuery({
     queryKey: ["accommodations", filterStates.current],
     queryFn: () =>
       fetchAccommodationsData(
@@ -63,18 +60,25 @@ const Home = () => {
     onSuccess: data => {
       setResponseStates(prev => ({
         pageIndex: prev.pageIndex + 1,
-        responseArray: [...prev.responseArray, ...data.data.accommodations],
+        responseArray: [...prev.responseArray, ...data.accommodations],
       }));
     },
   });
 
   if (isLoading) {
-    return <div>로딩~</div>;
+    return (
+      <div className="home__animation-container">
+        <LoadingAnimation width="200px" height="200px" />
+      </div>
+    );
   }
   if (isError) {
-    return <div>에러~</div>;
-  }
-  if (data) {
+    return (
+      <div className="home__animation-container">
+        <ErrorAnimation width="200px" height="200px" />
+        <p>에러가 발생하였습니다. 다시 시도해주세요!</p>
+      </div>
+    );
   }
 
   return (
@@ -109,7 +113,7 @@ const Home = () => {
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { orderErrorMsgState } from "@/src/states/orderErrorMsgState";
+import { orderErrorMsgState } from "@/states/orderErrorMsgState";
 
 import "./orderResult.scss";
 

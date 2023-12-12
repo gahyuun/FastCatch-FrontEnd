@@ -1,4 +1,3 @@
-// import imageCompression, { Options } from "browser-image-compression";
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { format } from "date-fns";
@@ -8,8 +7,8 @@ import RoomSelect from "./roomSelect/RoomSelect";
 import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo";
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
-import { filterState } from "@/src/states/filterState";
-import { getAccommodationDetailApi } from "@/src/api/getAccommodationDetailApi";
+import { filterState } from "@/states/filterState";
+import { getAccommodationDetailApi } from "@/api/getAccommodationDetailApi";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);

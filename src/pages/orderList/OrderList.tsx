@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { CommonButton } from "@/src/components";
-import { getOrderApi } from "@/src/api/getOrderApi";
-import { Order } from "@/src/types/order";
-import { getOrderListApi } from "@/src/api/getOrderListApi";
+import { getOrderApi } from "@/api/getOrderApi";
+import { Order } from "@/types/order";
+import { getOrderListApi } from "@/api/getOrderListApi";
 
-import MembersHeader from "@/src/pages/members/membersHeader/MembersHeader";
-import OrderListItem from "@/src/pages/orderList/orderListItem/OrderListItem";
+import MembersHeader from "@/pages/members/membersHeader/MembersHeader";
+import OrderListItem from "@/pages/orderList/orderListItem/OrderListItem";
 
 import "./orderList.scss";
-import CommonToastLayout from "@/src/components/commonToast/CommonToastLayout";
+import { Button, ToastLayout } from "@/components/common";
 
 const OrderList = () => {
   const [reservedList, setReservedList] = useState<Order[]>([]);
@@ -76,7 +75,7 @@ const OrderList = () => {
     }
   };
 
-  const { showToast, ToastContainer } = CommonToastLayout();
+  const { showToast, ToastContainer } = ToastLayout();
 
   return (
     <div className="order-list">
@@ -99,7 +98,7 @@ const OrderList = () => {
             ) : (
               <p className="order-list__error-msg">내역이 존재하지 않습니다</p>
             )}
-            <CommonButton
+            <Button
               text={"더보기"}
               buttonSize="exLarge"
               isPassed={isReservedList}
@@ -117,7 +116,7 @@ const OrderList = () => {
             ) : (
               <p className="order-list__error-msg">내역이 존재하지 않습니다</p>
             )}
-            <CommonButton
+            <Button
               text={"더보기"}
               buttonSize="exLarge"
               isPassed={isUsedList}
@@ -135,7 +134,7 @@ const OrderList = () => {
             ) : (
               <p className="order-list__error-msg">내역이 존재하지 않습니다</p>
             )}
-            <CommonButton
+            <Button
               text={"더보기"}
               buttonSize="exLarge"
               isPassed={isCanceledList}

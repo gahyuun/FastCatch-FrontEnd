@@ -1,14 +1,12 @@
-import { useEffect } from "react";
-
-import AccommodationGuest from "@/src/components/accommodationGuest/AccommodationGuest";
-import HotelName from "@/src/components/accommodationName/AccommodationName";
-import RoomName from "@/src/components/roomName/RoomName";
-import CheckIn from "@/src/components/checkIn/CheckIn";
-import CheckOut from "@/src/components/checkOut/CheckOut";
-import OrderPrice from "@/src/pages/order/orderPrice/OrderPrice";
+import AccommodationGuest from "@/components/accommodationGuest/AccommodationGuest";
+import HotelName from "@/components/accommodationName/AccommodationName";
+import RoomName from "@/components/roomName/RoomName";
+import CheckIn from "@/components/checkIn/CheckIn";
+import CheckOut from "@/components/checkOut/CheckOut";
+import OrderPrice from "@/pages/order/orderPrice/OrderPrice";
 
 import "./orderItem.scss";
-import { calculateNightStay } from "@/src/utils/calculateNightStay";
+import { calculateNightStay } from "@/utils/calculateNightStay";
 
 const OrderItem = ({ orderData }: OrderItemProps) => {
   const {
@@ -22,9 +20,6 @@ const OrderItem = ({ orderData }: OrderItemProps) => {
     checkOutTime,
     price,
   } = orderData;
-  useEffect(() => {
-    console.log(orderData);
-  }, [orderData]);
 
   return (
     <div className="order-item">
