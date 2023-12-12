@@ -33,9 +33,7 @@ const filterOption = {
 };
 
 const DetailCategoryModal = (props: detailProps) => {
-  // const queryClient = useQueryClient();
   const [responseStates] = useRecoilState(responseState);
-  // responseArray
   const [detail] = useRecoilState(detailState);
   const setFilteredAtom = useSetRecoilState(detailState);
   const setOpenDetail = props.setOpenDetail;
