@@ -1,4 +1,3 @@
-import { responseStateTypes } from "./../../../states/responseState";
 import { OptionI } from "./DetailCategoryModal";
 import { Accommodation } from "@/states/detailState";
 
