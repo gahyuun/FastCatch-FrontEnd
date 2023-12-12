@@ -28,6 +28,7 @@ const RoomImgSwiper = ({ roomImg }: RoomImgSwiperProps) => {
             }}
             src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${obj.fileName}`}
             alt={"이미지"}
+            loading="lazy"
           />
         </SwiperSlide>
       ))}
