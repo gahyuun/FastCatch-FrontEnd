@@ -55,3 +55,19 @@
     background-color: coral(400);
   }
 }
+
+.home__animation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 600px;
+  width: 100%;
+  height: 500px;
+
+  p {
+    font-size: map-get($body2, font-size);
+    font-weight: map-get($body2, font-weight);
+    color: $error;
+  }
+}

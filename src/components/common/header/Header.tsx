@@ -27,7 +27,6 @@ const Header = () => {
   const [filterMode, setFilterMode] = useState<"filter" | "search">("filter");
 
   const changeFilterModeHandler = () => {
-    console.log(filterMode, "!");
     if (filterMode === "filter") {
       setFilterMode("search");
     } else {
@@ -59,7 +58,6 @@ const Header = () => {
         filterStates.current.amount,
         1
       ),
-    select: data => data.data,
   });
 
   const changeFilterHandler = () => {
@@ -73,7 +71,7 @@ const Header = () => {
         amount: filterStates.amount,
       },
     }));
-    setTimeout(() => refetch(), 200);
+    refetch();
   };
 
   return (
