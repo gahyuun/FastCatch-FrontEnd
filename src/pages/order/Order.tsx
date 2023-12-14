@@ -48,7 +48,7 @@ const Order = memo(() => {
     postOrderAPiFromAccommodation(cartParam);
   };
 
-  const postOrderApiFromCart = useCallback(async (cartParam: string | null) => {
+  const postOrderApiFromCart = async (cartParam: string | null) => {
     if (cartParam === "true") {
       const cartItemIds: number[] = orderData
         .map(item => {
@@ -71,36 +71,35 @@ const Order = memo(() => {
         setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
       }
     }
-  }, []);
+  };
 
-  const postOrderAPiFromAccommodation = useCallback(
-    async (cartParam: string | null) => {
-      if (cartParam === "false") {
-        const requestBody = {
-          ageConsent: isAllCheck,
-          reservationPersonName: userName,
-          reservationPhoneNumber: userPhoneNumber,
-          totalPrice: totalOrderPrice,
-          orderItems: orderData.map(item => ({
-            roomId: item.roomId,
-            startDate: item.startDate,
-            endDate: item.endDate,
-            headCount: item.headCount,
-            orderPrice: item.price,
-          })),
-        };
-        try {
-          const res = await postOrderApi("/api/orders", requestBody);
-          navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
-        } catch (error) {
-          navigate("/order/result?=false");
-          const postOrderApiError = error as PostOrderApiErrorResponse;
-          setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
-        }
+  const postOrderAPiFromAccommodation = async (cartParam: string | null) => {
+    if (cartParam === "false") {
+      const requestBody = {
+        ageConsent: isAllCheck,
+        reservationPersonName: userName,
+        reservationPhoneNumber: userPhoneNumber,
+        totalPrice: totalOrderPrice,
+        orderItems: orderData.map(item => ({
+          roomId: item.roomId,
+          startDate: item.startDate,
+          endDate: item.endDate,
+          headCount: item.headCount,
+          orderPrice: item.price,
+        })),
+      };
+      try {
+        console.log("성공", requestBody);
+        const res = await postOrderApi("/api/orders", requestBody);
+        navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
+      } catch (error) {
+        console.log("실패", requestBody);
+        navigate("/order/result?=false");
+        const postOrderApiError = error as PostOrderApiErrorResponse;
+        setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
       }
-    },
-    []
-  );
+    }
+  };
 
   useEffect(() => {
     if (!isAllCheck || !isBookerValidationPass) {
