@@ -4,7 +4,7 @@ import {
   REGEX_PHONE_NUMBER,
   validationErrorMessage,
 } from "@/constant/validation";
-import { memo, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 
 import "./bookerInformation.scss";
 import { useRecoilValue } from "recoil";
@@ -37,19 +37,25 @@ const BookerInformation = memo(
       }
     }, [userState]);
 
-    const checkUserValidation = () => {
+    const checkUserValidation = useCallback(() => {
       setIsBookerValidationPass(
         isUserNameValidation && isPhoneNumberValidation
       );
-    };
+    }, []);
 
-    const handleUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUserName(e.target.value);
-    };
+    const handleUserName = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserName(e.target.value);
+      },
+      []
+    );
 
-    const handleUserPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUserPhoneNumber(e.target.value);
-    };
+    const handleUserPhoneNumber = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserPhoneNumber(e.target.value);
+      },
+      []
+    );
 
     return (
       <div className="booker-information">

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { OrderItemTypes, orderState } from "@/states/orderState";
 import { PostOrderApiErrorResponse, postOrderApi } from "@/api/postOrderApi";
@@ -89,11 +89,9 @@ const Order = memo(() => {
         })),
       };
       try {
-        console.log("성공", requestBody);
         const res = await postOrderApi("/api/orders", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
-        console.log("실패", requestBody);
         navigate("/order/result?=false");
         const postOrderApiError = error as PostOrderApiErrorResponse;
         setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
