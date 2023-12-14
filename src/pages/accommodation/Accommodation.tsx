@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
@@ -7,7 +8,9 @@ import AccommodationMainInfo from "./accommodationMainInfo/AccommodationMainInfo
 import AccommodationOptions from "./accommodationOptions/AccommodationOptions";
 import AccommodationMap from "./accommodationMap/AccommodationMap";
 import { filterState } from "@/states/filterState";
-import instance from "@/api/instanceApi";
+import { getAccommodationDetailApi } from "@/api/getAccommodationDetailApi";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
 
 const Accommodation = () => {
   const filterData = useRecoilValue(filterState);
@@ -18,28 +21,34 @@ const Accommodation = () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
-  const fetchListData = async () => {
-    try {
-      const res = await instance.get(
-        `/api/accommodations/${id}?startDate=${startDate}&endDate=${endDate}`
-      );
-      return res.data.data;
-    } catch (error) {
-      console.log("에러발생!!!!!!!!!", error);
-      throw new Error("Failed to fetch data");
-    }
+  const getAccommodationDetailData = async () => {
+    const result = await getAccommodationDetailApi(id, startDate, endDate);
+    return result;
   };
 
-  const { data, isError, isLoading, refetch } = useQuery({
-    queryKey: [id, "postDetail"],
-    queryFn: fetchListData,
+  const memoizedQueryKey = useMemo(() => [id, "postDetail"], [id]);
+
+  const { data, isLoading, refetch, isError } = useQuery({
+    queryKey: memoizedQueryKey,
+    queryFn: getAccommodationDetailData,
     staleTime: 500000,
+    cacheTime: 5000000,
   });
+
   if (isLoading) {
-    return <div>로딩중..!!!!!</div>;
+    return (
+      <div className="accommodation__animation-container">
+        <LoadingAnimation width="200px" height="200px" />
+      </div>
+    );
   }
-  if (isError) {
-    return <div>여기는 에러 페이지!</div>;
+  if (isError || !data) {
+    return (
+      <div className="home__animation-container">
+        <ErrorAnimation width="200px" height="200px" />
+        <p>에러가 발생하였습니다. 다시 시도해주세요!</p>
+      </div>
+    );
   }
 
   return (
@@ -48,6 +57,7 @@ const Accommodation = () => {
         style={{ height: "550px", width: "100%", objectFit: "cover" }}
         src={`https://fastcatch-image.s3.ap-northeast-2.amazonaws.com/${data.image}`}
         alt={data.name}
+        loading="lazy"
       />
 
       <AccommodationMainInfo
