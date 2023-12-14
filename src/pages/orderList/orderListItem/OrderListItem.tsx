@@ -20,7 +20,7 @@ const OrderListItem = memo(
 
     const formattedTotalPrice = numberFormat(totalPrice);
 
-    const { data, isLoading, isError, refetch } = useQuery(
+    const { isLoading, isError, refetch } = useQuery(
       "orderListData",
       getOrderApi
     );

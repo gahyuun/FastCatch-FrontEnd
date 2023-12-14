@@ -8,8 +8,8 @@ export const postOrderApi = async (
     const res = await instance.post(url, requestBody);
     return res.data;
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.error(error);
+    throw new Error("데이터를 전송하지 못했습니다.");
   }
 };
 
