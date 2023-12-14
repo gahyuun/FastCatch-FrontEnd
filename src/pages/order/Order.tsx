@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { OrderItemTypes, orderState } from "@/states/orderState";
 import { PostOrderApiErrorResponse, postOrderApi } from "@/api/postOrderApi";
@@ -21,7 +21,7 @@ import {
   OrderItem,
 } from ".";
 
-const Order = () => {
+const Order = memo(() => {
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
@@ -44,6 +44,11 @@ const Order = () => {
   }, [orderData]);
 
   const handleClick = async () => {
+    postOrderApiFromCart(cartParam);
+    postOrderAPiFromAccommodation(cartParam);
+  };
+
+  const postOrderApiFromCart = useCallback(async (cartParam: string | null) => {
     if (cartParam === "true") {
       const cartItemIds: number[] = orderData
         .map(item => {
@@ -58,7 +63,6 @@ const Order = () => {
         cartItemIds: cartItemIds,
       };
       try {
-        console.log(requestBody);
         const res = await postOrderApi("/api/orders/carts", requestBody);
         navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
       } catch (error) {
@@ -67,30 +71,36 @@ const Order = () => {
         setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
       }
     }
-    if (cartParam === "false") {
-      const requestBody = {
-        ageConsent: isAllCheck,
-        reservationPersonName: userName,
-        reservationPhoneNumber: userPhoneNumber,
-        totalPrice: totalOrderPrice,
-        orderItems: orderData.map(item => ({
-          roomId: item.roomId,
-          startDate: item.startDate,
-          endDate: item.endDate,
-          headCount: item.headCount,
-          orderPrice: item.price,
-        })),
-      };
-      try {
-        const res = await postOrderApi("/api/orders", requestBody);
-        navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
-      } catch (error) {
-        navigate("/order/result?=false");
-        const postOrderApiError = error as PostOrderApiErrorResponse;
-        setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
+  }, []);
+
+  const postOrderAPiFromAccommodation = useCallback(
+    async (cartParam: string | null) => {
+      if (cartParam === "false") {
+        const requestBody = {
+          ageConsent: isAllCheck,
+          reservationPersonName: userName,
+          reservationPhoneNumber: userPhoneNumber,
+          totalPrice: totalOrderPrice,
+          orderItems: orderData.map(item => ({
+            roomId: item.roomId,
+            startDate: item.startDate,
+            endDate: item.endDate,
+            headCount: item.headCount,
+            orderPrice: item.price,
+          })),
+        };
+        try {
+          const res = await postOrderApi("/api/orders", requestBody);
+          navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
+        } catch (error) {
+          navigate("/order/result?=false");
+          const postOrderApiError = error as PostOrderApiErrorResponse;
+          setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
+        }
       }
-    }
-  };
+    },
+    []
+  );
 
   useEffect(() => {
     if (!isAllCheck || !isBookerValidationPass) {
@@ -132,6 +142,6 @@ const Order = () => {
       </form>
     </div>
   );
-};
+});
 
 export default Order;

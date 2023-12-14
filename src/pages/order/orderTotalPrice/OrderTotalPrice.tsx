@@ -1,8 +1,9 @@
 import numberFormat from "@/utils/numberFormat";
+import { memo } from "react";
 
 import "./orderTotalPrice.scss";
 
-const OrderTotalPrice = ({ roomTotalPrice }: OrderTotalPriceProps) => {
+const OrderTotalPrice = memo(({ roomTotalPrice }: OrderTotalPriceProps) => {
   const formattedPrice = numberFormat(roomTotalPrice);
   return (
     <div className="order-total-price">
@@ -12,7 +13,7 @@ const OrderTotalPrice = ({ roomTotalPrice }: OrderTotalPriceProps) => {
       </span>
     </div>
   );
-};
+});
 
 export default OrderTotalPrice;
 
