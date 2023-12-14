@@ -9,17 +9,17 @@ import {
   MdRestaurant,
 } from "react-icons/md";
 import { PiCookingPotBold, PiDogBold } from "react-icons/pi";
+import { IAccommodationOptionsType } from "@/types/accommodationDetail";
 
 interface TemplateItem {
   [key: string]: [string, JSX.Element];
 }
-type AccommodationOptions = {
-  [key: string]: boolean;
-};
 
 const AccommodationOptions = ({
   accommodationOptions,
-}: AccommodationOptions) => {
+}: {
+  accommodationOptions: IAccommodationOptionsType;
+}) => {
   const template: TemplateItem = {
     hasSmokingRoom: ["흡연 가능", <FaSmoking size="50px" />],
     hasPetRoom: ["반려견 동반", <PiDogBold size="50px" />],
