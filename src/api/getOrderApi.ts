@@ -20,5 +20,6 @@ export const getOrderApi = async () => {
     return { orderData, reservedOrders, usedOrders, canceledOrders };
   } catch (error) {
     console.log(error);
+    throw new Error("데이터를 불러올 수 없습니다.");
   }
 };

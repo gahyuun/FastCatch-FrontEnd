@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdBlock, MdCheckCircleOutline } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { userInfoI, userState } from "@/states/userState";
@@ -14,6 +14,10 @@ import {
 
 import "./membersInfo.scss";
 import { ToastLayout } from "@/components/common";
+import { getUserInfoApi } from "@/api/getUserInfoApi";
+import { useQuery } from "react-query";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
 
 const MembersInfo = () => {
   const [isSettingMode, setIsSettingMode] = useState(false);
@@ -27,6 +31,8 @@ const MembersInfo = () => {
     useState(true);
   const [isBirthDayValidationPass, setIsBirthDayValidationPass] =
     useState(true);
+
+  const { isLoading, isError } = useQuery("userData", getUserInfoApi);
 
   const handleInputChange = (fieldName: string, value: string) => {
     setCopyUserInfo((prevUserInfo: userInfoI | null) => ({
@@ -104,6 +110,14 @@ const MembersInfo = () => {
     birthday,
     REGEX_BIRTH_DAY
   );
+
+  if (isLoading) {
+    return <LoadingAnimation width="200px" height="200px" />;
+  }
+
+  if (isError) {
+    return <ErrorAnimation width="200px" height="200px" />;
+  }
 
   return (
     <div className="members-info">
