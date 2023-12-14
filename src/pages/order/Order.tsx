@@ -43,14 +43,14 @@ const Order = memo(() => {
     localStorage.setItem("orderState", JSON.stringify(orderData));
   }, [orderData]);
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     if (cartParam === "true") {
       postOrderApiFromCart();
     }
     if (cartParam === "false") {
       postOrderApiFromAccommodation();
     }
-  }, []);
+  };
 
   const postOrderApiFromCart = async () => {
     const cartItemIds: number[] = orderData
