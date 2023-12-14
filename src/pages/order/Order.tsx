@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { OrderItemTypes, orderState } from "@/states/orderState";
 import { PostOrderApiErrorResponse, postOrderApi } from "@/api/postOrderApi";

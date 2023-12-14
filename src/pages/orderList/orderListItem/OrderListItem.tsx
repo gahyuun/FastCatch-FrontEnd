@@ -8,6 +8,10 @@ import "./orderListItem.scss";
 import { deleteOrderApi } from "@/api/deleteOrderApi";
 import { SetStateAction, memo } from "react";
 import { Badge, Button } from "@/components/common";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getOrderApi } from "@/api/getOrderApi";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
 
 const OrderListItem = memo(
   ({ roomInfo, reservedList, setReservedList }: OrderListItemProps) => {
@@ -15,6 +19,19 @@ const OrderListItem = memo(
       roomInfo;
 
     const formattedTotalPrice = numberFormat(totalPrice);
+
+    const { data, isLoading, isError, refetch } = useQuery(
+      "orderListData",
+      getOrderApi
+    );
+
+    const queryClient = useQueryClient();
+
+    const deleteOrderMutation = useMutation(deleteOrderApi, {
+      onSuccess: () => {
+        queryClient.invalidateQueries("orderListData");
+      },
+    });
 
     const handleCancel = async () => {
       const bookingCancelConfirm = confirm("정말 취소하시겠습니까?");
@@ -24,11 +41,19 @@ const OrderListItem = memo(
             order => order.orderId !== orderId
           );
           setReservedList(updatedReservedList);
-          console.log(orderId);
-          await deleteOrderApi(orderId);
+          await deleteOrderMutation.mutate(orderId);
+          await refetch();
         }
       }
     };
+
+    if (isLoading) {
+      return <LoadingAnimation width="200px" height="200px" />;
+    }
+
+    if (isError) {
+      return <ErrorAnimation width="200px" height="200px" />;
+    }
 
     return (
       <div className="order-list-item">
