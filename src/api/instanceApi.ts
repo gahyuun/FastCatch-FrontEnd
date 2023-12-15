@@ -13,7 +13,7 @@ instance.interceptors.request.use(
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
-    https: return config;
+    return config;
   },
   error => {
     return Promise.reject(error);

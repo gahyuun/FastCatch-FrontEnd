@@ -1,6 +1,6 @@
 import instance from "./instanceApi";
 
-let pageNums = {
+const pageNums = {
   reserved: 1,
   used: 1,
   canceled: 1,
@@ -16,6 +16,7 @@ export const getOrderListApi = async (
     pageNums[status] = pageNums[status] + 1;
     return res.data.data.orderResponses;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error("데이터를 불러올 수 없습니다.");
   }
 };

@@ -1,10 +1,11 @@
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { PATH } from "@/routes/constants";
 
 import "./membersHeader.scss";
 
-const MembersHeader = () => {
+const MembersHeader = memo(() => {
   const location = useLocation();
 
   return (
@@ -34,6 +35,6 @@ const MembersHeader = () => {
       </nav>
     </div>
   );
-};
+});
 
 export default MembersHeader;
