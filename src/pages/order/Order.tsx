@@ -9,7 +9,6 @@ import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
 
 import numberFormat from "@/utils/numberFormat";
 
-import "./order.scss";
 import { orderErrorMsgState } from "@/states/orderErrorMsgState";
 import { Button } from "@/components/common";
 import {
@@ -20,6 +19,8 @@ import {
   SubDescription,
   OrderItem,
 } from ".";
+
+import "./order.scss";
 
 const Order = memo(() => {
   const [userName, setUserName] = useState("");

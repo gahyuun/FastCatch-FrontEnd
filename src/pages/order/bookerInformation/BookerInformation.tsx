@@ -6,10 +6,10 @@ import {
 } from "@/constant/validation";
 import { memo, useCallback, useEffect } from "react";
 
-import "./bookerInformation.scss";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/states/userState";
 import { Input } from "@/components/common";
+import "./bookerInformation.scss";
 
 const BookerInformation = memo(
   ({
