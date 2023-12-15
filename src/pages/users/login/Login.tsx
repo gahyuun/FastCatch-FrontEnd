@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { userState } from "@/states/userState";
 
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import "../users.scss";
 import instance from "@/api/instanceApi";
+import { useAuth } from "@/hooks/useAuth";
 import { Button, ToastLayout } from "@/components/common";
+import { memberResI } from "@/types/member";
 
 const Login = () => {
   // 회원가입/로그인 링크이동
@@ -32,19 +32,18 @@ const Login = () => {
   } = useForm<loginData>({
     mode: "onBlur",
   });
-  const setUserInfo = useSetRecoilState(userState);
   const { showToast, ToastContainer } = ToastLayout();
   const email = watch("email");
   const password = watch("password");
+  const { setToken } = useAuth();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const requestBody = { email, password };
     try {
       const res = await instance.post("/api/members/signin", requestBody);
-      const { accessToken, memberResponse }: memberResI = res.data.data;
-      localStorage.setItem("accessToken", accessToken);
-      setUserInfo(memberResponse);
+      const { accessToken, refreshToken, memberResponse }: memberResI = res.data.data;      
+      setToken( accessToken, refreshToken, memberResponse );
       navigate("/");
     } catch (error) {
       showToast({
@@ -136,20 +135,4 @@ export default Login;
 interface loginData {
   email: string;
   password: string;
-}
-
-interface memberInfoI {
-  id: number;
-  email: string;
-  name: string;
-  nickname: string;
-  birthday: string;
-  phoneNumber: string;
-  cartId: number;
-}
-
-interface memberResI {
-  accessToken: string;
-  refreshToken: string;
-  memberResponse: memberInfoI;
 }

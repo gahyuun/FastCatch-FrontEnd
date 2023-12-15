@@ -93,6 +93,8 @@ const Signup = () => {
     nickname.length >= 2 &&
     nickname.length <= 14;
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <>
     <div className="common-bg"></div>
@@ -193,7 +195,7 @@ const Signup = () => {
                     {...register("birthday", {
                       required: "생년월일을 입력하세요",
                       pattern: {
-                        value: /^\d{4}-\d{2}-\d{2}$/,
+                        value: /^(19\d\d|20\d\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
                         message:
                           "올바른 형식의 생년월일을 입력하세요 (yyyy-mm-dd)",
                       },
