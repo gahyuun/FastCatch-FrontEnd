@@ -1,3 +1,4 @@
+
 # ✨ 이거 다 되면 팔조 ?! ✨
 
 야놀자 미니 프로젝트 - 숙박 예약 서비스
@@ -164,6 +165,8 @@ Vite는 ESM에 최적화되어 있고, 즉각적인 테스트 환경을 제공�
 
 ### 1) 로그인 페이지
 
+![refac_login](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/95595106/ba5e1d8b-1095-4fd9-9186-557cc2858aae)
+
 #### 유효성 검사
 
 - useForm을 사용해 각 항목에 대한 유효성 체크
@@ -177,6 +180,9 @@ Vite는 ESM에 최적화되어 있고, 즉각적인 테스트 환경을 제공�
 - 실패 응답 값에 따라 존재하지 않는 회원이거나, 비밀번호 불일치 시 toast 알림 노출
 
 ### 2) 회원가입 페이지
+
+![refac_signup (1) (1)](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/95595106/76dfdb31-256b-4c79-93f2-aeec8fbe9ec6)
+
 
 #### 유효성 검사
 
