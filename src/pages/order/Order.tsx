@@ -9,7 +9,6 @@ import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
 
 import numberFormat from "@/utils/numberFormat";
 
-import "./order.scss";
 import { orderErrorMsgState } from "@/states/orderErrorMsgState";
 import { Button } from "@/components/common";
 import {
@@ -20,6 +19,8 @@ import {
   SubDescription,
   OrderItem,
 } from ".";
+
+import "./order.scss";
 
 const Order = memo(() => {
   const [userName, setUserName] = useState("");
@@ -43,59 +44,59 @@ const Order = memo(() => {
     localStorage.setItem("orderState", JSON.stringify(orderData));
   }, [orderData]);
 
-  const handleClick = async () => {
-    postOrderApiFromCart(cartParam);
-    postOrderAPiFromAccommodation(cartParam);
-  };
-
-  const postOrderApiFromCart = async (cartParam: string | null) => {
+  const handleClick = () => {
     if (cartParam === "true") {
-      const cartItemIds: number[] = orderData
-        .map(item => {
-          return item.cartItemId;
-        })
-        .filter((cartId): cartId is number => typeof cartId === "number");
-      const requestBody = {
-        ageConsent: isAllCheck,
-        reservationPersonName: userName,
-        reservationPhoneNumber: userPhoneNumber,
-        totalPrice: totalOrderPrice,
-        cartItemIds: cartItemIds,
-      };
-      try {
-        const res = await postOrderApi("/api/orders/carts", requestBody);
-        navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
-      } catch (error) {
-        navigate("/order/result?=false");
-        const postOrderApiError = error as PostOrderApiErrorResponse;
-        setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
-      }
+      postOrderApiFromCart();
+    }
+    if (cartParam === "false") {
+      postOrderApiFromAccommodation();
     }
   };
 
-  const postOrderAPiFromAccommodation = async (cartParam: string | null) => {
-    if (cartParam === "false") {
-      const requestBody = {
-        ageConsent: isAllCheck,
-        reservationPersonName: userName,
-        reservationPhoneNumber: userPhoneNumber,
-        totalPrice: totalOrderPrice,
-        orderItems: orderData.map(item => ({
-          roomId: item.roomId,
-          startDate: item.startDate,
-          endDate: item.endDate,
-          headCount: item.headCount,
-          orderPrice: item.price,
-        })),
-      };
-      try {
-        const res = await postOrderApi("/api/orders", requestBody);
-        navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
-      } catch (error) {
-        navigate("/order/result?=false");
-        const postOrderApiError = error as PostOrderApiErrorResponse;
-        setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
-      }
+  const postOrderApiFromCart = async () => {
+    const cartItemIds: number[] = orderData
+      .map(item => {
+        return item.cartItemId;
+      })
+      .filter((cartId): cartId is number => typeof cartId === "number");
+    const requestBody = {
+      ageConsent: isAllCheck,
+      reservationPersonName: userName,
+      reservationPhoneNumber: userPhoneNumber,
+      totalPrice: totalOrderPrice,
+      cartItemIds: cartItemIds,
+    };
+    try {
+      const res = await postOrderApi("/api/orders/carts", requestBody);
+      navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
+    } catch (error) {
+      navigate("/order/result?=false");
+      const postOrderApiError = error as PostOrderApiErrorResponse;
+      setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
+    }
+  };
+
+  const postOrderApiFromAccommodation = async () => {
+    const requestBody = {
+      ageConsent: isAllCheck,
+      reservationPersonName: userName,
+      reservationPhoneNumber: userPhoneNumber,
+      totalPrice: totalOrderPrice,
+      orderItems: orderData.map(item => ({
+        roomId: item.roomId,
+        startDate: item.startDate,
+        endDate: item.endDate,
+        headCount: item.headCount,
+        orderPrice: item.price,
+      })),
+    };
+    try {
+      const res = await postOrderApi("/api/orders", requestBody);
+      navigate(`/order/result?result=true&orderid=${res.data.orderId}`);
+    } catch (error) {
+      navigate("/order/result?=false");
+      const postOrderApiError = error as PostOrderApiErrorResponse;
+      setOrderErrorMsg(postOrderApiError.response.data.errorMessage);
     }
   };
 
