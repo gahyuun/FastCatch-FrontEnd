@@ -4,6 +4,7 @@ import { refreshAccessToken } from "@/hooks/useAuth";
 import { isAccessTokenExpired } from "@/utils/checkToken";
 import { getToken } from "@/utils/getToken";
 
+
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 5000,
@@ -13,6 +14,7 @@ instance.interceptors.request.use(
   async (config) => {
     config.headers["Content-Type"] = "application/json";
     const accessToken = getToken();
+
     if (accessToken) {
       const isTokenExpired = isAccessTokenExpired(accessToken);
 
