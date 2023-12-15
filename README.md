@@ -12,17 +12,21 @@
 ## 📝 프로젝트 소개
 
 <h3> 관련 링크</h3>
-  <a href="https://fast-catch-front-end-umh7.vercel.app/">
+  <a href="https://www.fastcatchapp.com">
     <img src="https://img.shields.io/badge/FastCatch SERvice-white?style=for-the-badge&logoColor=white" alt="wiki"/>
   </a>
-  <a href="https://fast-catch-front-end-umh7.vercel.app/">
+  <a href="https://github.com/FC-FastCatch/FastCatch-FrontEnd">
     <img src="https://img.shields.io/badge/배포 repository-212125?style=for-the-badge&logoColor=white" alt="배포 레포"/>
   </a>
 </p>
 
+테스트 아이디 / 패스워드: aaaa@naver.com / aaaa1111 또는 bbbb@naver.com / bbbb1111
+
 ## 🎯 개발 기간
 
 2023.11.06 - 11.16
+
+리팩터링 기간: 2023.11.20 - 12.15
 
 ## 🛠️ 기술 스택 및 선택 이유
 
@@ -230,6 +234,8 @@
 #### 장바구니 객실 총 갯수와 총 금액 계산 로직 구현
 
 #### recoil useSetRecoilState를 사용하여 결제 페이지로 상태 전달
+![장바구니 결제](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/94384392/7189c468-257f-4e18-b8b6-65f40224826f)
+
 
 ### 7) 결제 페이지
 
@@ -269,8 +275,12 @@
 ┣ 📂 api
 ┣ 📂 assets                   # 폰트, 이미지 ,아이콘
 ┣ 📂 components               # 공용 컴포넌트
-┃  ┣ 📂 Modal
-┃  ┣ 📂 SideBar
+┃  ┣ 📂 common
+┃  ┃  ┣ 📂 badge
+┃  ┃  ┣ 📂 modal
+┃  ┃  ┣ ...
+┃  ┣ 📂 roomName
+┃  ┣ 📂 termsAgreement
 ┃  ┣ ...
 ┣ 📂 constant
 ┃  ┣ validation
@@ -302,7 +312,7 @@
     <tr>
       <th align="center"> 팀장 | 어준혁 </th>
       <th align="center"> 팀원 | 고솔미 </th>
-      <th align="center"> 팀원 | 김태관 </th>
+      <th align="center"> 팀원 | 윤태관 </th>
       <th align="center"> 팀원 | 이예인 </th>
       <th align="center"> 팀원 | 정범환 </th>
     </tr>
@@ -463,3 +473,13 @@
 
 <br/>
 <br/>
+
+## 리팩터링 추가 / 개선
+
+| 이름 | 내용                                                            |
+| ------------ | ----------------------------------------------------------- |
+| 어준혁 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1) API 요청 react-query로 변경 <br> 2) 공통 컴포넌트 폴더 구조 수정 |
+| 고솔미         | 1) useMemo 사용 및 폰트 로드 방식 수정으로 성능 최적화 (lighthouse 점수 개선 55점→96점) <br> 2) FOUT 방식 적용 <br> 3) type 및 interface 정리 등 리팩토링을 통한 가독성 향상 |
+| 이예인         |1) 토큰 갱신 로직 구현 <br> 2) 로그아웃 API 호출 및 토큰 해제 <br> 3) 리프레시 토큰 만료 시 재인증 유도 <br> 4) 반응형 스타일링 업데이트|
+| 윤태관       | 1) React.memo와 useCallback을 이용하여 필요하지 않은 재랜더링을 막아 성능 최적화 <br> 2) 필수 체크 박스가 체크되지 않았을 때 opacity로 구분 짓는것이 아니라 아예 체크가 안된 박스를 사용하여 사용자 경험성 향상 <br> 3) react-query를 사용하여 캐시된 데이터가 변경 되었을 때 refetch 함수를 사용하여 서버 통신을 통해 바로 화면에 반영 (주문 목록페이지 → 예약 아이템 취소 → 취소 목록에 아이템 생성) |
+| 정범환      | 1) 헤더 반응형을 고려하여 태블릿 사이즈까지 지원, 브레이크 포인트 이하일 시 주요 버튼 텍스트 간소화. <br> 2) 디테일 필터의 버그 수정(현재 선택되어진 카테고리 기준으로 필터링이 되는게 아니라 전체 기준으로 필터링 되는 버그 수정) <br> 3) lottie.js를 활용한 에러, 로딩 중 인터랙션 추가 <br> 4) intersection observer, 리액트 쿼리 리패치보다 recoil 업데이트를 먼저 이루어지게 하기위한) 순서보장을 위해 썼던 setTimeout을 모두 제거|
