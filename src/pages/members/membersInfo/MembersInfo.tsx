@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdBlock, MdCheckCircleOutline } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { userInfoI, userState } from "@/states/userState";
