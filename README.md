@@ -1,5 +1,3 @@
-<img width="769" alt="image" src="https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/126222848/81c9fe53-0a87-49ea-bd92-583c38c7b8b1"><div align="center">
-
 # ✨ 이거 다 되면 팔조 ?! ✨
 
 야놀자 미니 프로젝트 - 숙박 예약 서비스
