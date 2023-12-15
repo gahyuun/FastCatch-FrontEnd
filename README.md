@@ -319,6 +319,12 @@ Vite는 ESM에 최적화되어 있고, 즉각적인 테스트 환경을 제공�
 
 </br>
 
+## 🖥️ 아키텍처
+<img width="1427" alt="아키텍처" src="https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/94384392/78c0dbb9-3c39-45ed-a839-7e8712d63eaf">
+
+
+</br>
+
 ## 📂 폴더 구조
 
 ```
