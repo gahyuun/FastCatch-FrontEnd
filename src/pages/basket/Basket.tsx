@@ -103,9 +103,8 @@ const Basket = () => {
           <div className="basket-container__bottom">
             <div className="total-info">
               <span className="text-subtitle5 total-info__count">
-                총 {totalData?.totalRoomsConunt}건
+                총 {totalData?.totalRoomsCount}건
               </span>
-              <span className="text-subtitle3">{}</span>
             </div>
             <Button
               text={`${totalData?.totalPrice}원 결제하기`}
