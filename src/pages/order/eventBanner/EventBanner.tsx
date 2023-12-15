@@ -1,6 +1,7 @@
+import { memo } from "react";
 import "./eventBanner.scss";
 
-const EventBanner = () => {
+const EventBanner = memo(() => {
   return (
     <div className="event-banner">
       <p className="event-banner__title text-body3">네이버 페이</p>
@@ -12,6 +13,6 @@ const EventBanner = () => {
       </p>
     </div>
   );
-};
+});
 
 export default EventBanner;

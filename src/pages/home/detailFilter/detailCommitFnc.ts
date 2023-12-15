@@ -1,17 +1,15 @@
-import { QueryClient } from "react-query";
 import { OptionI } from "./DetailCategoryModal";
 import { Accommodation } from "@/states/detailState";
 
 export const commitOptions = (
   activeTab: number,
   options: OptionI[],
-  queryClient: QueryClient,
+  responseStates: any,
   setFilteredAtom: React.Dispatch<React.SetStateAction<Accommodation[]>>,
   setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const selectedOptions = options.filter(option => option.state);
-  const cachedMainData: any = queryClient.getQueryData(["accommodations"]);
-  const cachedData = cachedMainData.data.accommodations;
+  const cachedData = responseStates.responseArray;
 
   if (cachedData) {
     let sortedData;
@@ -49,7 +47,6 @@ export const commitOptions = (
 
     // 필터된 값 전역상태 저장
     setFilteredAtom(filteredData);
-    console.log("필터된 데이터", filteredData);
 
     // 모달창 닫기
     setOpenDetail(false);

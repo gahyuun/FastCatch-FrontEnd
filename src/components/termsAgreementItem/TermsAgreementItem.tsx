@@ -1,5 +1,5 @@
 import React from "react";
-import { IoCheckbox, IoCheckboxOutline } from "react-icons/io5";
+import { IoCheckbox, IoSquareOutline } from "react-icons/io5";
 import { ReactNode } from "react";
 
 import "./termsAgreementItem.scss";
@@ -30,7 +30,7 @@ const TermsAgreementItem = ({
           }}
         />
       ) : (
-        <IoCheckboxOutline
+        <IoSquareOutline
           className={"terms-agreement__unselected"}
           onClick={() => {
             setState(!state);

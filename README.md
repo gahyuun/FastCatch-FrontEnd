@@ -70,7 +70,7 @@
 
 ![Figma](https://img.shields.io/badge/figma-%23F27E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 <br>
-: 최근 가장 많은 사람들이 사용하는 UXUI 기획툴입니다. 동시에 시안을 보며 같이 작업하거나 코멘트를 남기기 쉬워서 생산성이 높아 선택했습니다.
+: 최근 디자이너들이 가장 사용하는 UXUI 기획툴입니다. 동시에 시안을 보며 같이 작업하거나 코멘트를 남기기 쉬워서 생산성이 높아 선택했습니다.
 
 ### Communication
 
@@ -155,17 +155,22 @@
 
 #### 검색/필터 조회
 
+
 - 지역/날짜/인원 조회
-  ![다중선택 필터](https://im3.ezgif.com/tmp/ezgif-3-1483add8d5.gif)
+
+  ![filter](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/126222848/997d2c25-b5c7-4eba-845d-16b13493c86d)
 - 숙박 카테고리 조회 (ex. 호텔, 모텔, 펜션, 게스트하우스)
-  ![카테고리](https://im3.ezgif.com/tmp/ezgif-3-8ed4608e3c.gif)
+  
+  ![category](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/126222848/e630b6d2-721f-453b-89dd-11bc21a01ac0)
 - 검색 필터 조회
-  ![검색 필터 조회](https://im.ezgif.com/tmp/ezgif-1-2d36dd9a25.gif)
+  
+  ![search](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/126222848/87a31ca1-d631-42d0-ada4-4a58cdf35302)
 
 #### 세부 필터 조회
 
 - 등록순, 가격 낮은 순, 가격 높은 순, 가나다순 정렬
-  ![옵션필터](https://im.ezgif.com/tmp/ezgif-1-6da27e5136.gif)
+  
+  ![detail](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/126222848/04054748-3e6c-4994-af28-6c44331b2c70)
 - 숙소 9가지 옵션 다중선택 필터
 - 필터된 데이터 전역 상태관리
 
@@ -182,7 +187,8 @@
 - 이름, 이미지, 주소, 숙박 카테고리 표시
 - 예약마감 표시
 - 무한 스크롤 구현 (스크롤에 따라 2개씩 아이템 불러오기)
-  ![Alt text](https://im3.ezgif.com/tmp/ezgif-3-86fbfd362b.gif)
+  
+  ![infiniteScroll](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/126222848/7ba0a8aa-9ed2-416e-aced-077b2891edd7)
 
 ### 5) 숙소 상세 조회 페이지
 

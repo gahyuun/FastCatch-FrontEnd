@@ -6,10 +6,10 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
-
-import "../users.scss";
 import instance from "@/api/instanceApi";
 import { Button, ToastLayout } from "@/components/common";
+
+import "../users.scss";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동
@@ -95,6 +95,7 @@ const Signup = () => {
 
   return (
     <>
+    <div className="common-bg"></div>
       <div className="user-wrap">
         <div className="bg-wrap">
           <div className="login-wrap">
@@ -192,7 +193,7 @@ const Signup = () => {
                     {...register("birthday", {
                       required: "생년월일을 입력하세요",
                       pattern: {
-                        value: /^\d{4}-\d{2}-\d{2}$/,
+                        value: /^(19\d\d|20\d\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
                         message:
                           "올바른 형식의 생년월일을 입력하세요 (yyyy-mm-dd)",
                       },
@@ -235,6 +236,7 @@ const Signup = () => {
                     <input
                       type={isPwVisible ? "text" : "password"}
                       placeholder="영문자, 숫자 포함 최소 8~20자로 입력하세요"
+                      className="input-visible"
                       {...register("password", {
                         required: "비밀번호를 입력하세요",
                         pattern: {

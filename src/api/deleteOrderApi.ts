@@ -5,6 +5,7 @@ export const deleteOrderApi = async (orderId: number) => {
     const res = await instance.delete(`/api/orders/${orderId}`);
     return res;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error("주문을 삭제하지 못했습니다.");
   }
 };

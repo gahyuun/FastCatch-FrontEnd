@@ -7,12 +7,20 @@ interface AnimationProps {
 
 const ErrorAnimation = (props: AnimationProps) => {
   return (
-    <Player
-      autoplay
-      loop
-      src="https://lottie.host/f8702fe7-6b5e-44e7-be57-bae11236ecfd/RUUvt22hQV.json"
-      style={{ height: props.height, width: props.width }}
-    ></Player>
+    <div className="loading-container">
+      <Player
+        autoplay
+        loop
+        src="https://lottie.host/f8702fe7-6b5e-44e7-be57-bae11236ecfd/RUUvt22hQV.json"
+        style={{
+          height: props.height,
+          width: props.width,
+        }}
+      ></Player>
+      <p style={{ textAlign: "center" }}>
+        알 수 없는 에러가 발생하였습니다. 잠시 후 다시 시도해주세요.
+      </p>
+    </div>
   );
 };
 

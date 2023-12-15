@@ -3,20 +3,20 @@ import { Badge, Button, ToastLayout } from "@/components/common";
 import { filterState } from "@/states/filterState";
 import { orderState } from "@/states/orderState";
 import { userState } from "@/states/userState";
-import { room } from "@/types/accommodationDetail";
+import { IRoom } from "@/types/accommodationDetail";
 import countDays from "@/utils/countDays";
 import englishToKoreanFormat from "@/utils/englishToKoreanFormat";
 import numberFormat from "@/utils/numberFormat";
 import { format } from "date-fns";
 import _debounce from "lodash/debounce";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface RoomInfoProps {
-  room: room;
+  room: IRoom;
   accommodationId: number;
   accommodationName: string;
   isClicked: boolean;
@@ -53,14 +53,21 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
   const [isPossible, setIsPossible] = useState(false);
 
-  let totalPrice = 0;
-  if (curAmount < baseHeadCount) {
-    totalPrice = price * countDay;
-  } else if (curAmount > maxHeadCount) {
-    totalPrice = price * countDay + 15000 * (maxHeadCount - baseHeadCount);
-  } else {
-    totalPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
-  }
+  let totalPrice = useMemo(() => {
+    let calculatedPrice = 0;
+
+    if (curAmount < baseHeadCount) {
+      calculatedPrice = price * countDay;
+    } else if (curAmount > maxHeadCount) {
+      calculatedPrice =
+        price * countDay + 15000 * (maxHeadCount - baseHeadCount);
+    } else {
+      calculatedPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
+    }
+
+    return calculatedPrice;
+  }, [curAmount, baseHeadCount, maxHeadCount, price, countDay]);
+
   useEffect(() => {
     if (curAmount < baseHeadCount) {
       totalPrice = price;
@@ -84,7 +91,6 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
       }
 
       const response = instance.post(`/api/carts?memberId=${userData.id}`, {
-        //memberId 나중에 전역변수 만들어지면 수정해주기
         roomId: roomId,
         startDate: startDate,
         endDate: endDate,
@@ -193,7 +199,12 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
         <div className="room__options-container">
           {englishToKoreanFormat(roomOption, template).map((option: any) => (
-            <Badge key={option} text={option} badgeType="line" />
+            <Badge
+              key={option}
+              text={option}
+              badgeType="line"
+              badgeStatus="canceled"
+            />
           ))}
         </div>
 

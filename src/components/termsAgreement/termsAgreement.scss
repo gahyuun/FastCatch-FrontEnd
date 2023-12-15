@@ -5,14 +5,23 @@
   padding: rem(16) 0 rem(32);
   label {
     cursor: pointer;
+    @include mdq-max(700) {
+      font-size: rem(18);
+    }
   }
   &__selected {
     font-size: rem(32);
     color: coral(500);
+    @include mdq-max(700) {
+      font-size: rem(18);
+    }
   }
   &__unselected {
     font-size: rem(32);
     color: coral(300);
+    @include mdq-max(700) {
+      font-size: rem(18);
+    }
   }
   &__header {
     display: flex;
@@ -28,5 +37,8 @@
   &__item {
     display: flex;
     gap: rem(8);
+    @include mdq-max(700) {
+      gap: rem(5);
+    }
   }
 }
