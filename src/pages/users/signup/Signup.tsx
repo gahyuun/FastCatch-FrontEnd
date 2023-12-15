@@ -6,10 +6,10 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 import TermsAgreement from "@/components/termsAgreement/TermsAgreement";
-
-import "../users.scss";
 import instance from "@/api/instanceApi";
 import { Button, ToastLayout } from "@/components/common";
+
+import "../users.scss";
 
 const Signup = () => {
   // 회원가입/로그인 링크이동
@@ -92,8 +92,6 @@ const Signup = () => {
     /^[A-Za-z가-힣]+$/.test(nickname) &&
     nickname.length >= 2 &&
     nickname.length <= 14;
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <>
