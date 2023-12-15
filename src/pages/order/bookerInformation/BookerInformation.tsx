@@ -4,76 +4,87 @@ import {
   REGEX_PHONE_NUMBER,
   validationErrorMessage,
 } from "@/constant/validation";
-import { useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 
 import "./bookerInformation.scss";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/states/userState";
 import { Input } from "@/components/common";
 
-const BookerInformation = ({
-  userName,
-  setUserName,
-  userPhoneNumber,
-  setUserPhoneNumber,
-  setIsBookerValidationPass,
-}: BookerInformationProps) => {
-  const userInfo = useRecoilValue(userState);
-  const { isValidation: isUserNameValidation } = useValidation(
+const BookerInformation = memo(
+  ({
     userName,
-    REGEX_NAME
-  );
-  const { isValidation: isPhoneNumberValidation } = useValidation(
+    setUserName,
     userPhoneNumber,
-    REGEX_PHONE_NUMBER
-  );
+    setUserPhoneNumber,
+    setIsBookerValidationPass,
+  }: BookerInformationProps) => {
+    const userInfo = useRecoilValue(userState);
+    const { isValidation: isUserNameValidation } = useValidation(
+      userName,
+      REGEX_NAME
+    );
+    const { isValidation: isPhoneNumberValidation } = useValidation(
+      userPhoneNumber,
+      REGEX_PHONE_NUMBER
+    );
 
-  useEffect(() => {
-    if (userState) {
-      setUserName(userInfo?.name || "");
-      setUserPhoneNumber(userInfo?.phoneNumber || "");
-      setIsBookerValidationPass(true);
-    }
-  }, [userState]);
+    useEffect(() => {
+      if (userState) {
+        setUserName(userInfo?.name || "");
+        setUserPhoneNumber(userInfo?.phoneNumber || "");
+        setIsBookerValidationPass(true);
+      }
+      console.log("유저 이름 변경", userName);
+    }, [userState]);
 
-  const checkUserValidation = () => {
-    setIsBookerValidationPass(isUserNameValidation && isPhoneNumberValidation);
-  };
+    const checkUserValidation = useCallback(() => {
+      setIsBookerValidationPass(
+        isUserNameValidation && isPhoneNumberValidation
+      );
+    }, []);
 
-  const handleUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
-  };
+    const handleUserName = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserName(e.target.value);
+      },
+      []
+    );
 
-  const handleUserPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserPhoneNumber(e.target.value);
-  };
+    const handleUserPhoneNumber = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserPhoneNumber(e.target.value);
+      },
+      []
+    );
 
-  return (
-    <div className="booker-information">
-      <h4 className="text-subtitle4">예약자 정보</h4>
-      <div className="booker-information__input">
-        <Input
-          title={"예약자 이름"}
-          placeholder={"예약자 이름을 입력해주세요"}
-          onChange={handleUserName}
-          value={userName}
-          onBlur={checkUserValidation}
-          inputStyle={isUserNameValidation ? "default" : "inValid"}
-          inValidAlertMessage={validationErrorMessage.nameErrorMsg}
-        />
-        <Input
-          title={"휴대폰 번호"}
-          placeholder={"휴대폰 번호를 입력해주세요"}
-          onChange={handleUserPhoneNumber}
-          value={userPhoneNumber}
-          onBlur={checkUserValidation}
-          inputStyle={isPhoneNumberValidation ? "default" : "inValid"}
-          inValidAlertMessage={validationErrorMessage.phoneNumberErrorMsg}
-        />
+    return (
+      <div className="booker-information">
+        <h4 className="text-subtitle4">예약자 정보</h4>
+        <div className="booker-information__input">
+          <Input
+            title={"예약자 이름"}
+            placeholder={"예약자 이름을 입력해주세요"}
+            onChange={handleUserName}
+            value={userName}
+            onBlur={checkUserValidation}
+            inputStyle={isUserNameValidation ? "default" : "inValid"}
+            inValidAlertMessage={validationErrorMessage.nameErrorMsg}
+          />
+          <Input
+            title={"휴대폰 번호"}
+            placeholder={"휴대폰 번호를 입력해주세요"}
+            onChange={handleUserPhoneNumber}
+            value={userPhoneNumber}
+            onBlur={checkUserValidation}
+            inputStyle={isPhoneNumberValidation ? "default" : "inValid"}
+            inValidAlertMessage={validationErrorMessage.phoneNumberErrorMsg}
+          />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default BookerInformation;
 
