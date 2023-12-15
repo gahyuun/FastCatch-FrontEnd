@@ -85,7 +85,7 @@ const DetailCategoryModal = (props: detailProps) => {
     commitOptions(
       activeTab,
       options,
-      responseStates.responseArray,
+      responseStates,
       setFilteredAtom,
       setOpenDetail
     );
