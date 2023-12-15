@@ -7,8 +7,9 @@ import OrderPrice from "@/pages/order/orderPrice/OrderPrice";
 
 import "./orderItem.scss";
 import { calculateNightStay } from "@/utils/calculateNightStay";
+import { memo } from "react";
 
-const OrderItem = ({ orderData }: OrderItemProps) => {
+const OrderItem = memo(({ orderData }: OrderItemProps) => {
   const {
     accommodationName,
     roomName,
@@ -42,7 +43,7 @@ const OrderItem = ({ orderData }: OrderItemProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default OrderItem;
 

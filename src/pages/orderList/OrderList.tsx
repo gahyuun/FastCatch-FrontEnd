@@ -5,9 +5,12 @@ import { getOrderListApi } from "@/api/getOrderListApi";
 
 import MembersHeader from "@/pages/members/membersHeader/MembersHeader";
 import OrderListItem from "@/pages/orderList/orderListItem/OrderListItem";
+import { Button, ToastLayout } from "@/components/common";
 
 import "./orderList.scss";
-import { Button, ToastLayout } from "@/components/common";
+import { useQuery } from "react-query";
+import ErrorAnimation from "@/components/errorAnimation/ErrorAnimation";
+import LoadingAnimation from "@/components/loadingAnimation/LoadingAnimation";
 
 const OrderList = () => {
   const [reservedList, setReservedList] = useState<Order[]>([]);
@@ -18,23 +21,20 @@ const OrderList = () => {
   const [isUsedList, setIsUsedList] = useState<boolean>(true);
   const [isCanceledList, setIsCanceledList] = useState<boolean>(true);
 
+  const { data, isLoading, isError } = useQuery("orderListData", getOrderApi);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const orderData = await getOrderApi();
-      if (orderData) {
-        const { reservedOrders, usedOrders, canceledOrders } = orderData;
-        setReservedList(reservedOrders || []);
-        setUsedList(usedOrders || []);
-        setCanceledList(canceledOrders || []);
+    if (data) {
+      const { reservedOrders, usedOrders, canceledOrders } = data;
+      setReservedList(reservedOrders || []);
+      setUsedList(usedOrders || []);
+      setCanceledList(canceledOrders || []);
 
-        setIsReservedList(reservedOrders.length < 3 ? false : true);
-        setIsUsedList(usedOrders.length < 3 ? false : true);
-        setIsCanceledList(canceledOrders.length < 3 ? false : true);
-      }
-    };
-
-    fetchData();
-  }, []);
+      setIsReservedList(reservedOrders.length < 3 ? false : true);
+      setIsUsedList(usedOrders.length < 3 ? false : true);
+      setIsCanceledList(canceledOrders.length < 3 ? false : true);
+    }
+  }, [data]);
 
   const getReservedList = async () => {
     const getReservedListData = await getOrderListApi("reserved");
@@ -76,6 +76,14 @@ const OrderList = () => {
   };
 
   const { showToast, ToastContainer } = ToastLayout();
+
+  if (isLoading) {
+    return <LoadingAnimation width="200px" height="200px" />;
+  }
+
+  if (isError) {
+    return <ErrorAnimation width="200px" height="200px" />;
+  }
 
   return (
     <div className="order-list">

@@ -7,7 +7,8 @@ export const putUserInfoApi = async (
     const res = await instance.put("/api/members", requestBody);
     return res;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error("유저 정보를 수정하지 못했습니다.");
   }
 };
 

@@ -11,6 +11,11 @@
   background-color: white;
 
   border-bottom: 1px solid gray(300);
+
+  @media (max-width: 1200px) {
+    padding: 0 20px;
+    min-width: 900px;
+  }
 }
 
 .header-container__inner {
@@ -37,18 +42,29 @@
 
 .header-container__center {
   position: relative;
-  width: 40%;
+  width: calc(1192 * 0.4px);
   height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+
+  @media (max-width: 1200px) {
+    justify-content: flex-start;
+  }
 }
 
 .filter__divider {
   width: rem(1);
   height: rem(16);
   background-color: gray(500);
+}
+
+.media {
+  @media (max-width: 1200px) {
+    position: relative;
+  }
 }
 
 .header-container__right {
@@ -64,4 +80,5 @@
   font-family: "CWDangamAsac-Bold";
   color: coral(500);
   font-size: rem(32);
+  white-space: nowrap;
 }

@@ -11,10 +11,13 @@
 }
 
 .home-inner {
-  display: flex;
-  width: rem(1192);
+  max-width: rem(1192);
+  width: 100%;
   height: 100%;
+
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: rem(24);
   overflow-y: scroll;
   padding-bottom: rem(120);
