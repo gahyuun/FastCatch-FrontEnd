@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { detailState } from "@/states/detailState";
 import { commitOptions } from "./detailCommitFnc";
@@ -34,13 +34,8 @@ const filterOption = {
 
 const DetailCategoryModal = (props: detailProps) => {
   const [responseStates] = useRecoilState(responseState);
-  const [detail] = useRecoilState(detailState);
   const setFilteredAtom = useSetRecoilState(detailState);
   const setOpenDetail = props.setOpenDetail;
-
-  useEffect(() => {
-    console.log(detail);
-  }, [detail]);
 
   const [activeTab, setActiveTab] = useState<number>(0);
   const [options, setOptions] = useState<OptionI[]>([
@@ -90,7 +85,7 @@ const DetailCategoryModal = (props: detailProps) => {
     commitOptions(
       activeTab,
       options,
-      responseStates,
+      responseStates.responseArray,
       setFilteredAtom,
       setOpenDetail
     );
