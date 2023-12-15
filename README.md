@@ -165,7 +165,7 @@ Vite는 ESM에 최적화되어 있고, 즉각적인 테스트 환경을 제공�
 
 ### 1) 로그인 페이지
 
-![refac_login](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/95595106/ba5e1d8b-1095-4fd9-9186-557cc2858aae)
+![refac_login (1) (1)](https://github.com/FC-FastCatch/FastCatch-FrontEnd/assets/95595106/eb6fdd58-1377-43ee-9bc0-4ae0e76f6be6)
 
 #### 유효성 검사
 
