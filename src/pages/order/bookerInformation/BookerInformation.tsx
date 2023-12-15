@@ -35,7 +35,6 @@ const BookerInformation = memo(
         setUserPhoneNumber(userInfo?.phoneNumber || "");
         setIsBookerValidationPass(true);
       }
-      console.log("유저 이름 변경", userName);
     }, [userState]);
 
     const checkUserValidation = useCallback(() => {
