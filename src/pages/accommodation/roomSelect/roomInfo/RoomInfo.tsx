@@ -53,20 +53,14 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
   const [isPossible, setIsPossible] = useState(false);
 
-  let totalPrice = useMemo(() => {
-    let calculatedPrice = 0;
-
-    if (curAmount < baseHeadCount) {
-      calculatedPrice = price * countDay;
-    } else if (curAmount > maxHeadCount) {
-      calculatedPrice =
-        price * countDay + 15000 * (maxHeadCount - baseHeadCount);
-    } else {
-      calculatedPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
-    }
-
-    return calculatedPrice;
-  }, [curAmount, baseHeadCount, maxHeadCount, price, countDay]);
+  let totalPrice = 0;
+  if (curAmount < baseHeadCount) {
+    totalPrice = price * countDay;
+  } else if (curAmount > maxHeadCount) {
+    totalPrice = price * countDay + 15000 * (maxHeadCount - baseHeadCount);
+  } else {
+    totalPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
+  }
 
   useEffect(() => {
     if (curAmount < baseHeadCount) {

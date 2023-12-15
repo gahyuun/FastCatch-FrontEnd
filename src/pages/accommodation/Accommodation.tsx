@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { format } from "date-fns";
 import "./accommodation.scss";
@@ -26,10 +25,8 @@ const Accommodation = () => {
     return result;
   };
 
-  const memoizedQueryKey = useMemo(() => [id, "postDetail"], [id]);
-
   const { data, isLoading, refetch, isError } = useQuery({
-    queryKey: memoizedQueryKey,
+    queryKey: [id, "postDetail"],
     queryFn: getAccommodationDetailData,
     staleTime: 500000,
     cacheTime: 5000000,
