@@ -9,7 +9,7 @@ import englishToKoreanFormat from "@/utils/englishToKoreanFormat";
 import numberFormat from "@/utils/numberFormat";
 import { format } from "date-fns";
 import _debounce from "lodash/debounce";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
