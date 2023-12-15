@@ -33,62 +33,100 @@
 ### Language
 
 <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"> 
-</br>
-: TypeScript를 사용하면 기존 자바스크립트 개발 환경처럼 추상적인 런타임 에러를 핸들링하기보단 정확히 어떤 부분의 타입이 문제가 있는지 파악하기 쉽다는 장점이 있습니다. 또한 실제 배포 시 오류 발생가능성도 낮아 안전한 개발을 할 수 있기 때문에 선택하였습니다.
+<details>
+<summary>사용이유</summary>
+<div>
+TypeScript를 사용하면 기존 자바스크립트 개발 환경처럼 추상적인 런타임 에러를 핸들링하기보단 정확히 어떤 부분의 타입이 문제가 있는지 파악하기 쉽다는 장점이 있습니다. 또한 실제 배포 시 오류 발생가능성도 낮아 안전한 개발을 할 수 있기 때문에 선택하였습니다.
+</div>
+</details>
 
 ### Development
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-</br>
-: React는 부드러운 사용자 경험을 제공하는 대표적인 SPA앱이며, 풍부한 라이브러리와 레퍼런스를 가지고 있기 떄문에 선택하였습니다. 그리고 컴포넌트 단위로 코드를 관리하는 측면에서 협업에도 좋고 재사용성도 높다는 장점을 가지고 있어 선택하였습니다.
-</br>
+<details>
+<summary>사용이유</summary>
+<div>
+React는 부드러운 사용자 경험을 제공하는 대표적인 SPA앱이며, 풍부한 라이브러리와 레퍼런스를 가지고 있기 떄문에 선택하였습니다. 그리고 컴포넌트 단위로 코드를 관리하는 측면에서 협업에도 좋고 재사용성도 높다는 장점을 가지고 있어 선택하였습니다.
+</div>
+</details>
 
 ![Recoil](https://img.shields.io/badge/Recoil-007af4.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDI1NS4yMSA2MjMuOTEiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDp3aGl0ZX08L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im03NC42MiAyNzcuNDYgMS4yNC0uMTMgMzQuNzgtMy4yOC01My40Ny01OC42NkE5Ni40NyA5Ni40NyAwIDAgMSAzMiAxNTAuM0gzYTEyNS4zIDEyNS4zIDAgMCAwIDMyLjggODQuNTdaTTE3Ny4xMyAzNDdsLTM2IDMuNCA1My4zMiA1OC41MUE5Ni40MSA5Ni40MSAwIDAgMSAyMTkuNjMgNDc0aDI4LjkyYTEyNS4yOCAxMjUuMjggMCAwIDAtMzIuNzYtODQuNTdaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjUzLjY5IDIzMS42OGMtNi4zMy0zMS4zLTMwLjg5LTU0LjA5LTYyLjU3LTU4LjA3bC02LjM1LS43OWE0OS42MSA0OS42MSAwIDAgMS00My4zNS00OS4xM3YtMjBhNTIuNzUgNTIuNzUgMCAxIDAtMjguOTEtLjM2djIwLjM4YTc4LjU2IDc4LjU2IDAgMCAwIDY4LjY1IDc3LjgybDYuMzYuOGMyMy4yNCAyLjkyIDM0Ljc4IDIwIDM3LjgzIDM1LjFzLS45MyAzNS4zMi0yMS4yMiA0N2E3My44MSA3My44MSAwIDAgMS0zMC4wNiA5LjYybC05NS42NiA5YTEwMi40NSAxMDIuNDUgMCAwIDAtNDEuOCAxMy4zOEM5IDMzMi40NS00LjgxIDM2MyAxLjUyIDM5NC4yOXMzMC44OSA1NC4wOCA2Mi41NyA1OC4wNmw2LjM1LjhhNDkuNiA0OS42IDAgMCAxIDQzLjM1IDQ5LjEydjE4YTUyLjc1IDUyLjc1IDAgMSAwIDI4LjkxLjI2di0xOC4yNmE3OC41NSA3OC41NSAwIDAgMC02OC42NS03Ny44MWwtNi4zNi0uOGMtMjMuMjQtMi45Mi0zNC43OC0yMC4wNS0zNy44My0zNS4xMXMuOTMtMzUuMzIgMjEuMjItNDdhNzMuNjggNzMuNjggMCAwIDEgMzAuMDYtOS42M2w5NS42Ni05YTEwMi40NSAxMDIuNDUgMCAwIDAgNDEuOC0xMy4zOGMyNy42NS0xNi4wMiA0MS40LTQ2LjU0IDM1LjA5LTc3Ljg2WiIvPjwvc3ZnPg==&logoColor=white)
-<br>
-: Recoil은 Props drilling을 해소하거나 페이지 간 데이터 공유를 쉽게 할 수 있는 장점이 있습니다. 여러 전역 상태관리 툴 중에 상대적으로 간편한 문법을 가지고 있습니다. 개발 속도도 빠르고 가독성이 좋아 상태들을 파일 별로 나눠 놓았을 때 인지하기 쉽다는 장점으로 선택했습니다.
+<details>
+<summary>사용이유</summary>
+<div>
+Recoil은 Props drilling을 해소하거나 페이지 간 데이터 공유를 쉽게 할 수 있는 장점이 있습니다. 여러 전역 상태관리 툴 중에 상대적으로 간편한 문법을 가지고 있습니다. 개발 속도도 빠르고 가독성이 좋아 상태들을 파일 별로 나눠 놓았을 때 인지하기 쉽다는 장점으로 선택했습니다.
+</div>
+</details>
 
 ![SCSS](https://img.shields.io/badge/scss-DB7093?style=for-the-badge&logo=scss&logoColor=white)
-</br>
-: 변수 선언, import, mixin 등이 가능해 코드의 재활용성을 높일 수 있을 뿐 아니라, Nesting 기능을 통해 코드의 가독성을 높일 수 있기에 선택했습니다.  
-</br>
+<details>
+<summary>사용이유</summary>
+<div>
+변수 선언, import, mixin 등이 가능해 코드의 재활용성을 높일 수 있을 뿐 아니라, Nesting 기능을 통해 코드의 가독성을 높일 수 있기에 선택했습니다.  
+</div>
+</details>
 
 ![Axios](https://img.shields.io/badge/axios-3fwddf?&style=for-the-badge&logo=axios&logoColor=white)
 ![React query](https://img.shields.io/badge/tanstackquery-671ddf?&style=for-the-badge&logo=React-query&logoColor=white)
-</br>
-: React Query는 캐싱 기능으로 React 애플리케이션에서 데이터를 관리하고 가져오는 데 편리하고, 성능을 향상시키는 데 도움이 될 것을 기대하고 사용했습니다. Axios는 그 자체로도 간편한 비동기 서버 요청 툴이지만, instance를 통해 서버 요청을 가로채서 토큰을 넣어주어 토큰 넣어줄수도 있는 편리한 기능을 갖고 있습니다.
+<details>
+<summary>사용이유</summary>
+<div>
+React Query는 캐싱 기능으로 React 애플리케이션에서 데이터를 관리하고 가져오는 데 편리하고, 성능을 향상시키는 데 도움이 될 것을 기대하고 사용했습니다. Axios는 그 자체로도 간편한 비동기 서버 요청 툴이지만, instance를 통해 서버 요청을 가로채서 토큰을 넣어주어 토큰 넣어줄수도 있는 편리한 기능을 갖고 있습니다.
+
 따라서 React Query와 Axios를 결합해 사용하면 더욱 효율적으로 데이터를 관리할 수 있을 것이라 생각했습니다.
+</div>
+</details>
 
 ### Build & CI/CD
 
 <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
-</br>
-: Vite는 ESM에 최적화되어 있고, 즉각적인 테스트 환경을 제공하므로 개발 중 불필요한 지연이 최소화되어 개발 환경이 더 원활해질 수 있을 것이라 기대했습니다.
-
-</br>
+<details>
+<summary>사용이유</summary>
+<div>
+Vite는 ESM에 최적화되어 있고, 즉각적인 테스트 환경을 제공하므로 개발 중 불필요한 지연이 최소화되어 개발 환경이 더 원활해질 수 있을 것이라 기대했습니다.
+</div>
+</details>
 
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-</br>
-: 자동 배포를 설정해두어 최종 제출 시에 배포로 인한 문제를 사전 차단하고자 했고, pr을 올릴 때마다 preview할 수 있도록 설정해 디테일한 확인을 가능하게 하고자 했습니다.
+<details>
+<summary>사용이유</summary>
+<div>
+자동 배포를 설정해두어 최종 제출 시에 배포로 인한 문제를 사전 차단하고자 했고, pr을 올릴 때마다 preview할 수 있도록 설정해 디테일한 확인을 가능하게 하고자 했습니다.
+</div>
+</details>
 
 ### Design
 
 ![Figma](https://img.shields.io/badge/figma-%23F27E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
-<br>
-: 최근 디자이너들이 가장 사용하는 UXUI 기획툴입니다. 동시에 시안을 보며 같이 작업하거나 코멘트를 남기기 쉬워서 생산성이 높아 선택했습니다.
+
+<details>
+<summary>사용이유</summary>
+<div>
+최근 디자이너들이 가장 사용하는 UXUI 기획툴입니다. 동시에 시안을 보며 같이 작업하거나 코멘트를 남기기 쉬워서 생산성이 높아 선택했습니다.
+</div>
+</details>
 
 ### Communication
 
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> 
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-</br>
-: 버전 관리와 문서화가 용이하기에 선택했습니다. 이슈 관리와 코드 리뷰를 철저히 해 충돌을 최소화한 채로 협업할 수 있었습니다.
+<details>
+<summary>사용이유</summary>
+<div>
+버전 관리와 문서화가 용이하기에 선택했습니다. 이슈 관리와 코드 리뷰를 철저히 해 충돌을 최소화한 채로 협업할 수 있었습니다.
+</div>
+</details>
 
 </br>
 <img src="https://img.shields.io/badge/discord-3670A0?style=for-the-badge&logo=discord&logoColor=white">  
-  <img src="https://img.shields.io/badge/notion-9266CC?style=for-the-badge&logo=notion&logoColor=white" />   
-</br>
-: 정해진 시간동안 채널에 상주하여 이슈가 생겼을 때 빠른 공유와 해결이 가능하도록 환경을 구성했습니다.
+<img src="https://img.shields.io/badge/notion-9266CC?style=for-the-badge&logo=notion&logoColor=white" />   
+<details>
+<summary>사용이유</summary>
+<div>
+정해진 시간동안 채널에 상주하여 이슈가 생겼을 때 빠른 공유와 해결이 가능하도록 환경을 구성했습니다.
  또한 github과 webkit으로 연동해 pr, issue, 코멘트 생성 시에 빠르게 확인할 수 있도록 해 모든 상황을 서로 공유할 수 있도록 했습니다. 또한 문서화와 데일리 회의록을 기록하기 위한 용도로 노션을 사용했습니다.
+</div>
+</details>
 </br>
 
 ## ✔️ RFP 구현 사항
@@ -412,33 +450,47 @@
 </table>
 
 ## ✍ 회고
-
-- 고솔미
-
+<details>
+<summary>고솔미</summary>
+<div>
   - 짧은 프로젝트 기간으로 인해 백엔드와 더욱 긴밀한 소통을 해볼 수 있는 값진 경험이 되었습니다. 원활한 소통을 위한 방법과 개발 기간을 효율적으로 사용하는 방법에 대해 많은 고민을 해보았습니다. 이슈나 궁금증이 생겼을 때 즉각적으로 소통할 수 있는 창구를 만들어 놓는 것이 중요한 것 같습니다.
 
   - 같은 동작을 하는 코드를 다양한 방식으로 다시 짜보고, MSW도 도입해보며 성장하는 시간을 보낸 것 같습니다. 또한 재활용할 수 있는 공통 컴포넌트들을 여럿 제작해보며 확장성이 좋은 컴포넌트를 만드는 힘을 기를 수 있었습니다. 팀원분들께서 좋은 코드를 많이 짜주셔서 코드리뷰를 하면서도 많이 배울 수 있었습니다. 또한 늦은 시간에도 정성스런 답변을 해주신 멘토님께도 감사드립니다 :)
-
-- 어준혁
-
+</div>
+</details>
+<details>
+<summary>어준혁</summary>
+<div>
   - 훌륭한 프론트엔드와 백엔드 팀원들과 함께해서 정말 만족스러운 프로젝트 경험이었습니다. 매일 아침 데일리 스크럼을 통해 현재 진행 상황을 서로에게 공유하고 오늘의 목표를 세우는 것은 팀의 협업과 작업 효율성을 높이는 데 큰 도움이 되었습니다.
-
+</div>
+<br>
+<div>
   - 특히, 백엔드 팀원들과의 소통은 매우 유익한 경험이었습니다. 건의 사항이나 궁금한 점을 정리하고 토론하는 시간을 가져서 프로젝트에 대한 이해도를 높일 수 있었습니다. 또한, 빠른 디자인 결과물과 공통 컴포넌트의 활용은 레이아웃 작업을 빠르게 완료할 수 있게 해주었습니다.
-
+</div>
+<br>
+<div>
   - 팀원들 간의 협업은 에러 발생 시 빠르게 공유하고 해결하는 데 큰 역할을 했습니다. 코드리뷰를 통해 서로의 코드를 검토하고 더 나은 방향으로 나아갈 수 있도록 도움을 주고 받았습니다.
-
-  - 팀장이 되어서 많은 걱정과 고민이 있었지만, 팀원들의 열정과 노력 덕분에 모든 것이 순조롭게 진행되었습니다. 특히, 바쁜 일정 속에서도 항상 친절하게 멘토링 질문에 답변해주신 멘토님에게도 큰 감사의 말씀을 전하고 싶습니다.
-
+</div>
+<br>
+<div>
+  - 팀장이 되어서 많은 걱정과 고민이 있었지만, 팀원들의 열정과 노력 덕분에 모든 것이 순조롭게 진행되었습니다. 특히, 바쁜 일정 속에서도 항상 친절하게 멘토링 질문에 답변해주신 멘토님에게도 큰 감사의 말씀을 전하고 싶습니다.  
+</div>
+  <br>
+<div>
   - 이 경험을 통해 팀원들과의 협업, 소통, 그리고 문제 해결 능력이 크게 향상되었습니다. 다양한 경험을 나누어주셔서 정말 감사합니다. 앞으로도 함께 성장하며 더 좋은 결과물을 만들어 나갈 수 있기를 기대합니다.
-
-- 이예인
-
+</div>
+</details>
+<details>
+<summary>이예인</summary>
+<div>
   - 효율적인 작업을 위한 초기세팅과 코드컨벤션이 잘 지켜진 프로젝트였습니다. 작업 시작할 때, 재사용성이 높은 컴포넌트들을 나눠서 구현하기 시작했고 작업하면서도 util 함수를 작성해서 공유함으로써 작은 단위로 작업한다는 느낌을 받았습니다.
   - 그래서 스스로 깔끔한 코드를 작성하고 싶은 마음이 들었던 것 같습니다. 좋았던 문화중에 코드리뷰 문화를 통해 내 파트만 알고있는 것이 아닌 전체적인 코드에 대한 파악이 가능했던 점이 좋았고 또 유용한 정보들도 팀원들의 코드를 통해 많이 얻게 되었습니다.
   - 기본에 충실하고 단단한 서비스를 만들자는 팀원들과의 다짐이 이뤄진 것 같아 매우 뿌듯하고 백엔드 수강생과 협업 사이클을 한 번 돌고 나니 프론트의 역할에 대해 이해도가 많이 올라갈 수 있었던 시간이었습니다. 백엔드 수강생분들, 팀원분들, 그리고 밤늦게까지 도와주신 멘토님 모두 고생하셨습니다!
-
-- 윤태관
-
+</div>
+</details>
+<details>
+<summary>윤태관</summary>
+<div>
   - 이전 프로젝트를 해오면서 초반 기획과 설계가 중요하다는 것을 깨달음을 느꼈고,
     그 덕에 프로젝트 진행하는데 초반에 시간 투자를 한 만큼 진행하는데 수월한 경험을 하였습니다.
     매일 하는 데일리 스크럼 덕에 프로젝트의 방향성을 잡을 수 있었고 pr을 할 때마다 코드 리뷰를 하는 진행 방식 덕분에 모르는 부분과 아는 부분을 조원분들과 공유하고 나눌 수 있는 경험을 하게 되어서 저에게 큰 도움이 되었습니다.
@@ -449,10 +501,14 @@
   - 작업 막바지쯤에 갑자기 터진 CORS 오류로 인해서 이를 해결하기 위해 많은 공부를 하게 되었고, 네트워크 지식에 대한 필요성을 느끼게 된 경험이였습니다.
     이 과정에서 늦은 시간까지 정말 많은 도움을 주신 유형철 멘토님께 정말 감사드립니다..
     이번 프로젝트를 통해 다시 한번 제 부족함을 느끼게 되었지만, 좋은 분들과 좋은 프로젝트 경험을 통해 한 단계 더 성장하였습니다. 감사합니다!
-
-- 정범환
-
+</div>
+</details>
+<details>
+<summary>정범환</summary>
+<div>
   - 여행 숙박 예약이라는 큰 주제를 2주 안에 구현한다는 매우 밀도 높은 과제였습니다. 이를 위해 수많은 논의가 필요했고 제 역량보다 더 도전적인 과제들을 구현하는 일의 연속이었습니다. 그 과정에서 좋은 팀원분들이 매우 소통을 원활히 이끌어주셔서 해낼 수 있던 것 같습니다.
+</div>
+</details>
 
 ## 📍 컨벤션
 
