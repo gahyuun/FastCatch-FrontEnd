@@ -1,12 +1,21 @@
-import { MdLogout } from "react-icons/md";
-import "../cartButton/cartbutton.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { ModalLayout, ModalPortal } from "../..";
+import { MdLogout } from "react-icons/md";
+
+import { userState } from "@/states/userState";
+import instance from "@/api/instanceApi";
+import { getRefreshToken, getToken } from "@/utils/getToken";
+
+import "../cartButton/cartbutton.scss";
 
 const LogoutButton = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const setUserInfo = useSetRecoilState(userState);
   const navigate = useNavigate();
+  const accessToken = getToken();
+  const refreshToken = getRefreshToken();
 
   const modalProps = {
     title: "로그아웃",
@@ -17,9 +26,31 @@ const LogoutButton = () => {
         size: "small",
         colorName: "coral500",
         onClick: () => {
-          console.log("확인");
-          localStorage.removeItem("accessToken");
-          navigate("/");
+          
+          const logOut = async () => {
+            try {
+
+              const body = {
+                accessToken,
+                refreshToken
+              }
+          
+              const res = await instance.post(`/api/members/signout`, 
+                body
+              );
+          
+              localStorage.removeItem('accessToken');
+              localStorage.removeItem('refreshToken');
+              setUserInfo(null);
+              navigate('/');
+              
+              return res;
+            } catch (error) {
+              console.log(error);
+            }
+          };
+
+          logOut();
           setModalVisible(false);
         },
       },
