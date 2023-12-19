@@ -89,7 +89,7 @@ const Header = () => {
             )}
             {filterMode === "search" && <SearchFilter />}
             <button
-              className="filter__secondary-button"
+              className="filter__secondary-button media"
               onClick={changeFilterModeHandler}
             >
               {filterMode === "filter" && (

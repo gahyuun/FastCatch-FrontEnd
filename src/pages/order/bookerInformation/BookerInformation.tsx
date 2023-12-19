@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/states/userState";
 import { Input } from "@/components/common";
+import "./bookerInformation.scss";
 
 import "./bookerInformation.scss";
 
@@ -29,6 +30,7 @@ const BookerInformation = ({
     REGEX_PHONE_NUMBER
   );
 
+<<<<<<< HEAD
   useEffect(() => {
     if (userState) {
       setUserName(userInfo?.name || "");
@@ -36,6 +38,15 @@ const BookerInformation = ({
       setIsBookerValidationPass(true);
     }
   }, [userState]);
+=======
+    useEffect(() => {
+      if (userState) {
+        setUserName(userInfo?.name || "");
+        setUserPhoneNumber(userInfo?.phoneNumber || "");
+        setIsBookerValidationPass(true);
+      }
+    }, [userState]);
+>>>>>>> 3c629cdca50fcdd86ce94e36d0ad4bac3cb8678a
 
   const checkUserValidation = () => {
     setIsBookerValidationPass(isUserNameValidation && isPhoneNumberValidation);

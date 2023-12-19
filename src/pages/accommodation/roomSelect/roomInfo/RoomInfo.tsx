@@ -9,7 +9,7 @@ import englishToKoreanFormat from "@/utils/englishToKoreanFormat";
 import numberFormat from "@/utils/numberFormat";
 import { format } from "date-fns";
 import _debounce from "lodash/debounce";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { IoCartOutline, IoPeople } from "react-icons/io5";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -53,20 +53,14 @@ const RoomInfo = ({ room, accommodationName, isClicked }: RoomInfoProps) => {
 
   const [isPossible, setIsPossible] = useState(false);
 
-  let totalPrice = useMemo(() => {
-    let calculatedPrice = 0;
-
-    if (curAmount < baseHeadCount) {
-      calculatedPrice = price * countDay;
-    } else if (curAmount > maxHeadCount) {
-      calculatedPrice =
-        price * countDay + 15000 * (maxHeadCount - baseHeadCount);
-    } else {
-      calculatedPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
-    }
-
-    return calculatedPrice;
-  }, [curAmount, baseHeadCount, maxHeadCount, price, countDay]);
+  let totalPrice = 0;
+  if (curAmount < baseHeadCount) {
+    totalPrice = price * countDay;
+  } else if (curAmount > maxHeadCount) {
+    totalPrice = price * countDay + 15000 * (maxHeadCount - baseHeadCount);
+  } else {
+    totalPrice = price * countDay + 15000 * (curAmount - baseHeadCount);
+  }
 
   useEffect(() => {
     if (curAmount < baseHeadCount) {

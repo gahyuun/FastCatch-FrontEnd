@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import _debounce from "lodash/debounce";
 import "./roomSelect.scss";
 import RoomInfo from "./roomInfo/RoomInfo";
@@ -24,34 +24,24 @@ const RoomSelect = ({
   const [isClicked, setIsClicked] = useState(true);
   const [filterData, setFilterData] = useRecoilState(filterState);
 
-  const handleClick = useMemo(
-    () =>
-      _debounce(() => {
-        // 검색 클릭 여부 판단용 -> 각 room에서 예약 가능 여부 useEffect의 의존성 배열로 사용
-        setIsClicked(!isClicked);
+  const handleClick = _debounce(() => {
+    // 검색 클릭 여부 판단용 -> 각 room에서 예약 가능 여부 useEffect의 의존성 배열로 사용
+    setIsClicked(!isClicked);
 
-        // 전역 데이터 업데이트
-        setFilterData(prevStates => {
-          return {
-            ...prevStates,
-            current: {
-              ...prevStates.current,
-              startDate: filterData.startDate,
-              endDate: filterData.endDate,
-              amount: filterData.amount,
-            },
-          };
-        });
-        refetch();
-      }, 500),
-    [
-      isClicked,
-      filterData.startDate,
-      filterData.endDate,
-      filterData.amount,
-      setFilterData,
-    ]
-  );
+    // 전역 데이터 업데이트
+    setFilterData(prevStates => {
+      return {
+        ...prevStates,
+        current: {
+          ...prevStates.current,
+          startDate: filterData.startDate,
+          endDate: filterData.endDate,
+          amount: filterData.amount,
+        },
+      };
+    });
+    refetch();
+  }, 500);
 
   return (
     <div className="accommodation__select-room">

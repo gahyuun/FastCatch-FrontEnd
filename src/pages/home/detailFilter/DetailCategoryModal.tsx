@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useQueryClient } from "react-query";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRef, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { detailState } from "@/states/detailState";
 import { commitOptions } from "./detailCommitFnc";
 import TermsAgreementItem from "@/components/termsAgreementItem/TermsAgreementItem";
@@ -8,6 +7,7 @@ import { IoClose } from "react-icons/io5";
 
 import "./detailCategoryModal.scss";
 import { Button } from "@/components/common";
+import { responseState } from "@/states/responseState";
 
 export interface OptionI {
   key: string;
@@ -33,14 +33,9 @@ const filterOption = {
 };
 
 const DetailCategoryModal = (props: detailProps) => {
-  const queryClient = useQueryClient();
-  const [detail] = useRecoilState(detailState);
+  const [responseStates] = useRecoilState(responseState);
   const setFilteredAtom = useSetRecoilState(detailState);
   const setOpenDetail = props.setOpenDetail;
-
-  useEffect(() => {
-    console.log(detail);
-  }, [detail]);
 
   const [activeTab, setActiveTab] = useState<number>(0);
   const [options, setOptions] = useState<OptionI[]>([
@@ -90,7 +85,7 @@ const DetailCategoryModal = (props: detailProps) => {
     commitOptions(
       activeTab,
       options,
-      queryClient,
+      responseStates,
       setFilteredAtom,
       setOpenDetail
     );
