@@ -11,7 +11,7 @@ module.exports = {
     "airbnb-typescript",
     "airbnb/hooks",
     "eslint-config-prettier",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
   ],
   overrides: [
     {
@@ -28,7 +28,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
-    project: "./tsconfig.json",
+    // project: "./tsconfig.json",
   },
   ignorePatterns: [".eslintrc.cjs", "vite.config.ts", "src"],
   plugins: ["@typescript-eslint", "react", "prettier"],
@@ -38,4 +38,4 @@ module.exports = {
     "import/extensions": ["off"],
     "react/react-in-jsx-scope": "off",
   },
-}
+};
